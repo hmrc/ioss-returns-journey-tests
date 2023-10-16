@@ -14,28 +14,25 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
-object CheckYourVATHomePage extends BasePage {
-  val url: String = TestConfiguration.url("example-frontend") + "/vat-return-period"
+class ReturnsStepDef extends BaseStepDef {
 
-  val annuallyRadioButton  = "vatReturnPeriod"
-  val quarterlyRadioButton = "vatReturnPeriod-2"
+  val host: String = TestConfiguration.url("ioss-returns-frontend")
 
-  def loadPage: this.type = {
-    driver.navigate().to(url)
-    this
+  Given("^the user accesses the service$") { () =>
+    CommonPage.goToStartOfJourney()
   }
 
-  def provideVATPeriod(period: String): Turnover.type = {
-    period match {
-      case "Annually" => driver.findElement(By.id(annuallyRadioButton)).click()
-      case _          => driver.findElement(By.id(quarterlyRadioButton)).click()
-    }
-    submitPage()
-    Turnover
+  Given("^the user signs into authority wizard as an Organisation Admin with VAT enrolment (.*)$") { (vrn: String) =>
+    AuthPage.loginUsingAuthorityWizard(vrn)
   }
+
+  Then("""^the user is directed back to the index page$""") { () =>
+    driver.getCurrentUrl shouldBe host
+  }
+
 }

@@ -1,7 +1,7 @@
 **This is a template README.md.  Be sure to update this with project specific content that describes your ui test project.**
 
 # ioss-returns-journey-tests
-`<digital service name>` UI journey tests.  
+`ioss-returns-frontend` UI journey tests.  
 
 ## Pre-requisites
 
@@ -13,10 +13,10 @@ Start Mongo Docker container as follows:
 docker run --rm -d -p 27017:27017 --name mongo mongo:4.4
 ```
 
-Start `<digital service name>` services as follows:
+Start `ioss-returns-frontend` services as follows:
 
 ```bash
-sm2 --start <profile>
+sm2 --start IMPORT_ONE_STOP_SHOP_ALL
 ```
 
 ### Dockerized browser container(s)

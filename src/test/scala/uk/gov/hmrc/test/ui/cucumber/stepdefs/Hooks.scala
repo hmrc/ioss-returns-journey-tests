@@ -27,5 +27,10 @@ class Hooks extends ScalaDsl with EN with BrowserDriver {
       val screenshot     = driver.asInstanceOf[TakesScreenshot].getScreenshotAs(OutputType.BYTES)
       scenario.attach(screenshot, "image/png", screenshotName)
     }
+
+    Before {
+      driver.manage().deleteAllCookies()
+    }
+
   }
 }
