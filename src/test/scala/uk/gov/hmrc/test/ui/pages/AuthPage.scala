@@ -35,7 +35,7 @@ object AuthPage extends BasePage {
     driver.findElement(By.id("redirectionUrl")).sendKeys(redirectUrl)
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
-      selectAffinityGroup.selectByValue("Organisation")
+    selectAffinityGroup.selectByValue("Organisation")
 
     driver
       .findElement(By.id("enrolment[0].name"))
@@ -50,4 +50,3 @@ object AuthPage extends BasePage {
   }
 
 }
-
