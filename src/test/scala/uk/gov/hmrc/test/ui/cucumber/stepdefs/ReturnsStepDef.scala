@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
@@ -23,16 +24,24 @@ class ReturnsStepDef extends BaseStepDef {
 
   val host: String = TestConfiguration.url("ioss-returns-frontend")
 
-  Given("^the user accesses the service$") { () =>
-    CommonPage.goToStartOfJourney()
+  Given("""the user accesses the authority wizard""") { () =>
+    AuthPage.goToAuthStub()
   }
 
-  Given("^the user signs into authority wizard as an Organisation Admin with VAT enrolment (.*)$") { (vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard(vrn)
+  Then("""^the user is redirected to their IOSS Account$""") { () =>
+    driver.getCurrentUrl shouldBe s"$host/your-account"
   }
 
-  Then("""^the user is directed back to the index page$""") { () =>
-    driver.getCurrentUrl shouldBe host
+  Then("""^the user clicks on the Change Your Registration link$""") { () =>
+    driver.findElement(By.id("change-your-registration")).click()
   }
 
+  Then("""^the user is redirected to the Change Your Registration page in IOSS Registration$""") { () =>
+    CommonPage.checkChangeYourRegistration()
+  }
+
+  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the returns journey""") {
+    (vrn: String, iossNumber: String) =>
+      AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", vrn, iossNumber)
+  }
 }
