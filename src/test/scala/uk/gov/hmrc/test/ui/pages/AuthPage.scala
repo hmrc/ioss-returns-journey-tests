@@ -22,31 +22,49 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
 
-  def loginUsingAuthorityWizard(vrn: String): Unit = {
+  def loginUsingAuthorityWizard(
+    withStatus: String,
+    enrolment: String,
+    vrn: String,
+    iossNumber: String
+  ): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
-    val redirectUrl: String = TestConfiguration.url(
-      "ioss-returns-frontend"
-    )
-
-    driver.findElement(By.id("redirectionUrl")).clear()
-    driver.findElement(By.id("redirectionUrl")).sendKeys(redirectUrl)
+    driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-returns-frontend"))
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
 
-    driver
-      .findElement(By.id("enrolment[0].name"))
-      .sendKeys("HMRC-MTD-VAT")
-    driver
-      .findElement(By.id("input-0-0-name"))
-      .sendKeys("VRN")
-    driver
-      .findElement(By.id("input-0-0-value"))
-      .sendKeys(vrn)
+    if (withStatus == "with") {
+      driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
+      driver
+        .findElement(By.id("input-0-0-name"))
+        .sendKeys("VRN")
+      driver
+        .findElement(By.id("input-0-0-value"))
+        .sendKeys(vrn)
+      if (enrolment == "IOSS and VAT") {
+        driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
+        driver
+          .findElement(By.id("input-1-0-name"))
+          .sendKeys("IOSSNumber")
+        if (iossNumber == "default") {
+          driver
+            .findElement(By.id("input-1-0-value"))
+            .sendKeys("IM9001234567")
+        } else {
+          driver
+            .findElement(By.id("input-1-0-value"))
+            .sendKeys(iossNumber)
+        }
+      }
+    }
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
   }
+
+  def goToAuthStub(): Unit =
+    driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
 
 }
