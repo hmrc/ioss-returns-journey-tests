@@ -1,6 +1,6 @@
 @Returns @Accessibility
 
-Feature: Returns Feature
+Feature: Kickouts Feature
 
   Scenario: A user without an IOSS enrolment cannot access the returns service
     Given the user accesses the authority wizard
