@@ -44,4 +44,12 @@ class ReturnsStepDef extends BaseStepDef {
     (vrn: String, iossNumber: String) =>
       AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", vrn, iossNumber)
   }
+
+  When("""^a user with VRN (.*) and no IOSS enrolment accesses the returns journey""") { (vrn: String) =>
+    AuthPage.loginUsingAuthorityWizard("with", "VAT", vrn, "none")
+  }
+
+  Then("""^the user is on the (.*) page$""") { (url: String) =>
+    CommonPage.checkUrl(url)
+  }
 }
