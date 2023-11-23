@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object CommonPage extends BasePage {
@@ -30,5 +31,26 @@ object CommonPage extends BasePage {
 
   def checkUrl(url: String): Unit =
     driver.getCurrentUrl should startWith(s"$host/$url")
+
+  def selectAnswer(data: String): Unit = {
+    data match {
+      case "yes" => driver.findElement(By.id("value")).click()
+      case "no"  => driver.findElement(By.id("value-no")).click()
+      case _     => throw new Exception("Option doesn't exist")
+    }
+    clickContinue()
+  }
+  def clickContinue(): Unit =
+    driver.findElement(By.id("continue")).click()
+
+  def enterData(data: String): Unit =
+    driver.findElement(By.id("value")).sendKeys(data)
+
+  def tickCheckbox(checkbox: String): Unit =
+    checkbox match {
+      case "first"  => driver.findElement(By.id("value_0")).click()
+      case "second" => driver.findElement(By.id("value_1")).click()
+      case _        => throw new Exception("Checkbox doesn't exist")
+    }
 
 }
