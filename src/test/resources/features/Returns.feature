@@ -8,7 +8,7 @@ Feature: Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the start page
+    Then the user answers yes on the 2023-M10/start page
     And the user answers yes on the soldGoods page
     And the user enters France on the first soldToCountry page
     And the user ticks the first checkbox on the first vatRatesFromCountry page
