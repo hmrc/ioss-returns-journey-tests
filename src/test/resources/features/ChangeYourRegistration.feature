@@ -1,4 +1,4 @@
-@Returns @Accessibility
+@Returns
 
 Feature: Change Your Registration Feature
 
