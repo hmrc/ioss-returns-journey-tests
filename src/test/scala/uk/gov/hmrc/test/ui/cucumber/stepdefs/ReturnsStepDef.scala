@@ -107,4 +107,18 @@ class ReturnsStepDef extends BaseStepDef {
     clickContinue()
   }
 
+  When("""^the user selects (.*) on the (first|second|third|fourth|fifth) (.*) page$""") {
+    (data: String, index: String, page: String) =>
+      val pageIndex = index match {
+        case "first"  => "1"
+        case "second" => "2"
+        case "third"  => "3"
+        case "fourth" => "4"
+        case "fifth"  => "5"
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.checkUrl(s"$page/$pageIndex")
+      CommonPage.selectValueAutocomplete(data)
+  }
+
 }
