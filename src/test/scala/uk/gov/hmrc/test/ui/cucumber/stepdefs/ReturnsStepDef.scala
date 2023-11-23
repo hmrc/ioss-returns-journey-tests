@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages.CommonPage.clickContinue
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class ReturnsStepDef extends BaseStepDef {
@@ -30,10 +31,6 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is redirected to their IOSS Account$""") { () =>
     driver.getCurrentUrl shouldBe s"$host/your-account"
-  }
-
-  Then("""^the user clicks on the Change Your Registration link$""") { () =>
-    driver.findElement(By.id("change-your-registration")).click()
   }
 
   Then("""^the user is redirected to the Change Your Registration page in IOSS Registration$""") { () =>
@@ -52,4 +49,76 @@ class ReturnsStepDef extends BaseStepDef {
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
   }
+
+  Then("""^the user clicks on the (.*) link$""") { (link: String) =>
+    link match {
+      case "Start your return"        =>
+        driver.findElement(By.id("start-return")).click()
+      case "Change your registration" =>
+        driver.findElement(By.id("change-your-registration")).click()
+      case _                          =>
+        throw new Exception("Link doesn't exist")
+    }
+  }
+  When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectAnswer(data)
+  }
+
+  When("""^the user enters (.*) on the (first|second|third) (.*) page$""") {
+    (data: String, index: String, page: String) =>
+      val pageIndex = index match {
+        case "first"  => "1"
+        case "second" => "2"
+        case "third"  => "3"
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.checkUrl(s"$page/$pageIndex")
+      CommonPage.enterData(data)
+      CommonPage.clickContinue()
+  }
+
+  When("""^the user ticks the (first|second) checkbox on the (first|second) (.*) page$""") {
+
+    (checkbox: String, index: String, page: String) =>
+      val pageIndex = index match {
+        case "first"  => "1"
+        case "second" => "2"
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.checkUrl(s"$page/$pageIndex")
+      CommonPage.tickCheckbox(checkbox)
+  }
+
+  Then("""^the user clicks the continue button$""") { () =>
+    clickContinue()
+  }
+
+  When(
+    """^the user confirms the vat for the (first|second) EU country as the suggested amount for the (first|second) selected VAT rate on the (.*) page$"""
+  ) { (countryIndex: String, vatRateIndex: String, page: String) =>
+    val pageIndex = countryIndex match {
+      case "first"  => "1"
+      case "second" => "2"
+      case _        => throw new Exception("Index doesn't exist")
+    }
+    CommonPage.checkUrl(s"$page/$pageIndex")
+    driver.findElement(By.id("value_0")).click()
+    clickContinue()
+  }
+
+  When("""^the user selects (.*) on the (first|second|third|fourth|fifth) (.*) page$""") {
+    (data: String, index: String, page: String) =>
+      val pageIndex = index match {
+        case "first"  => "1"
+        case "second" => "2"
+        case "third"  => "3"
+        case "fourth" => "4"
+        case "fifth"  => "5"
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.checkUrl(s"$page/$pageIndex")
+      CommonPage.selectValueAutocomplete(data)
+  }
+
 }
