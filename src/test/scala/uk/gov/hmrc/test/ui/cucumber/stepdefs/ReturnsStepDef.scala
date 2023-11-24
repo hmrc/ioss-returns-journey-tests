@@ -56,6 +56,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("start-return")).click()
       case "Change your registration" =>
         driver.findElement(By.id("change-your-registration")).click()
+      case "Back to your account"     =>
+        driver.findElement(By.id("back-to-your-account")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -78,12 +80,13 @@ class ReturnsStepDef extends BaseStepDef {
       CommonPage.clickContinue()
   }
 
-  When("""^the user ticks the (first|second) checkbox on the (first|second) (.*) page$""") {
+  When("""^the user ticks the (first|second) checkbox on the (first|second|third) (.*) page$""") {
 
     (checkbox: String, index: String, page: String) =>
       val pageIndex = index match {
         case "first"  => "1"
         case "second" => "2"
+        case "third"  => "3"
         case _        => throw new Exception("Index doesn't exist")
       }
       CommonPage.checkUrl(s"$page/$pageIndex")
@@ -95,11 +98,12 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user confirms the vat for the (first|second) EU country as the suggested amount for the (first|second) selected VAT rate on the (.*) page$"""
+    """^the user confirms the vat for the (first|second|third) EU country as the suggested amount for the (first|second) selected VAT rate on the (.*) page$"""
   ) { (countryIndex: String, vatRateIndex: String, page: String) =>
     val pageIndex = countryIndex match {
       case "first"  => "1"
       case "second" => "2"
+      case "third"  => "3"
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.checkUrl(s"$page/$pageIndex")
@@ -119,6 +123,10 @@ class ReturnsStepDef extends BaseStepDef {
       }
       CommonPage.checkUrl(s"$page/$pageIndex")
       CommonPage.selectValueAutocomplete(data)
+  }
+
+  Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
+    CommonPage.selectLink(link)
   }
 
 }
