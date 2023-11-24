@@ -67,4 +67,7 @@ object CommonPage extends BasePage {
       ExpectedConditions.presenceOfElementLocated(by)
     }
 
+  def selectLink(link: String): Unit =
+    driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
+
 }
