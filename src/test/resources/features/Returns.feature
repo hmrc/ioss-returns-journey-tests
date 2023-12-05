@@ -22,6 +22,8 @@ Feature: Returns Feature
     And the user enters 1234 on the second sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the add-sales-country-list page
+#   Temporarily adding Correction page until logic is in to check if it is the first return
+    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
 
 

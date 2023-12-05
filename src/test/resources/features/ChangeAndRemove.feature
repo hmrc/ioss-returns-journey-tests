@@ -35,6 +35,8 @@ Feature: Change and Remove Feature
     And the user enters 9999 on the third sales-to-country page
     And the user confirms the vat for the third EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the add-sales-country-list page
+  #  Temporarily adding Correction page until logic is in to check if it is the first return
+    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
 
   Scenario: A user can add some sales then remove them all in their return
@@ -60,6 +62,8 @@ Feature: Change and Remove Feature
     Then the user selects the remove link for remove-sales-country\/1
     And the user answers yes on the remove-sales-country/1 page
     Then the user answers no on the soldGoods page
+#  Temporarily adding Correction page until logic is in to check if it is the first return
+    And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
 
 
