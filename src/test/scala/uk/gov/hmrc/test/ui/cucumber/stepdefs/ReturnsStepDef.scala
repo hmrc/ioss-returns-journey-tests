@@ -75,7 +75,11 @@ class ReturnsStepDef extends BaseStepDef {
         case "third"  => "3"
         case _        => throw new Exception("Index doesn't exist")
       }
-      CommonPage.checkUrl(s"$page/$pageIndex")
+      if (page == "sales-to-country") {
+        CommonPage.checkUrl(s"$page/$pageIndex/1")
+      } else {
+        CommonPage.checkUrl(s"$page/$pageIndex")
+      }
       CommonPage.enterData(data)
       CommonPage.clickContinue()
   }

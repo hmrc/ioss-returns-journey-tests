@@ -13,13 +13,13 @@ Feature: Returns Feature
     And the user enters France on the first soldToCountry page
     And the user ticks the first checkbox on the first vatRatesFromCountry page
     And the user clicks the continue button
-    And the user enters 6000 on the first salesToCountry page
+    And the user enters 6000 on the first sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers yes on the add-sales-country-list page
     And the user enters Italy on the second soldToCountry page
     And the user ticks the first checkbox on the second vatRatesFromCountry page
     And the user clicks the continue button
-    And the user enters 1234 on the second salesToCountry page
+    And the user enters 1234 on the second sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the add-sales-country-list page
     Then the user is on the check-your-answers page
