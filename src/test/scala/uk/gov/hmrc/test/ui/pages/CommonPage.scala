@@ -44,21 +44,22 @@ object CommonPage extends BasePage {
   def clickContinue(): Unit =
     driver.findElement(By.id("continue")).click()
 
-  def enterData(data: String): Unit =
-    driver.findElement(By.id("value")).sendKeys(data)
+  def enterData(inputId: String, data: String): Unit =
+    driver.findElement(By.id(inputId)).sendKeys(data)
 
   def tickCheckbox(checkbox: String): Unit =
     checkbox match {
       case "first"  => driver.findElement(By.id("value_0")).click()
       case "second" => driver.findElement(By.id("value_1")).click()
+      case "third"  => driver.findElement(By.id("value_2")).click()
+      case "fourth" => driver.findElement(By.id("value_3")).click()
+      case "fifth"  => driver.findElement(By.id("value_4")).click()
       case _        => throw new Exception("Checkbox doesn't exist")
     }
 
   def selectValueAutocomplete(data: String): Unit = {
-    val inputId = "value"
-    driver.findElement(By.id(inputId)).sendKeys(data)
-    waitForElement(By.id(inputId))
-    driver.findElement(By.cssSelector("li#value__option--0")).click()
+    waitForElement(By.id("value"))
+    enterData("value", data)
     clickContinue()
   }
 
@@ -69,5 +70,19 @@ object CommonPage extends BasePage {
 
   def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
+
+  def checkDoubleIndexURL(firstIndex: String, secondIndex: String, page: String): Unit = {
+    val indexesUrl = (firstIndex, secondIndex) match {
+      case ("first", "first")   => "/1/1"
+      case ("first", "second")  => "/1/2"
+      case ("first", "third")   => "/1/3"
+      case ("second", "first")  => "/2/1"
+      case ("second", "second") => "/2/2"
+      case ("third", "first")   => "/3/1"
+      case ("third", "second")  => "/3/2"
+      case _                    => throw new Exception("Index combination is invalid")
+    }
+    CommonPage.checkUrl(page + indexesUrl)
+  }
 
 }

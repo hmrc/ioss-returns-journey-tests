@@ -67,30 +67,23 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.selectAnswer(data)
   }
 
-  When("""^the user enters (.*) on the (first|second|third) (.*) page$""") {
-    (data: String, index: String, page: String) =>
-      val pageIndex = index match {
-        case "first"  => "1"
-        case "second" => "2"
-        case "third"  => "3"
-        case _        => throw new Exception("Index doesn't exist")
-      }
-      if (page == "sales-to-country") {
-        CommonPage.checkUrl(s"$page/$pageIndex/1")
-      } else {
-        CommonPage.checkUrl(s"$page/$pageIndex")
-      }
-      CommonPage.enterData(data)
-      CommonPage.clickContinue()
+  When(
+    """^the user enters (first|second|third) country total sales of (.*) for (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
+  ) { (countryIndex: String, data: String, vatRateIndex: String, page: String) =>
+    CommonPage.checkDoubleIndexURL(countryIndex, vatRateIndex, page)
+    CommonPage.enterData("value", data)
+    CommonPage.clickContinue()
   }
 
-  When("""^the user ticks the (first|second) checkbox on the (first|second|third) (.*) page$""") {
+  When("""^the user ticks the (first|second|third|fourth|fifth) checkbox on the (first|second|third) (.*) page$""") {
 
     (checkbox: String, index: String, page: String) =>
       val pageIndex = index match {
         case "first"  => "1"
         case "second" => "2"
         case "third"  => "3"
+        case "fourth" => "4"
+        case "fifth"  => "5"
         case _        => throw new Exception("Index doesn't exist")
       }
       CommonPage.checkUrl(s"$page/$pageIndex")
@@ -102,17 +95,28 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user confirms the vat for the (first|second|third) EU country as the suggested amount for the (first|second) selected VAT rate on the (.*) page$"""
+    """^the user confirms the vat for the (first|second|third) EU country as the suggested amount for the (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
   ) { (countryIndex: String, vatRateIndex: String, page: String) =>
     val pageIndex = countryIndex match {
       case "first"  => "1"
       case "second" => "2"
       case "third"  => "3"
+      case "fourth" => "4"
+      case "fifth"  => "5"
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.checkUrl(s"$page/$pageIndex")
     driver.findElement(By.id("value_0")).click()
     clickContinue()
+  }
+
+  When(
+    """^the user enters a different amount of VAT totalling (.*) for the (first|second|third) country and the (first|second) selected VAT rate on the (.*) page$"""
+  ) { (newVatAmount: String, indexCountry: String, indexVatRate: String, page: String) =>
+    CommonPage.checkDoubleIndexURL(indexCountry, indexVatRate, page)
+    driver.findElement(By.id("value_1")).click()
+    CommonPage.enterData("amount", newVatAmount)
+    CommonPage.clickContinue()
   }
 
   When("""^the user selects (.*) on the (first|second|third|fourth|fifth) (.*) page$""") {
