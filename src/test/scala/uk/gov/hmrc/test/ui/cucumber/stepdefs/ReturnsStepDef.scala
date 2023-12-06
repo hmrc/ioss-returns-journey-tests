@@ -68,9 +68,12 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user enters (first|second|third) country total sales of (.*) for (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
-  ) { (countryIndex: String, data: String, vatRateIndex: String, page: String) =>
+    """^the user (enters|changes) (first|second|third) country total sales of (.*) for (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
+  ) { (mode: String, countryIndex: String, data: String, vatRateIndex: String, page: String) =>
     CommonPage.checkDoubleIndexURL(countryIndex, vatRateIndex, page)
+    if (mode == "changes") {
+      CommonPage.clearData()
+    }
     CommonPage.enterData("value", data)
     CommonPage.clickContinue()
   }
@@ -135,6 +138,23 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
     CommonPage.selectLink(link)
+  }
+
+  Then(
+    """^the user selects the (mini CYA|list) change link for (first|second|third|page) (.*)$"""
+  ) { (route: String, index: String, toPage: String) =>
+    val changeIndex = index match {
+      case "first"  => "1"
+      case "second" => "2"
+      case "third"  => "3"
+      case _        => "no index required"
+    }
+    if (route == "mini CYA") {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-check-sales")
+    } else {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-add-sales-country-list")
+    }
+
   }
 
 }

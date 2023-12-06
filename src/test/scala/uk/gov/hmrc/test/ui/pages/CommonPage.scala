@@ -85,4 +85,7 @@ object CommonPage extends BasePage {
     CommonPage.checkUrl(page + indexesUrl)
   }
 
+  def clearData(): Unit =
+    driver.findElement(By.id("value")).clear()
+
 }
