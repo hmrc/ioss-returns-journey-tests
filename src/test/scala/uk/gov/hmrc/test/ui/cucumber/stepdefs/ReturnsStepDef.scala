@@ -106,7 +106,7 @@ class ReturnsStepDef extends BaseStepDef {
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.checkUrl(s"$page/$pageIndex")
-    driver.findElement(By.id("value_0")).click()
+    driver.findElement(By.id("choice")).click()
     clickContinue()
   }
 
@@ -114,7 +114,7 @@ class ReturnsStepDef extends BaseStepDef {
     """^the user enters a different amount of VAT totalling (.*) for the (first|second|third) country and the (first|second) selected VAT rate on the (.*) page$"""
   ) { (newVatAmount: String, indexCountry: String, indexVatRate: String, page: String) =>
     CommonPage.checkDoubleIndexURL(indexCountry, indexVatRate, page)
-    driver.findElement(By.id("value_1")).click()
+    driver.findElement(By.id("choice_different")).click()
     CommonPage.enterData("amount", newVatAmount)
     CommonPage.clickContinue()
   }
