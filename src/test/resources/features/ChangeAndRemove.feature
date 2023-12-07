@@ -126,7 +126,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the remove-vat-rate-sales-for-country/2/2 page
 #  currently going back to country list instead of check-sales due to waypoint?
 #    Then the user answers yes on the check-sales/2 page
-
+#Add one then change from confirm vat to different vat?
 
   Scenario: A user can remove all answers via the mini CYA for VAT rates
     Given the user accesses the authority wizard
@@ -160,5 +160,7 @@ Feature: Change and Remove Feature
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/1 page
     And the user answers no on the add-sales-country-list page
+    #   Temporarily adding Correction page until logic is in to check if it is the first return
+    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
 
