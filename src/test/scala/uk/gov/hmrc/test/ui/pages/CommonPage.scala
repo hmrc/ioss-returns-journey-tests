@@ -78,6 +78,7 @@ object CommonPage extends BasePage {
       case ("first", "third")   => "/1/3"
       case ("second", "first")  => "/2/1"
       case ("second", "second") => "/2/2"
+      case ("second", "third")  => "/2/3"
       case ("third", "first")   => "/3/1"
       case ("third", "second")  => "/3/2"
       case _                    => throw new Exception("Index combination is invalid")
