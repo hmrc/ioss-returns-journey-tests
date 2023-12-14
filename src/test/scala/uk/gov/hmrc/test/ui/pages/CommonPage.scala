@@ -58,8 +58,10 @@ object CommonPage extends BasePage {
     }
 
   def selectValueAutocomplete(data: String): Unit = {
-    waitForElement(By.id("value"))
-    enterData("value", data)
+    val inputId = "value"
+    driver.findElement(By.id(inputId)).sendKeys(data)
+    waitForElement(By.id(inputId))
+    driver.findElement(By.cssSelector("li#value__option--0")).click()
     clickContinue()
   }
 
