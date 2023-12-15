@@ -91,4 +91,9 @@ object CommonPage extends BasePage {
   def clearData(): Unit =
     driver.findElement(By.id("value")).clear()
 
+  def navigateToFirstCorrectionCountry: Unit =
+    driver
+      .navigate()
+      .to(s"$host/correction-country/1/1")
+
 }

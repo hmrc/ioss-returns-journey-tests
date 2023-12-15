@@ -136,6 +136,13 @@ class ReturnsStepDef extends BaseStepDef {
       CommonPage.selectValueAutocomplete(data)
   }
 
+  When(
+    """^the user chooses the country (.*) as their (first|second) correction within the (first|second) correction period$"""
+  ) { (data: String, countryIndex: String, periodIndex: String) =>
+    CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, "correction-country")
+    CommonPage.selectValueAutocomplete(data)
+  }
+
   Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
     CommonPage.selectLink(link)
   }
@@ -155,6 +162,17 @@ class ReturnsStepDef extends BaseStepDef {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-add-sales-country-list")
     }
 
+  }
+
+  When("""^the user manually navigates to the first correction country$""") {
+    CommonPage.navigateToFirstCorrectionCountry
+  }
+
+  When("""^the user adds (.*) on the (first|second|third) (.*) page for the (first|second) correction period$""") {
+    (data: String, countryIndex: String, url: String, periodIndex: String) =>
+      CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, url)
+      CommonPage.enterData("value", data)
+      CommonPage.clickContinue()
   }
 
 }
