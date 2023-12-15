@@ -218,7 +218,19 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/1/2 page
     Then the user is on the correction-list-countries/1 page
 #    Change answers and go round loop to add another correction
-
+    When the user selects the correction countries list change link for the first country on the first correction period
+    And the user amends to 1111 on the first country-vat-correction-amount page for the first correction period
+    Then the user answers yes on the vat-payable-confirm/1/1?waypoints=add-correction-list-countries-1 page
+    Then the user answers yes on the correction-list-countries/1 page
+    And the user chooses the country Denmark as their third correction within the first correction period
+    And the user answers yes on the add-new-country/1/3 page
+    And the user adds 1254.01 on the third country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/3 page
+    Then the user is on the correction-list-countries/1 page
+#    Bug where clicking any of the change links goes back to the first country amount
+    When the user selects the correction countries list change link for the third country on the first correction period
+    And the user amends to 1254.10 on the third country-vat-correction-amount page for the first correction period
+    Then the user answers yes on the vat-payable-confirm/1/3?waypoints=add-correction-list-countries-1 page
     And the user answers no on the correction-list-countries/1 page
     Then the user is on the check-your-answers page
 
