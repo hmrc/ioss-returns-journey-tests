@@ -18,7 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.clickContinue
+import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class ReturnsStepDef extends BaseStepDef {
@@ -70,7 +70,7 @@ class ReturnsStepDef extends BaseStepDef {
   When(
     """^the user (enters|changes) (first|second|third) country total sales of (.*) for (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
   ) { (mode: String, countryIndex: String, data: String, vatRateIndex: String, page: String) =>
-    CommonPage.checkDoubleIndexURL(countryIndex, vatRateIndex, page)
+    CommonPage.checkDoubleIndexURL(countryIndex, vatRateIndex, page, false)
     if (mode == "changes") {
       CommonPage.clearData()
     }
@@ -116,7 +116,7 @@ class ReturnsStepDef extends BaseStepDef {
   When(
     """^the user enters a different amount of VAT totalling (.*) for the (first|second|third) country and the (first|second) selected VAT rate on the (.*) page$"""
   ) { (newVatAmount: String, indexCountry: String, indexVatRate: String, page: String) =>
-    CommonPage.checkDoubleIndexURL(indexCountry, indexVatRate, page)
+    CommonPage.checkDoubleIndexURL(indexCountry, indexVatRate, page, false)
     driver.findElement(By.id("choice_different")).click()
     CommonPage.enterData("amount", newVatAmount)
     CommonPage.clickContinue()
@@ -134,6 +134,13 @@ class ReturnsStepDef extends BaseStepDef {
       }
       CommonPage.checkUrl(s"$page/$pageIndex")
       CommonPage.selectValueAutocomplete(data)
+  }
+
+  When(
+    """^the user chooses the country (.*) as their (first|second|third) correction within the (first|second) correction period$"""
+  ) { (data: String, countryIndex: String, periodIndex: String) =>
+    CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, "correction-country", false)
+    CommonPage.selectValueAutocomplete(data)
   }
 
   Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
@@ -154,7 +161,29 @@ class ReturnsStepDef extends BaseStepDef {
     } else {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-add-sales-country-list")
     }
-
   }
 
+  When("""^the user manually navigates to the first correction country$""") {
+    CommonPage.navigateToFirstCorrectionCountry
+  }
+
+  When(
+    """^the user (adds|amends to) (.*) on the (first|second|third) (.*) page for the (first|second) correction period$"""
+  ) { (mode: String, data: String, countryIndex: String, url: String, periodIndex: String) =>
+    CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, url, false)
+    if (mode == "amends to") {
+      CommonPage.clearData()
+    }
+    CommonPage.enterData("value", data)
+    CommonPage.clickContinue()
+  }
+
+  Then(
+    """^the user selects the correction countries list change link for the (first|second|third) country on the (first|second) correction period$"""
+  ) { (countryIndex: String, correctionIndex: String) =>
+    val indexString = getDoubleIndexString(correctionIndex, countryIndex, true)
+    CommonPage.selectLink(
+      s"country-vat-correction-amount\\$indexString\\?waypoints\\=change-add-correction-list-countries-1"
+    )
+  }
 }

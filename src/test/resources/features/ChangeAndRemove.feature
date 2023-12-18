@@ -196,4 +196,68 @@ Feature: Change and Remove Feature
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
 
+  Scenario: A user can change answers via the correction country list - previously undeclared
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+#   Logic to check if it is the first return does not exist yet
+    And the user answers yes on the correct-previous-return page
+    Then the user manually navigates to the first correction country
+    And the user chooses the country Spain as their first correction within the first correction period
+    And the user answers yes on the add-new-country/1/1 page
+    And the user adds 11111 on the first country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/1 page
+    Then the user is on the correction-list-countries/1 page
+    And the user answers yes on the correction-list-countries/1 page
+    And the user chooses the country Germany as their second correction within the first correction period
+    And the user answers yes on the add-new-country/1/2 page
+    And the user adds 1234.56 on the second country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/2 page
+    Then the user is on the correction-list-countries/1 page
+    When the user selects the correction countries list change link for the first country on the first correction period
+    And the user amends to 1111 on the first country-vat-correction-amount page for the first correction period
+    Then the user answers yes on the vat-payable-confirm/1/1?waypoints=add-correction-list-countries-1 page
+    Then the user answers yes on the correction-list-countries/1 page
+    And the user chooses the country Denmark as their third correction within the first correction period
+    And the user answers yes on the add-new-country/1/3 page
+    And the user adds 1254.01 on the third country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/3 page
+    Then the user is on the correction-list-countries/1 page
+    When the user selects the correction countries list change link for the third country on the first correction period
+    And the user amends to 1254.10 on the third country-vat-correction-amount page for the first correction period
+    Then the user answers yes on the vat-payable-confirm/1/3?waypoints=add-correction-list-countries-1 page
+    And the user answers no on the correction-list-countries/1 page
+    Then the user is on the check-your-answers page
+
+  Scenario: A user can remove all answers via the correction country list - previously undeclared
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+#   Logic to check if it is the first return does not exist yet
+    And the user answers yes on the correct-previous-return page
+    Then the user manually navigates to the first correction country
+    And the user chooses the country Czech Republic as their first correction within the first correction period
+    And the user answers yes on the add-new-country/1/1 page
+    And the user adds 12345 on the first country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/1 page
+    Then the user is on the correction-list-countries/1 page
+    And the user answers yes on the correction-list-countries/1 page
+    And the user chooses the country Republic of Cyprus as their second correction within the first correction period
+    And the user answers yes on the add-new-country/1/2 page
+    And the user adds 6543.21 on the second country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/2 page
+    Then the user is on the correction-list-countries/1 page
+    When the user selects the remove link for remove-country-correction\/1\/2
+    Then the user answers yes on the remove-country-correction/1/2 page
+    And the user is on the correction-list-countries/1 page
+    When the user selects the remove link for remove-country-correction\/1\/1
+    Then the user answers yes on the remove-country-correction/1/1 page
+    And the user answers no on the correct-previous-return page
+    Then the user is on the check-your-answers page
 

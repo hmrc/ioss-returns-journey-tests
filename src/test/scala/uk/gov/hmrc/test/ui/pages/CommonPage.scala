@@ -73,22 +73,35 @@ object CommonPage extends BasePage {
   def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 
-  def checkDoubleIndexURL(firstIndex: String, secondIndex: String, page: String): Unit = {
-    val indexesUrl = (firstIndex, secondIndex) match {
-      case ("first", "first")   => "/1/1"
-      case ("first", "second")  => "/1/2"
-      case ("first", "third")   => "/1/3"
-      case ("second", "first")  => "/2/1"
-      case ("second", "second") => "/2/2"
-      case ("second", "third")  => "/2/3"
-      case ("third", "first")   => "/3/1"
-      case ("third", "second")  => "/3/2"
+  def checkDoubleIndexURL(firstIndex: String, secondIndex: String, page: String, backslash: Boolean): Unit =
+    CommonPage.checkUrl(page + getDoubleIndexString(firstIndex, secondIndex, backslash))
+
+  def getDoubleIndexString(firstIndex: String, secondIndex: String, backslash: Boolean): String = {
+    val extraString = if (backslash) {
+      "\\"
+    } else {
+      ""
+    }
+
+    (firstIndex, secondIndex) match {
+      case ("first", "first")   => s"/1$extraString/1"
+      case ("first", "second")  => s"/1$extraString/2"
+      case ("first", "third")   => s"/1$extraString/3"
+      case ("second", "first")  => s"/2$extraString/1"
+      case ("second", "second") => s"/2$extraString/2"
+      case ("second", "third")  => s"/2$extraString/3"
+      case ("third", "first")   => s"/3$extraString/1"
+      case ("third", "second")  => s"/3$extraString/2"
       case _                    => throw new Exception("Index combination is invalid")
     }
-    CommonPage.checkUrl(page + indexesUrl)
   }
 
   def clearData(): Unit =
     driver.findElement(By.id("value")).clear()
+
+  def navigateToFirstCorrectionCountry: Unit =
+    driver
+      .navigate()
+      .to(s"$host/correction-country/1/1")
 
 }
