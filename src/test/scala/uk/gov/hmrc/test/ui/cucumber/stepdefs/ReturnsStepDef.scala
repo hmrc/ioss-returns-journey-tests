@@ -186,4 +186,20 @@ class ReturnsStepDef extends BaseStepDef {
       s"country-vat-correction-amount\\$indexString\\?waypoints\\=change-add-correction-list-countries-1"
     )
   }
+
+  Then(
+    """^the user selects the (CYA|change-return-period) change link for (first|second|third|page) (.*) from (.*)$"""
+  ) { (route: String, index: String, toPage: String, fromPage: String) =>
+    val changeIndex = index match {
+      case "first"  => "1"
+      case "second" => "2"
+      case "third"  => "3"
+      case _        => "no index required"
+    }
+    if (route == "change-return-period") {
+      driver.findElement(By.id("change-return-period")).click()
+    } else if (route == "CYA") {
+      CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
+    }
+  }
 }
