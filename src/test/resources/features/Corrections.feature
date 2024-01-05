@@ -27,5 +27,31 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/1 page
     Then the user is on the check-your-answers page
 
+  Scenario: A user is offered a single period to correct and chooses No
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+#   Logic to check if it is the first return does not exist yet
+    And the user answers yes on the correct-previous-return page
+    When the user answers no on the correction-return-single-period/1 page
+    Then the user is on the no-correction-periods-available page
+    And the user clicks the continue button
+    Then the user is on the check-your-answers page
 
+  Scenario: A user has corrections available but selects no to adding any
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+#   Logic to check if it is the first return does not exist yet
+    And the user answers no on the correct-previous-return page
+    Then the user is on the check-your-answers page
+
+#    Multiple periods available to correct
+#    No periods to correct - first return
 
