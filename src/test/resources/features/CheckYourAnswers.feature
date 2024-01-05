@@ -43,7 +43,6 @@ Feature: Check Your Answers Feature
     When the user selects the CYA change link for page soldGoods from check-your-answers
     Then the user answers no on the soldGoods page
     And the user is on the check-your-answers page
-#    There is currently a bug where the sales info is not cleared down once the answer has been changed to no
 
   Scenario: A user completes a nil return then uses Check Your Answers to amend it
     Given the user accesses the authority wizard
@@ -67,22 +66,22 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     And the user enters first country total sales of 147.65 for second selected VAT rate on the sales-to-country page
     And the user enters a different amount of VAT totalling 100.21 for the first country and the second selected VAT rate on the vatOnSales page
-#   Doesn't go back round loop and just ends up at check-your-answers
-#    Then the user answers yes on the check-sales/1 page
-#    And the user answers yes on the remaining-vat-rate-from-country/1/3 page
-#    And the user enters first country total sales of 16001 for third selected VAT rate on the sales-to-country page
-#    And the user confirms the vat for the first EU country as the suggested amount for the third selected VAT rate on the vatOnSales page
-#    Then the user clicks the continue button
-#    And the user answers yes on the add-sales-country-list page
-#    And the user selects Germany on the second soldToCountry page
-#    And the user ticks the second checkbox on the second vatRatesFromCountry page
-#    And the user clicks the continue button
-#    And the user enters second country total sales of 3210 for first selected VAT rate on the sales-to-country page
-#    And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
-#    And the user answers no on the check-sales/2 page
-#    And the user answers no on the add-sales-country-list page
+    Then the user answers yes on the check-sales/1 page
+    And the user answers yes on the remaining-vat-rate-from-country/1/3 page
+    And the user enters first country total sales of 16001 for third selected VAT rate on the sales-to-country page
+    And the user confirms the vat for the first EU country as the suggested amount for the third selected VAT rate on the vatOnSales page
+    Then the user clicks the continue button
+    And the user answers yes on the add-sales-country-list page
+    And the user selects Germany on the second soldToCountry page
+    And the user ticks the second checkbox on the second vatRatesFromCountry page
+    And the user clicks the continue button
+    And the user enters second country total sales of 3210 for first selected VAT rate on the sales-to-country page
+    And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
+    And the user answers no on the check-sales/2 page
+    And the user answers no on the add-sales-country-list page
+#    Currently going to /correct-previous-return?waypoints=check-your-answers in error
     Then the user is on the check-your-answers page
-@wip
+
   Scenario: A user adds details to a return then uses Check Your Answers to amend it and add more
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
