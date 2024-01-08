@@ -181,6 +181,7 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     And the user enters first country total sales of 2222.33 for second selected VAT rate on the sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vatOnSales page
+    And the user answers no on the check-sales/1?waypoints=change-add-sales-country-list page
     Then the user answers yes on the add-sales-country-list page
     And the user selects Malta on the second soldToCountry page
     And the user ticks the second checkbox on the second vatRatesFromCountry page
