@@ -99,6 +99,31 @@ Feature: Corrections Feature
     Then the user is on the check-your-answers page
 #   submit
 
+  Scenario: A user has corrections available for a single period
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9008888888 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+#   Logic to check if it is the first return does not exist yet
+    And the user answers yes on the correct-previous-return page
+    And the user answers yes on the correction-return-single-period/1 page
+    And the user chooses the country Portugal as their first correction within the first correction period
+    And the user answers yes on the add-new-country/1/1 page
+    And the user adds 1500.24 on the first country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/1 page
+    Then the user is on the correction-list-countries/1 page
+    And the user answers yes on the correction-list-countries/1 page
+    And the user chooses the country Romania as their second correction within the first correction period
+    And the user answers yes on the add-new-country/1/2 page
+    And the user adds 16000 on the second country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/2 page
+    And the user answers no on the correction-list-countries/1 page
+#    Will need to go to corrections list to be able to add corrections for other years and months
+    Then the user is on the check-your-answers page
+#   submit
+
   Scenario: A user adds return data with corrections for multiple years and periods
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
