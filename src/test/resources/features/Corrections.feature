@@ -26,6 +26,8 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user is offered a single period to correct and chooses No
     Given the user accesses the authority wizard
@@ -40,6 +42,8 @@ Feature: Corrections Feature
     Then the user is on the no-correction-periods-available page
     And the user clicks the continue button
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available but selects no to adding any
     Given the user accesses the authority wizard
@@ -51,6 +55,8 @@ Feature: Corrections Feature
 #   Logic to check if it is the first return does not exist yet
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
 #    Multiple periods available to correct
 #    No periods to correct - first return
