@@ -202,4 +202,18 @@ class ReturnsStepDef extends BaseStepDef {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
     }
   }
+
+  When(
+    """^the user picks year (2022|2023) on the (.*) page$"""
+  ) { (answer: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectYearRadioButton(answer)
+  }
+
+  When(
+    """^the user picks month (October|November|December) on the (.*) page$"""
+  ) { (answer: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectMonthRadioButton(answer)
+  }
 }
