@@ -40,6 +40,8 @@ Feature: Returns Feature
 #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user adds sales with all possible VAT rates for a country via VAT rates CYA page
     Given the user accesses the authority wizard
@@ -67,6 +69,22 @@ Feature: Returns Feature
     #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
+
+  Scenario: A user can submit a nil return
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+    #   Temporarily adding Correction page until logic is in to check if it is the first return
+    And the user answers no on the correct-previous-return page
+    Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
+
 
 
 

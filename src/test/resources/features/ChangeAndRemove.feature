@@ -45,6 +45,8 @@ Feature: Change and Remove Feature
   #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can add some sales then remove them all in their return
     Given the user accesses the authority wizard
@@ -74,6 +76,8 @@ Feature: Change and Remove Feature
 #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can change and remove answers via the mini CYA for VAT rates
     Given the user accesses the authority wizard
@@ -125,6 +129,8 @@ Feature: Change and Remove Feature
     #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can remove all answers via the mini CYA for VAT rates
     Given the user accesses the authority wizard
@@ -161,6 +167,8 @@ Feature: Change and Remove Feature
     #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can change answers via the country list in their return
     Given the user accesses the authority wizard
@@ -196,6 +204,8 @@ Feature: Change and Remove Feature
       #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can change answers via the correction country list - previously undeclared
     Given the user accesses the authority wizard
@@ -232,6 +242,8 @@ Feature: Change and Remove Feature
     Then the user answers yes on the vat-payable-confirm/1/3?waypoints=add-correction-list-countries-1 page
     And the user answers no on the correction-list-countries/1 page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can remove all answers via the correction country list - previously undeclared
     Given the user accesses the authority wizard
@@ -261,4 +273,6 @@ Feature: Change and Remove Feature
     Then the user answers yes on the remove-country-correction/1/1 page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 

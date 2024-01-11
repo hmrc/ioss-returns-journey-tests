@@ -43,6 +43,8 @@ Feature: Check Your Answers Feature
     When the user selects the CYA change link for page soldGoods from check-your-answers
     Then the user answers no on the soldGoods page
     And the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user completes a nil return then uses Check Your Answers to amend it
     Given the user accesses the authority wizard
@@ -81,6 +83,8 @@ Feature: Check Your Answers Feature
     And the user answers no on the add-sales-country-list page
 #    Currently going to /correct-previous-return?waypoints=check-your-answers in error
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user adds details to a return then uses Check Your Answers to amend it and add more
     Given the user accesses the authority wizard
