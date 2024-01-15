@@ -26,6 +26,8 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user is offered a single period to correct and chooses No
     Given the user accesses the authority wizard
@@ -40,6 +42,8 @@ Feature: Corrections Feature
     Then the user is on the no-correction-periods-available page
     And the user clicks the continue button
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available but selects no to adding any
     Given the user accesses the authority wizard
@@ -51,6 +55,8 @@ Feature: Corrections Feature
 #   Logic to check if it is the first return does not exist yet
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available for multiple months within the same year
     Given the user accesses the authority wizard
@@ -76,7 +82,8 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/1 page
 #    Will need to go to corrections list to be able to add corrections for other months
     Then the user is on the check-your-answers page
-#   submit
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available for multiple years
     Given the user accesses the authority wizard
@@ -97,7 +104,8 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/1 page
 #    Will need to go to corrections list to be able to add corrections for other years and months
     Then the user is on the check-your-answers page
-#   submit
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available for a single period
     Given the user accesses the authority wizard
@@ -122,7 +130,8 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/1 page
 #    Will need to go to corrections list to be able to add corrections for other years and months
     Then the user is on the check-your-answers page
-#   submit
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user adds return data with corrections for multiple years and periods
     Given the user accesses the authority wizard
@@ -160,7 +169,8 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/1 page
 #    Will need to go to corrections list to be able to add corrections for other years and months
     Then the user is on the check-your-answers page
-#   submit
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
 #    No periods to correct - first return
 
