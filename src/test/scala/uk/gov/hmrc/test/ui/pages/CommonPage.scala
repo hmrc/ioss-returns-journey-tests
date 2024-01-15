@@ -104,4 +104,23 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host/correction-country/1/1")
 
+  def selectYearRadioButton(year: String): Unit = {
+    year match {
+      case "2022" => driver.findElement(By.id("value_2022")).click()
+      case "2023" => driver.findElement(By.id("value_2023")).click()
+      case _      => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
+
+  def selectMonthRadioButton(month: String): Unit = {
+    month match {
+      case "October"  => driver.findElement(By.id("value_October")).click()
+      case "November" => driver.findElement(By.id("value_November")).click()
+      case "December" => driver.findElement(By.id("value_December")).click()
+      case _          => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
+
 }
