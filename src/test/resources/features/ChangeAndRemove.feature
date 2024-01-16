@@ -42,7 +42,6 @@ Feature: Change and Remove Feature
     And the user confirms the vat for the third EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/3 page
     And the user answers no on the add-sales-country-list page
-  #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
@@ -73,7 +72,6 @@ Feature: Change and Remove Feature
     Then the user selects the remove link for remove-sales-country\/1
     And the user answers yes on the remove-sales-country/1 page
     Then the user answers no on the soldGoods page
-#  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     And the user clicks the continue button
@@ -202,7 +200,6 @@ Feature: Change and Remove Feature
     And the user enters a different amount of VAT totalling 10500 for the second country and the second selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/2 page
     Then the user answers no on the add-sales-country-list page
-      #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
@@ -215,7 +212,6 @@ Feature: Change and Remove Feature
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
-#   Logic to check if it is the first return does not exist yet
     And the user answers yes on the correct-previous-return page
     Then the user manually navigates to the first correction country
     And the user chooses the country Spain as their first correction within the first correction period
@@ -253,7 +249,6 @@ Feature: Change and Remove Feature
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
-#   Logic to check if it is the first return does not exist yet
     And the user answers yes on the correct-previous-return page
     Then the user manually navigates to the first correction country
     And the user chooses the country Czech Republic as their first correction within the first correction period

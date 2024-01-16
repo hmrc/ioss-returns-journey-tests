@@ -88,7 +88,6 @@ Feature: Corrections Feature
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
-#   Logic to check if it is the first return does not exist yet
     And the user answers yes on the correct-previous-return page
     When the user picks year 2022 on the correction-return-year/1 page
     When the user picks month October on the correction-return-period/1 page
@@ -110,7 +109,6 @@ Feature: Corrections Feature
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
-#   Logic to check if it is the first return does not exist yet
     And the user answers yes on the correct-previous-return page
     And the user answers yes on the correction-return-single-period/1 page
     And the user chooses the country Portugal as their first correction within the first correction period
@@ -153,7 +151,6 @@ Feature: Corrections Feature
     And the user enters a different amount of VAT totalling 120.56 for the second country and the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/2 page
     And the user answers no on the add-sales-country-list page
-#   Logic to check if it is the first return does not exist yet
     And the user answers yes on the correct-previous-return page
     When the user picks year 2022 on the correction-return-year/1 page
     When the user picks month October on the correction-return-period/1 page
