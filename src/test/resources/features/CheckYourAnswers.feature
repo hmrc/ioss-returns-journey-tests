@@ -78,7 +78,6 @@ Feature: Check Your Answers Feature
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/2 page
     And the user answers no on the add-sales-country-list page
-#    Currently going to /correct-previous-return?waypoints=check-your-answers in error
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
