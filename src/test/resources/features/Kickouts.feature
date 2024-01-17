@@ -40,7 +40,6 @@ Feature: Kickouts Feature
     And the user confirms the vat for the first EU country as the suggested amount for the third selected VAT rate on the vatOnSales page
     Then the user clicks the continue button
     And the user answers no on the add-sales-country-list page
-    #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
@@ -69,7 +68,6 @@ Feature: Kickouts Feature
     And the user confirms the vat for the first EU country as the suggested amount for the third selected VAT rate on the vatOnSales page
     Then the user clicks the continue button
     And the user answers no on the add-sales-country-list page
-    #   Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
