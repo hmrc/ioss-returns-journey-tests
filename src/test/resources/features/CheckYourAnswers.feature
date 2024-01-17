@@ -16,7 +16,6 @@ Feature: Check Your Answers Feature
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/1 page
     And the user answers no on the add-sales-country-list page
-  #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     When the user selects the change-return-period change link for page 2023-M10/start from check-your-answers
@@ -37,7 +36,6 @@ Feature: Check Your Answers Feature
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/1 page
     And the user answers no on the add-sales-country-list page
-  #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     When the user selects the CYA change link for page soldGoods from check-your-answers
@@ -53,7 +51,6 @@ Feature: Check Your Answers Feature
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
-  #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     When the user selects the CYA change link for page soldGoods from check-your-answers
@@ -100,7 +97,6 @@ Feature: Check Your Answers Feature
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
     And the user answers no on the check-sales/1 page
     And the user answers no on the add-sales-country-list page
-    #  Temporarily adding Correction page until logic is in to check if it is the first return
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     When the user selects the CYA change link for page add-sales-country-list from check-your-answers
