@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString}
@@ -48,6 +49,8 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Your return reference is"))
   }
 
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>
