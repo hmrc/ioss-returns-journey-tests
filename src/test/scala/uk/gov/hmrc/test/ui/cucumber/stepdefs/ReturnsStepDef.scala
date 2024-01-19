@@ -49,8 +49,10 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("Your return reference is"))
+    if (url == "successfully-submitted") {
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      Assert.assertTrue(htmlBody.contains("Your return reference is"))
+    }
   }
 
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>
