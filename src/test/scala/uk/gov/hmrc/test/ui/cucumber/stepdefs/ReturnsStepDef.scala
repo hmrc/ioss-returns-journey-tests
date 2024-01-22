@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString}
@@ -216,4 +217,28 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.selectMonthRadioButton(answer)
   }
+
+  When("""^the user manually navigates to the previous submitted return for November 2023$""") {
+    CommonPage.navigateToPreviousReturn
+  }
+
+  When("""^the return for November 2023 is displayed to the user$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Submitted return for November 2023"))
+  }
+
+  When("""^the correct sections are displayed on the previous return with sales to EU$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
+    Assert.assertTrue(htmlBody.contains("Corrections"))
+    Assert.assertTrue(htmlBody.contains("VAT declared where no payment is due"))
+    Assert.assertTrue(htmlBody.contains("VAT owed (including corrections)"))
+  }
+
+  Then("""^the user clicks on the (.*) breadcrumb""") { (id: String) =>
+    driver
+      .findElement(By.id(id))
+      .click()
+  }
+
 }

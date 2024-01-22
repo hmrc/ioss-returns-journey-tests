@@ -123,4 +123,9 @@ object CommonPage extends BasePage {
     CommonPage.clickContinue()
   }
 
+  def navigateToPreviousReturn: Unit =
+    driver
+      .navigate()
+      .to(s"$host/past-returns/2023-M11")
+
 }
