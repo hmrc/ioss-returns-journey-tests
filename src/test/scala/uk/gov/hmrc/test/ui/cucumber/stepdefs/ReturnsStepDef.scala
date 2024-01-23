@@ -231,7 +231,7 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("Submitted return for November 2023"))
   }
 
-  When("""^the correct sections are displayed on the previous return with sales to EU$""") {
+  When("""^the correct sections are displayed on the previous return with sales to EU and corrections$""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
     Assert.assertTrue(htmlBody.contains("Corrections"))
@@ -243,6 +243,16 @@ class ReturnsStepDef extends BaseStepDef {
     driver
       .findElement(By.id(id))
       .click()
+  }
+
+  When("""^the correct sections are displayed on the previous return with no corrections""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
+    Assert.assertFalse(htmlBody.contains("Corrections"))
+//    Should be false - for VAT declared where no payment is due VEIOSS-492
+    Assert.assertTrue(htmlBody.contains("VAT declared where no payment is due"))
+    Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
+    Assert.assertTrue(htmlBody.contains("VAT owed"))
   }
 
 }
