@@ -213,7 +213,8 @@ Feature: Change and Remove Feature
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
-    Then the user manually navigates to the first correction country
+    When the user picks year 2023 on the correction-return-year/1 page
+    Then the user picks month November on the correction-return-period/1 page
     And the user chooses the country Spain as their first correction within the first correction period
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 11111 on the first country-vat-correction-amount page for the first correction period
@@ -238,6 +239,7 @@ Feature: Change and Remove Feature
     And the user amends to 1254.10 on the third country-vat-correction-amount page for the first correction period
     Then the user answers yes on the vat-payable-confirm/1/3?waypoints=add-correction-list-countries-1 page
     And the user answers no on the correction-list-countries/1 page
+    When the user answers no on the 2023-M10/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -250,7 +252,8 @@ Feature: Change and Remove Feature
     Then the user answers yes on the 2023-M10/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
-    Then the user manually navigates to the first correction country
+    When the user picks year 2023 on the correction-return-year/1 page
+    Then the user picks month October on the correction-return-period/1 page
     And the user chooses the country Czech Republic as their first correction within the first correction period
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 12345 on the first country-vat-correction-amount page for the first correction period
@@ -382,5 +385,7 @@ Feature: Change and Remove Feature
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
+
+#  Need to do change and remove for corrections over multiple years
 
 
