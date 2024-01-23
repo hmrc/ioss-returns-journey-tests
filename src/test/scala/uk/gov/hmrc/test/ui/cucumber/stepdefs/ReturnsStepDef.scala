@@ -255,4 +255,12 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("VAT owed"))
   }
 
+  When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
+    CommonPage.navigateToBtaLink(link)
+  }
+
+  Then("""^the user is directed to the Welsh transition page$""") { () =>
+    driver.getCurrentUrl contains s"$host/no-welsh-service?redirectUrl"
+  }
+
 }
