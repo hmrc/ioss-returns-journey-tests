@@ -115,9 +115,9 @@ object CommonPage extends BasePage {
 
   def selectMonthRadioButton(month: String): Unit = {
     month match {
-      case "October"  => driver.findElement(By.id("value_October")).click()
-      case "November" => driver.findElement(By.id("value_November")).click()
-      case "December" => driver.findElement(By.id("value_December")).click()
+      case "October"  => driver.findElement(By.id("value_0")).click()
+      case "November" => driver.findElement(By.id("value_1")).click()
+      case "December" => driver.findElement(By.id("value_2")).click()
       case _          => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()

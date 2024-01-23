@@ -76,7 +76,22 @@ Feature: Corrections Feature
     And the user adds 160.36 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
     And the user answers no on the correction-list-countries/1 page
-#    Will need to go to corrections list to be able to add corrections for other months
+    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user picks month November on the correction-return-period/2 page
+    And the user chooses the country Bulgaria as their first correction within the second correction period
+    And the user answers yes on the add-new-country/2/1 page
+    And the user adds 100.25 on the first country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/1 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers yes on the correction-list-countries/2 page
+    And the user chooses the country Slovakia as their second correction within the second correction period
+    And the user answers yes on the add-new-country/2/2 page
+    And the user adds 1450 on the second country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/2 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers no on the correction-list-countries/2 page
+#    Got to /2023-M10/vat-correction-periods page and it's only giving me the option to continue but not add another period, however should have december
+    Then the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
