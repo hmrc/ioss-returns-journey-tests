@@ -128,4 +128,9 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host/past-returns/2023-M11")
 
+  def navigateToBtaLink(link: String): Unit =
+    driver
+      .navigate()
+      .to(s"$host/test-only/$link")
+
 }
