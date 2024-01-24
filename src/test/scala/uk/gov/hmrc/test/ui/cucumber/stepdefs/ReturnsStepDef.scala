@@ -265,7 +265,7 @@ class ReturnsStepDef extends BaseStepDef {
     driver.getCurrentUrl contains s"$host/no-welsh-service?redirectUrl"
   }
 
-  When("""^the payments text shows that the trader may still owe VAT$""") {
+  When("""^the payments tile shows that the trader may still owe VAT$""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You may still owe VAT"))
   }
@@ -275,6 +275,20 @@ class ReturnsStepDef extends BaseStepDef {
   ) { (option: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectPaymentOption(option)
+  }
+
+  When("""^the payments tile shows there are no outstanding payments$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You do not owe anything right now."))
+  }
+
+  When("""^the user manually navigates to the outstanding payments page$""") {
+    CommonPage.navigateToOutstandingPayments
+  }
+
+  When("""^the user does not owe any VAT$""") {
+    val htmlH1 = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))
   }
 
 }

@@ -142,4 +142,9 @@ object CommonPage extends BasePage {
     CommonPage.clickContinue()
   }
 
+  def navigateToOutstandingPayments: Unit =
+    driver
+      .navigate()
+      .to(s"$host/outstanding-payments")
+
 }
