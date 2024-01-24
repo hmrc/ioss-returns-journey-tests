@@ -270,4 +270,11 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("You may still owe VAT"))
   }
 
+  When(
+    """^the user selects the (first|second) payment option on the (.*) page$"""
+  ) { (option: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectPaymentOption(option)
+  }
+
 }
