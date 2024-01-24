@@ -63,6 +63,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("change-your-registration")).click()
       case "Back to your account"     =>
         driver.findElement(By.id("back-to-your-account")).click()
+      case "Make a payment"           =>
+        driver.findElement(By.id("make-a-payment")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -261,6 +263,11 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is directed to the Welsh transition page$""") { () =>
     driver.getCurrentUrl contains s"$host/no-welsh-service?redirectUrl"
+  }
+
+  When("""^the payments text shows that the trader may still owe VAT$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You may still owe VAT"))
   }
 
 }
