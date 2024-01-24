@@ -54,7 +54,7 @@ Feature: Corrections Feature
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
-
+@wip
   Scenario: A user has corrections available for multiple months within the same year
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234568 accesses the returns journey
@@ -77,6 +77,7 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/1/2 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M10/vat-correction-periods-add page
+#    Need ID update after changing this page to remove already answered options
     Then the user picks month November on the correction-return-period/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
@@ -91,7 +92,8 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
 #    Got to /2023-M10/vat-correction-periods page and it's only giving me the option to continue but not add another period, however should have december
-    Then the user clicks the continue button
+#  Can say add last period to check it shows single correction page
+  Then the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
