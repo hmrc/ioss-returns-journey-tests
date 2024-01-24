@@ -287,8 +287,20 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user does not owe any VAT$""") {
+    CommonPage.checkUrl("outstanding-payments")
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))
+  }
+
+  When("""^the payments tile shows one payment due and one payment overdue$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Due Payments"))
+    Assert.assertTrue(htmlBody.contains("Overdue Payments"))
+  }
+
+  When("""^the payments tile shows a single payment due$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Due Payments"))
   }
 
 }
