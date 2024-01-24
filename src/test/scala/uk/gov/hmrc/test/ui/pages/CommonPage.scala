@@ -133,4 +133,18 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host/test-only/$link")
 
+  def selectPaymentOption(option: String): Unit = {
+    option match {
+      case "first"  => driver.findElement(By.id("value_0")).click()
+      case "second" => driver.findElement(By.id("value_1")).click()
+      case _        => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
+
+  def navigateToOutstandingPayments: Unit =
+    driver
+      .navigate()
+      .to(s"$host/outstanding-payments")
+
 }

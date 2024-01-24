@@ -63,6 +63,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("change-your-registration")).click()
       case "Back to your account"     =>
         driver.findElement(By.id("back-to-your-account")).click()
+      case "Make a payment"           =>
+        driver.findElement(By.id("make-a-payment")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -261,6 +263,44 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is directed to the Welsh transition page$""") { () =>
     driver.getCurrentUrl contains s"$host/no-welsh-service?redirectUrl"
+  }
+
+  When("""^the payments tile shows that the trader may still owe VAT$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You may still owe VAT"))
+  }
+
+  When(
+    """^the user selects the (first|second) payment option on the (.*) page$"""
+  ) { (option: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectPaymentOption(option)
+  }
+
+  When("""^the payments tile shows there are no outstanding payments$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You do not owe anything right now."))
+  }
+
+  When("""^the user manually navigates to the outstanding payments page$""") {
+    CommonPage.navigateToOutstandingPayments
+  }
+
+  When("""^the user does not owe any VAT$""") {
+    CommonPage.checkUrl("outstanding-payments")
+    val htmlH1 = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))
+  }
+
+  When("""^the payments tile shows one payment due and one payment overdue$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Due Payments"))
+    Assert.assertTrue(htmlBody.contains("Overdue Payments"))
+  }
+
+  When("""^the payments tile shows a single payment due$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Due Payments"))
   }
 
 }
