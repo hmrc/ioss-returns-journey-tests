@@ -24,7 +24,8 @@ import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class ReturnsStepDef extends BaseStepDef {
 
-  val host: String = TestConfiguration.url("ioss-returns-frontend")
+  val host: String         = TestConfiguration.url("ioss-returns-frontend")
+  val paymentsHost: String = TestConfiguration.url("pay-frontend")
 
   Given("""the user accesses the authority wizard""") { () =>
     AuthPage.goToAuthStub()
@@ -301,6 +302,10 @@ class ReturnsStepDef extends BaseStepDef {
   When("""^the payments tile shows a single payment due$""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Due Payments"))
+  }
+
+  Then("""^the user has been redirected to the payments service$""") { () =>
+    driver.getCurrentUrl startsWith s"$paymentsHost/select-payment-amount?traceId="
   }
 
 }
