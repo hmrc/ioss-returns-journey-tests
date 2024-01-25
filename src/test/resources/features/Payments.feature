@@ -10,14 +10,14 @@ Feature: Returns Feature
     When the user clicks on the Make a payment link
     Then the user is on the outstanding-payments page
     When the user selects the second payment option on the outstanding-payments page
-#    Check goes to payments service - requires fix in pay api - VEIOSS-496
+    Then the user has been redirected to the payments service
 
   Scenario: A user has a single outstanding payment
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9008888888 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Make a payment link
-    #    Check goes to payments service - requires fix in pay api - VEIOSS-496
+    Then the user has been redirected to the payments service
 
   Scenario: A user has no payments due on first return which has not been submitted yet
     Given the user accesses the authority wizard
@@ -43,7 +43,7 @@ Feature: Returns Feature
     When the user clicks on the Make a payment link
     Then the user is on the outstanding-payments page
     When the user selects the first payment option on the outstanding-payments page
-#    Check goes to payments service - requires fix in pay api - VEIOSS-496
+    Then the user has been redirected to the payments service
 
   Scenario: A user has submitted one return and the payment is due
     Given the user accesses the authority wizard
@@ -51,7 +51,7 @@ Feature: Returns Feature
     Then the user is redirected to their IOSS Account
     And the payments tile shows a single payment due
     When the user clicks on the Make a payment link
-#    Check goes to payments service - requires fix in pay api - VEIOSS-496
+    Then the user has been redirected to the payments service
 
   Scenario: An error has occurred with the payments API and the dashboard text is amended appropriately
     Given the user accesses the authority wizard
