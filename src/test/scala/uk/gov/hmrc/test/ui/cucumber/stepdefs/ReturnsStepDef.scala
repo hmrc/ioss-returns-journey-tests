@@ -308,4 +308,8 @@ class ReturnsStepDef extends BaseStepDef {
     driver.getCurrentUrl startsWith s"$paymentsHost/select-payment-amount?traceId="
   }
 
+  When("""^the user manually navigates to their December 2023 return$""") {
+    CommonPage.navigateToReturn
+  }
+
 }
