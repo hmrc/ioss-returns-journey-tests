@@ -40,6 +40,8 @@ Feature: Returns Feature
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
+    When the user clicks on the Pay Now button
+    Then the user has been redirected to the payments service
 
   Scenario: A user adds sales with all possible VAT rates for a country via VAT rates CYA page
     Given the user accesses the authority wizard

@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString, selectLink, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class ReturnsStepDef extends BaseStepDef {
@@ -56,7 +56,7 @@ class ReturnsStepDef extends BaseStepDef {
     }
   }
 
-  Then("""^the user clicks on the (.*) link$""") { (link: String) =>
+  Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, action: String) =>
     link match {
       case "Start your return"        =>
         driver.findElement(By.id("start-return")).click()
@@ -66,6 +66,28 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("back-to-your-account")).click()
       case "Make a payment"           =>
         driver.findElement(By.id("make-a-payment")).click()
+      case "View submitted returns"   =>
+        driver.findElement(By.id("view-submitted-returns")).click()
+      case "December 2023"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2023-M12")
+      case "November 2023"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2023-M11")
+      case "October 2023"             =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2023-M10")
+      case "December 2022"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2022-M12")
+      case "November 2022"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2022-M11")
+      case "October 2022"             =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2022-M10")
+      case "Pay Now"                  =>
+        driver.findElement(By.id("pay-now")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -229,9 +251,9 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.navigateToPreviousReturn
   }
 
-  When("""^the return for November 2023 is displayed to the user$""") {
+  When("""^the return for (.*) is displayed to the user$""") { (monthYear: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("Submitted return for November 2023"))
+    Assert.assertTrue(htmlBody.contains(s"Submitted return for $monthYear"))
   }
 
   When("""^the correct sections are displayed on the previous return with sales to EU and corrections$""") {
@@ -252,8 +274,7 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
     Assert.assertFalse(htmlBody.contains("Corrections"))
-//    Should be false - for VAT declared where no payment is due VEIOSS-492
-    Assert.assertTrue(htmlBody.contains("VAT declared where no payment is due"))
+    Assert.assertFalse(htmlBody.contains("VAT declared where no payment is due"))
     Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
     Assert.assertTrue(htmlBody.contains("VAT owed"))
   }
@@ -306,6 +327,31 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user has been redirected to the payments service$""") { () =>
     driver.getCurrentUrl startsWith s"$paymentsHost/select-payment-amount?traceId="
+  }
+
+  Then("""^the user clicks the Show all sections accordion$""") { () =>
+    waitForElement(By.className("govuk-accordion__show-all"))
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (htmlBody.contains("Show all sections")) {
+      driver.findElement(By.className("govuk-accordion__show-all")).click()
+    }
+  }
+
+  When("""^the user manually navigates to the returns service$""") {
+    CommonPage.navigateToReturnsService
+  }
+
+  When("""^the user clicks the Pay now link for October 2023$""") {
+    selectLink("make-payment\\/2023-M10\\/50000")
+  }
+
+  When("""^the correct sections are displayed for a nil return$""") {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Sales to EU countries and Northern Ireland"))
+    Assert.assertFalse(htmlBody.contains("Corrections"))
+    Assert.assertFalse(htmlBody.contains("VAT declared where no payment is due"))
+    Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
+    Assert.assertFalse(htmlBody.contains("Pay now)"))
   }
 
   When("""^the user manually navigates to their December 2023 return$""") {
