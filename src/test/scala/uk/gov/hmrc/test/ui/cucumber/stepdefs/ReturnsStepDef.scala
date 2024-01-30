@@ -39,6 +39,10 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.checkChangeYourRegistration()
   }
 
+  Then("""^the user is redirected to the Rejoin Registration page in IOSS Registration$""") { () =>
+    CommonPage.checkRejoinRegistration()
+  }
+
   When("""^a user with VRN (.*) and IOSS Number (.*) accesses the returns journey""") {
     (vrn: String, iossNumber: String) =>
       AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", vrn, iossNumber)
@@ -62,6 +66,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("start-return")).click()
       case "Change your registration" =>
         driver.findElement(By.id("change-your-registration")).click()
+      case "Rejoin registration"      =>
+        driver.findElement(By.id("rejoin-scheme")).click()
       case "Back to your account"     =>
         driver.findElement(By.id("back-to-your-account")).click()
       case "Make a payment"           =>
