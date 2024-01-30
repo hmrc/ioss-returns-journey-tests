@@ -66,6 +66,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("back-to-your-account")).click()
       case "Make a payment"           =>
         driver.findElement(By.id("make-a-payment")).click()
+      case "View submitted returns"   =>
+        driver.findElement(By.id("view-submitted-returns")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -306,6 +308,13 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user has been redirected to the payments service$""") { () =>
     driver.getCurrentUrl startsWith s"$paymentsHost/select-payment-amount?traceId="
+  }
+
+  Then("""^the user clicks the Show all sections accordion$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (htmlBody.contains("Show all sections")) {
+      driver.findElement(By.className("govuk-accordion__show-all-text")).click()
+    }
   }
 
   When("""^the user manually navigates to their December 2023 return$""") {
