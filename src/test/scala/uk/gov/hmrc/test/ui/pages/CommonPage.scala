@@ -147,4 +147,9 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host/outstanding-payments")
 
+  def navigateToReturn: Unit =
+    driver
+      .navigate()
+      .to(s"$host/2023-M12/start")
+
 }
