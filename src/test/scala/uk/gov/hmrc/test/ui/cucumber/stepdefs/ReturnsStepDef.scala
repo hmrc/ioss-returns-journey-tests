@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString, selectLink}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString, selectLink, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 class ReturnsStepDef extends BaseStepDef {
@@ -68,10 +68,24 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("make-a-payment")).click()
       case "View submitted returns"   =>
         driver.findElement(By.id("view-submitted-returns")).click()
-      case "November 2023"            =>
-        selectLink("past-returns\\/2023-M11")
       case "December 2023"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2023-M12")
+      case "November 2023"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2023-M11")
+      case "October 2023"             =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2023-M10")
+      case "December 2022"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2022-M12")
+      case "November 2022"            =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2022-M11")
+      case "October 2022"             =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2022-M10")
       case "Pay Now"                  =>
         driver.findElement(By.id("pay-now")).click()
       case _                          =>
@@ -260,8 +274,7 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
     Assert.assertFalse(htmlBody.contains("Corrections"))
-//    Should be false - for VAT declared where no payment is due VEIOSS-492
-    Assert.assertTrue(htmlBody.contains("VAT declared where no payment is due"))
+    Assert.assertFalse(htmlBody.contains("VAT declared where no payment is due"))
     Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
     Assert.assertTrue(htmlBody.contains("VAT owed"))
   }
@@ -317,9 +330,10 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then("""^the user clicks the Show all sections accordion$""") { () =>
+    waitForElement(By.className("govuk-accordion__show-all"))
     val htmlBody = driver.findElement(By.tagName("body")).getText
     if (htmlBody.contains("Show all sections")) {
-      driver.findElement(By.className("govuk-accordion__show-all-text")).click()
+      driver.findElement(By.className("govuk-accordion__show-all")).click()
     }
   }
 

@@ -20,7 +20,7 @@ Feature: Past Returns Feature
     And the user is on the past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the October 2023 link
-    Then the user is on the past-returns/2023-M12 page
+    Then the user is on the past-returns/2023-M10 page
     And the return for October 2023 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
     When the user clicks on the submitted-returns breadcrumb
