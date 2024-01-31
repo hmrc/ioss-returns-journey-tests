@@ -342,6 +342,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/1/2 page
     Then the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-period/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
@@ -359,6 +360,7 @@ Feature: Change and Remove Feature
     Then the user selects the remove link for remove-period-correction\/2
     And the user answers yes on the remove-period-correction/2 page
     Then the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month December on the correction-return-period/2 page
     And the user chooses the country Poland as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
@@ -386,6 +388,53 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
 
-#  Need to do change and remove for corrections over multiple years
+  Scenario: A user can change and remove answers via the correction periods list for multiple years
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M10/start page
+    And the user answers no on the soldGoods page
+    And the user answers yes on the correct-previous-return page
+    When the user picks year 2022 on the correction-return-year/1 page
+    When the user picks month October on the correction-return-period/1 page
+    And the user chooses the country Denmark as their first correction within the first correction period
+    And the user answers yes on the add-new-country/1/1 page
+    And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/1 page
+    Then the user is on the correction-list-countries/1 page
+    And the user answers no on the correction-list-countries/1 page
+    And the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user picks year 2023 on the correction-return-year/2 page
+    When the user picks month December on the correction-return-period/2 page
+    And the user chooses the country Slovakia as their first correction within the second correction period
+    And the user answers yes on the add-new-country/2/1 page
+    And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/1 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers no on the correction-list-countries/2 page
+    Then the user selects the change link for correction-list-countries\/2
+    And the user answers yes on the correction-list-countries/2 page
+    And the user chooses the country Belgium as their second correction within the second correction period
+    And the user answers yes on the add-new-country/2/2 page
+    And the user adds 1258.41 on the second country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/2 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers no on the correction-list-countries/2 page
+    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user picks year 2022 on the correction-return-year/3 page
+    When the user picks month December on the correction-return-period/3 page
+    And the user chooses the country Bulgaria as their first correction within the third correction period
+    And the user answers yes on the add-new-country/3/1 page
+    And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
+    And the user answers yes on the vat-payable-confirm/3/1 page
+    Then the user is on the correction-list-countries/3 page
+    And the user answers no on the correction-list-countries/3 page
+    When the user selects the remove link for remove-period-correction\/1
+    Then the user answers yes on the remove-period-correction/1 page
+    Then the user answers no on the 2023-M10/vat-correction-periods-add page
+    Then the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
 
