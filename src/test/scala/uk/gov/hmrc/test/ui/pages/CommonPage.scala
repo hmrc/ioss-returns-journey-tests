@@ -30,6 +30,11 @@ object CommonPage extends BasePage {
       TestConfiguration.url("ioss-registration-frontend") + "/change-your-registration"
     )
 
+  def checkRejoinRegistration(): Unit =
+    driver.getCurrentUrl should startWith(
+      TestConfiguration.url("ioss-registration-frontend") + "/rejoin-registration"
+    )
+
   def checkUrl(url: String): Unit =
     driver.getCurrentUrl should startWith(s"$host/$url")
 
