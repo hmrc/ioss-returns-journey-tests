@@ -77,7 +77,7 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/1/2 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M10/vat-correction-periods-add page
-#    Need ID update after changing this page to remove already answered options
+    When the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-period/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
@@ -91,9 +91,17 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-#    Got to /2023-M10/vat-correction-periods page and it's only giving me the option to continue but not add another period, however should have december
-#  Can say add last period to check it shows single correction page
-  Then the user clicks the continue button
+    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user clicks the continue button
+    When the user picks month December on the correction-return-period/3 page
+    And the user chooses the country Bulgaria as their first correction within the third correction period
+    And the user answers yes on the add-new-country/3/1 page
+    And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
+    And the user answers yes on the vat-payable-confirm/3/1 page
+    Then the user is on the correction-list-countries/3 page
+    And the user answers no on the correction-list-countries/3 page
+    Then the user is on the 2023-M10/vat-correction-periods page
+    And the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -163,7 +171,7 @@ Feature: Corrections Feature
     And the user adds 16000 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
     And the user answers no on the correction-list-countries/1 page
-#  Should just have a continue button on 2023-M10/vat-correction-periods but currently displaying the yes/no question
+    When the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -202,7 +210,8 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     And the user answers yes on the 2023-M10/vat-correction-periods-add page
-    When the user picks year 2023 on the correction-return-year/3 page
+    When the user picks year 2023 on the correction-return-year/2 page
+    When the user picks month December on the correction-return-period/2 page
     And the user chooses the country Slovakia as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
