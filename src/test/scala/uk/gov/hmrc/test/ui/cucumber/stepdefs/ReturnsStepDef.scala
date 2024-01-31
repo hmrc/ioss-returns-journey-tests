@@ -35,8 +35,13 @@ class ReturnsStepDef extends BaseStepDef {
     driver.getCurrentUrl shouldBe s"$host/your-account"
   }
 
-  Then("""^the user is redirected to the Change Your Registration page in IOSS Registration$""") { () =>
-    CommonPage.checkChangeYourRegistration()
+  Then("""^the user is redirected to the (Change Your Registration|Rejoin) page in IOSS Registration$""") {
+    (page: String) =>
+      if (page == "Rejoin") {
+        CommonPage.checkRegistrationPage("rejoin-registration")
+      } else {
+        CommonPage.checkRegistrationPage("change-your-registration")
+      }
   }
 
   When("""^a user with VRN (.*) and IOSS Number (.*) accesses the returns journey""") {
@@ -88,6 +93,8 @@ class ReturnsStepDef extends BaseStepDef {
         selectLink("past-returns\\/2022-M10")
       case "Pay Now"                  =>
         driver.findElement(By.id("pay-now")).click()
+      case "Rejoin this service"      =>
+        driver.findElement(By.id("rejoin-scheme")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -356,6 +363,11 @@ class ReturnsStepDef extends BaseStepDef {
 
   When("""^the user manually navigates to their December 2023 return$""") {
     CommonPage.navigateToReturn
+  }
+
+  Then("""^the link to Rejoin this service is not displayed on the dashboard$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Rejoin this service"))
   }
 
 }
