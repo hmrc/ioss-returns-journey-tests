@@ -2,7 +2,7 @@
 
 Feature: Rejoin Feature
 
-  #  Reminders
+  #  Reminders - to be done in another ticket
 #  try to rejoin with trader who has outstanding returns - has to complete them before rejoining (within 3 years)
 #  try to do a return for a rejoined trader when they didn't have an active IOSS reg - not allowed
 #  try to do a correction for a period where rejoined trader didn't have an active IOSS reg - not allowed
