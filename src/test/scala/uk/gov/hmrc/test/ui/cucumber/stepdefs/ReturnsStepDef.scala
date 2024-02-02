@@ -370,4 +370,50 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertFalse(htmlBody.contains("Rejoin this service"))
   }
 
+  Then(
+    """^they are presented with the correct banner for trader with an exclusion date in the future with a return due$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains("You have requested to leave this service. You must complete and pay any outstanding returns.")
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for trader with an exclusion date in the past with a return due$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains("You have left this service. You must complete and pay any outstanding returns.")
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for trader with an exclusion date in the past and no outstanding actions$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains("You have left this service.")
+    )
+  }
+
+  Then("""^they are shown the correct returns message for one outstanding return$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You can correct a previous return when you submit your final one."))
+  }
+
+  Then("""^they are shown the correct returns message for no outstanding returns$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."))
+  }
+
+  Then("""^they are shown the correct returns message for one return due next month$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You can complete your next return from"))
+  }
+
+  Then("""^the returns tile shows final return is completed$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You've completed your final return."))
+  }
 }
