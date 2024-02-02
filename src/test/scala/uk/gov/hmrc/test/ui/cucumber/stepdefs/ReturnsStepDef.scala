@@ -167,7 +167,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user chooses the country (.*) as their (first|second|third) correction within the (first|second) correction period$"""
+    """^the user chooses the country (.*) as their (first|second|third) correction within the (first|second|third) correction period$"""
   ) { (data: String, countryIndex: String, periodIndex: String) =>
     CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, "correction-country", false)
     CommonPage.selectValueAutocomplete(data)
@@ -198,7 +198,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user (adds|amends to) (.*) on the (first|second|third) (.*) page for the (first|second) correction period$"""
+    """^the user (adds|amends to) (.*) on the (first|second|third) (.*) page for the (first|second|third) correction period$"""
   ) { (mode: String, data: String, countryIndex: String, url: String, periodIndex: String) =>
     CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, url, false)
     if (mode == "amends to") {

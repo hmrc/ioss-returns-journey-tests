@@ -76,7 +76,32 @@ Feature: Corrections Feature
     And the user adds 160.36 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
     And the user answers no on the correction-list-countries/1 page
-#    Will need to go to corrections list to be able to add corrections for other months
+    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user picks year 2023 on the correction-return-year/2 page
+    Then the user picks month November on the correction-return-period/2 page
+    And the user chooses the country Bulgaria as their first correction within the second correction period
+    And the user answers yes on the add-new-country/2/1 page
+    And the user adds 100.25 on the first country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/1 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers yes on the correction-list-countries/2 page
+    And the user chooses the country Slovakia as their second correction within the second correction period
+    And the user answers yes on the add-new-country/2/2 page
+    And the user adds 1450 on the second country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/2 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers no on the correction-list-countries/2 page
+    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user clicks the continue button
+    When the user picks month December on the correction-return-period/3 page
+    And the user chooses the country Bulgaria as their first correction within the third correction period
+    And the user answers yes on the add-new-country/3/1 page
+    And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
+    And the user answers yes on the vat-payable-confirm/3/1 page
+    Then the user is on the correction-list-countries/3 page
+    And the user answers no on the correction-list-countries/3 page
+    Then the user is on the 2023-M10/vat-correction-periods page
+    And the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -97,7 +122,31 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/1/1 page
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-#    Will need to go to corrections list to be able to add corrections for other years and months
+    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user picks year 2023 on the correction-return-year/2 page
+    When the user picks month October on the correction-return-period/2 page
+    And the user chooses the country Denmark as their first correction within the second correction period
+    And the user answers yes on the add-new-country/2/1 page
+    And the user adds 1235.04 on the first country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/1 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers yes on the correction-list-countries/2 page
+    And the user chooses the country Spain as their second correction within the second correction period
+    And the user answers yes on the add-new-country/2/2 page
+    And the user adds 111 on the second country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/2 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers no on the correction-list-countries/2 page
+    And the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user picks year 2022 on the correction-return-year/3 page
+    Then the user picks month December on the correction-return-period/3 page
+    And the user chooses the country Spain as their first correction within the third correction period
+    And the user answers yes on the add-new-country/3/1 page
+    And the user adds 45210 on the first country-vat-correction-amount page for the third correction period
+    And the user answers yes on the vat-payable-confirm/3/1 page
+    Then the user is on the correction-list-countries/3 page
+    And the user answers no on the correction-list-countries/3 page
+    And the user answers no on the 2023-M10/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -122,7 +171,7 @@ Feature: Corrections Feature
     And the user adds 16000 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
     And the user answers no on the correction-list-countries/1 page
-#    Will need to go to corrections list to be able to add corrections for other years and months
+    When the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -160,7 +209,16 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/1/1 page
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-#    Will need to go to corrections list to be able to add corrections for other years and months
+    And the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user picks year 2023 on the correction-return-year/2 page
+    When the user picks month December on the correction-return-period/2 page
+    And the user chooses the country Slovakia as their first correction within the second correction period
+    And the user answers yes on the add-new-country/2/1 page
+    And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/1 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers no on the correction-list-countries/2 page
+    And the user answers no on the 2023-M10/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
