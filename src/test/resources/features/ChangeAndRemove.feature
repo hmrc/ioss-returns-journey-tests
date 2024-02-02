@@ -297,6 +297,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/1/2 page
     Then the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-period/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page

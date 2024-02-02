@@ -24,6 +24,7 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/1/2 page
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
+    And the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
