@@ -59,7 +59,7 @@ class ReturnsStepDef extends BaseStepDef {
   Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, action: String) =>
     link match {
       case "Start your return"        =>
-        driver.findElement(By.id("start-return")).click()
+        driver.findElement(By.id("start-your-return")).click()
       case "Change your registration" =>
         driver.findElement(By.id("change-your-registration")).click()
       case "Back to your account"     =>
