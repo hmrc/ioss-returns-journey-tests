@@ -371,7 +371,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^they are presented with the correct banner for trader with an exclusion date in the future with a return due$"""
+    """^they are presented with the correct banner for trader with an exclusion date in the future with outstanding returns$"""
   ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
@@ -393,9 +393,7 @@ class ReturnsStepDef extends BaseStepDef {
   ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
-//      missing apostrophe
-      htmlBody.contains("Weve removed you from this service, but you must complete and pay your final return.")
-//      htmlBody.contains("We've removed you from this service, but you must complete and pay your final return.")
+      htmlBody.contains("We've removed you from this service, but you must complete and pay your final return.")
     )
   }
 
@@ -423,12 +421,12 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
       htmlBody.contains(
-        "We've removed you from this service, but you must complete and pay your final return. You cannot rejoin until"
+        "We've removed you from this service. You cannot rejoin until"
       )
     )
   }
 
-  Then("""^they are shown the correct returns message for one outstanding return$""") { () =>
+  Then("""^they are shown the correct returns message for outstanding returns$""") { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You can correct a previous return when you submit your final one."))
   }
@@ -440,11 +438,6 @@ class ReturnsStepDef extends BaseStepDef {
         "You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."
       )
     )
-  }
-
-  Then("""^they are shown the correct returns message for one return due next month$""") { () =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("You can complete your next return from"))
   }
 
   Then("""^the returns tile shows final return is completed$""") { () =>
