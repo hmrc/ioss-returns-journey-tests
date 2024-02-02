@@ -25,9 +25,9 @@ object CommonPage extends BasePage {
   val host: String     = TestConfiguration.url("ioss-returns-frontend")
   val authHost: String = TestConfiguration.url("auth-login-stub")
 
-  def checkChangeYourRegistration(): Unit =
+  def checkRegistrationPage(page: String): Unit =
     driver.getCurrentUrl should startWith(
-      TestConfiguration.url("ioss-registration-frontend") + "/change-your-registration"
+      TestConfiguration.url("ioss-registration-frontend") + s"/$page"
     )
 
   def checkUrl(url: String): Unit =
