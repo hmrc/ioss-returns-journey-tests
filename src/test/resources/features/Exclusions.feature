@@ -27,9 +27,6 @@ Feature: Exclusions Feature
     And they are shown the correct returns message for one outstanding return
     And they are shown the correct returns message for one return due next month
 
-    #User has requested to leave the service and has no returns due
-#  not possible - can't have exclusion date in future and not have any returns due - awaiting design response
-
   Scenario: A user who has an exclusion date in the month before their last return sees the correct dashboard messages
     Given the user accesses the authority wizard
     When a user with VRN 100000001 and IOSS Number IM9029999994 accesses the returns journey
@@ -48,11 +45,44 @@ Feature: Exclusions Feature
     And they are shown the correct returns message for no outstanding returns
     And the returns tile shows final return is completed
 
+  Scenario: A user who has been removed from the service and has outstanding returns
+    Given the user accesses the authority wizard
+    When a user with VRN 100000001 and IOSS Number IM9049999994 accesses the returns journey
+    And the user is redirected to their IOSS Account
+    Then they are presented with the correct banner for trader removed from service and has outstanding returns
+    And they are shown the correct returns message for one outstanding return
+    When the user clicks on the Start your return link
+    Then the user is on the 2023-M12/start page
 
-#We removed you - returns still to complete - no rejoin button
-#We removed you - no more returns - rejoin button
-#We excluded you - returns still to complete - date you can rejoin - no rejoin button
-#We excluded you - no more returns - date you can rejoin - no rejoin button
+  Scenario: A user who has been removed from the service and has no outstanding returns
+    Given the user accesses the authority wizard
+    When a user with VRN 100000001 and IOSS Number IM9059999994 accesses the returns journey
+    And the user is redirected to their IOSS Account
+    Then they are presented with the correct banner for trader removed from service and has no outstanding returns
+    And the returns tile shows final return is completed
+#    currently still showing returns like quarantine with no outstanding returns
+
+  Scenario: A user who has been quarantined and has outstanding returns
+    Given the user accesses the authority wizard
+    When a user with VRN 100000001 and IOSS Number IM9069999994 accesses the returns journey
+    And the user is redirected to their IOSS Account
+    Then they are presented with the correct banner for trader removed from service and has outstanding returns
+    And they are shown the correct returns message for one outstanding return
+    When the user clicks on the Start your return link
+    Then the user is on the 2023-M12/start page
+
+  Scenario: A user who has been quarantined and has no outstanding returns
+    Given the user accesses the authority wizard
+    When a user with VRN 100000001 and IOSS Number IM9003999993 accesses the returns journey
+    And the user is redirected to their IOSS Account
+    Then they are presented with the correct banner for a quarantined trader with no outstanding returns
+    And they are shown the correct returns message for no outstanding returns
+    And the returns tile shows final return is completed
+#    commencement date oct 23
+#    returns done oct - dec 23
+#    quarantined dec 23
+#    should show no more returns but still has a return for feb 24
+#    also rejoin date looks incorrect (4 feb 24)
 
 
 

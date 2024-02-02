@@ -389,11 +389,42 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
+    """^they are presented with the correct banner for trader removed from service and has outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+//      missing apostrophe
+      htmlBody.contains("Weve removed you from this service, but you must complete and pay your final return.")
+//      htmlBody.contains("We've removed you from this service, but you must complete and pay your final return.")
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for trader removed from service and has no outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains("We've removed you from this service.")
+    )
+  }
+
+  Then(
     """^they are presented with the correct banner for trader with an exclusion date in the past and no outstanding actions$"""
   ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
       htmlBody.contains("You have left this service.")
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for a quarantined trader with no outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "We've removed you from this service, but you must complete and pay your final return. You cannot rejoin until"
+      )
     )
   }
 
@@ -404,7 +435,11 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^they are shown the correct returns message for no outstanding returns$""") { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."))
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."
+      )
+    )
   }
 
   Then("""^they are shown the correct returns message for one return due next month$""") { () =>
