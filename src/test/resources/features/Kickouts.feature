@@ -12,7 +12,7 @@ Feature: Kickouts Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers no on the 2023-M10/start page
+    Then the user answers no on the 2023-M12/start page
     And the user is on the no-other-periods-available page
     Then the user clicks on the Back to your account link
     And the user is on the your-account page
@@ -22,7 +22,7 @@ Feature: Kickouts Feature
     And a user with VRN 100000001 and IOSS Number IM9007777777 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the soldGoods page
     And the user selects Belgium on the first soldToCountry page
     And the user ticks the first checkbox on the first vatRatesFromCountry page
@@ -50,7 +50,7 @@ Feature: Kickouts Feature
     And a user with VRN 100000001 and IOSS Number IM9007777778 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the soldGoods page
     And the user selects Belgium on the first soldToCountry page
     And the user ticks the first checkbox on the first vatRatesFromCountry page

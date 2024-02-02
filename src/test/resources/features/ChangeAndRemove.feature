@@ -7,7 +7,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the soldGoods page
     And the user selects Poland on the first soldToCountry page
     And the user ticks the first checkbox on the first vatRatesFromCountry page
@@ -52,7 +52,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the soldGoods page
     And the user selects Czech Republic on the first soldToCountry page
     And the user ticks the first checkbox on the first vatRatesFromCountry page
@@ -82,7 +82,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the soldGoods page
     And the user selects Denmark on the first soldToCountry page
     And the user enters first country total sales of 10000 for first selected VAT rate on the sales-to-country page
@@ -174,7 +174,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the soldGoods page
     And the user selects Finland on the first soldToCountry page
     And the user ticks the second checkbox on the first vatRatesFromCountry page
@@ -210,7 +210,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
@@ -239,7 +239,7 @@ Feature: Change and Remove Feature
     And the user amends to 1254.10 on the third country-vat-correction-amount page for the first correction period
     Then the user answers yes on the vat-payable-confirm/1/3?waypoints=add-correction-list-countries-1 page
     And the user answers no on the correction-list-countries/1 page
-    When the user answers no on the 2023-M10/vat-correction-periods-add page
+    When the user answers no on the 2023-M12/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -249,7 +249,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2023-M12/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
@@ -280,7 +280,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234568 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2024-M1/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
@@ -296,7 +296,7 @@ Feature: Change and Remove Feature
     And the user adds 6543.21 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
     Then the user answers no on the correction-list-countries/1 page
-    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user answers yes on the 2024-M1/vat-correction-periods-add page
     Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-period/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
@@ -311,7 +311,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    When the user is on the 2023-M10/vat-correction-periods page
+    When the user is on the 2024-M1/vat-correction-periods page
     Then the user selects the remove link for remove-period-correction\/2
     And the user answers yes on the remove-period-correction/2 page
     Then the user selects the remove link for remove-period-correction\/1
@@ -326,7 +326,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234568 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2024-M1/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
@@ -342,7 +342,7 @@ Feature: Change and Remove Feature
     And the user adds 6543.21 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
     Then the user answers no on the correction-list-countries/1 page
-    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user answers yes on the 2024-M1/vat-correction-periods-add page
     Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-period/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
@@ -357,10 +357,10 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    When the user is on the 2023-M10/vat-correction-periods page
+    When the user is on the 2024-M1/vat-correction-periods page
     Then the user selects the remove link for remove-period-correction\/2
     And the user answers yes on the remove-period-correction/2 page
-    Then the user answers yes on the 2023-M10/vat-correction-periods-add page
+    Then the user answers yes on the 2024-M1/vat-correction-periods-add page
     Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month December on the correction-return-period/2 page
     And the user chooses the country Poland as their first correction within the second correction period
@@ -375,7 +375,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    When the user is on the 2023-M10/vat-correction-periods page
+    When the user is on the 2024-M1/vat-correction-periods page
     Then the user selects the change link for correction-list-countries\/1
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country Spain as their third correction within the first correction period
@@ -384,7 +384,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/1/3 page
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    Then the user answers no on the 2023-M10/vat-correction-periods-add page
+    Then the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -394,7 +394,7 @@ Feature: Change and Remove Feature
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M10/start page
+    Then the user answers yes on the 2024-M1/start page
     And the user answers no on the soldGoods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2022 on the correction-return-year/1 page
@@ -405,7 +405,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/1/1 page
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    And the user answers yes on the 2023-M10/vat-correction-periods-add page
+    And the user answers yes on the 2024-M1/vat-correction-periods-add page
     When the user picks year 2023 on the correction-return-year/2 page
     When the user picks month December on the correction-return-period/2 page
     And the user chooses the country Slovakia as their first correction within the second correction period
@@ -422,7 +422,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    When the user answers yes on the 2023-M10/vat-correction-periods-add page
+    When the user answers yes on the 2024-M1/vat-correction-periods-add page
     When the user picks year 2022 on the correction-return-year/3 page
     When the user picks month December on the correction-return-period/3 page
     And the user chooses the country Bulgaria as their first correction within the third correction period
@@ -433,7 +433,7 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/3 page
     When the user selects the remove link for remove-period-correction\/1
     Then the user answers yes on the remove-period-correction/1 page
-    Then the user answers no on the 2023-M10/vat-correction-periods-add page
+    Then the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
