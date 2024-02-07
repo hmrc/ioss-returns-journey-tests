@@ -188,7 +188,7 @@ Feature: Check Your Answers Feature
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
-@wip
+
   Scenario: A user adds return data with corrections for multiple years and periods then changes corrections via CYA
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
@@ -233,7 +233,7 @@ Feature: Check Your Answers Feature
     And the user answers no on the correction-list-countries/2 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    When the user selects the CYA change link for page 2024-M1/vat-correction-periods-add from check-your-answers
+    When the user selects the correction period change link for page 2024-M1/vat-correction-periods from check-your-answers
     And the user answers yes on the 2024-M1/vat-correction-periods-add page
     When the user picks year 2022 on the correction-return-year/3 page
     When the user picks month December on the correction-return-period/3 page

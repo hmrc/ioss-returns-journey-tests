@@ -225,7 +225,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (CYA|change-return-period) change link for (first|second|third|page) (.*) from (.*)$"""
+    """^the user selects the (CYA|change-return-period|correction period) change link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, index: String, toPage: String, fromPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
@@ -235,6 +235,8 @@ class ReturnsStepDef extends BaseStepDef {
     }
     if (route == "change-return-period") {
       driver.findElement(By.id("change-return-period")).click()
+    } else if (route == "correction period") {
+      driver.findElement(By.id("change-correction-periods")).click()
     } else if (route == "CYA") {
       CommonPage.selectLink(s"$toPage\\?waypoints\\=$fromPage")
     }
