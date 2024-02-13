@@ -446,4 +446,23 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You've completed your final return."))
   }
+
+  Then("""^they are presented with the heading for their final return$""") { () =>
+    val htmlH1 = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
+  }
+
+  Then("""^they are advised it is their last chance to correct a return$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("This is your last chance to correct a previous return on this service."))
+  }
+
+  Then("""^the user is shown the corrections warning before submission$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "After you submit your return, you will not be able to make any corrections using the Import One Stop Shop service."
+      )
+    )
+  }
 }
