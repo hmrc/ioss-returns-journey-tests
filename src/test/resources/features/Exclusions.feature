@@ -91,5 +91,22 @@ Feature: Exclusions Feature
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
 
+  Scenario: An excluded user who has more than one return remaining does not have final return content
+    Given the user accesses the authority wizard
+    When a user with VRN 100000001 and IOSS Number IM9009999995 accesses the returns journey
+    And the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user is on the 2023-M12/start page
+    And they are presented with the regular heading for starting a return
+    Then the user answers yes on the 2023-M12/start page
+    And the user answers no on the soldGoods page
+    Then the user is on the correct-previous-return page
+    And they are not advised it is their last chance to correct a return
+    Then the user answers no on the correct-previous-return page
+    And the user is on the check-your-answers page
+    Then the user is not shown the corrections warning before submission
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
+
 
 
