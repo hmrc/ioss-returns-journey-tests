@@ -11,8 +11,8 @@ Feature: Exclusions Feature
   Scenario: A user who has reversed their exclusion is able to start a return for the next available period
     Given the user accesses the authority wizard
     When a user with VRN 100000001 and IOSS Number IM9009999992 accesses the returns journey
-    Then the user manually navigates to their December 2023 return
-    And the user is on the 2023-M12/start page
+    When the user clicks on the Start your return link
+    Then the user is on the 2023-M12/start page
 
   Scenario: A user who is excluded in the future sees the correct dashboard messages when they have outstanding returns
     Given the user accesses the authority wizard
