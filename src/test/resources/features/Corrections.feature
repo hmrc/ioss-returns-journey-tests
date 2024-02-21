@@ -32,7 +32,7 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
 
-  Scenario: A corrections journey with previously declared countries for one period but undeclared in another period
+  Scenario: A corrections journey with previously declared countries
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
@@ -55,7 +55,7 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M12/vat-correction-periods-add page
-    Then the user clicks the continue button
+    Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-period/2 page
     And the user clicks the continue button
     And the user chooses the country France as their first correction within the second correction period
@@ -68,9 +68,38 @@ Feature: Corrections Feature
     And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
+    Then the user is on the 2023-M12/vat-correction-periods page
     And the user clicks the continue button
     Then the user is on the check-your-answers page
     And the no payments due for minus corrections text will not be displayed
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
+
+  Scenario: A corrections journey with previously declared countries that have been corrected multiple times
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001233211 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2024-M1/start page
+    And the user answers no on the soldGoods page
+    And the user answers yes on the correct-previous-return page
+    When the user picks year 2023 on the correction-return-year/1 page
+    Then the user picks month October on the correction-return-period/1 page
+    And the user chooses the country Germany as their first correction within the first correction period
+    And the previously declared text is displayed above the amount box
+    And the user adds -2500 on the first country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/1 page
+    Then the user is on the correction-list-countries/1 page
+    And the user answers yes on the correction-list-countries/1 page
+    And the user chooses the country France as their second correction within the first correction period
+    And the previously declared text is displayed above the amount box
+    And the user adds 2600 on the second country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/2 page
+    Then the user is on the correction-list-countries/1 page
+    And the user answers no on the correction-list-countries/1 page
+    When the user answers no on the 2024-M1/vat-correction-periods-add page
+    Then the user is on the check-your-answers page
+    And the no payments due for minus corrections text will be displayed
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
 
@@ -284,6 +313,12 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    Then the user is on the correction-list-countries/2 page
+    And the user answers yes on the correction-list-countries/2 page
+    And the user chooses the country Germany as their second correction within the second correction period
+    And the previously declared text is displayed above the amount box
+    And the user adds 1234 on the second country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/2 page
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page

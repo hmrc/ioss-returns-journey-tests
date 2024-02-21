@@ -506,7 +506,7 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     if (whichVersion == "will not") {
       Assert.assertFalse(
-        htmlBody.contains(VAT declared where no payment is due)
+        htmlBody.contains("VAT declared where no payment is due")
       )
       Assert.assertFalse(
         htmlBody.contains("The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments.")

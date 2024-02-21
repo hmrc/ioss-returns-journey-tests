@@ -419,8 +419,8 @@ Feature: Change and Remove Feature
     When the user answers yes on the 2024-M1/vat-correction-periods-add page
     When the user picks year 2022 on the correction-return-year/3 page
     When the user picks month December on the correction-return-period/3 page
-    And the user chooses the country Bulgaria as their first correction within the third correction period
-    And the user answers yes on the add-new-country/3/1 page
+    And the user chooses the country France as their first correction within the third correction period
+    And the previously declared text is displayed above the amount box
     And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
     And the user answers yes on the vat-payable-confirm/3/1 page
     Then the user is on the correction-list-countries/3 page
