@@ -215,7 +215,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the vat-payable-confirm/1/1 page
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
-    And the user chooses the country Germany as their second correction within the first correction period
+    And the user chooses the country Slovakia as their second correction within the first correction period
     And the user answers yes on the add-new-country/1/2 page
     And the user adds 1234.56 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page

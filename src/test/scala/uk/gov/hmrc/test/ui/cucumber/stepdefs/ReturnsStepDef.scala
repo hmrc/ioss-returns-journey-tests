@@ -482,4 +482,42 @@ class ReturnsStepDef extends BaseStepDef {
       )
     }
   }
+
+  Then("""^the previously declared text (is not|is) displayed above the amount box$""") { (whichVersion: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (whichVersion == "is not") {
+      Assert.assertFalse(
+        htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
+      )
+      Assert.assertFalse(
+        htmlBody.contains("Your most recent declaration for this period is")
+      )
+    } else {
+      Assert.assertTrue(
+        htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
+      )
+      Assert.assertTrue(
+        htmlBody.contains("Your most recent declaration for this period is")
+      )
+    }
+  }
+
+  Then("""^the no payments due for minus corrections text (will not|will) be displayed$""") { (whichVersion: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (whichVersion == "will not") {
+      Assert.assertFalse(
+        htmlBody.contains(VAT declared where no payment is due)
+      )
+      Assert.assertFalse(
+        htmlBody.contains("The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments.")
+      )
+    } else {
+      Assert.assertTrue(
+        htmlBody.contains("VAT declared where no payment is due")
+      )
+      Assert.assertTrue(
+        htmlBody.contains("The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments.")
+      )
+    }
+  }
 }
