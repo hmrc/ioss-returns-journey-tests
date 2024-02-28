@@ -267,7 +267,7 @@ class ReturnsStepDef extends BaseStepDef {
 
   When("""^the correct sections are displayed on the previous return with sales to EU and corrections$""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
+    Assert.assertTrue(htmlBody.contains("Sales to EU countries, Northern Ireland or both"))
     Assert.assertTrue(htmlBody.contains("Corrections"))
     Assert.assertTrue(htmlBody.contains("VAT declared where no payment is due"))
     Assert.assertTrue(htmlBody.contains("VAT owed (including corrections)"))
@@ -281,7 +281,7 @@ class ReturnsStepDef extends BaseStepDef {
 
   When("""^the correct sections are displayed on the previous return with no corrections""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("Sales to EU countries and Northern Ireland"))
+    Assert.assertTrue(htmlBody.contains("Sales to EU countries, Northern Ireland or both"))
     Assert.assertFalse(htmlBody.contains("Corrections"))
     Assert.assertFalse(htmlBody.contains("VAT declared where no payment is due"))
     Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
@@ -356,7 +356,7 @@ class ReturnsStepDef extends BaseStepDef {
 
   When("""^the correct sections are displayed for a nil return$""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertFalse(htmlBody.contains("Sales to EU countries and Northern Ireland"))
+    Assert.assertFalse(htmlBody.contains("Sales to EU countries, Northern Ireland or both"))
     Assert.assertFalse(htmlBody.contains("Corrections"))
     Assert.assertFalse(htmlBody.contains("VAT declared where no payment is due"))
     Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
