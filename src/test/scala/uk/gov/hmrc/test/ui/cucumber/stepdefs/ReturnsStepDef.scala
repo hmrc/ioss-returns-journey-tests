@@ -360,7 +360,7 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertFalse(htmlBody.contains("Corrections"))
     Assert.assertFalse(htmlBody.contains("VAT declared where no payment is due"))
     Assert.assertFalse(htmlBody.contains("VAT owed (including corrections)"))
-    Assert.assertFalse(htmlBody.contains("Pay now)"))
+    Assert.assertFalse(htmlBody.contains("Pay now"))
   }
 
   When("""^the user manually navigates to their December 2023 return$""") {
