@@ -23,8 +23,10 @@ Feature: Past Returns Feature
     Then the user is on the past-returns/2023-M10 page
     And the return for October 2023 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
-    When the user clicks on the submitted-returns breadcrumb
-    Then the user is on the past-returns page
+    When the user manually navigates to the returns service
+    Then the user clicks on the View submitted returns link
+    And the user is on the past-returns page
+    And the user clicks the Show all sections accordion
     When the user clicks the Pay now link for October 2023
     Then the user has been redirected to the payments service
 
@@ -39,21 +41,22 @@ Feature: Past Returns Feature
     Then the user is on the past-returns/2022-M11 page
     And the return for November 2022 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
-    When the user clicks on the submitted-returns breadcrumb
-    Then the user is on the past-returns page
+    When the user manually navigates to the returns service
+    Then the user clicks on the View submitted returns link
+    And the user is on the past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2022 link
     Then the user is on the past-returns/2022-M12 page
     And the return for December 2022 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
-    When the user clicks on the submitted-returns breadcrumb
-    Then the user is on the past-returns page
+    When the user manually navigates to the returns service
+    Then the user clicks on the View submitted returns link
+    And the user is on the past-returns page
+    And the user clicks the Show all sections accordion
     When the user clicks on the December 2023 link
     Then the user is on the past-returns/2023-M12 page
     And the return for December 2023 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
-    When the user clicks on the your-account breadcrumb
-    Then the user is on the your-account page
 
   Scenario: A user can view a previously submitted nil return
     Given the user accesses the authority wizard
@@ -66,8 +69,6 @@ Feature: Past Returns Feature
     Then the user is on the past-returns/2023-M11 page
     And the return for November 2023 is displayed to the user
     Then the correct sections are displayed for a nil return
-    When the user clicks on the your-account breadcrumb
-    Then the user is on the your-account page
 
   Scenario: A user can view a previously submitted return with no corrections
     Given the user accesses the authority wizard
@@ -80,8 +81,5 @@ Feature: Past Returns Feature
     Then the user is on the past-returns/2023-M11 page
     And the return for November 2023 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
-    When the user clicks on the your-account breadcrumb
-    Then the user is on the your-account page
-
 
 
