@@ -273,12 +273,6 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("VAT owed (including corrections)"))
   }
 
-  Then("""^the user clicks on the (.*) breadcrumb""") { (id: String) =>
-    driver
-      .findElement(By.id(id))
-      .click()
-  }
-
   When("""^the correct sections are displayed on the previous return with no corrections""") {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Sales to EU countries, Northern Ireland or both"))
