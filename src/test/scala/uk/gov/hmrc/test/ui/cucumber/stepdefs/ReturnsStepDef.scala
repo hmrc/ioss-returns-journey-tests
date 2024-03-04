@@ -22,6 +22,9 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString, selectLink, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+
 class ReturnsStepDef extends BaseStepDef {
 
   val host: String         = TestConfiguration.url("ioss-returns-frontend")
@@ -47,6 +50,11 @@ class ReturnsStepDef extends BaseStepDef {
   When("""^a user with VRN (.*) and IOSS Number (.*) accesses the returns journey""") {
     (vrn: String, iossNumber: String) =>
       AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", vrn, iossNumber)
+  }
+
+  When("""^a user with current IOSS Number (.*) and at least one previous IOSS number accesses the returns journey""") {
+    (iossNumber: String) =>
+      AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", "100000001", iossNumber)
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the returns journey""") { (vrn: String) =>
@@ -517,5 +525,27 @@ class ReturnsStepDef extends BaseStepDef {
 
   When("""^the user accesses the start return link via secure messages$""") { () =>
     CommonPage.navigateToSecureStartReturn()
+  }
+
+  Then("""^the correct IOSS number (.*) is displayed on the (dashboard|page)$""") { (iossNumber: String, page: String) =>
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      Assert.assertTrue(htmlBody.contains("IOSS number: " + iossNumber))
+  }
+
+  Then("""^the correct link for (one|more than one) previous IOSS number is displayed$""") { (variation: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    val dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
+    val startDate = LocalDate.now().minusMonths(6)
+    val startDateFormatted = dateTimeFormatter.format(startDate)
+    val endDate = LocalDate.now().minusMonths(4)
+    val endDateFormatted = dateTimeFormatter.format(endDate)
+
+    if (variation == "one") {
+      Assert.assertTrue(htmlBody.contains(s"View returns from $startDateFormatted to $endDateFormatted"))
+    } else {
+      Assert.assertTrue(htmlBody.contains(s"View returns from a previous registration"))
+    }
+
   }
 }
