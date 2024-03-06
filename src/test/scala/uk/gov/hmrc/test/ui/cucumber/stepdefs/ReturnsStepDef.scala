@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{clickContinue, getDoubleIndexString, selectLink, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkUrl, clickBackButton, clickContinue, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -103,6 +103,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("pay-now")).click()
       case "Rejoin this service"      =>
         driver.findElement(By.id("rejoin-scheme")).click()
+      case "Return to your current registration" =>
+        driver.findElement(By.id("submitted-returns-history")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -209,7 +211,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user manually navigates to the first correction country$""") {
-    CommonPage.navigateToFirstCorrectionCountry
+    CommonPage.navigateToFirstCorrectionCountry()
   }
 
   When(
@@ -235,12 +237,7 @@ class ReturnsStepDef extends BaseStepDef {
   Then(
     """^the user selects the (CYA|change-return-period|correction period) change link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, index: String, toPage: String, fromPage: String) =>
-    val changeIndex = index match {
-      case "first"  => "1"
-      case "second" => "2"
-      case "third"  => "3"
-      case _        => "no index required"
-    }
+
     if (route == "change-return-period") {
       driver.findElement(By.id("change-return-period")).click()
     } else if (route == "correction period") {
@@ -265,7 +262,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user manually navigates to the previous submitted return for November 2023$""") {
-    CommonPage.navigateToPreviousReturn
+    CommonPage.navigateToPreviousReturn()
   }
 
   When("""^the return for (.*) is displayed to the user$""") { (monthYear: String) =>
@@ -316,7 +313,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user manually navigates to the outstanding payments page$""") {
-    CommonPage.navigateToOutstandingPayments
+    CommonPage.navigateToOutstandingPayments()
   }
 
   When("""^the user does not owe any VAT$""") {
@@ -349,7 +346,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user manually navigates to the returns service$""") {
-    CommonPage.navigateToReturnsService
+    CommonPage.navigateToReturnsService()
   }
 
   When("""^the user clicks the Pay now link for October 2023$""") {
@@ -366,7 +363,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user manually navigates to their December 2023 return$""") {
-    CommonPage.navigateToReturn
+    CommonPage.navigateToReturn()
   }
 
   Then("""^the link to Rejoin this service is not displayed on the dashboard$""") { () =>
@@ -544,8 +541,52 @@ class ReturnsStepDef extends BaseStepDef {
     if (variation == "one") {
       Assert.assertTrue(htmlBody.contains(s"View returns from $startDateFormatted to $endDateFormatted"))
     } else {
-      Assert.assertTrue(htmlBody.contains(s"View returns from a previous registration"))
+      Assert.assertTrue(htmlBody.contains("View returns from a previous registration"))
     }
 
+  }
+
+  Then("""^the user clicks on the view returns link for (one previous registration|multiple previous registrations)$""") { (previousRegistrations: String) =>
+    previousRegistrations match {
+      case "one previous registration" =>
+        driver.findElement(By.id("view-returns-one-reg")).click()
+      case "multiple previous registrations" =>
+        driver.findElement(By.id("return-registration-selection")).click()
+      case _ =>
+        throw new Exception("Link doesn't exist")
+    }
+  }
+
+  Then("""^the user clicks on the first return month for (one previous|first previous|second previous|current) registration$""") { (registration: String) =>
+    val month = registration match {
+      case "one previous" | "second previous" => "6".toInt
+      case "first previous" => "9".toInt
+      case "current" => "3".toInt
+      case _ =>
+        throw new Exception("Registration doesn't exist")
+    }
+
+    val returnMonth = LocalDate.now().minusMonths(month).getMonthValue
+    val returnYear = LocalDate.now().minusMonths(month).getYear
+    val periodString = s"$returnYear-M$returnMonth"
+
+    waitForElement(By.className("govuk-table__cell--numeric"))
+    selectLink(s"past-returns\\/$periodString")
+
+    checkUrl(s"past-returns/$periodString")
+  }
+
+  Then("""^the user clicks back on the browser$""") { () =>
+    clickBackButton()
+  }
+
+  Then("""^the correct previous IOSS numbers are displayed$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("IM9007230001"))
+    Assert.assertTrue(htmlBody.contains("IM9007230002"))
+  }
+
+  Then("""^the user selects the returns for IOSS number (IM9007230001|IM9007230002)$""") { (iossNumber: String) =>
+    selectIOSSNumberRadioButton(iossNumber)
   }
 }
