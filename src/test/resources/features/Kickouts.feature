@@ -79,5 +79,32 @@ Feature: Kickouts Feature
     When the user accesses the start return link via secure messages
     Then the user is on the no-returns-due page
 
+  Scenario: A user is not able to submit a return out of sequence
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user manually navigates to their January 2024 return
+    Then the user is on the cannot-start-return page
+
+  Scenario: A user is not able to submit a return for a period that has not yet ended
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user manually navigates to their current month return
+#  currently going to cannot-start-return
+    Then the user is on the no-other-periods-available page
+
+  Scenario: An excluded trader is not able to submit a return for a period that is older than 3 years
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001239999 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+#    currently going to cannot-start-return page in error
+    Then the user is on the start return page for the first available return period within 3 years
+    When the user manually navigates to their December 2020 return
+#  not developed yet
+    Then the user is on the new-page page
+
+
 
 

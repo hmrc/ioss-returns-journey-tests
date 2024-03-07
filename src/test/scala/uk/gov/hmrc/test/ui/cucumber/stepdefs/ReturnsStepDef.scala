@@ -360,8 +360,8 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertFalse(htmlBody.contains("Pay now"))
   }
 
-  When("""^the user manually navigates to their December 2023 return$""") {
-    CommonPage.navigateToReturn()
+  When("""^the user manually navigates to their (December 2020|November 2023|December 2023|January 2024|current month) return$""") { (returnPeriod: String) =>
+    CommonPage.navigateToReturn(returnPeriod)
   }
 
   Then("""^the link to Rejoin this service is not displayed on the dashboard$""") { () =>
@@ -608,5 +608,13 @@ class ReturnsStepDef extends BaseStepDef {
     } else {
       Assert.assertFalse(htmlBody.contains("Only include sales from"))
     }
+  }
+
+  When("""^the user is on the start return page for the first available return period within 3 years$""") { () =>
+    val firstAvailableReturnMonth = LocalDate.now().minusMonths(37).getMonthValue
+    val firstAvailableReturnYear = LocalDate.now().minusMonths(37).getYear
+    val firstAvailablePeriodString = s"$firstAvailableReturnYear-M$firstAvailableReturnMonth"
+
+    checkUrl(s"$firstAvailablePeriodString/start")
   }
 }
