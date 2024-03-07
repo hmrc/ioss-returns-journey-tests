@@ -73,6 +73,11 @@ Feature: Kickouts Feature
     And the user clicks the continue button
     Then the user is on the submission-failure page
 
+  Scenario: A user has no available returns to start after clicking the start return link via secure messages
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9009999998 accesses the returns journey
+    When the user accesses the start return link via secure messages
+    Then the user is on the no-returns-due page
 
 
 

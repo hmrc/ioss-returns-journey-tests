@@ -81,6 +81,12 @@ Feature: Returns Feature
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
 
+  Scenario: A user can access their next available return via the secure messages link
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    When the user accesses the start return link via secure messages
+    Then the user is on the 2023-M12/start page
+
 
 
 
