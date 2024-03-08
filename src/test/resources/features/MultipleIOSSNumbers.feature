@@ -12,14 +12,14 @@ Feature: Multiple IOSS Numbers Feature
     And the correct link for one previous IOSS number is displayed
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for current registration
-       #    Check return and payment references
-    Then the user clicks back on the browser
+    Then the correct returns and payments references are shown for IM9007230000
+    And the user clicks back on the browser
     When the user clicks on the view returns link for one previous registration
     Then the user is on the view-returns-multiple-reg page
     And the correct IOSS number IM9006230000 is displayed on the page
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for one previous registration
-#    Check return and payment references
+    Then the correct returns and payments references are shown for IM9006230000
     When the user clicks back on the browser
     Then the user is on the view-returns-multiple-reg page
     And the user clicks on the Return to your current registration link
@@ -35,7 +35,7 @@ Feature: Multiple IOSS Numbers Feature
     Then the correct link for more than one previous IOSS number is displayed
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for current registration
-     #    Check return and payment references
+    Then the correct returns and payments references are shown for IM9007230003
     Then the user clicks back on the browser
     When the user clicks on the view returns link for multiple previous registrations
     Then the user is on the return-registration-selection page
@@ -44,7 +44,7 @@ Feature: Multiple IOSS Numbers Feature
     Then the correct IOSS number IM9007230001 is displayed on the page
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for first previous registration
-  #    Check return and payment references
+    Then the correct returns and payments references are shown for IM9007230001
     When the user clicks back on the browser
     Then the user is on the view-returns-multiple-reg page
     And the user clicks on the Return to your current registration link
@@ -55,7 +55,7 @@ Feature: Multiple IOSS Numbers Feature
     Then the correct IOSS number IM9007230002 is displayed on the page
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for second previous registration
-   #    Check return and payment references
+    Then the correct returns and payments references are shown for IM9007230002
 
 
 

@@ -589,4 +589,9 @@ class ReturnsStepDef extends BaseStepDef {
   Then("""^the user selects the returns for IOSS number (IM9007230001|IM9007230002)$""") { (iossNumber: String) =>
     selectIOSSNumberRadioButton(iossNumber)
   }
+
+  Then("""^the correct returns and payments references are shown for (.*)$""") { (iossNumber: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains(s"XI/$iossNumber"))
+  }
 }
