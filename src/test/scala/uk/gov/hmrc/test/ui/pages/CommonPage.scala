@@ -99,7 +99,7 @@ object CommonPage extends BasePage {
   def clearData(): Unit =
     driver.findElement(By.id("value")).clear()
 
-  def navigateToFirstCorrectionCountry: Unit =
+  def navigateToFirstCorrectionCountry(): Unit =
     driver
       .navigate()
       .to(s"$host/correction-country/1/1")
@@ -123,7 +123,7 @@ object CommonPage extends BasePage {
     CommonPage.clickContinue()
   }
 
-  def navigateToPreviousReturn: Unit =
+  def navigateToPreviousReturn(): Unit =
     driver
       .navigate()
       .to(s"$host/past-returns/2023-M11")
@@ -142,17 +142,17 @@ object CommonPage extends BasePage {
     CommonPage.clickContinue()
   }
 
-  def navigateToOutstandingPayments: Unit =
+  def navigateToOutstandingPayments(): Unit =
     driver
       .navigate()
       .to(s"$host/outstanding-payments")
 
-  def navigateToReturnsService: Unit =
+  def navigateToReturnsService(): Unit =
     driver
       .navigate()
       .to(s"$host")
 
-  def navigateToReturn: Unit =
+  def navigateToReturn(): Unit =
     driver
       .navigate()
       .to(s"$host/2023-M12/start")
@@ -162,4 +162,17 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host/start-return")
 
+  def clickBackButton(): Unit =
+    driver
+      .navigate()
+      .back()
+
+  def selectIOSSNumberRadioButton(iossNumber: String): Unit = {
+    iossNumber match {
+      case "IM9007230001" => driver.findElement(By.id("IM9007230001")).click()
+      case "IM9007230002" => driver.findElement(By.id("IM9007230002")).click()
+      case _ => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
 }
