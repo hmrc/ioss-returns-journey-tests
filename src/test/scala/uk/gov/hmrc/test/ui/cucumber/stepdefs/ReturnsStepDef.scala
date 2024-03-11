@@ -514,4 +514,8 @@ class ReturnsStepDef extends BaseStepDef {
       )
     }
   }
+
+  When("""^the user accesses the start return link via secure messages$""") { () =>
+    CommonPage.navigateToSecureStartReturn()
+  }
 }

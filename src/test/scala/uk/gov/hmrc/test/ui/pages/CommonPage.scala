@@ -157,4 +157,9 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host/2023-M12/start")
 
+  def navigateToSecureStartReturn(): Unit =
+    driver
+      .navigate()
+      .to(s"$host/start-return")
+
 }
