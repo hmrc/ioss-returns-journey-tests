@@ -9,7 +9,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     Then the user answers yes on the correction-return-single-period/1 page
     And the user chooses the country Estonia as their first correction within the first correction period
@@ -38,7 +38,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
     Then the user picks month October on the correction-return-period/1 page
@@ -81,7 +81,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2024-M1/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
     Then the user picks month October on the correction-return-period/1 page
@@ -109,12 +109,12 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2024-M1/start page
-    And the user answers yes on the soldGoods page
-    And the user selects Germany on the first soldToCountry page
-    And the user ticks the first checkbox on the first vatRatesFromCountry page
+    And the user answers yes on the sold-goods page
+    And the user selects Germany on the first sold-to-country page
+    And the user ticks the first checkbox on the first vat-rates-from-country page
     And the user clicks the continue button
     And the user enters first country total sales of 950 for first selected VAT rate on the sales-to-country page
-    And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vatOnSales page
+    And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
     And the user answers no on the check-sales/1 page
     And the user answers no on the add-sales-country-list page
     And the user answers yes on the correct-previous-return page
@@ -138,7 +138,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
     Then the user picks month October on the correction-return-period/1 page
@@ -160,7 +160,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user answers no on the correction-return-single-period/1 page
     Then the user is on the no-correction-periods-available page
@@ -175,7 +175,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
@@ -187,7 +187,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2024-M1/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
     When the user picks month October on the correction-return-period/1 page
@@ -238,7 +238,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2024-M1/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2022 on the correction-return-year/1 page
     When the user picks month October on the correction-return-period/1 page
@@ -283,7 +283,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     And the user answers yes on the correction-return-single-period/1 page
     And the user chooses the country Portugal as their first correction within the first correction period
@@ -308,22 +308,22 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2024-M1/start page
-    And the user answers yes on the soldGoods page
-    And the user selects France on the first soldToCountry page
-    And the user ticks the first checkbox on the first vatRatesFromCountry page
-    And the user ticks the fifth checkbox on the first vatRatesFromCountry page
+    And the user answers yes on the sold-goods page
+    And the user selects France on the first sold-to-country page
+    And the user ticks the first checkbox on the first vat-rates-from-country page
+    And the user ticks the fifth checkbox on the first vat-rates-from-country page
     And the user clicks the continue button
     And the user enters first country total sales of 6000 for first selected VAT rate on the sales-to-country page
-    And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vatOnSales page
+    And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     And the user enters first country total sales of 987654.32 for second selected VAT rate on the sales-to-country page
-    And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vatOnSales page
+    And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
     And the user answers no on the check-sales/1 page
     And the user answers yes on the add-sales-country-list page
-    And the user selects Italy on the second soldToCountry page
-    And the user ticks the first checkbox on the second vatRatesFromCountry page
+    And the user selects Italy on the second sold-to-country page
+    And the user ticks the first checkbox on the second vat-rates-from-country page
     And the user clicks the continue button
     And the user enters second country total sales of 1234 for first selected VAT rate on the sales-to-country page
-    And the user enters a different amount of VAT totalling 120.56 for the second country and the first selected VAT rate on the vatOnSales page
+    And the user enters a different amount of VAT totalling 120.56 for the second country and the first selected VAT rate on the vat-on-sales page
     And the user answers no on the check-sales/2 page
     And the user answers no on the add-sales-country-list page
     And the user answers yes on the correct-previous-return page
@@ -361,7 +361,7 @@ Feature: Corrections Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
