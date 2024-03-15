@@ -82,7 +82,7 @@ Feature: Exclusions Feature
     Then the user is on the 2023-M12/start page
     And they are presented with the heading for their final return
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     Then the user is on the correct-previous-return page
     And they are advised it is their last chance to correct a return
     Then the user answers no on the correct-previous-return page
@@ -99,7 +99,7 @@ Feature: Exclusions Feature
     Then the user is on the 2023-M12/start page
     And they are presented with the regular heading for starting a return
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     Then the user is on the correct-previous-return page
     And they are not advised it is their last chance to correct a return
     Then the user answers no on the correct-previous-return page

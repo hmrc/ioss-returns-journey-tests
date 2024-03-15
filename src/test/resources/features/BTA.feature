@@ -9,7 +9,7 @@ Feature: BTA Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
@@ -24,7 +24,7 @@ Feature: BTA Feature
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey
     Then the user manually navigates to the start-your-return-from-bta/2023-M12 link
     Then the user answers yes on the 2023-M12/start page
-    And the user answers no on the soldGoods page
+    And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
