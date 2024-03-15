@@ -34,6 +34,9 @@ object AuthPage extends BasePage {
 
     driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-returns-frontend"))
 
+    val selectConfidenceLevel = new Select(driver.findElement(By.id("confidenceLevel")))
+    selectConfidenceLevel.selectByValue("250")
+
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
 
