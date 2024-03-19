@@ -600,8 +600,7 @@ class ReturnsStepDef extends BaseStepDef {
   ) { (transferDirection: String,returnType: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     if (transferDirection == "to" && returnType == "partial") {
-//      check this date
-      Assert.assertTrue(htmlBody.contains("Only include sales up to 12 February 2024."))
+      Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
     } else if (transferDirection == "from" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
     } else {
