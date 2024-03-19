@@ -1,4 +1,4 @@
-@Returns @wip
+@Returns
 
 Feature: Transferring MSID Feature
 
@@ -34,6 +34,7 @@ Feature: Transferring MSID Feature
     And a user with VRN 100000001 and IOSS Number IM9009995555 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
+    Then they are not presented with the heading for their final return
     Then the user transferring to another MSID is offered a full return for the correct period
     And the user answers yes on the 2024-M1/start page
     And the user answers no on the sold-goods page

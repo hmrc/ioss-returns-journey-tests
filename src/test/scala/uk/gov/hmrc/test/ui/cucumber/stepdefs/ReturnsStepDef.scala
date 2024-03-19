@@ -446,9 +446,13 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("You've completed your final return."))
   }
 
-  Then("""^they are presented with the heading for their final return$""") { () =>
+  Then("""^they (are not|are) presented with the heading for their final return$""") { (finalReturn: String) =>
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
+    if (finalReturn == "are not") {
+      Assert.assertFalse(htmlH1.equals("Do you want to start your final return?"))
+    } else {
+      Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
+    }
   }
 
   Then("""^they are presented with the regular heading for starting a return$""") { () =>
