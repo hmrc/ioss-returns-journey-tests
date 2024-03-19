@@ -594,4 +594,18 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains(s"XI/$iossNumber"))
   }
+
+  Then(
+    """^the user transferring (from|to) another MSID is offered a (partial|full) return for the correct period$"""
+  ) { (transferDirection: String,returnType: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (transferDirection == "to" && returnType == "partial") {
+//      check this date
+      Assert.assertTrue(htmlBody.contains("Only include sales up to 12 February 2024."))
+    } else if (transferDirection == "from" && returnType == "partial") {
+      Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
+    } else {
+      Assert.assertFalse(htmlBody.contains("Only include sales from"))
+    }
+  }
 }
