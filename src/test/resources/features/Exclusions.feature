@@ -12,7 +12,7 @@ Feature: Exclusions Feature
     Given the user accesses the authority wizard
     When a user with VRN 100000001 and IOSS Number IM9009999992 accesses the returns journey
     When the user clicks on the Start your return link
-    Then the user is on the 2023-M12/start page
+    Then the user is on the 2023-M11/start page
 
   Scenario: A user who is excluded in the future sees the correct dashboard messages when they have outstanding returns
     Given the user accesses the authority wizard
