@@ -2,9 +2,15 @@
 
 Feature: Exclusions Feature
   @Accessibility
-  Scenario: An excluded user is not able to start a return after their exclusion date
+  Scenario: A self excluded user is not able to start a return after their exclusion date
     Given the user accesses the authority wizard
     When a user with VRN 100000001 and IOSS Number IM9009999991 accesses the returns journey
+    Then the user manually navigates to their December 2023 return
+    And the user is on the excluded-cannot-use-service page
+
+  Scenario: An HMRC excluded user is not able to start a return after their exclusion date
+    Given the user accesses the authority wizard
+    When a user with VRN 100000001 and IOSS Number IM9009999911 accesses the returns journey
     Then the user manually navigates to their December 2023 return
     And the user is on the excluded-cannot-use-service page
 
@@ -12,7 +18,7 @@ Feature: Exclusions Feature
     Given the user accesses the authority wizard
     When a user with VRN 100000001 and IOSS Number IM9009999992 accesses the returns journey
     When the user clicks on the Start your return link
-    Then the user is on the 2023-M12/start page
+    Then the user is on the 2023-M11/start page
 
   Scenario: A user who is excluded in the future sees the correct dashboard messages when they have outstanding returns
     Given the user accesses the authority wizard

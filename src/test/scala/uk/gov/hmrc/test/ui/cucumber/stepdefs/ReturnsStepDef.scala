@@ -444,9 +444,13 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("You've completed your final return."))
   }
 
-  Then("""^they are presented with the heading for their final return$""") { () =>
+  Then("""^they (are not|are) presented with the heading for their final return$""") { (finalReturn: String) =>
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
+    if (finalReturn == "are not") {
+      Assert.assertFalse(htmlH1.equals("Do you want to start your final return?"))
+    } else {
+      Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
+    }
   }
 
   Then("""^they are presented with the regular heading for starting a return$""") { () =>
@@ -591,5 +595,18 @@ class ReturnsStepDef extends BaseStepDef {
   Then("""^the correct returns and payments references are shown for (.*)$""") { (iossNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains(s"XI/$iossNumber"))
+  }
+
+  Then(
+    """^the user transferring (from|to) another MSID is offered a (partial|full) return for the correct period$"""
+  ) { (transferDirection: String,returnType: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (transferDirection == "to" && returnType == "partial") {
+      Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
+    } else if (transferDirection == "from" && returnType == "partial") {
+      Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
+    } else {
+      Assert.assertFalse(htmlBody.contains("Only include sales from"))
+    }
   }
 }
