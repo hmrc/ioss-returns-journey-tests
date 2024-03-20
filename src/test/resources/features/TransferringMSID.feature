@@ -50,7 +50,6 @@ Feature: Transferring MSID Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then they are presented with the heading for their final return
-#    currently displaying exclusion date instead of day before
     And the user transferring to another MSID is offered a partial return for the correct period
     And the user answers yes on the 2024-M2/start page
     And the user answers no on the sold-goods page
