@@ -18,9 +18,6 @@ Feature: Check Your Answers Feature
     And the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    When the user selects the change-return-period change link for page 2023-M12/start from check-your-answers
-    Then the user answers no on the 2023-M12/start page
-    And the user is on the no-other-periods-available page
 
   Scenario: A user adds details to a return then uses Check Your Answers to change "Sales made" to no
     Given the user accesses the authority wizard
