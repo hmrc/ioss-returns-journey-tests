@@ -348,7 +348,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user clicks the Pay now link for October 2023$""") {
-    selectLink("make-payment\\/2023-M10\\/50000")
+    selectLink("make-payment\\/2023-M10")
   }
 
   When("""^the correct sections are displayed for a nil return$""") {
