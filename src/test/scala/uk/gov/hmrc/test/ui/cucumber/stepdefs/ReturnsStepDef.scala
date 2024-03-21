@@ -105,6 +105,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("rejoin-scheme")).click()
       case "Return to your current registration" =>
         driver.findElement(By.id("submitted-returns-history")).click()
+      case "continue to complete your return" =>
+        driver.findElement(By.id("continueToYourReturn")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -617,4 +619,9 @@ class ReturnsStepDef extends BaseStepDef {
 
     checkUrl(s"$firstAvailablePeriodString/start")
   }
+
+  Then("""^the user clicks the Save and come back later button$""") { () =>
+    driver.findElement(By.id("saveProgress")).click()
+  }
+
 }
