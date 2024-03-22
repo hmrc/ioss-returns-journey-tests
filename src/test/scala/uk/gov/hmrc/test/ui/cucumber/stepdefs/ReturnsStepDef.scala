@@ -107,6 +107,10 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("submitted-returns-history")).click()
       case "continue to complete your return" =>
         driver.findElement(By.id("continueToYourReturn")).click()
+      case "return to your account" =>
+        driver.findElement(By.id("backToYourAccount")).click()
+      case "sign out and come back later" =>
+        driver.findElement(By.id("signOut")).click()
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
