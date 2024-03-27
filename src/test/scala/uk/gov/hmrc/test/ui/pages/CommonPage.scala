@@ -20,6 +20,8 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
+import java.time.LocalDate
+
 object CommonPage extends BasePage {
 
   val host: String     = TestConfiguration.url("ioss-returns-frontend")
@@ -152,10 +154,24 @@ object CommonPage extends BasePage {
       .navigate()
       .to(s"$host")
 
-  def navigateToReturn(): Unit =
+  def navigateToReturn(returnPeriod: String): Unit = {
+
+    val currentReturnMonth = LocalDate.now().getMonthValue
+    val currentReturnYear = LocalDate.now().getYear
+    val currentPeriodString = s"$currentReturnYear-M$currentReturnMonth"
+
+    val period = returnPeriod match {
+      case "December 2020" => "2020-M12"
+      case "November 2023" => "2023-M11"
+      case "December 2023" => "2023-M12"
+      case "January 2024" => "2024-M1"
+      case "current month" => currentPeriodString
+      case _ => "period doesn't exist"
+    }
     driver
       .navigate()
-      .to(s"$host/2023-M12/start")
+      .to(s"$host/$period/start")
+  }
 
   def navigateToSecureStartReturn(): Unit =
     driver

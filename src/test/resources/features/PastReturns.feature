@@ -82,4 +82,11 @@ Feature: Past Returns Feature
     And the return for November 2023 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
 
+  Scenario: A user is not able to submit a duplicate return
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user manually navigates to their November 2023 return
+    Then the user is on the past-returns/2023-M11 page
+
 
