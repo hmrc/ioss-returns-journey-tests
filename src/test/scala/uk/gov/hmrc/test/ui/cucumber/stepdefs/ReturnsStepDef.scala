@@ -73,6 +73,8 @@ class ReturnsStepDef extends BaseStepDef {
     link match {
       case "Start your return"        =>
         driver.findElement(By.id("start-your-return")).click()
+      case "Continue your return" =>
+        driver.findElement(By.id("continue-your-return")).click()
       case "Change your registration" =>
         driver.findElement(By.id("change-your-registration")).click()
       case "Back to your account"     =>
@@ -626,6 +628,15 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user clicks the Save and come back later button$""") { () =>
     driver.findElement(By.id("saveProgress")).click()
+  }
+
+  Then("""^the user selects the (.*) option""") { (option: String) =>
+    option match {
+      case "Continue my return" => driver.findElement(By.id("value_0")).click()
+      case "Delete my return and start again" => driver.findElement(By.id("value_1")).click()
+      case _ => throw new Exception("Link doesn't exist")
+    }
+    clickContinue()
   }
 
 }
