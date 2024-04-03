@@ -179,5 +179,8 @@ Feature: Save For Later Feature
     Then the user is on the check-your-answers page
     And the user clicks the continue button
     Then the user is on the submission-failure page
-#  Return should be saved for later so user can return to it, however this is not currently implemented inc. content
-
+    Then the user clicks on the Back to your account link
+    And the user clicks on the Continue your return link
+    Then the user is on the 2023-M12/return-continue page
+    And the user selects the Continue my return option
+    And the user is on the check-your-answers page
