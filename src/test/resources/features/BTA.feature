@@ -36,12 +36,32 @@ Feature: BTA Feature
 
   Scenario: A user with one outstanding payment clicks the BTA payment link and is directed to the payments service
     Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9008888888 accesses the returns journey
+    Then the user manually navigates to the payments-from-bta link
+    And the user has been redirected to the payments service
+
+  Scenario: A user with multiple outstanding payments clicks the BTA payment link and is directed to the outstanding payments page
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user manually navigates to the payments-from-bta link
+    And the user is on the outstanding-payments page
+    When the user selects the second payment option on the outstanding-payments page
+    Then the user has been redirected to the payments service
+
+  Scenario: A user with no outstanding payments clicks the BTA payment link and is directed to no outstanding payments page
+    Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey
     Then the user manually navigates to the payments-from-bta link
-#  Currently goes to outstanding-payments within returns service with no content on page
-#Should this be implemented yet?
-#  In OSS we had a single outstanding payment and multiple outstanding payments version of this test - which IOSS numbers can we use
-#Also there should be a Welsh version
+    And the user is on the outstanding-payments page
+    And the user does not owe any VAT
+
+  Scenario: A user with one outstanding payment clicks the Welsh version of the BTA payment link and is directed to the no Welsh service page before payments
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9008888888 accesses the returns journey
+    Then the user manually navigates to the payments-from-bta?lang=cy link
+    And the user is directed to the Welsh transition page
+    Then the user clicks the continue button
+    Then the user has been redirected to the payments service
 
   @Accessibility
   Scenario: A Welsh user enters the Your Account page via BTA and sees the Welsh transition page before "Your Account"
