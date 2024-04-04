@@ -94,7 +94,32 @@ Feature: BTA Feature
     Then the user clicks the continue button
     And the user is on the past-returns page
 
-#  Future - continue-return-from-bta - not currently possible as save and come back later not implemented
-#  Same for Welsh user - continue-return-from-bta/2023-M10?lang=cy
+  Scenario: A user accesses a saved return via BTA
+    Given the user accesses the authority wizard
+    And a user with VRN 100000444 and IOSS Number IM9001112222 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M12/start page
+    And the user answers yes on the sold-goods page
+    And the user selects Austria on the first sold-to-country page
+    When the user clicks the Save and come back later button
+    Then the user manually navigates to the continue-return-from-bta/2023-M12 link
+    And the user is on the 2023-M12/return-continue page
+
+  Scenario: A Welsh user accesses a saved return via BTA
+    Given the user accesses the authority wizard
+    And a user with VRN 100000444 and IOSS Number IM9001112222 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M12/start page
+    And the user answers yes on the sold-goods page
+    And the user selects Austria on the first sold-to-country page
+    When the user clicks the Save and come back later button
+    Then the user manually navigates to the continue-return-from-bta/2023-M12?lang=cy link
+    And the user is directed to the Welsh transition page
+    Then the user clicks the continue button
+    And the user is on the 2023-M12/return-continue page
+
+
 
 
