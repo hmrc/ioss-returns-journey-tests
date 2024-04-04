@@ -1,4 +1,4 @@
-@Returns @Accessibility
+@Additional @Accessibility
 
 Feature: Change and Remove Feature
 

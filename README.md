@@ -22,9 +22,12 @@ Run the following commands to start mongo and services locally:
     Start services via service manager:
     sm2 --start IMPORT_ONE_STOP_SHOP_ALL 
 
-Then execute the `run_tests.sh` script:
+Then execute the relevant run tests script - these have been split up as the functionality has grown across the service:
 
-    ./run_tests.sh <browser-driver> <environment> 
+    ./run_returns_tests.sh <browser-driver> <environment> 
+    ./run_additional_returns_tests.sh <browser-driver> <environment>
+
+Can also use "./run_wip.sh <browser-driver> <environment>" to run individual scenarios tagged with @wip
 
 The `run_tests.sh` script defaults to using `chrome` in the `local` environment.  For a complete list of supported param values, see:
 - `src/test/resources/application.conf` for **environment**

@@ -1,4 +1,4 @@
-@Returns
+@Additional
 
 Feature: Rejoin Feature
 

@@ -1,4 +1,4 @@
-@Returns
+@Additional
 
 Feature: Change Your Registration Feature
 
