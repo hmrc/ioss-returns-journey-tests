@@ -684,4 +684,8 @@ class ReturnsStepDef extends BaseStepDef {
     selectRadioButton(radioButtonToSelect)
   }
 
+
+  Then("""^the user has been redirected to BTA$""") { () =>
+    driver.getCurrentUrl endsWith "/business-account"
+  }
 }
