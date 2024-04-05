@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkUrl, clickBackButton, clickContinue, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkUrl, clickBackButton, clickContinue, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -113,6 +113,8 @@ class ReturnsStepDef extends BaseStepDef {
         driver.findElement(By.id("backToYourAccount")).click()
       case "sign out and come back later" =>
         driver.findElement(By.id("signOut")).click()
+      case "Pay for a previous registration" =>
+        CommonPage.selectLink("which-previous-registration-to-pay")
       case _                          =>
         throw new Exception("Link doesn't exist")
     }
@@ -637,6 +639,49 @@ class ReturnsStepDef extends BaseStepDef {
       case _ => throw new Exception("Link doesn't exist")
     }
     clickContinue()
+  }
+
+  Then("""^the dashboard warning is displayed regarding (multiple outstanding payments|one outstanding payment) on their (one previous registration|multiple previous registrations) (.*)$""") { (outstandingPayments: String, registrations: String, iossNumber:String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    val amount = if (outstandingPayments == "multiple outstanding payments" && registrations == "one previous registration"){
+      "£1,500"
+    } else if (outstandingPayments == "multiple outstanding payments" && registrations == "multiple previous registrations") {
+      "£4,250"
+    } else if (outstandingPayments == "one outstanding payment" && registrations == "multiple previous registrations") {
+      "£3,750"
+    } else {
+      "£2,000"
+    }
+
+    if (registrations == "multiple previous registrations"){
+      Assert.assertTrue(htmlBody.contains(s"This account owes a total of $amount on previous registrations."))
+    } else {
+      Assert.assertTrue(htmlBody.contains(s"This account owes $amount on a previous registration with IOSS number $iossNumber."))
+    }
+  }
+
+  Then("""^the correct (single|multiple) outstanding payment amounts are displayed for each previous registration$""") { (outstanding: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    if (outstanding == "single"){
+      Assert.assertTrue(htmlBody.contains("You owe £1,750 for your registration with IOSS number\nIM9007230004"))
+      Assert.assertTrue(htmlBody.contains("You owe £2,000 for your registration with IOSS number\nIM9007230005"))
+    } else {
+      Assert.assertTrue(htmlBody.contains("You owe £2,750 for your registration with IOSS number\nIM9007230001"))
+      Assert.assertTrue(htmlBody.contains("You owe £1,500 for your registration with IOSS number\nIM9007230002"))
+    }
+
+  }
+
+  When(
+    """^the user picks the (first|second) previous IOSS Number$"""
+  ) { (answer: String) =>
+    val radioButtonToSelect = answer match {
+      case "first" => "1"
+      case "second" => "2"
+      case _ => throw new Exception("Selection doesn't exist")
+    }
+    selectRadioButton(radioButtonToSelect)
   }
 
 }

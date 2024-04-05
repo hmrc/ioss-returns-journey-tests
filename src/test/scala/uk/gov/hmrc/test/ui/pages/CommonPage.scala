@@ -191,4 +191,13 @@ object CommonPage extends BasePage {
     }
     CommonPage.clickContinue()
   }
+
+  def selectRadioButton(scheme: String): Unit = {
+    scheme match {
+      case "1" => driver.findElement(By.id("value_0")).click()
+      case "2" => driver.findElement(By.id("value_1")).click()
+      case _ => throw new Exception("Option doesn't exist")
+    }
+    CommonPage.clickContinue()
+  }
 }
