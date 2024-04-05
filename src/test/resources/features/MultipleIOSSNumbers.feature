@@ -57,5 +57,48 @@ Feature: Multiple IOSS Numbers Feature
     When the user clicks on the first return month for second previous registration
     Then the correct returns and payments references are shown for IM9007230002
 
+  Scenario: A user with one previous registration that has multiple outstanding payments
+    Given the user accesses the authority wizard
+    And a user with current IOSS Number IM9007230000 and at least one previous IOSS number accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    And the dashboard warning is displayed regarding multiple outstanding payments on their one previous registration IM9006230000
+    When the user clicks on the Pay for a previous registration link
+    And the user selects the first payment option on the which-previous-registration-vat-period-to-pay page
+    Then the user has been redirected to the payments service
+
+  Scenario: A user with one previous registration that has one outstanding payment
+    Given the user accesses the authority wizard
+    And a user with current IOSS Number IM9005230000 and at least one previous IOSS number accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    And the dashboard warning is displayed regarding one outstanding payment on their one previous registration IM9004230000
+    When the user clicks on the Pay for a previous registration link
+    Then the user has been redirected to the payments service
+
+  Scenario: A user with more than one previous registration that has multiple outstanding payments
+    Given the user accesses the authority wizard
+    And a user with current IOSS Number IM9007230003 and at least one previous IOSS number accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    And the dashboard warning is displayed regarding multiple outstanding payments on their multiple previous registrations IM9007230003
+    When the user clicks on the Pay for a previous registration link
+    And the user is on the which-previous-registration-to-pay page
+    Then the correct multiple outstanding payment amounts are displayed for each previous registration
+    When the user picks the first previous IOSS Number
+    And the user selects the first payment option on the which-previous-registration-vat-period-to-pay page
+    Then the user has been redirected to the payments service
+
+  Scenario: A user with more than one previous registration that has single outstanding payments
+    Given the user accesses the authority wizard
+    And a user with current IOSS Number IM9007230006 and at least one previous IOSS number accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    And the dashboard warning is displayed regarding one outstanding payment on their multiple previous registrations IM9007230006
+    When the user clicks on the Pay for a previous registration link
+    And the user is on the which-previous-registration-to-pay page
+    Then the correct single outstanding payment amounts are displayed for each previous registration
+    When the user picks the second previous IOSS Number
+    Then the user has been redirected to the payments service
+
+
+
+
 
 
