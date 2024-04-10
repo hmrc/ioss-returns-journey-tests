@@ -116,7 +116,6 @@ Feature: Change and Remove Feature
     Then the user selects the list change link for second check-sales
     And the user selects the remove link for remove-vat-rate-sales-for-country\/2\/2
     And the user answers yes on the remove-vat-rate-sales-for-country/2/2 page
-    Then the user selects the list change link for second check-sales
     Then the user selects the mini CYA change link for second vat-on-sales\/2
     And the user enters a different amount of VAT totalling 250.11 for the second country and the second selected VAT rate on the vat-on-sales page
     Then the user answers no on the check-sales/2 page
