@@ -17,6 +17,8 @@ Feature: Corrections Feature
     And the previously declared text is not displayed above the amount box
     And the user adds 1500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country Portugal as their second correction within the first correction period
@@ -24,6 +26,8 @@ Feature: Corrections Feature
     And the previously declared text is not displayed above the amount box
     And the user adds 160.36 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
+    And the user is on the vat-payable-check/1/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     And the user clicks the continue button
@@ -46,12 +50,16 @@ Feature: Corrections Feature
     And the previously declared text is displayed above the amount box
     And the user adds -100.65 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country France as their second correction within the first correction period
     And the previously declared text is displayed above the amount box
     And the user adds 1453 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
+    And the user is on the vat-payable-check/1/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M12/vat-correction-periods-add page
@@ -61,11 +69,15 @@ Feature: Corrections Feature
     And the user chooses the country France as their first correction within the second correction period
     And the user adds 1500 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Germany as their second correction within the second correction period
     And the user adds 160.36 on the second country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/2 page
+    And the user is on the vat-payable-check/2/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     Then the user is on the 2023-M12/vat-correction-periods page
@@ -89,12 +101,16 @@ Feature: Corrections Feature
     And the previously declared text is displayed above the amount box
     And the user adds -2500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country France as their second correction within the first correction period
     And the previously declared text is displayed above the amount box
     And the user adds 2600 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
+    And the user is on the vat-payable-check/1/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers no on the 2024-M1/vat-correction-periods-add page
@@ -124,6 +140,8 @@ Feature: Corrections Feature
     And the previously declared text is displayed above the amount box
     And the user adds -3500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers no on the 2024-M1/vat-correction-periods-add page
@@ -146,6 +164,8 @@ Feature: Corrections Feature
     And the previously declared text is displayed above the amount box
     And the user adds -100.65 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers no on the 2023-M12/vat-correction-periods-add page
@@ -196,12 +216,16 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 1500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country Czech Republic as their second correction within the first correction period
     And the user answers yes on the add-new-country/1/2 page
     And the user adds 160.36 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
+    And the user is on the vat-payable-check/1/2 page
+    And the user clicks the continue button
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2024-M1/vat-correction-periods-add page
     When the user picks year 2023 on the correction-return-year/2 page
@@ -210,12 +234,16 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 100.25 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Slovakia as their second correction within the second correction period
     And the user answers yes on the add-new-country/2/2 page
     And the user adds 1450 on the second country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/2 page
+    And the user is on the vat-payable-check/2/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     When the user answers yes on the 2024-M1/vat-correction-periods-add page
@@ -225,6 +253,8 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/3/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
     And the user answers yes on the vat-payable-confirm/3/1 page
+    And the user is on the vat-payable-check/3/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/3 page
     And the user answers no on the correction-list-countries/3 page
     Then the user is on the 2024-M1/vat-correction-periods page
@@ -247,6 +277,8 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2024-M1/vat-correction-periods-add page
@@ -256,12 +288,16 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1235.04 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Spain as their second correction within the second correction period
     And the user answers yes on the add-new-country/2/2 page
     And the user adds 111 on the second country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/2 page
+    And the user is on the vat-payable-check/2/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     And the user answers yes on the 2024-M1/vat-correction-periods-add page
@@ -271,6 +307,8 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/3/1 page
     And the user adds 45210 on the first country-vat-correction-amount page for the third correction period
     And the user answers yes on the vat-payable-confirm/3/1 page
+    And the user is on the vat-payable-check/3/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/3 page
     And the user answers no on the correction-list-countries/3 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
@@ -291,12 +329,16 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 1500.24 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country Romania as their second correction within the first correction period
     And the user answers yes on the add-new-country/1/2 page
     And the user adds 16000 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
+    And the user is on the vat-payable-check/1/2 page
+    And the user clicks the continue button
     And the user answers no on the correction-list-countries/1 page
     When the user clicks the continue button
     Then the user is on the check-your-answers page
@@ -334,6 +376,8 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     And the user answers yes on the 2024-M1/vat-correction-periods-add page
@@ -343,12 +387,16 @@ Feature: Corrections Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Germany as their second correction within the second correction period
     And the previously declared text is displayed above the amount box
     And the user adds 1234 on the second country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/2 page
+    And the user is on the vat-payable-check/2/2 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page

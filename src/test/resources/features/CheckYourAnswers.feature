@@ -84,6 +84,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 1500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     When the user answers yes on the 2023-M12/vat-correction-periods-add page
@@ -93,6 +95,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 100.25 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     And the user is on the 2023-M12/vat-correction-periods page
@@ -168,6 +172,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     And the user answers yes on the 2024-M1/vat-correction-periods-add page
@@ -177,6 +183,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
@@ -218,6 +226,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     And the user answers yes on the 2024-M1/vat-correction-periods-add page
@@ -227,6 +237,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
@@ -239,6 +251,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the add-new-country/3/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
     And the user answers yes on the vat-payable-confirm/3/1 page
+    And the user is on the vat-payable-check/3/1 page
+    And the user clicks the continue button
     Then the user is on the correction-list-countries/3 page
     And the user answers no on the correction-list-countries/3 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
