@@ -61,6 +61,6 @@ object MongoConnection {
     dropRecord("ioss-returns", "saved-user-answers", "IM9049999994")
     dropRecord("ioss-returns", "saved-user-answers", "IM9009999995")
     dropRecord("ioss-returns", "saved-user-answers", "IM9007777777")
-
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001112222")
   }
 }
