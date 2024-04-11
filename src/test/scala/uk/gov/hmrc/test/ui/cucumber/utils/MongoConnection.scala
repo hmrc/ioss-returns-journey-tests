@@ -32,12 +32,12 @@ object MongoConnection {
     mongoClient.close()
   }
 
-  def dropRecord(db: String, collection: String, vrn: String): Unit =
+  def dropRecord(db: String, collection: String, iossNumber: String): Unit =
     try Await.result(
       mongoClient
         .getDatabase(db)
         .getCollection(collection)
-        .deleteMany(filter = Filters.equal("vrn", vrn))
+        .deleteMany(filter = Filters.equal("iossNumber", iossNumber))
         .head(),
       timeout
     )
@@ -46,8 +46,21 @@ object MongoConnection {
     }
 
   def dropSavedAnswers(): Unit = {
-    dropRecord("ioss-returns", "saved-user-answers", "100000001")
-    dropRecord("ioss-returns", "saved-user-answers", "100000123")
-    dropRecord("ioss-returns", "saved-user-answers", "100000444")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001234566")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9007777778")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9005999997")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9009999888")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001234567")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001234569")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001234568")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9005999997")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001233211")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9005999977")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9009995555")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9009999555")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9049999994")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9009999995")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9007777777")
+
   }
 }
