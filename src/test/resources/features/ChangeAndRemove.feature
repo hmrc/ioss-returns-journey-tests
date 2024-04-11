@@ -77,54 +77,53 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the successfully-submitted page
 
-#    Commenting scenario out as it's awaiting a fix
-#  Scenario: A user can change and remove answers via the mini CYA for VAT rates
-#    Given the user accesses the authority wizard
-#    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
-#    Then the user is redirected to their IOSS Account
-#    When the user clicks on the Start your return link
-#    Then the user answers yes on the 2023-M12/start page
-#    And the user answers yes on the sold-goods page
-#    And the user selects Denmark on the first sold-to-country page
-#    And the user enters first country total sales of 10000 for first selected VAT rate on the sales-to-country page
-#    And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
-#    Then the user is on the check-sales/1 page
-#    And the user clicks the continue button
-#    Then the user answers yes on the add-sales-country-list page
-#    And the user selects Slovakia on the second sold-to-country page
-#    And the user ticks the second checkbox on the second vat-rates-from-country page
-#    And the user clicks the continue button
-#    And the user enters second country total sales of 6321 for first selected VAT rate on the sales-to-country page
-#    And the user enters a different amount of VAT totalling 600 for the second country and the first selected VAT rate on the vat-on-sales page
-#    Then the user is on the check-sales/2 page
-#    Then the user selects the mini CYA change link for first vat-on-sales\/2
-#    And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
-#    Then the user is on the check-sales/2 page
-#    And the user answers yes on the check-sales/2 page
-#    And the user ticks the second checkbox on the second vat-rates-from-country page
-#    And the user clicks the continue button
-#    And the user enters second country total sales of 123.11 for second selected VAT rate on the sales-to-country page
-#    And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
-#    Then the user selects the second mini CYA change link for second sales-to-country\/2
-#    And the user changes second country total sales of 641 for second selected VAT rate on the sales-to-country page
-#    And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
-#    Then the user is on the check-sales/2 page
-#    And the user answers yes on the check-sales/2 page
-#    And the user answers yes on the remaining-vat-rate-from-country/2/3 page
-#    And the user enters second country total sales of 1400 for third selected VAT rate on the sales-to-country page
-#    And the user confirms the vat for the second EU country as the suggested amount for the third selected VAT rate on the vat-on-sales page
-#    Then the user clicks the continue button
-#    Then the user selects the list change link for second check-sales
-#    And the user selects the remove link for remove-vat-rate-sales-for-country\/2\/2
-#    And the user answers yes on the remove-vat-rate-sales-for-country/2/2 page
-#    Then the user selects the second mini CYA change link for second vat-on-sales\/2
-#    And the user enters a different amount of VAT totalling 250.11 for the second country and the second selected VAT rate on the vat-on-sales page
-#    Then the user answers no on the check-sales/2 page
-#    And the user answers no on the add-sales-country-list page
-#    And the user answers no on the correct-previous-return page
-#    And the user is on the check-your-answers page
-#    And the user clicks the continue button
-#    Then the user is on the successfully-submitted page
+  Scenario: A user can change and remove answers via the mini CYA for VAT rates
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M12/start page
+    And the user answers yes on the sold-goods page
+    And the user selects Denmark on the first sold-to-country page
+    And the user enters first country total sales of 10000 for first selected VAT rate on the sales-to-country page
+    And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
+    Then the user is on the check-sales/1 page
+    And the user clicks the continue button
+    Then the user answers yes on the add-sales-country-list page
+    And the user selects Slovakia on the second sold-to-country page
+    And the user ticks the second checkbox on the second vat-rates-from-country page
+    And the user clicks the continue button
+    And the user enters second country total sales of 6321 for first selected VAT rate on the sales-to-country page
+    And the user enters a different amount of VAT totalling 600 for the second country and the first selected VAT rate on the vat-on-sales page
+    Then the user is on the check-sales/2 page
+    Then the user selects the mini CYA change link for first vat-on-sales\/2
+    And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
+    Then the user is on the check-sales/2 page
+    And the user answers yes on the check-sales/2 page
+    And the user ticks the second checkbox on the second vat-rates-from-country page
+    And the user clicks the continue button
+    And the user enters second country total sales of 123.11 for second selected VAT rate on the sales-to-country page
+    And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
+    Then the user selects the second mini CYA change link for second sales-to-country\/2
+    And the user changes second country total sales of 641 for second selected VAT rate on the sales-to-country page
+    And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
+    Then the user is on the check-sales/2 page
+    And the user answers yes on the check-sales/2 page
+    And the user answers yes on the remaining-vat-rate-from-country/2/3 page
+    And the user enters second country total sales of 1400 for third selected VAT rate on the sales-to-country page
+    And the user confirms the vat for the second EU country as the suggested amount for the third selected VAT rate on the vat-on-sales page
+    Then the user clicks the continue button
+    Then the user selects the list change link for second check-sales
+    And the user selects the remove link for remove-vat-rate-sales-for-country\/2\/2
+    And the user answers yes on the remove-vat-rate-sales-for-country/2/2 page
+    Then the user selects the second mini CYA change link for second vat-on-sales\/2
+    And the user enters a different amount of VAT totalling 250.11 for the second country and the second selected VAT rate on the vat-on-sales page
+    Then the user answers no on the check-sales/2 page
+    And the user answers no on the add-sales-country-list page
+    And the user answers no on the correct-previous-return page
+    And the user is on the check-your-answers page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user can remove all answers via the mini CYA for VAT rates
     Given the user accesses the authority wizard
