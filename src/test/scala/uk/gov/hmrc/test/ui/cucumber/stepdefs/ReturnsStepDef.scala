@@ -205,7 +205,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user selects the (mini CYA|list) change link for (first|second|third|page) (.*)$"""
+    """^the user selects the (mini CYA|second mini CYA|list) change link for (first|second|third|page) (.*)$"""
   ) { (route: String, index: String, toPage: String) =>
     val changeIndex = index match {
       case "first"  => "1"
@@ -215,6 +215,8 @@ class ReturnsStepDef extends BaseStepDef {
     }
     if (route == "mini CYA") {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-check-sales")
+    } else if (route == "second mini CYA") {
+      CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-check-sales-2")
     } else {
       CommonPage.selectLink(s"$toPage\\/$changeIndex\\?waypoints\\=change-add-sales-country-list")
     }

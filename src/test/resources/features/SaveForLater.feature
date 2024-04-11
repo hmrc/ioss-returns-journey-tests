@@ -48,6 +48,8 @@ Feature: Save For Later Feature
     And the user answers yes on the vat-payable-confirm/1/1 page
     When the user clicks the Save and come back later button
     Then the user clicks on the continue to complete your return link
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     And the user answers no on the correction-list-countries/1 page
     When the user clicks the Save and come back later button
     Then the user clicks on the continue to complete your return link
@@ -90,6 +92,8 @@ Feature: Save For Later Feature
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 120.36 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
     And the user answers no on the correction-list-countries/1 page
     And the user answers no on the 2023-M12/vat-correction-periods-add page
     Then the user is on the check-your-answers page
