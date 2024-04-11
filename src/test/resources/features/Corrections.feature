@@ -186,9 +186,8 @@ Feature: Corrections Feature
     Then the user is on the no-correction-periods-available page
     And the user clicks the continue button
     Then the user is on the check-your-answers page
-#  Currently can't submit due to bug VEIOSS-611
-#    And the user clicks the continue button
-#    Then the user is on the successfully-submitted page
+    And the user clicks the continue button
+    Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available but selects no to adding any
     Given the user accesses the authority wizard
