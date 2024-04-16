@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
@@ -199,5 +200,15 @@ object CommonPage extends BasePage {
       case _ => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
+  }
+
+  def checkTransferringToOtherMSIDPastReturn(): Unit = {
+    val htmlH1 = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlH1.equals("Submitted return for 1 to 11 February 2024"))
+  }
+
+  def checkTransferringFromOtherMSIDPastReturn(): Unit = {
+    val htmlH1 = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlH1.equals("Submitted return for 15 to 31 January 2024"))
   }
 }
