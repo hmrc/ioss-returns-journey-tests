@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkUrl, clickBackButton, clickContinue, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -101,6 +101,12 @@ class ReturnsStepDef extends BaseStepDef {
       case "October 2022"             =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2022-M10")
+      case "January 2024" =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2024-M1")
+      case "February 2024" =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2024-M2")
       case "Pay Now"                  =>
         driver.findElement(By.id("pay-now")).click()
       case "Rejoin this service"      =>
@@ -610,13 +616,17 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user transferring (from|to) another MSID is offered a (partial|full) return for the correct period$"""
-  ) { (transferDirection: String,returnType: String) =>
+    """^the user transferring (from|to) another MSID is (offered|submitting) a (partial|full) return for the correct period$"""
+  ) { (transferDirection: String, returnStage: String, returnType: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    if (transferDirection == "to" && returnType == "partial") {
+    if (transferDirection == "to" && returnStage == "offered" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
-    } else if (transferDirection == "from" && returnType == "partial") {
+    } else if (transferDirection == "to" && returnStage == "submitted" && returnType == "partial") {
+      Assert.assertTrue(htmlBody.contains("1 to 11 February 2024"))
+    } else if (transferDirection == "from" && returnStage == "offered"  && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
+    } else if (transferDirection == "from" && returnStage == "submitted" && returnType == "partial") {
+      Assert.assertTrue(htmlBody.contains("15 to 31 January 2024"))
     } else {
       Assert.assertFalse(htmlBody.contains("Only include sales from"))
     }
@@ -689,5 +699,16 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user has been redirected to BTA$""") { () =>
     driver.getCurrentUrl endsWith "/business-account"
+  }
+
+  Then(
+    """^the user transferring (to|from) another MSID has the correct partial dates in the past return$"""
+  ) { (direction: String) =>
+    if (direction == "to") {
+      checkTransferringToOtherMSIDPastReturn()
+    } else {
+      checkTransferringFromOtherMSIDPastReturn()
+    }
+
   }
 }
