@@ -50,7 +50,7 @@ Feature: Returns Feature
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the sold-goods page
-    And the user selects Belgium on the first sold-to-country page
+    And the user selects Croatia on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
     And the user clicks the continue button
     And the user enters first country total sales of 1500 for first selected VAT rate on the sales-to-country page
