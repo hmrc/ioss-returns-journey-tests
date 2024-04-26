@@ -85,12 +85,17 @@ Feature: Change and Remove Feature
     Then the user answers yes on the 2023-M12/start page
     And the user answers yes on the sold-goods page
     And the user selects Denmark on the first sold-to-country page
+    #    Requires temporary step due to 0% rate
+    And the user ticks the first checkbox on the first vat-rates-from-country page
+    And the user clicks the continue button
     And the user enters first country total sales of 10000 for first selected VAT rate on the sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     Then the user is on the check-sales/1 page
-    And the user clicks the continue button
+#    And the user clicks the continue button
+  #    Requires temporary step due to 0% rate
+    And the user answers no on the check-sales/1 page
     Then the user answers yes on the add-sales-country-list page
-    And the user selects Slovakia on the second sold-to-country page
+    And the user selects Croatia on the second sold-to-country page
     And the user ticks the second checkbox on the second vat-rates-from-country page
     And the user clicks the continue button
     And the user enters second country total sales of 6321 for first selected VAT rate on the sales-to-country page

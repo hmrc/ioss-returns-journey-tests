@@ -124,6 +124,9 @@ Feature: Save For Later Feature
     Then the user selects the Continue my return option
     And the user answers yes on the add-sales-country-list page
     And the user selects Denmark on the second sold-to-country page
+#    Requires temporary step due to 0% rate
+    And the user ticks the first checkbox on the second vat-rates-from-country page
+    And the user clicks the continue button
     And the user enters second country total sales of 1000 for first selected VAT rate on the sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     And the user clicks the continue button
