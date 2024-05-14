@@ -119,6 +119,7 @@ Feature: Exclusions Feature
     And a user with VRN 100000001 and IOSS Number IM9001239999 accesses the returns journey
     Then the user is redirected to their IOSS Account
     And the correct return message for returns due more than three years ago for excluded traders is displayed
+
   Scenario: An excluded user with outstanding payments due over 3 years ago is advised to report them directly to the countries where sales were made
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001238999 accesses the returns journey
