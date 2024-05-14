@@ -157,17 +157,17 @@ object CommonPage extends BasePage {
 
   def navigateToReturn(returnPeriod: String): Unit = {
 
-    val currentReturnMonth = LocalDate.now().getMonthValue
-    val currentReturnYear = LocalDate.now().getYear
+    val currentReturnMonth  = LocalDate.now().getMonthValue
+    val currentReturnYear   = LocalDate.now().getYear
     val currentPeriodString = s"$currentReturnYear-M$currentReturnMonth"
 
     val period = returnPeriod match {
       case "December 2020" => "2020-M12"
       case "November 2023" => "2023-M11"
       case "December 2023" => "2023-M12"
-      case "January 2024" => "2024-M1"
+      case "January 2024"  => "2024-M1"
       case "current month" => currentPeriodString
-      case _ => "period doesn't exist"
+      case _               => "period doesn't exist"
     }
     driver
       .navigate()
@@ -188,7 +188,7 @@ object CommonPage extends BasePage {
     iossNumber match {
       case "IM9007230001" => driver.findElement(By.id("IM9007230001")).click()
       case "IM9007230002" => driver.findElement(By.id("IM9007230002")).click()
-      case _ => throw new Exception("Option doesn't exist")
+      case _              => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
@@ -197,7 +197,7 @@ object CommonPage extends BasePage {
     scheme match {
       case "1" => driver.findElement(By.id("value_0")).click()
       case "2" => driver.findElement(By.id("value_1")).click()
-      case _ => throw new Exception("Option doesn't exist")
+      case _   => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
