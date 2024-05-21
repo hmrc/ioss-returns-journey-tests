@@ -58,7 +58,7 @@ object AuthPage extends BasePage {
           driver
             .findElement(By.id("input-1-0-value"))
             .sendKeys(iossNumber)
-          if(iossNumber == "IM9007230000"){
+          if (iossNumber == "IM9007230000") {
             driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
             driver
               .findElement(By.id("input-2-0-value"))
@@ -68,7 +68,7 @@ object AuthPage extends BasePage {
             driver
               .findElement(By.id("input-2-0-value"))
               .sendKeys("IM9004230000")
-          } else if(iossNumber == "IM9007230003"){
+          } else if (iossNumber == "IM9007230003") {
             driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
             driver
               .findElement(By.id("input-2-0-value"))

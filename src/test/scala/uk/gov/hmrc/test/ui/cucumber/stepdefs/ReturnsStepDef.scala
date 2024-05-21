@@ -71,57 +71,57 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user clicks on the (.*) (link|button)$""") { (link: String, action: String) =>
     link match {
-      case "Start your return"        =>
+      case "Start your return"                   =>
         driver.findElement(By.id("start-your-return")).click()
-      case "Continue your return" =>
+      case "Continue your return"                =>
         driver.findElement(By.id("continue-your-return")).click()
-      case "Change your registration" =>
+      case "Change your registration"            =>
         driver.findElement(By.id("change-your-registration")).click()
-      case "Back to your account"     =>
+      case "Back to your account"                =>
         driver.findElement(By.id("back-to-your-account")).click()
-      case "Make a payment"           =>
+      case "Make a payment"                      =>
         driver.findElement(By.id("make-a-payment")).click()
-      case "View submitted returns"   =>
+      case "View submitted returns"              =>
         driver.findElement(By.id("view-submitted-returns")).click()
-      case "December 2023"            =>
+      case "December 2023"                       =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2023-M12")
-      case "November 2023"            =>
+      case "November 2023"                       =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2023-M11")
-      case "October 2023"             =>
+      case "October 2023"                        =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2023-M10")
-      case "December 2022"            =>
+      case "December 2022"                       =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2022-M12")
-      case "November 2022"            =>
+      case "November 2022"                       =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2022-M11")
-      case "October 2022"             =>
+      case "October 2022"                        =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2022-M10")
-      case "January 2024" =>
+      case "January 2024"                        =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2024-M1")
-      case "February 2024" =>
+      case "February 2024"                       =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2024-M2")
-      case "Pay Now"                  =>
+      case "Pay Now"                             =>
         driver.findElement(By.id("pay-now")).click()
-      case "Rejoin this service"      =>
+      case "Rejoin this service"                 =>
         driver.findElement(By.id("rejoin-scheme")).click()
       case "Return to your current registration" =>
         driver.findElement(By.id("submitted-returns-history")).click()
-      case "continue to complete your return" =>
+      case "continue to complete your return"    =>
         driver.findElement(By.id("continueToYourReturn")).click()
-      case "return to your account" =>
+      case "return to your account"              =>
         driver.findElement(By.id("backToYourAccount")).click()
-      case "sign out and come back later" =>
+      case "sign out and come back later"        =>
         driver.findElement(By.id("signOut")).click()
-      case "Pay for a previous registration" =>
+      case "Pay for a previous registration"     =>
         CommonPage.selectLink("which-previous-registration-to-pay")
-      case _                          =>
+      case _                                     =>
         throw new Exception("Link doesn't exist")
     }
   }
@@ -255,7 +255,6 @@ class ReturnsStepDef extends BaseStepDef {
   Then(
     """^the user selects the (CYA|correction period) change link for (first|second|third|page) (.*) from (.*)$"""
   ) { (route: String, index: String, toPage: String, fromPage: String) =>
-
     if (route == "correction period") {
       driver.findElement(By.id("change-correction-periods")).click()
     } else if (route == "CYA") {
@@ -378,7 +377,9 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertFalse(htmlBody.contains("Pay now"))
   }
 
-  When("""^the user manually navigates to their (December 2020|November 2023|December 2023|January 2024|current month) return$""") { (returnPeriod: String) =>
+  When(
+    """^the user manually navigates to their (December 2020|November 2023|December 2023|January 2024|current month) return$"""
+  ) { (returnPeriod: String) =>
     CommonPage.navigateToReturn(returnPeriod)
   }
 
@@ -528,14 +529,18 @@ class ReturnsStepDef extends BaseStepDef {
         htmlBody.contains("VAT declared where no payment is due")
       )
       Assert.assertFalse(
-        htmlBody.contains("The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments.")
+        htmlBody.contains(
+          "The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments."
+        )
       )
     } else {
       Assert.assertTrue(
         htmlBody.contains("VAT declared where no payment is due")
       )
       Assert.assertTrue(
-        htmlBody.contains("The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments.")
+        htmlBody.contains(
+          "The tax authorities in countries where you declared too much VAT are responsible for refunding any overpayments."
+        )
       )
     }
   }
@@ -544,7 +549,8 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.navigateToSecureStartReturn()
   }
 
-  Then("""^the correct IOSS number (.*) is displayed on the (dashboard|page)$""") { (iossNumber: String, page: String) =>
+  Then("""^the correct IOSS number (.*) is displayed on the (dashboard|page)$""") {
+    (iossNumber: String, page: String) =>
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("IOSS number: " + iossNumber))
   }
@@ -552,11 +558,11 @@ class ReturnsStepDef extends BaseStepDef {
   Then("""^the correct link for (one|more than one) previous IOSS number is displayed$""") { (variation: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
 
-    val dateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
-    val startDate = LocalDate.now().minusMonths(6)
+    val dateTimeFormatter  = DateTimeFormatter.ofPattern("MMMM yyyy")
+    val startDate          = LocalDate.now().minusMonths(6)
     val startDateFormatted = dateTimeFormatter.format(startDate)
-    val endDate = LocalDate.now().minusMonths(4)
-    val endDateFormatted = dateTimeFormatter.format(endDate)
+    val endDate            = LocalDate.now().minusMonths(4)
+    val endDateFormatted   = dateTimeFormatter.format(endDate)
 
     if (variation == "one") {
       Assert.assertTrue(htmlBody.contains(s"View returns from $startDateFormatted to $endDateFormatted"))
@@ -566,28 +572,32 @@ class ReturnsStepDef extends BaseStepDef {
 
   }
 
-  Then("""^the user clicks on the view returns link for (one previous registration|multiple previous registrations)$""") { (previousRegistrations: String) =>
+  Then(
+    """^the user clicks on the view returns link for (one previous registration|multiple previous registrations)$"""
+  ) { (previousRegistrations: String) =>
     previousRegistrations match {
-      case "one previous registration" =>
+      case "one previous registration"       =>
         driver.findElement(By.id("view-returns-one-reg")).click()
       case "multiple previous registrations" =>
         driver.findElement(By.id("return-registration-selection")).click()
-      case _ =>
+      case _                                 =>
         throw new Exception("Link doesn't exist")
     }
   }
 
-  Then("""^the user clicks on the first return month for (one previous|first previous|second previous|current) registration$""") { (registration: String) =>
+  Then(
+    """^the user clicks on the first return month for (one previous|first previous|second previous|current) registration$"""
+  ) { (registration: String) =>
     val month = registration match {
       case "one previous" | "second previous" => "6".toInt
-      case "first previous" => "9".toInt
-      case "current" => "3".toInt
-      case _ =>
+      case "first previous"                   => "9".toInt
+      case "current"                          => "3".toInt
+      case _                                  =>
         throw new Exception("Registration doesn't exist")
     }
 
-    val returnMonth = LocalDate.now().minusMonths(month).getMonthValue
-    val returnYear = LocalDate.now().minusMonths(month).getYear
+    val returnMonth  = LocalDate.now().minusMonths(month).getMonthValue
+    val returnYear   = LocalDate.now().minusMonths(month).getYear
     val periodString = s"$returnYear-M$returnMonth"
 
     waitForElement(By.className("govuk-table__cell--numeric"))
@@ -623,7 +633,7 @@ class ReturnsStepDef extends BaseStepDef {
       Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
     } else if (transferDirection == "to" && returnStage == "submitted" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("1 to 11 February 2024"))
-    } else if (transferDirection == "from" && returnStage == "offered"  && returnType == "partial") {
+    } else if (transferDirection == "from" && returnStage == "offered" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
     } else if (transferDirection == "from" && returnStage == "submitted" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("15 to 31 January 2024"))
@@ -633,8 +643,8 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When("""^the user is on the start return page for the first available return period within 3 years$""") { () =>
-    val firstAvailableReturnMonth = LocalDate.now().minusMonths(37).getMonthValue
-    val firstAvailableReturnYear = LocalDate.now().minusMonths(37).getYear
+    val firstAvailableReturnMonth  = LocalDate.now().minusMonths(37).getMonthValue
+    val firstAvailableReturnYear   = LocalDate.now().minusMonths(37).getYear
     val firstAvailablePeriodString = s"$firstAvailableReturnYear-M$firstAvailableReturnMonth"
 
     checkUrl(s"$firstAvailablePeriodString/start")
@@ -646,42 +656,52 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user selects the (.*) option""") { (option: String) =>
     option match {
-      case "Continue my return" => driver.findElement(By.id("value_0")).click()
+      case "Continue my return"               => driver.findElement(By.id("value_0")).click()
       case "Delete my return and start again" => driver.findElement(By.id("value_1")).click()
-      case _ => throw new Exception("Link doesn't exist")
+      case _                                  => throw new Exception("Link doesn't exist")
     }
     clickContinue()
   }
 
-  Then("""^the dashboard warning is displayed regarding (multiple outstanding payments|one outstanding payment) on their (one previous registration|multiple previous registrations) (.*)$""") { (outstandingPayments: String, registrations: String, iossNumber:String) =>
+  Then(
+    """^the dashboard warning is displayed regarding (multiple outstanding payments|one outstanding payment) on their (one previous registration|multiple previous registrations) (.*)$"""
+  ) { (outstandingPayments: String, registrations: String, iossNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
 
-    val amount = if (outstandingPayments == "multiple outstanding payments" && registrations == "one previous registration"){
-      "£1,500"
-    } else if (outstandingPayments == "multiple outstanding payments" && registrations == "multiple previous registrations") {
-      "£4,250"
-    } else if (outstandingPayments == "one outstanding payment" && registrations == "multiple previous registrations") {
-      "£3,750"
-    } else {
-      "£2,000"
-    }
+    val amount =
+      if (outstandingPayments == "multiple outstanding payments" && registrations == "one previous registration") {
+        "£1,500"
+      } else if (
+        outstandingPayments == "multiple outstanding payments" && registrations == "multiple previous registrations"
+      ) {
+        "£4,250"
+      } else if (
+        outstandingPayments == "one outstanding payment" && registrations == "multiple previous registrations"
+      ) {
+        "£3,750"
+      } else {
+        "£2,000"
+      }
 
-    if (registrations == "multiple previous registrations"){
+    if (registrations == "multiple previous registrations") {
       Assert.assertTrue(htmlBody.contains(s"This account owes a total of $amount on previous registrations."))
     } else {
-      Assert.assertTrue(htmlBody.contains(s"This account owes $amount on a previous registration with IOSS number $iossNumber."))
+      Assert.assertTrue(
+        htmlBody.contains(s"This account owes $amount on a previous registration with IOSS number $iossNumber.")
+      )
     }
   }
 
-  Then("""^the correct (single|multiple) outstanding payment amounts are displayed for each previous registration$""") { (outstanding: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    if (outstanding == "single"){
-      Assert.assertTrue(htmlBody.contains("You owe £1,750 for your registration with IOSS number\nIM9007230004"))
-      Assert.assertTrue(htmlBody.contains("You owe £2,000 for your registration with IOSS number\nIM9007230005"))
-    } else {
-      Assert.assertTrue(htmlBody.contains("You owe £2,750 for your registration with IOSS number\nIM9007230001"))
-      Assert.assertTrue(htmlBody.contains("You owe £1,500 for your registration with IOSS number\nIM9007230002"))
-    }
+  Then("""^the correct (single|multiple) outstanding payment amounts are displayed for each previous registration$""") {
+    (outstanding: String) =>
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      if (outstanding == "single") {
+        Assert.assertTrue(htmlBody.contains("You owe £1,750 for your registration with IOSS number\nIM9007230004"))
+        Assert.assertTrue(htmlBody.contains("You owe £2,000 for your registration with IOSS number\nIM9007230005"))
+      } else {
+        Assert.assertTrue(htmlBody.contains("You owe £2,750 for your registration with IOSS number\nIM9007230001"))
+        Assert.assertTrue(htmlBody.contains("You owe £1,500 for your registration with IOSS number\nIM9007230002"))
+      }
 
   }
 
@@ -689,13 +709,12 @@ class ReturnsStepDef extends BaseStepDef {
     """^the user picks the (first|second) previous IOSS Number$"""
   ) { (answer: String) =>
     val radioButtonToSelect = answer match {
-      case "first" => "1"
+      case "first"  => "1"
       case "second" => "2"
-      case _ => throw new Exception("Selection doesn't exist")
+      case _        => throw new Exception("Selection doesn't exist")
     }
     selectRadioButton(radioButtonToSelect)
   }
-
 
   Then("""^the user has been redirected to BTA$""") { () =>
     driver.getCurrentUrl endsWith "/business-account"
@@ -710,5 +729,76 @@ class ReturnsStepDef extends BaseStepDef {
       checkTransferringFromOtherMSIDPastReturn()
     }
 
+  }
+
+  Then("""^the correct return message for returns due more than three years ago for excluded traders is displayed$""") {
+    () =>
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      Assert.assertTrue(
+        htmlBody.contains(
+          "You have an outstanding return for July 2020. You must contact the countries where you made your sales to report any VAT due."
+        )
+      )
+      Assert.assertTrue(
+        htmlBody.contains(
+          "You have an outstanding return for August 2020. You must contact the countries where you made your sales to report any VAT due."
+        )
+      )
+      Assert.assertTrue(
+        htmlBody.contains(
+          "You have an outstanding return for September 2020. You must contact the countries where you made your sales to report any VAT due."
+        )
+      )
+      Assert.assertTrue(
+        htmlBody.contains(
+          "You have an outstanding return for October 2020. You must contact the countries where you made your sales to report any VAT due."
+        )
+      )
+      Assert.assertTrue(
+        htmlBody.contains(
+          "You have an outstanding return for November 2020. You must contact the countries where you made your sales to report any VAT due."
+        )
+      )
+      Assert.assertTrue(
+        htmlBody.contains(
+          "You have an outstanding return for December 2020. You must contact the countries where you made your sales to report any VAT due."
+        )
+      )
+  }
+
+  Then(
+    """^the correct payment message for payments due more than three years ago for excluded traders is displayed$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have an outstanding IOSS VAT payment for July 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have an outstanding IOSS VAT payment for August 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have an outstanding IOSS VAT payment for September 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have an outstanding IOSS VAT payment for October 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have an outstanding IOSS VAT payment for November 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have an outstanding IOSS VAT payment for December 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
   }
 }
