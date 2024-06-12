@@ -47,18 +47,18 @@ class ReturnsStepDef extends BaseStepDef {
       }
   }
 
-  When("""^a user with VRN (.*) and IOSS Number (.*) accesses the returns journey""") {
-    (vrn: String, iossNumber: String) =>
-      AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", vrn, iossNumber)
+  When("""^a (user|assistant) with VRN (.*) and IOSS Number (.*) accesses the returns journey""") {
+    (user: String, vrn: String, iossNumber: String) =>
+      AuthPage.loginUsingAuthorityWizard(user, "with", "IOSS and VAT", vrn, iossNumber)
   }
 
   When("""^a user with current IOSS Number (.*) and at least one previous IOSS number accesses the returns journey""") {
     (iossNumber: String) =>
-      AuthPage.loginUsingAuthorityWizard("with", "IOSS and VAT", "100000001", iossNumber)
+      AuthPage.loginUsingAuthorityWizard("user", "with", "IOSS and VAT", "100000001", iossNumber)
   }
 
   When("""^a user with VRN (.*) and no IOSS enrolment accesses the returns journey""") { (vrn: String) =>
-    AuthPage.loginUsingAuthorityWizard("with", "VAT", vrn, "none")
+    AuthPage.loginUsingAuthorityWizard("user", "with", "VAT", vrn, "none")
   }
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
