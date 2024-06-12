@@ -4,9 +4,8 @@ UI test suite for the `ioss-returns-frontend` using WebDriver and `<scalatest/cu
 ## Running the tests
 
 Prior to executing the tests ensure you have:
-- Docker - to run mongo and browser (Chrome, Firefox or Edge) inside a container - see guide here - https://docs.tax.service.gov.uk/mdtp-handbook/documentation/developer-set-up/install-docker.html
+- Docker - to run mongo inside a container - see guide here - https://docs.tax.service.gov.uk/mdtp-handbook/documentation/developer-set-up/install-docker.html
 - Installed/configured [service manager](https://github.com/hmrc/service-manager).
-- Selenium Grid - see section further down
 
 Run the following commands to start mongo and services locally:
 
@@ -31,10 +30,6 @@ Can also use "./run_wip.sh <browser-driver> <environment>" to run individual sce
 
 The `run_tests.sh` script defaults to using `chrome` in the `local` environment.  For a complete list of supported param values, see:
 - `src/test/resources/application.conf` for **environment**
-
-## Selenium Grid
-
-You will need to run Selenium Grid via the instructions here - https://github.com/hmrc/docker-selenium-grid
 
 ## ZAP and Accessibility tests
 
