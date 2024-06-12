@@ -1,4 +1,4 @@
-@Returns @Accessibility @wip
+@Returns @Accessibility
 
 Feature: Corrections Feature
 
