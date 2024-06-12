@@ -87,6 +87,11 @@ Feature: Returns Feature
     When the user accesses the start return link via secure messages
     Then the user is on the 2023-M12/start page
 
+  Scenario: An assistant user can access the returns service
+    Given the user accesses the authority wizard
+    And a assistant with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+
 
 
 
