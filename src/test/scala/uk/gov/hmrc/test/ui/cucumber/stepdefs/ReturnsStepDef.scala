@@ -393,7 +393,7 @@ class ReturnsStepDef extends BaseStepDef {
   ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
-      htmlBody.contains("You have requested to leave this service. You must complete and pay any outstanding returns.")
+      htmlBody.contains("You have asked to leave this service. You must complete and pay any outstanding returns.")
     )
   }
 
