@@ -46,6 +46,3 @@ Feature: Expired VRN Rejoin Feature
     And the link to Rejoin this service is not displayed on the dashboard
 
 
-#    Kickout page on reg service?
-
-
