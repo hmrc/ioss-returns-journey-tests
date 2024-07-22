@@ -841,7 +841,7 @@ class ReturnsStepDef extends BaseStepDef {
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
       htmlBody.contains(
-        "We've removed you from this service.\nYou are no longer VAT registered. You must re-register for VAT to use the One Stop Shop service."
+        "We've removed you from this service.\nYou are no longer VAT registered. You must re-register for VAT to use the Import One Stop Shop service."
       )
     )
   }

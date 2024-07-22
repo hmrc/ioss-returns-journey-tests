@@ -16,7 +16,6 @@ Feature: Expired VRN Rejoin Feature
     And they are presented with the correct banner for expired VRN trader who has left the service and has no outstanding returns
     And the link to Rejoin this service is not displayed on the dashboard
 
-#  Not showing the VAT part of the banner?
   Scenario: A trader who has been removed from the service with outstanding returns and now has an expired VRN
     Given the user accesses the authority wizard
     And a user with VRN 600000001 and IOSS Number IM9049999994 accesses the returns journey
@@ -24,7 +23,6 @@ Feature: Expired VRN Rejoin Feature
     And they are presented with the correct banner for expired VRN trader removed from service and has outstanding returns
     And the link to Rejoin this service is not displayed on the dashboard
 
-    #  Not showing the VAT part of the banner?
   Scenario: A trader who has been removed from the service with no outstanding returns and now has an expired VRN
     Given the user accesses the authority wizard
     And a user with VRN 600000001 and IOSS Number IM9059999994 accesses the returns journey
