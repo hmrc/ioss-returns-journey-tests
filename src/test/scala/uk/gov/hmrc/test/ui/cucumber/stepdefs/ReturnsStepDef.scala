@@ -736,32 +736,32 @@ class ReturnsStepDef extends BaseStepDef {
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(
         htmlBody.contains(
-          "You have an outstanding return for July 2020. You must contact the countries where you made your sales to report any VAT due."
+          "You must complete your July 2020 return with the countries where you made your sales."
         )
       )
       Assert.assertTrue(
         htmlBody.contains(
-          "You have an outstanding return for August 2020. You must contact the countries where you made your sales to report any VAT due."
+          "You must complete your August 2020 return with the countries where you made your sales."
         )
       )
       Assert.assertTrue(
         htmlBody.contains(
-          "You have an outstanding return for September 2020. You must contact the countries where you made your sales to report any VAT due."
+          "You must complete your September 2020 return with the countries where you made your sales."
         )
       )
       Assert.assertTrue(
         htmlBody.contains(
-          "You have an outstanding return for October 2020. You must contact the countries where you made your sales to report any VAT due."
+          "You must complete your October 2020 return with the countries where you made your sales."
         )
       )
       Assert.assertTrue(
         htmlBody.contains(
-          "You have an outstanding return for November 2020. You must contact the countries where you made your sales to report any VAT due."
+          "You must complete your November 2020 return with the countries where you made your sales."
         )
       )
       Assert.assertTrue(
         htmlBody.contains(
-          "You have an outstanding return for December 2020. You must contact the countries where you made your sales to report any VAT due."
+          "You must complete your December 2020 return with the countries where you made your sales."
         )
       )
   }
@@ -798,6 +798,73 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(
       htmlBody.contains(
         "You have an outstanding IOSS VAT payment for December 2020. You must contact the countries where you made your sales to pay the VAT due."
+      )
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for expired VRN trader who has left the service and has outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have left this service. You must complete and pay any outstanding returns.\nYou are no longer VAT registered. You must re-register for VAT to use the Import One Stop Shop service."
+      )
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for expired VRN trader who has left the service and has no outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You have left this service.\nYou are no longer VAT registered. You must re-register for VAT to use the Import One Stop Shop service."
+      )
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for expired VRN trader removed from service and has outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "We've removed you from this service, but you must complete and pay your final return.\nYou are no longer VAT registered. You must re-register for VAT to use the Import One Stop Shop service."
+      )
+    )
+  }
+
+  Then(
+    """^they are presented with the correct banner for expired VRN trader removed from service and has no outstanding returns$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "We've removed you from this service.\nYou are no longer VAT registered. You must re-register for VAT to use the Import One Stop Shop service."
+      )
+    )
+  }
+
+  Then(
+    """^a dashboard message is displayed for a return outstanding for more than 3 years$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains("You must complete your July 2020 return with the countries where you made your sales.")
+    )
+    Assert.assertTrue(
+      htmlBody.contains("You must complete your May 2021 return with the countries where you made your sales.")
+    )
+  }
+
+  Then(
+    """^a dashboard message is displayed for a payment outstanding for more than 3 years$"""
+  ) { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You must pay any outstanding IOSS VAT for July 2020 to the countries where you made your sales."
       )
     )
   }
