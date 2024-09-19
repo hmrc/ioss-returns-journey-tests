@@ -11,7 +11,7 @@ Feature: BTA Feature
     Then the user answers yes on the 2023-M12/start page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
     When the user clicks on the Back to your account link
     Then the user has been redirected to BTA
@@ -23,7 +23,7 @@ Feature: BTA Feature
     Then the user answers yes on the 2023-M12/start page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
     When the user clicks on the Back to your account link
     Then the user has been redirected to BTA

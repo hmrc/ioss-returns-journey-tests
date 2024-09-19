@@ -44,7 +44,7 @@ Feature: Change and Remove Feature
     And the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can add some sales then remove them all in their return
@@ -74,7 +74,7 @@ Feature: Change and Remove Feature
     Then the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can change and remove answers via the mini CYA for VAT rates
@@ -122,7 +122,7 @@ Feature: Change and Remove Feature
     And the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can remove all answers via the mini CYA for VAT rates
@@ -159,7 +159,7 @@ Feature: Change and Remove Feature
     And the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can change answers via the country list in their return
@@ -195,7 +195,7 @@ Feature: Change and Remove Feature
     Then the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can change answers via the correction country list - previously undeclared
@@ -244,7 +244,7 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/1 page
     When the user answers no on the 2023-M12/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can remove all answers via the correction country list - previously undeclared
@@ -279,7 +279,7 @@ Feature: Change and Remove Feature
     Then the user answers yes on the remove-country-correction/1/1 page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can remove all answers via the correction periods list for same year
@@ -333,7 +333,7 @@ Feature: Change and Remove Feature
     And the user answers yes on the remove-period-correction/1 page
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can change and remove answers via the correction periods list for same year
@@ -415,7 +415,7 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/1 page
     Then the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can change and remove answers via the correction periods list for multiple years
@@ -472,7 +472,7 @@ Feature: Change and Remove Feature
     Then the user answers yes on the remove-period-correction/1 page
     Then the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can change answers via the correction mini CYA
@@ -500,7 +500,7 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/1 page
     Then the user answers no on the 2023-M12/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
 

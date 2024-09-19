@@ -33,7 +33,7 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the check-your-answers page
     And the no payments due for minus corrections text will not be displayed
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A corrections journey with previously declared countries
@@ -84,7 +84,7 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the check-your-answers page
     And the no payments due for minus corrections text will not be displayed
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A corrections journey with previously declared countries that have been corrected multiple times
@@ -116,7 +116,7 @@ Feature: Corrections Feature
     When the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the no payments due for minus corrections text will be displayed
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A corrections journey with full minus correction to a country that also has sales in the new return
@@ -147,7 +147,7 @@ Feature: Corrections Feature
     When the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the no payments due for minus corrections text will be displayed
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A corrections journey with only minus corrections
@@ -171,7 +171,7 @@ Feature: Corrections Feature
     When the user answers no on the 2023-M12/vat-correction-periods-add page
     Then the user is on the check-your-answers page
     And the no payments due for minus corrections text will be displayed
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user is offered a single period to correct and chooses No
@@ -186,7 +186,7 @@ Feature: Corrections Feature
     Then the user is on the no-correction-periods-available page
     And the user clicks the continue button
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available but selects no to adding any
@@ -198,7 +198,7 @@ Feature: Corrections Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available for multiple months within the same year
@@ -259,7 +259,7 @@ Feature: Corrections Feature
     Then the user is on the 2024-M1/vat-correction-periods page
     And the user clicks the continue button
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available for multiple years
@@ -312,7 +312,7 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/3 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user has corrections available for a single period
@@ -341,7 +341,7 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/1 page
     When the user clicks the continue button
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user adds return data with corrections for multiple years and periods
@@ -400,7 +400,7 @@ Feature: Corrections Feature
     And the user answers no on the correction-list-countries/2 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user completing their first return has no corrections available
@@ -411,6 +411,6 @@ Feature: Corrections Feature
     Then the user answers yes on the 2023-M12/start page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 

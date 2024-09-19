@@ -42,7 +42,7 @@ Feature: Kickouts Feature
     And the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the submission-failure page
 
   Scenario: Failure page when there is an error submitting the return to Core
@@ -70,7 +70,7 @@ Feature: Kickouts Feature
     And the user answers no on the add-sales-country-list page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the submission-failure page
 
   Scenario: A user has no available returns to start after clicking the start return link via secure messages

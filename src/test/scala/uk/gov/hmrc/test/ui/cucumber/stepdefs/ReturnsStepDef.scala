@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -156,8 +156,12 @@ class ReturnsStepDef extends BaseStepDef {
       CommonPage.tickCheckbox(checkbox)
   }
 
-  Then("""^the user clicks the continue button$""") { () =>
-    clickContinue()
+  Then("""^the user clicks the (continue|submit) button$""") { (button: String) =>
+    if (button == "submit") {
+      clickSubmit()
+    } else {
+      clickContinue()
+    }
   }
 
   When(
