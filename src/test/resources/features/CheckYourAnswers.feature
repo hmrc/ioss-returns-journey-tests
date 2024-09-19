@@ -38,7 +38,7 @@ Feature: Check Your Answers Feature
     When the user selects the CYA change link for page sold-goods from check-your-answers
     Then the user answers no on the sold-goods page
     And the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user completes a nil return then uses Check Your Answers to amend it
@@ -102,7 +102,7 @@ Feature: Check Your Answers Feature
     And the user is on the 2023-M12/vat-correction-periods page
     When the user clicks the continue button
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user adds details to a return then uses Check Your Answers to amend it and add more
@@ -138,7 +138,7 @@ Feature: Check Your Answers Feature
     And the user answers no on the check-sales/2 page
     And the user answers no on the add-sales-country-list page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user adds return data with corrections for multiple years and periods then changes corrections to no on CYA page
@@ -192,7 +192,7 @@ Feature: Check Your Answers Feature
     When the user selects the CYA change link for page correct-previous-return from check-your-answers
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user adds return data with corrections for multiple years and periods then changes corrections via CYA
@@ -257,7 +257,7 @@ Feature: Check Your Answers Feature
     And the user answers no on the correction-list-countries/3 page
     And the user answers no on the 2024-M1/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
 

@@ -12,7 +12,7 @@ Feature: Transferring MSID Feature
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user transferring from another MSID is submitting a partial return for the correct period
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user who has transferred from another member state has a full second return
@@ -25,7 +25,7 @@ Feature: Transferring MSID Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user who is transferring to another member state has a full return to submit prior to their final partial return
@@ -39,7 +39,7 @@ Feature: Transferring MSID Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user who is transferring to another member state has a partial final return
@@ -54,7 +54,7 @@ Feature: Transferring MSID Feature
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     And the user transferring to another MSID is submitting a partial return for the correct period
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user who transferred from another member state has a first partial return in past returns

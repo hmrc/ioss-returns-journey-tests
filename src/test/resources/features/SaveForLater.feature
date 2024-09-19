@@ -58,7 +58,7 @@ Feature: Save For Later Feature
     When the user clicks the Save and come back later button
     Then the user clicks on the continue to complete your return link
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can save their progress and return to their in progress return via your account
@@ -97,7 +97,7 @@ Feature: Save For Later Feature
     And the user answers no on the correction-list-countries/1 page
     And the user answers no on the 2023-M12/vat-correction-periods-add page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can save their progress and return to their in progress return after logging out and back in
@@ -137,7 +137,7 @@ Feature: Save For Later Feature
     When the user clicks on the Continue your return link
     Then the user selects the Continue my return option
     And the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A user can delete a saved in-progress return and start again
@@ -169,7 +169,7 @@ Feature: Save For Later Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: A failed submission of a return is saved for later
@@ -181,7 +181,7 @@ Feature: Save For Later Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the submission-failure page
     Then the user clicks on the Back to your account link
     And the user clicks on the Continue your return link

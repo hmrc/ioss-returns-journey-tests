@@ -94,7 +94,7 @@ Feature: Exclusions Feature
     Then the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     Then the user is shown the corrections warning before submission
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: An excluded user who has more than one return remaining does not have final return content
@@ -111,7 +111,7 @@ Feature: Exclusions Feature
     Then the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     Then the user is not shown the corrections warning before submission
-    And the user clicks the continue button
+    And the user clicks the submit button
     Then the user is on the successfully-submitted page
 
   Scenario: An excluded user with outstanding returns due over 3 years ago is advised to report them directly to the countries where sales were made
