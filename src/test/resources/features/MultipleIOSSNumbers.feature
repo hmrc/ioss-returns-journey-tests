@@ -63,7 +63,7 @@ Feature: Multiple IOSS Numbers Feature
     Then the user is redirected to their IOSS Account
     And the dashboard warning is displayed regarding multiple outstanding payments on their one previous registration IM9006230000
     When the user clicks on the Pay for a previous registration link
-    And the user selects the first payment option on the which-previous-registration-vat-period-to-pay page
+    And the user selects the first payment option on the which-previous-registration-vat-month-to-pay page
     Then the user has been redirected to the payments service
 
   Scenario: A user with one previous registration that has one outstanding payment
@@ -83,7 +83,7 @@ Feature: Multiple IOSS Numbers Feature
     And the user is on the which-previous-registration-to-pay page
     Then the correct multiple outstanding payment amounts are displayed for each previous registration
     When the user picks the first previous IOSS Number
-    And the user selects the first payment option on the which-previous-registration-vat-period-to-pay page
+    And the user selects the first payment option on the which-previous-registration-vat-month-to-pay page
     Then the user has been redirected to the payments service
 
   Scenario: A user with more than one previous registration that has single outstanding payments

@@ -63,7 +63,7 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
-    if (url == "successfully-submitted") {
+    if (url == "return-successfully-submitted") {
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("Your return reference is"))
     }
@@ -521,7 +521,7 @@ class ReturnsStepDef extends BaseStepDef {
         htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
       )
       Assert.assertTrue(
-        htmlBody.contains("Your most recent declaration for this period is")
+        htmlBody.contains("Your most recent declaration for this month is")
       )
     }
   }
@@ -651,7 +651,7 @@ class ReturnsStepDef extends BaseStepDef {
     val firstAvailableReturnYear   = LocalDate.now().minusMonths(37).getYear
     val firstAvailablePeriodString = s"$firstAvailableReturnYear-M$firstAvailableReturnMonth"
 
-    checkUrl(s"$firstAvailablePeriodString/start")
+    checkUrl(s"$firstAvailablePeriodString/start-return")
   }
 
   Then("""^the user clicks the Save and come back later button$""") { () =>

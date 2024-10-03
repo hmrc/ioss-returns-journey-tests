@@ -174,7 +174,7 @@ object CommonPage extends BasePage {
     }
     driver
       .navigate()
-      .to(s"$host/$period/start")
+      .to(s"$host/$period/start-return")
   }
 
   def navigateToSecureStartReturn(): Unit =
