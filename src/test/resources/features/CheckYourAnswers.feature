@@ -7,7 +7,7 @@ Feature: Check Your Answers Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -24,7 +24,7 @@ Feature: Check Your Answers Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -39,14 +39,14 @@ Feature: Check Your Answers Feature
     Then the user answers no on the sold-goods page
     And the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user completes a nil return then uses Check Your Answers to amend it
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
@@ -79,7 +79,7 @@ Feature: Check Your Answers Feature
     When the user selects the CYA change link for page correct-previous-return from check-your-answers
     Then the user answers yes on the correct-previous-return page
     When the user picks year 2023 on the correction-return-year/1 page
-    When the user picks month October on the correction-return-period/1 page
+    When the user picks month October on the correction-return-month/1 page
     And the user chooses the country Bulgaria as their first correction within the first correction period
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 1500 on the first country-vat-correction-amount page for the first correction period
@@ -88,9 +88,9 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    When the user answers yes on the 2023-M12/vat-correction-periods-add page
+    When the user answers yes on the 2023-M12/vat-correction-months-add page
     When the user picks year 2023 on the correction-return-year/2 page
-    Then the user picks month November on the correction-return-period/2 page
+    Then the user picks month November on the correction-return-month/2 page
     And the user chooses the country Bulgaria as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 100.25 on the first country-vat-correction-amount page for the second correction period
@@ -99,18 +99,18 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    And the user is on the 2023-M12/vat-correction-periods page
+    And the user is on the 2023-M12/vat-correction-months page
     When the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user adds details to a return then uses Check Your Answers to amend it and add more
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -139,14 +139,14 @@ Feature: Check Your Answers Feature
     And the user answers no on the add-sales-country-list page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user adds return data with corrections for multiple years and periods then changes corrections to no on CYA page
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2024-M1/start page
+    Then the user answers yes on the 2024-M1/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -167,7 +167,7 @@ Feature: Check Your Answers Feature
     And the user answers no on the add-sales-country-list page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2022 on the correction-return-year/1 page
-    When the user picks month October on the correction-return-period/1 page
+    When the user picks month October on the correction-return-month/1 page
     And the user chooses the country Denmark as their first correction within the first correction period
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
@@ -176,9 +176,9 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    And the user answers yes on the 2024-M1/vat-correction-periods-add page
+    And the user answers yes on the 2024-M1/vat-correction-months-add page
     When the user picks year 2023 on the correction-return-year/2 page
-    When the user picks month December on the correction-return-period/2 page
+    When the user picks month December on the correction-return-month/2 page
     And the user chooses the country Slovakia as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
@@ -187,20 +187,20 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    And the user answers no on the 2024-M1/vat-correction-periods-add page
+    And the user answers no on the 2024-M1/vat-correction-months-add page
     Then the user is on the check-your-answers page
     When the user selects the CYA change link for page correct-previous-return from check-your-answers
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user adds return data with corrections for multiple years and periods then changes corrections via CYA
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2024-M1/start page
+    Then the user answers yes on the 2024-M1/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -221,7 +221,7 @@ Feature: Check Your Answers Feature
     And the user answers no on the add-sales-country-list page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2022 on the correction-return-year/1 page
-    When the user picks month October on the correction-return-period/1 page
+    When the user picks month October on the correction-return-month/1 page
     And the user chooses the country Denmark as their first correction within the first correction period
     And the user answers yes on the add-new-country/1/1 page
     And the user adds 2222 on the first country-vat-correction-amount page for the first correction period
@@ -230,9 +230,9 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    And the user answers yes on the 2024-M1/vat-correction-periods-add page
+    And the user answers yes on the 2024-M1/vat-correction-months-add page
     When the user picks year 2023 on the correction-return-year/2 page
-    When the user picks month December on the correction-return-period/2 page
+    When the user picks month December on the correction-return-month/2 page
     And the user chooses the country Slovakia as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
@@ -241,12 +241,12 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    And the user answers no on the 2024-M1/vat-correction-periods-add page
+    And the user answers no on the 2024-M1/vat-correction-months-add page
     Then the user is on the check-your-answers page
-    When the user selects the correction period change link for page 2024-M1/vat-correction-periods from check-your-answers
-    And the user answers yes on the 2024-M1/vat-correction-periods-add page
+    When the user selects the correction period change link for page 2024-M1/vat-correction-months from check-your-answers
+    And the user answers yes on the 2024-M1/vat-correction-months-add page
     When the user picks year 2022 on the correction-return-year/3 page
-    When the user picks month December on the correction-return-period/3 page
+    When the user picks month December on the correction-return-month/3 page
     And the user chooses the country Slovakia as their first correction within the third correction period
     And the user answers yes on the add-new-country/3/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
@@ -255,9 +255,9 @@ Feature: Check Your Answers Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/3 page
     And the user answers no on the correction-list-countries/3 page
-    And the user answers no on the 2024-M1/vat-correction-periods-add page
+    And the user answers no on the 2024-M1/vat-correction-months-add page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
 

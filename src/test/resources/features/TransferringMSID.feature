@@ -8,12 +8,12 @@ Feature: Transferring MSID Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user transferring from another MSID is offered a partial return for the correct period
-    And the user answers yes on the 2024-M1/start page
+    And the user answers yes on the 2024-M1/start-return page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user transferring from another MSID is submitting a partial return for the correct period
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user who has transferred from another member state has a full second return
     Given the user accesses the authority wizard
@@ -21,12 +21,12 @@ Feature: Transferring MSID Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user transferring from another MSID is offered a full return for the correct period
-    And the user answers yes on the 2024-M2/start page
+    And the user answers yes on the 2024-M2/start-return page
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user who is transferring to another member state has a full return to submit prior to their final partial return
     Given the user accesses the authority wizard
@@ -35,12 +35,12 @@ Feature: Transferring MSID Feature
     When the user clicks on the Start your return link
     Then they are not presented with the heading for their final return
     Then the user transferring to another MSID is offered a full return for the correct period
-    And the user answers yes on the 2024-M1/start page
+    And the user answers yes on the 2024-M1/start-return page
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user who is transferring to another member state has a partial final return
     Given the user accesses the authority wizard
@@ -49,13 +49,13 @@ Feature: Transferring MSID Feature
     When the user clicks on the Start your return link
     Then they are presented with the heading for their final return
     And the user transferring to another MSID is offered a partial return for the correct period
-    And the user answers yes on the 2024-M2/start page
+    And the user answers yes on the 2024-M2/start-return page
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     And the user transferring to another MSID is submitting a partial return for the correct period
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A user who transferred from another member state has a first partial return in past returns
     Given the user accesses the authority wizard

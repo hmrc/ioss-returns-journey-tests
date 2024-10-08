@@ -8,11 +8,11 @@ Feature: BTA Feature
     Then the user manually navigates to the your-account-from-bta link
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
     When the user clicks on the Back to your account link
     Then the user has been redirected to BTA
 
@@ -20,11 +20,11 @@ Feature: BTA Feature
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey
     Then the user manually navigates to the start-your-return-from-bta/2023-M12 link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
-    Then the user is on the successfully-submitted page
+    Then the user is on the return-successfully-submitted page
     When the user clicks on the Back to your account link
     Then the user has been redirected to BTA
 
@@ -72,7 +72,7 @@ Feature: BTA Feature
     Then the user manually navigates to the start-your-return-from-bta/2023-M12?lang=cy link
     And the user is directed to the Welsh transition page
     Then the user clicks the continue button
-    Then the user is on the 2023-M12/start page
+    Then the user is on the 2023-M12/start-return page
 
   Scenario: A user enters the Your Account page via BTA with the en specific parameter and is directed straight to "Your Account"
     Given the user accesses the authority wizard
@@ -99,7 +99,7 @@ Feature: BTA Feature
     And a user with VRN 100000444 and IOSS Number IM9001112222 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects Austria on the first sold-to-country page
     When the user clicks the Save and come back later button
@@ -111,7 +111,7 @@ Feature: BTA Feature
     And a user with VRN 100000444 and IOSS Number IM9001112222 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the 2023-M12/start page
+    Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects Austria on the first sold-to-country page
     When the user clicks the Save and come back later button

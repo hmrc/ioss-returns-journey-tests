@@ -63,7 +63,7 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
-    if (url == "successfully-submitted") {
+    if (url == "return-successfully-submitted") {
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("Your return reference is"))
     }
@@ -521,7 +521,7 @@ class ReturnsStepDef extends BaseStepDef {
         htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
       )
       Assert.assertTrue(
-        htmlBody.contains("Your most recent declaration for this period is")
+        htmlBody.contains("Your most recent declaration for this month is")
       )
     }
   }
@@ -651,7 +651,7 @@ class ReturnsStepDef extends BaseStepDef {
     val firstAvailableReturnYear   = LocalDate.now().minusMonths(37).getYear
     val firstAvailablePeriodString = s"$firstAvailableReturnYear-M$firstAvailableReturnMonth"
 
-    checkUrl(s"$firstAvailablePeriodString/start")
+    checkUrl(s"$firstAvailablePeriodString/start-return")
   }
 
   Then("""^the user clicks the Save and come back later button$""") { () =>
@@ -869,6 +869,72 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(
       htmlBody.contains(
         "You must pay any outstanding IOSS VAT for July 2020 to the countries where you made your sales."
+      )
+    )
+  }
+
+  Then(
+    """^the remove page is displayed for the (.*) correction$"""
+  ) { (period: String) =>
+    val heading = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"Are you sure you want to remove this correction for $period?"
+      )
+    )
+  }
+
+  Then(
+    """^the corrections list is showing one correction for (.*)$"""
+  ) { (period: String) =>
+    val heading  = driver.findElement(By.tagName("h1")).getText
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"You have corrected the VAT amount for one return month"
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(period)
+    )
+  }
+
+  Then(
+    """^the corrections list is showing 2 corrections for (.*) and (.*)$"""
+  ) { (period1: String, period2: String) =>
+    val heading  = driver.findElement(By.tagName("h1")).getText
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"You have corrected the VAT amount for 2 return months"
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(period1)
+    )
+    Assert.assertTrue(
+      htmlBody.contains(period2)
+    )
+  }
+
+  Then(
+    """^the remove country correction page is displayed for (.*)$"""
+  ) { (country: String) =>
+    val heading = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"Are you sure you want to remove this correction for $country?"
+      )
+    )
+  }
+
+  Then(
+    """^the country list page is displayed for the (.*) correction$"""
+  ) { (period: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        s"Correction month: $period"
       )
     )
   }
