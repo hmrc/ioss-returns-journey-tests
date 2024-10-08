@@ -455,6 +455,7 @@ Feature: Change and Remove Feature
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     Then the user selects the change link for correction-list-countries\/2
+    And the country list page is displayed for the December 2023 correction
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Belgium as their second correction within the second correction period
     And the user answers yes on the add-new-country/2/2 page
@@ -512,46 +513,45 @@ Feature: Change and Remove Feature
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
-#    Commented out until bug VEIOSS-695 is fixed
-#  Scenario: A user can add corrections for all available periods then remove via the correction periods list for same year
-#    Given the user accesses the authority wizard
-#    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
-#    Then the user is redirected to their IOSS Account
-#    When the user clicks on the Start your return link
-#    Then the user answers yes on the 2023-M12/start-return page
-#    And the user answers no on the sold-goods page
-#    And the user answers yes on the correct-previous-return page
-#    When the user picks year 2023 on the correction-return-year/1 page
-#    Then the user picks month November on the correction-return-month/1 page
-#    And the user chooses the country Austria as their first correction within the first correction period
-#    And the user answers yes on the add-new-country/1/1 page
-#    And the user adds 1000 on the first country-vat-correction-amount page for the first correction period
-#    And the user answers yes on the vat-payable-confirm/1/1 page
-#    And the user is on the vat-payable-check/1/1 page
-#    And the user clicks the continue button
-#    Then the user is on the correction-list-countries/1 page
-#    And the user answers no on the correction-list-countries/1 page
-#    When the user answers yes on the 2023-M12/vat-correction-months-add page
-#    Then the user picks year 2023 on the correction-return-year/2 page
-#    Then the user picks month October on the correction-return-month/2 page
-#    And the user chooses the country Belgium as their first correction within the second correction period
-#    And the user answers yes on the add-new-country/2/1 page
-#    And the user adds 2000 on the first country-vat-correction-amount page for the second correction period
-#    And the user answers yes on the vat-payable-confirm/2/1 page
-#    And the user is on the vat-payable-check/2/1 page
-#    And the user clicks the continue button
-#    And the user answers no on the correction-list-countries/2 page
-#    When the user is on the 2023-M12/vat-correction-months page
-#    Then the user selects the remove link for remove-month-correction\/2
-#    And the remove page is displayed for the November 2023 correction
-#    And the user answers yes on the remove-month-correction/2 page
-#    And the corrections list is showing one correction for October 2023
-#    Then the user selects the remove link for remove-month-correction\/1
-#    And the remove page is displayed for the October 2023 correction
-#    And the user answers yes on the remove-month-correction/1 page
-#    Then the user answers no on the correct-previous-return page
-#    Then the user is on the check-your-answers page
-#    And the user clicks the submit button
-#    Then the user is on the return-successfully-submitted page
+  Scenario: A user can add corrections for all available periods then remove via the correction periods list for same year
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M12/start-return page
+    And the user answers no on the sold-goods page
+    And the user answers yes on the correct-previous-return page
+    When the user picks year 2023 on the correction-return-year/1 page
+    Then the user picks month November on the correction-return-month/1 page
+    And the user chooses the country Austria as their first correction within the first correction period
+    And the user answers yes on the add-new-country/1/1 page
+    And the user adds 1000 on the first country-vat-correction-amount page for the first correction period
+    And the user answers yes on the vat-payable-confirm/1/1 page
+    And the user is on the vat-payable-check/1/1 page
+    And the user clicks the continue button
+    Then the user is on the correction-list-countries/1 page
+    And the user answers no on the correction-list-countries/1 page
+    When the user answers yes on the 2023-M12/vat-correction-months-add page
+    Then the user picks year 2023 on the correction-return-year/2 page
+    Then the user picks month October on the correction-return-month/2 page
+    And the user chooses the country Belgium as their first correction within the second correction period
+    And the user answers yes on the add-new-country/2/1 page
+    And the user adds 2000 on the first country-vat-correction-amount page for the second correction period
+    And the user answers yes on the vat-payable-confirm/2/1 page
+    And the user is on the vat-payable-check/2/1 page
+    And the user clicks the continue button
+    And the user answers no on the correction-list-countries/2 page
+    When the user is on the 2023-M12/vat-correction-months page
+    Then the user selects the remove link for remove-month-correction\/2
+    And the remove page is displayed for the October 2023 correction
+    And the user answers yes on the remove-month-correction/2 page
+    And the corrections list is showing one correction for November 2023
+    Then the user selects the remove link for remove-month-correction\/1
+    And the remove page is displayed for the November 2023 correction
+    And the user answers yes on the remove-month-correction/1 page
+    Then the user answers no on the correct-previous-return page
+    Then the user is on the check-your-answers page
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
 
 

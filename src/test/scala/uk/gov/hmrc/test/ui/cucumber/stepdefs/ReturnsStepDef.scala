@@ -927,4 +927,15 @@ class ReturnsStepDef extends BaseStepDef {
       )
     )
   }
+
+  Then(
+    """^the country list page is displayed for the (.*) correction$"""
+  ) { (period: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        s"Correction month: $period"
+      )
+    )
+  }
 }
