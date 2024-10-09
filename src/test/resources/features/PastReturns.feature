@@ -89,4 +89,13 @@ Feature: Past Returns Feature
     When the user manually navigates to their November 2023 return
     Then the user is on the past-returns/2023-M11 page
 
+  Scenario: A user is not able view a submitted return for a month over 6 years ago
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001236666 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user manually navigates to their January 2018 return
+    Then the user is on the no-longer-able-to-view-return page
+    When the user manually navigates to their September 2018 return
+    Then the user is on the no-longer-able-to-view-return page
+
 
