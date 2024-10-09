@@ -164,17 +164,19 @@ object CommonPage extends BasePage {
     val currentReturnYear   = LocalDate.now().getYear
     val currentPeriodString = s"$currentReturnYear-M$currentReturnMonth"
 
-    val period = returnPeriod match {
-      case "December 2020" => "2020-M12"
-      case "November 2023" => "2023-M11"
-      case "December 2023" => "2023-M12"
-      case "January 2024"  => "2024-M1"
-      case "current month" => currentPeriodString
-      case _               => "period doesn't exist"
+    val periodUrl = returnPeriod match {
+      case "January 2018"   => "past-returns/2018-M1"
+      case "September 2018" => "past-returns/2018-M9"
+      case "December 2020"  => "2020-M12/start-return"
+      case "November 2023"  => "2023-M11/start-return"
+      case "December 2023"  => "2023-M12/start-return"
+      case "January 2024"   => "2024-M1/start-return"
+      case "current month"  => s"$currentPeriodString/start-return"
+      case _                => "period doesn't exist"
     }
     driver
       .navigate()
-      .to(s"$host/$period/start-return")
+      .to(s"$host/$periodUrl")
   }
 
   def navigateToSecureStartReturn(): Unit =

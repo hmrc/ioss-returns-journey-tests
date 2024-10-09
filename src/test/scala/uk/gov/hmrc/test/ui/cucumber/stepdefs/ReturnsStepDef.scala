@@ -382,7 +382,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user manually navigates to their (December 2020|November 2023|December 2023|January 2024|current month) return$"""
+    """^the user manually navigates to their (.*) return$"""
   ) { (returnPeriod: String) =>
     CommonPage.navigateToReturn(returnPeriod)
   }
