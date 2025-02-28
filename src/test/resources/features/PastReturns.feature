@@ -98,4 +98,12 @@ Feature: Past Returns Feature
     When the user manually navigates to their September 2018 return
     Then the user is on the no-longer-able-to-view-return page
 
+  Scenario: A user with a full return period does not show partial return dates
+    Given the user accesses the authority wizard
+    And a user with VRN 100000001 and IOSS Number IM9001236667 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user manually navigates to their December 2024 return
+    Then the user is on the past-returns/2024-M12 page
+    And the past return shows the full month version of the heading
+
 

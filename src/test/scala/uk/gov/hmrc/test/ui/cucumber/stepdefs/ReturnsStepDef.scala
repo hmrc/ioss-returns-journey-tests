@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -937,5 +937,12 @@ class ReturnsStepDef extends BaseStepDef {
         s"Correction month: $period"
       )
     )
+  }
+
+  Then(
+    """^the past return shows the full month version of the heading$"""
+  ) { () =>
+    checkFullMonthPastReturn()
+
   }
 }
