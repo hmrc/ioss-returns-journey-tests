@@ -167,6 +167,7 @@ object CommonPage extends BasePage {
     val periodUrl = returnPeriod match {
       case "January 2018"   => "past-returns/2018-M1"
       case "September 2018" => "past-returns/2018-M9"
+      case "December 2024"  => "past-returns/2024-M12"
       case "December 2020"  => "2020-M12/start-return"
       case "November 2023"  => "2023-M11/start-return"
       case "December 2023"  => "2023-M12/start-return"
@@ -215,5 +216,10 @@ object CommonPage extends BasePage {
   def checkTransferringFromOtherMSIDPastReturn(): Unit = {
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.equals("Submitted return for 15 to 31 January 2024"))
+  }
+
+  def checkFullMonthPastReturn(): Unit = {
+    val htmlH1 = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlH1.equals("Submitted return for December 2024"))
   }
 }
