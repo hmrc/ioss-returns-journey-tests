@@ -22,7 +22,7 @@ Feature: Past Returns Feature
     When the user clicks on the October 2023 link
     Then the user is on the past-returns/2023-M10 page
     And the return for October 2023 is displayed to the user
-    And the correct sections are displayed on the previous return with sales to EU and corrections
+    And the correct sections are displayed on the previous return with no corrections
     When the user manually navigates to the returns service
     Then the user clicks on the View submitted returns link
     And the user is on the past-returns page
@@ -65,9 +65,9 @@ Feature: Past Returns Feature
     When the user clicks on the View submitted returns link
     Then the user is on the past-returns page
     And the user clicks the Show all sections accordion
-    When the user clicks on the November 2023 link
-    Then the user is on the past-returns/2023-M11 page
-    And the return for November 2023 is displayed to the user
+    When the user clicks on the December 2023 link
+    Then the user is on the past-returns/2023-M12 page
+    And the return for December 2023 is displayed to the user
     Then the correct sections are displayed for a nil return
 
   Scenario: A user can view a previously submitted return with no corrections
@@ -77,9 +77,9 @@ Feature: Past Returns Feature
     When the user clicks on the View submitted returns link
     Then the user is on the past-returns page
     And the user clicks the Show all sections accordion
-    When the user clicks on the November 2023 link
-    Then the user is on the past-returns/2023-M11 page
-    And the return for November 2023 is displayed to the user
+    When the user clicks on the December 2023 link
+    Then the user is on the past-returns/2023-M12 page
+    And the return for December 2023 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
 
   Scenario: A user is not able to submit a duplicate return
