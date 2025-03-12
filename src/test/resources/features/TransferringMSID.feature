@@ -37,8 +37,11 @@ Feature: Transferring MSID Feature
     Then the user transferring to another MSID is offered a full return for the correct period
     And the user answers yes on the 2024-M1/start-return page
     And the user answers no on the sold-goods page
+    Then the user is on the correct-previous-return page
+    And they are not advised it is their last chance to correct a return
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
+    Then the user is not shown the corrections warning before submission
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
@@ -51,8 +54,11 @@ Feature: Transferring MSID Feature
     And the user transferring to another MSID is offered a partial return for the correct period
     And the user answers yes on the 2024-M2/start-return page
     And the user answers no on the sold-goods page
+    Then the user is on the correct-previous-return page
+    And they are advised it is their last chance to correct a return
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
+    Then the user is shown the corrections warning before submission
     And the user transferring to another MSID is submitting a partial return for the correct period
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
