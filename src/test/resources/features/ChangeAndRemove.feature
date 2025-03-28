@@ -265,7 +265,7 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
-    And the user chooses the country Republic of Cyprus as their second correction within the first correction period
+    And the user chooses the country Cyprus as their second correction within the first correction period
     And the user answers yes on the add-new-country/1/2 page
     And the user adds 6543.21 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
@@ -273,7 +273,7 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     When the user selects the remove link for remove-country-correction\/1\/2
-    And the remove country correction page is displayed for Republic of Cyprus
+    And the remove country correction page is displayed for Cyprus
     Then the user answers yes on the remove-country-correction/1/2 page
     And the user is on the correction-list-countries/1 page
     When the user selects the remove link for remove-country-correction\/1\/1
@@ -302,7 +302,7 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
-    And the user chooses the country Republic of Cyprus as their second correction within the first correction period
+    And the user chooses the country Cyprus as their second correction within the first correction period
     And the user answers yes on the add-new-country/1/2 page
     And the user adds 6543.21 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
@@ -359,7 +359,7 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
-    And the user chooses the country Republic of Cyprus as their second correction within the first correction period
+    And the user chooses the country Cyprus as their second correction within the first correction period
     And the user answers yes on the add-new-country/1/2 page
     And the user adds 6543.21 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page
