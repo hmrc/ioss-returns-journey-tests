@@ -1,4 +1,4 @@
-@Additional @Accessibility
+@Additional
 
 Feature: Kickouts Feature
 

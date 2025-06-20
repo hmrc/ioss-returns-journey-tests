@@ -1,7 +1,7 @@
 @Additional
 
 Feature: Exclusions Feature
-  @Accessibility
+
   Scenario: A self excluded user is not able to start a return after their exclusion date
     Given the user accesses the authority wizard
     When a user with VRN 100000001 and IOSS Number IM9009999991 accesses the returns journey

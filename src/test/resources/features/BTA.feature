@@ -57,7 +57,6 @@ Feature: BTA Feature
     Then the user clicks the continue button
     Then the user has been redirected to the payments service
 
-  @Accessibility
   Scenario: A Welsh user enters the Your Account page via BTA and sees the Welsh transition page before "Your Account"
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey
