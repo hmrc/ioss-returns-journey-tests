@@ -27,7 +27,7 @@ import org.junit.runner.RunWith
     "pretty",
     "html:target/cucumber",
     "json:target/cucumber.json",
-    "junit:target/test-reports/AdditionalReturnsRunner.xml"
+    "junit:target/test-reports/ChangeSaveRunner.xml"
   ),
   tags = "@ChangeSave"
 )
