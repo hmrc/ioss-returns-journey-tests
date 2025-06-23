@@ -1,8 +1,7 @@
-@Returns @Accessibility
+@Returns
 
 Feature: Returns Feature
 
-  @ZAP
   Scenario: A user adds sales for multiple countries to a return
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey

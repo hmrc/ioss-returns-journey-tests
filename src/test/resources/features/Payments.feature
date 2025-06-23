@@ -1,8 +1,7 @@
-@Returns @Accessibility
+@Returns
 
 Feature: Returns Feature
 
-  @ZAP
   Scenario: A user has multiple outstanding payments
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey

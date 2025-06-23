@@ -1,8 +1,7 @@
-@Returns @Accessibility
+@Returns
 
 Feature: Corrections Feature
 
-  @ZAP
   Scenario: A simple corrections journey with previously undeclared countries added to a nil return
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9008888888 accesses the returns journey
