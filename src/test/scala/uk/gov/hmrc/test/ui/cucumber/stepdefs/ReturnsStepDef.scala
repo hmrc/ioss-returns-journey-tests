@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.junit.Assert
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, fluentWait, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -35,7 +36,9 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then("""^the user is redirected to their IOSS Account$""") { () =>
-    driver.getCurrentUrl shouldBe s"$host/your-account"
+    val url = s"$host/your-account"
+    fluentWait.until(ExpectedConditions.urlContains(url))
+    driver.getCurrentUrl shouldBe url
   }
 
   Then("""^the user is redirected to the (Change Your Registration|Rejoin) page in IOSS Registration$""") {

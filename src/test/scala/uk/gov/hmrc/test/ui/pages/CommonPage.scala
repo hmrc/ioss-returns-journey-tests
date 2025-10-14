@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,11 @@ object CommonPage extends BasePage {
       TestConfiguration.url("ioss-registration-frontend") + s"/$page"
     )
 
-  def checkUrl(url: String): Unit =
-    driver.getCurrentUrl should startWith(s"$host/$url")
+  def checkUrl(url: String): Unit = {
+    val urlToCheck = s"$host/$url"
+    fluentWait.until(ExpectedConditions.urlContains(urlToCheck))
+    driver.getCurrentUrl should startWith(urlToCheck)
+  }
 
   def selectAnswer(data: String): Unit = {
     data match {

@@ -469,6 +469,7 @@ Feature: Change and Remove Feature
     When the user picks year 2022 on the correction-return-year/3 page
     When the user picks month December on the correction-return-month/3 page
     And the user chooses the country France as their first correction within the third correction period
+    And the user is on the country-vat-correction-amount/3/1 page
     And the previously declared text is displayed above the amount box
     And the user adds 1234 on the first country-vat-correction-amount page for the third correction period
     And the user answers yes on the vat-payable-confirm/3/1 page
@@ -479,6 +480,7 @@ Feature: Change and Remove Feature
     When the user selects the remove link for remove-month-correction\/1
     And the remove page is displayed for the October 2022 correction
     Then the user answers yes on the remove-month-correction/1 page
+    And the user is on the 2024-M1/vat-correction-months-add page
     And the corrections list is showing 2 corrections for December 2022 and December 2023
     Then the user answers no on the 2024-M1/vat-correction-months-add page
     Then the user is on the check-your-answers page
