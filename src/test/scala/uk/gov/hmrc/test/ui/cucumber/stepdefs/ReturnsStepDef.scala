@@ -946,4 +946,8 @@ class ReturnsStepDef extends BaseStepDef {
     checkFullMonthPastReturn()
 
   }
+
+  When("""^an intermediary accesses the returns journey""") { () =>
+    AuthPage.intermediaryLogin()
+  }
 }
