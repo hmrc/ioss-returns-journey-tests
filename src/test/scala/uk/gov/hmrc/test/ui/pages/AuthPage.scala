@@ -102,4 +102,33 @@ object AuthPage extends BasePage {
   def goToAuthStub(): Unit =
     driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
 
+  def intermediaryLogin(): Unit = {
+
+    val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
+    driver.getCurrentUrl should startWith(stubUrl)
+
+    driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-returns-frontend"))
+
+    val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
+    selectAffinityGroup.selectByValue("Organisation")
+
+    driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
+    driver
+      .findElement(By.id("input-0-0-name"))
+      .sendKeys("VRN")
+    driver
+      .findElement(By.id("input-0-0-value"))
+      .sendKeys("100000001")
+
+    driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-INT")
+    driver
+      .findElement(By.id("input-1-0-name"))
+      .sendKeys("IntNumber")
+    driver
+      .findElement(By.id("input-1-0-value"))
+      .sendKeys("IN9001234567")
+
+    driver.findElement(By.cssSelector("Input[value='Submit']")).click()
+
+  }
 }
