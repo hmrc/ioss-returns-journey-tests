@@ -65,7 +65,17 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
-    CommonPage.checkUrl(url)
+    if (url startsWith "thisYear-") {
+
+      val thisYear    = LocalDate.now().getYear
+      val newUrl      = url.substring(8)
+      val thisYearUrl = s"$thisYear$newUrl"
+
+      CommonPage.checkUrl(thisYearUrl)
+    } else {
+      CommonPage.checkUrl(url)
+    }
+
     if (url == "return-successfully-submitted") {
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("Your return reference is"))
@@ -884,12 +894,18 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the remove page is displayed for the (.*) correction$"""
-  ) { (period: String) =>
+    """^the remove page is displayed for the (.*) correction from (.*)"""
+  ) { (month: String, year: String) =>
+    val yearString = if (year == "two years ago") {
+      LocalDate.now().minusYears(2).getYear
+    } else {
+      ""
+    }
+
     val heading = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(
       heading.equals(
-        s"Are you sure you want to remove this correction for $period?"
+        s"Are you sure you want to remove this correction for $month $yearString?"
       )
     )
   }
@@ -910,20 +926,21 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the corrections list is showing 2 corrections for (.*) and (.*)$"""
-  ) { (period1: String, period2: String) =>
+    """^the corrections list is showing 2 corrections for December two years ago and December last year$"""
+  ) { () =>
     val heading  = driver.findElement(By.tagName("h1")).getText
     val htmlBody = driver.findElement(By.tagName("body")).getText
+
     Assert.assertTrue(
       heading.equals(
         s"You have corrected the VAT amount for 2 return months"
       )
     )
     Assert.assertTrue(
-      htmlBody.contains(period1)
+      htmlBody.contains(s"December ${LocalDate.now().minusYears(2).getYear}")
     )
     Assert.assertTrue(
-      htmlBody.contains(period2)
+      htmlBody.contains(s"December ${LocalDate.now().minusYears(1).getYear}")
     )
   }
 
@@ -939,12 +956,12 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the country list page is displayed for the (.*) correction$"""
-  ) { (period: String) =>
+    """^the country list page is displayed for the December last year correction$"""
+  ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
       htmlBody.contains(
-        s"Correction month: $period"
+        s"Correction month: December ${LocalDate.now().minusYears(1).getYear}"
       )
     )
   }
