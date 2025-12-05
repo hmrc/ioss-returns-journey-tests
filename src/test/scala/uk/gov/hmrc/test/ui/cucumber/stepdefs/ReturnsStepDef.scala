@@ -129,7 +129,16 @@ class ReturnsStepDef extends BaseStepDef {
     }
   }
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
-    CommonPage.checkUrl(url)
+    if (url startsWith "thisYear-") {
+
+      val thisYear    = LocalDate.now().getYear
+      val newUrl      = url.substring(8)
+      val thisYearUrl = s"$thisYear$newUrl"
+
+      CommonPage.checkUrl(thisYearUrl)
+    } else {
+      CommonPage.checkUrl(url)
+    }
     CommonPage.selectAnswer(data)
   }
 
@@ -270,7 +279,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user picks year (2022|2023) on the (.*) page$"""
+    """^the user picks year (two years ago|last year|2023) on the (.*) page$"""
   ) { (answer: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectYearRadioButton(answer)
