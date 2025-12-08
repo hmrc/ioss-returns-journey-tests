@@ -250,7 +250,7 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
     When the user answers yes on the 2024-M1/vat-correction-months-add page
-    Then the user clicks the continue button
+    And the user picks year 2023 on the correction-return-year/3 page
     When the user picks month December on the correction-return-month/3 page
     And the user chooses the country Bulgaria as their first correction within the third correction period
     And the user answers yes on the add-new-country/3/1 page
