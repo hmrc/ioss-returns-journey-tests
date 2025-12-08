@@ -20,7 +20,7 @@ import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, fluentWait, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, driver, fluentWait, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, startWith, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -28,17 +28,22 @@ import java.time.format.DateTimeFormatter
 
 class ReturnsStepDef extends BaseStepDef {
 
-  val host: String         = TestConfiguration.url("ioss-returns-frontend")
-  val paymentsHost: String = TestConfiguration.url("pay-frontend")
+  val host: String                  = TestConfiguration.url("ioss-returns-frontend")
+  val paymentsHost: String          = TestConfiguration.url("pay-frontend")
+  val intermediaryDashboard: String = TestConfiguration.url("ioss-intermediary-dashboard-frontend")
 
   Given("""the user accesses the authority wizard""") { () =>
     AuthPage.goToAuthStub()
   }
 
-  Then("""^the user is redirected to their IOSS Account$""") { () =>
-    val url = s"$host/your-account"
-    fluentWait.until(ExpectedConditions.urlContains(url))
-    driver.getCurrentUrl shouldBe url
+  Then("""^the user is redirected to their (IOSS Account|Intermediary Dashboard)$""") { (journey: String) =>
+    val url = if (journey == "IOSS Account") {
+      s"$host"
+    } else {
+      s"$intermediaryDashboard"
+    }
+    fluentWait.until(ExpectedConditions.urlContains(s"$url/your-account"))
+    driver.getCurrentUrl should startWith
   }
 
   Then("""^the user is redirected to the (Change Your Registration|Rejoin) page in IOSS Registration$""") {
@@ -289,14 +294,14 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user picks year (two years ago|last year|2023) on the (.*) page$"""
+    """^the user picks year (two years ago|last year|2023|2025) on the (.*) page$"""
   ) { (answer: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectYearRadioButton(answer)
   }
 
   When(
-    """^the user picks month (October|November|December) on the (.*) page$"""
+    """^the user picks month (October|November|December|January|February) on the (.*) page$"""
   ) { (answer: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectMonthRadioButton(answer)
@@ -534,7 +539,7 @@ class ReturnsStepDef extends BaseStepDef {
         htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
       )
       Assert.assertFalse(
-        htmlBody.contains("Your most recent declaration for this period is")
+        htmlBody.contains("Your most recent declaration for this month is")
       )
     } else {
       Assert.assertTrue(
@@ -971,9 +976,5 @@ class ReturnsStepDef extends BaseStepDef {
   ) { () =>
     checkFullMonthPastReturn()
 
-  }
-
-  When("""^an intermediary accesses the returns journey""") { () =>
-    AuthPage.intermediaryLogin()
   }
 }
