@@ -384,7 +384,7 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
     And the user answers yes on the thisYear-M1/vat-correction-months-add page
-    When the user picks year 2023 on the correction-return-year/2 page
+    When the user picks year last year on the correction-return-year/2 page
     When the user picks month December on the correction-return-month/2 page
     And the user chooses the country Slovakia as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
@@ -395,6 +395,7 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/2 page
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Germany as their second correction within the second correction period
+    And the user is on the country-vat-correction-amount/2/2 page
     And the previously declared text is displayed above the amount box
     And the user adds 1234 on the second country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/2 page
