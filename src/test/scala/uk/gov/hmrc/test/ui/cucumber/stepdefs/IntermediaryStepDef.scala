@@ -18,11 +18,11 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import uk.gov.hmrc.test.ui.pages.{AuthPage, IntermediaryPage}
 
-
 class IntermediaryStepDef extends BaseStepDef {
 
-  When("""^intermediary accesses the returns journey for NETP (.*)""") { (iossNumber: String) =>
-    AuthPage.intermediaryLogin(iossNumber)
+  When("""^intermediary (.*) accesses the returns journey for NETP (.*)""") {
+    (intermediaryNumber: String, iossNumber: String) =>
+      AuthPage.intermediaryLogin(intermediaryNumber, iossNumber)
   }
 
   Then("""^the correct details are shown on the acknowledgement page for NETP (.*)""") { (iossNumber: String) =>

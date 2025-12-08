@@ -4,7 +4,7 @@ Feature: Intermediary Returns Feature
 
   Scenario: Intermediary can submit a nil return for a NETP
     Given the user accesses the authority wizard
-    And intermediary accesses the returns journey for NETP IM9001144771
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
     Then the user answers yes on the 2025-M3/start-return page
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
@@ -17,7 +17,7 @@ Feature: Intermediary Returns Feature
 
   Scenario: Intermediary can submit a return with sales to the EU for a NETP
     Given the user accesses the authority wizard
-    And intermediary accesses the returns journey for NETP IM9001144771
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
     Then the user answers yes on the 2025-M3/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
@@ -57,7 +57,7 @@ Feature: Intermediary Returns Feature
 
   Scenario: Intermediary can submit a return for a NETP with corrections for multiple periods
     Given the user accesses the authority wizard
-    And intermediary accesses the returns journey for NETP IM9001144777
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144777
     Then the user answers yes on the 2025-M3/start-return page
     And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
@@ -100,7 +100,7 @@ Feature: Intermediary Returns Feature
 
   Scenario: Intermediary can submit a first return for a NETP
     Given the user accesses the authority wizard
-    And intermediary accesses the returns journey for NETP IM9001144773
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144773
     Then the user answers yes on the 2025-M1/start-return page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
@@ -110,5 +110,8 @@ Feature: Intermediary Returns Feature
     When the user clicks on the Back to your account link
     Then the user is redirected to their Intermediary Dashboard
 
-
+  Scenario: Intermediary cannot access return for a client not registered to them
+    Given the user accesses the authority wizard
+    And intermediary IN9001234568 accesses the returns journey for NETP IM9001144771
+    Then the user is on the cannot-use-not-registered page
 

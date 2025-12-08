@@ -16,7 +16,6 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-
 import org.junit.Assert
 import org.openqa.selenium.By
 
@@ -29,8 +28,8 @@ object IntermediaryPage extends BasePage {
       case "IM9001144771" =>
         Assert.assertTrue(
           htmlBody.contains(
-          "Return submitted for First Client\n" +
-            "Your return reference is XI/IM9001144771/M03.2025"
+            "Return submitted for First Client\n" +
+              "Your return reference is XI/IM9001144771/M03.2025"
           )
         )
       case "IM9001144773" =>
@@ -47,7 +46,7 @@ object IntermediaryPage extends BasePage {
               "Your return reference is XI/IM9001144777/M03.2025"
           )
         )
-      case _ =>
+      case _              =>
         throw new Exception("IOSS number doesn't exist")
     }
   }

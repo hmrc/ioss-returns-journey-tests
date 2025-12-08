@@ -104,7 +104,7 @@ object AuthPage extends BasePage {
   def goToAuthStub(): Unit =
     driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
 
-  def intermediaryLogin(iossNumber: String): Unit = {
+  def intermediaryLogin(intermediaryNumber: String, iossNumber: String): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
@@ -128,7 +128,7 @@ object AuthPage extends BasePage {
       .sendKeys("IntNumber")
     driver
       .findElement(By.id("input-1-0-value"))
-      .sendKeys("IN9001234567")
+      .sendKeys(intermediaryNumber)
 
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
 
