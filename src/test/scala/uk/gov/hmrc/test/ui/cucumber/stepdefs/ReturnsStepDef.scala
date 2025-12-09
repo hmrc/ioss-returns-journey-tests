@@ -360,7 +360,7 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.navigateToOutstandingPayments()
   }
 
-  When("""^the user does not owe any VAT$""") {
+  When("""^the (user|NETP) does not owe any VAT$""") { (user: String) =>
     CommonPage.checkUrl("outstanding-payments")
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))

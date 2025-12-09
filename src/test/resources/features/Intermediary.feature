@@ -115,3 +115,25 @@ Feature: Intermediary Returns Feature
     And intermediary IN9001234568 accesses the returns journey for NETP IM9001144771
     Then the user is on the cannot-use-not-registered page
 
+  Scenario: Intermediary has multiple outstanding payments for a NETP
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the payments journey for NETP IM9001144771
+    When the user selects the first payment option on the outstanding-payments page
+    Then the user has been redirected to the payments service
+    And the user clicks back on the browser
+    And the user is on the outstanding-payments page
+    When the user selects the second payment option on the outstanding-payments page
+    Then the user has been redirected to the payments service
+
+  Scenario: Intermediary has a single outstanding payment for a NETP
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the payments journey for NETP IM9001144777
+    Then the user has been redirected to the payments service
+
+  Scenario: Intermediary has no outstanding payments for a NETP
+    Given the user accesses the authority wizard
+    When intermediary IN9001234567 accesses the payments journey for NETP IM9001144773
+    And the user is on the outstanding-payments page
+    Then the NETP does not owe any VAT
+
+

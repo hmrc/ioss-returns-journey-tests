@@ -20,9 +20,9 @@ import uk.gov.hmrc.test.ui.pages.{AuthPage, IntermediaryPage}
 
 class IntermediaryStepDef extends BaseStepDef {
 
-  When("""^intermediary (.*) accesses the returns journey for NETP (.*)""") {
-    (intermediaryNumber: String, iossNumber: String) =>
-      AuthPage.intermediaryLogin(intermediaryNumber, iossNumber)
+  When("""^intermediary (.*) accesses the (.*) journey for NETP (.*)""") {
+    (intermediaryNumber: String, journey: String, iossNumber: String) =>
+      AuthPage.intermediaryLogin(intermediaryNumber, iossNumber, journey)
   }
 
   Then("""^the correct details are shown on the acknowledgement page for NETP (.*)""") { (iossNumber: String) =>
