@@ -111,8 +111,10 @@ object AuthPage extends BasePage {
 
     val endpoint = if (journey == "returns") {
       "start-return-as-intermediary"
-    } else {
+    } else if (journey == "payments") {
       "start-payment-as-intermediary"
+    } else {
+      "start-returns-history-as-intermediary"
     }
 
     driver.findElement(By.id("redirectionUrl")).sendKeys(s"$returnsUrl/$endpoint/$iossNumber")
