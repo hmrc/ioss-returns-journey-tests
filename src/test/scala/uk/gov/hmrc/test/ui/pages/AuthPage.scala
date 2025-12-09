@@ -104,12 +104,18 @@ object AuthPage extends BasePage {
   def goToAuthStub(): Unit =
     driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
 
-  def intermediaryLogin(intermediaryNumber: String, iossNumber: String): Unit = {
+  def intermediaryLogin(intermediaryNumber: String, iossNumber: String, journey: String): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
-    driver.findElement(By.id("redirectionUrl")).sendKeys(s"$returnsUrl/start-return-as-intermediary/$iossNumber")
+    val endpoint = if (journey == "returns") {
+      "start-return-as-intermediary"
+    } else {
+      "start-payment-as-intermediary"
+    }
+
+    driver.findElement(By.id("redirectionUrl")).sendKeys(s"$returnsUrl/$endpoint/$iossNumber")
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
