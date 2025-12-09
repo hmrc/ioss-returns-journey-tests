@@ -136,4 +136,9 @@ Feature: Intermediary Returns Feature
     And the user is on the outstanding-payments page
     Then the NETP does not owe any VAT
 
+  Scenario: Intermediary cannot access payments for a client not registered to them
+    Given the user accesses the authority wizard
+    And intermediary IN9001234568 accesses the payments journey for NETP IM9001144771
+    Then the user is on the cannot-use-not-registered page
+
 
