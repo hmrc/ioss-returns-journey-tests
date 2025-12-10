@@ -174,4 +174,18 @@ Feature: Intermediary Returns Feature
     And intermediary IN9001001001 accesses the submitted-returns journey for NETP IM9001144771
     Then the user is on the cannot-use-not-registered page
 
+  Scenario: Intermediary views previous returns for excluded NETP
+    Given the user accesses the authority wizard
+    And intermediary IN9008888886 accesses the submitted-returns journey for NETP IM9001144884
+    Then the user is on the past-returns page
+    And the user clicks the Show all sections accordion
+    When the user clicks on the January 2025 link
+    Then the user is on the past-returns/2025-M1 page
+    And the return for January 2025 is displayed to the user
+    And the correct sections are displayed on the previous return with no corrections
+    When the user clicks back on the browser
+    And the user is on the past-returns page
+    When the user clicks the Pay now link for February 2025
+    Then the user has been redirected to the payments service
+
 
