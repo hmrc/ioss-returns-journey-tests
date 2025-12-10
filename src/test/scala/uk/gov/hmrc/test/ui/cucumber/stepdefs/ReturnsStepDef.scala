@@ -125,6 +125,12 @@ class ReturnsStepDef extends BaseStepDef {
       case "February 2024"                       =>
         waitForElement(By.className("govuk-table__cell--numeric"))
         selectLink("past-returns\\/2024-M2")
+      case "December 2024"                       =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2024-M12")
+      case "January 2025"                        =>
+        waitForElement(By.className("govuk-table__cell--numeric"))
+        selectLink("past-returns\\/2025-M1")
       case "Pay Now"                             =>
         driver.findElement(By.id("pay-now")).click()
       case "Rejoin this service"                 =>
@@ -393,8 +399,14 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.navigateToReturnsService()
   }
 
-  When("""^the user clicks the Pay now link for October 2023$""") {
-    selectLink("make-payment\\/2023-M10")
+  When("""^the user clicks the Pay now link for (October 2023|February 2025|January 2025)$""") { (period: String) =>
+    if (period == "October 2023") {
+      selectLink("make-payment\\/2023-M10")
+    } else if (period == "February 2025") {
+      selectLink("make-payment\\/2025-M2")
+    } else {
+      selectLink("make-payment\\/2025-M1")
+    }
   }
 
   When("""^the correct sections are displayed for a nil return$""") {
