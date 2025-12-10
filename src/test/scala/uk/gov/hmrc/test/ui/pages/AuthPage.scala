@@ -22,6 +22,8 @@ import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
 
+  val returnsUrl = TestConfiguration.url("ioss-returns-frontend")
+
   def loginUsingAuthorityWizard(
     user: String,
     withStatus: String,
@@ -33,7 +35,7 @@ object AuthPage extends BasePage {
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
-    driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-returns-frontend"))
+    driver.findElement(By.id("redirectionUrl")).sendKeys(returnsUrl)
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
@@ -102,12 +104,18 @@ object AuthPage extends BasePage {
   def goToAuthStub(): Unit =
     driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
 
-  def intermediaryLogin(): Unit = {
+  def intermediaryLogin(intermediaryNumber: String, iossNumber: String, journey: String): Unit = {
 
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
-    driver.findElement(By.id("redirectionUrl")).sendKeys(TestConfiguration.url("ioss-returns-frontend"))
+    val endpoint = if (journey == "returns") {
+      "start-return-as-intermediary"
+    } else {
+      "start-payment-as-intermediary"
+    }
+
+    driver.findElement(By.id("redirectionUrl")).sendKeys(s"$returnsUrl/$endpoint/$iossNumber")
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
@@ -126,7 +134,7 @@ object AuthPage extends BasePage {
       .sendKeys("IntNumber")
     driver
       .findElement(By.id("input-1-0-value"))
-      .sendKeys("IN9001234567")
+      .sendKeys(intermediaryNumber)
 
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
 

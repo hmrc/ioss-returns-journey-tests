@@ -20,7 +20,7 @@ import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, fluentWait, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, driver, fluentWait, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, startWith, waitForElement}
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -28,17 +28,22 @@ import java.time.format.DateTimeFormatter
 
 class ReturnsStepDef extends BaseStepDef {
 
-  val host: String         = TestConfiguration.url("ioss-returns-frontend")
-  val paymentsHost: String = TestConfiguration.url("pay-frontend")
+  val host: String                  = TestConfiguration.url("ioss-returns-frontend")
+  val paymentsHost: String          = TestConfiguration.url("pay-frontend")
+  val intermediaryDashboard: String = TestConfiguration.url("ioss-intermediary-dashboard-frontend")
 
   Given("""the user accesses the authority wizard""") { () =>
     AuthPage.goToAuthStub()
   }
 
-  Then("""^the user is redirected to their IOSS Account$""") { () =>
-    val url = s"$host/your-account"
-    fluentWait.until(ExpectedConditions.urlContains(url))
-    driver.getCurrentUrl shouldBe url
+  Then("""^the user is redirected to their (IOSS Account|Intermediary Dashboard)$""") { (journey: String) =>
+    val url = if (journey == "IOSS Account") {
+      s"$host"
+    } else {
+      s"$intermediaryDashboard"
+    }
+    fluentWait.until(ExpectedConditions.urlContains(s"$url/your-account"))
+    driver.getCurrentUrl should startWith
   }
 
   Then("""^the user is redirected to the (Change Your Registration|Rejoin) page in IOSS Registration$""") {
@@ -65,7 +70,17 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
-    CommonPage.checkUrl(url)
+    if (url startsWith "thisYear-") {
+
+      val thisYear    = LocalDate.now().getYear
+      val newUrl      = url.substring(8)
+      val thisYearUrl = s"$thisYear$newUrl"
+
+      CommonPage.checkUrl(thisYearUrl)
+    } else {
+      CommonPage.checkUrl(url)
+    }
+
     if (url == "return-successfully-submitted") {
       val htmlBody = driver.findElement(By.tagName("body")).getText
       Assert.assertTrue(htmlBody.contains("Your return reference is"))
@@ -129,7 +144,16 @@ class ReturnsStepDef extends BaseStepDef {
     }
   }
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
-    CommonPage.checkUrl(url)
+    if (url startsWith "thisYear-") {
+
+      val thisYear    = LocalDate.now().getYear
+      val newUrl      = url.substring(8)
+      val thisYearUrl = s"$thisYear$newUrl"
+
+      CommonPage.checkUrl(thisYearUrl)
+    } else {
+      CommonPage.checkUrl(url)
+    }
     CommonPage.selectAnswer(data)
   }
 
@@ -270,14 +294,14 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user picks year (2022|2023) on the (.*) page$"""
+    """^the user picks year (two years ago|last year|2023|2025) on the (.*) page$"""
   ) { (answer: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectYearRadioButton(answer)
   }
 
   When(
-    """^the user picks month (October|November|December) on the (.*) page$"""
+    """^the user picks month (October|November|December|January|February) on the (.*) page$"""
   ) { (answer: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectMonthRadioButton(answer)
@@ -336,7 +360,7 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.navigateToOutstandingPayments()
   }
 
-  When("""^the user does not owe any VAT$""") {
+  When("""^the (user|NETP) does not owe any VAT$""") { (user: String) =>
     CommonPage.checkUrl("outstanding-payments")
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))
@@ -515,7 +539,7 @@ class ReturnsStepDef extends BaseStepDef {
         htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
       )
       Assert.assertFalse(
-        htmlBody.contains("Your most recent declaration for this period is")
+        htmlBody.contains("Your most recent declaration for this month is")
       )
     } else {
       Assert.assertTrue(
@@ -875,12 +899,18 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the remove page is displayed for the (.*) correction$"""
-  ) { (period: String) =>
+    """^the remove page is displayed for the (.*) correction from (.*)"""
+  ) { (month: String, year: String) =>
+    val yearString = if (year == "two years ago") {
+      LocalDate.now().minusYears(2).getYear
+    } else {
+      ""
+    }
+
     val heading = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(
       heading.equals(
-        s"Are you sure you want to remove this correction for $period?"
+        s"Are you sure you want to remove this correction for $month $yearString?"
       )
     )
   }
@@ -901,20 +931,21 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the corrections list is showing 2 corrections for (.*) and (.*)$"""
-  ) { (period1: String, period2: String) =>
+    """^the corrections list is showing 2 corrections for December two years ago and December last year$"""
+  ) { () =>
     val heading  = driver.findElement(By.tagName("h1")).getText
     val htmlBody = driver.findElement(By.tagName("body")).getText
+
     Assert.assertTrue(
       heading.equals(
         s"You have corrected the VAT amount for 2 return months"
       )
     )
     Assert.assertTrue(
-      htmlBody.contains(period1)
+      htmlBody.contains(s"December ${LocalDate.now().minusYears(2).getYear}")
     )
     Assert.assertTrue(
-      htmlBody.contains(period2)
+      htmlBody.contains(s"December ${LocalDate.now().minusYears(1).getYear}")
     )
   }
 
@@ -930,12 +961,12 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the country list page is displayed for the (.*) correction$"""
-  ) { (period: String) =>
+    """^the country list page is displayed for the December last year correction$"""
+  ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
       htmlBody.contains(
-        s"Correction month: $period"
+        s"Correction month: December ${LocalDate.now().minusYears(1).getYear}"
       )
     )
   }
@@ -945,9 +976,5 @@ class ReturnsStepDef extends BaseStepDef {
   ) { () =>
     checkFullMonthPastReturn()
 
-  }
-
-  When("""^an intermediary accesses the returns journey""") { () =>
-    AuthPage.intermediaryLogin()
   }
 }

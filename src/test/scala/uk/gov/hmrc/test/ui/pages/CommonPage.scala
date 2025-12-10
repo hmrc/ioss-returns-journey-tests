@@ -114,16 +114,24 @@ object CommonPage extends BasePage {
       .to(s"$host/correction-country/1/1")
 
   def selectYearRadioButton(year: String): Unit = {
+
+    val twoYearsAgo = LocalDate.now().minusYears(2).getYear
+    val lastYear    = LocalDate.now().minusYears(1).getYear
+
     year match {
-      case "2022" => driver.findElement(By.id("value_2022")).click()
-      case "2023" => driver.findElement(By.id("value_2023")).click()
-      case _      => throw new Exception("Option doesn't exist")
+      case "two years ago" => driver.findElement(By.id(s"value_$twoYearsAgo")).click()
+      case "last year"     => driver.findElement(By.id(s"value_$lastYear")).click()
+      case "2023"          => driver.findElement(By.id("value_2023")).click()
+      case "2025"          => driver.findElement(By.id("value_2025")).click()
+      case _               => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
 
   def selectMonthRadioButton(month: String): Unit = {
     month match {
+      case "January"  => driver.findElement(By.id("value_January")).click()
+      case "February" => driver.findElement(By.id("value_February")).click()
       case "October"  => driver.findElement(By.id("value_October")).click()
       case "November" => driver.findElement(By.id("value_November")).click()
       case "December" => driver.findElement(By.id("value_December")).click()
