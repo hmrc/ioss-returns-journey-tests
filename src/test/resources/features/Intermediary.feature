@@ -188,4 +188,33 @@ Feature: Intermediary Returns Feature
     When the user clicks the Pay now link for February 2025
     Then the user has been redirected to the payments service
 
+  Scenario: A NETP who has transferred from another member state has a partial first return
+    Given the user accesses the authority wizard
+    And intermediary IN9005999997 accesses the returns journey for NETP IM9005999997
+    And the user is on the 2024-M1/start-return page
+    Then the user transferring from another MSID is offered a partial return for the correct period
+    And the user answers yes on the 2024-M1/start-return page
+    And the user answers no on the sold-goods page
+    Then the user is on the check-your-answers page
+    And the user transferring from another MSID is submitting a partial return for the correct period
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+  Scenario: A NETP who is transferring to another member state has a partial final return
+    Given the user accesses the authority wizard
+    And intermediary IN9005999997 accesses the returns journey for NETP IM9009999555
+    And the user is on the 2024-M2/start-return page
+    Then they are presented with the heading for their final return
+    And the user transferring to another MSID is offered a partial return for the correct period
+    And the user answers yes on the 2024-M2/start-return page
+    And the user answers no on the sold-goods page
+    Then the user is on the correct-previous-return page
+    And they are advised it is their last chance to correct a return
+    And the user answers no on the correct-previous-return page
+    And the user is on the check-your-answers page
+    Then the user is shown the corrections warning before submission
+    And the user transferring to another MSID is submitting a partial return for the correct period
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
 
