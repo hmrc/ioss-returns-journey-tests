@@ -154,8 +154,10 @@ Feature: Change and Remove Feature
     Then the user is on the check-sales/1 page
     When the user selects the remove link for remove-vat-rate-sales-for-country\/1\/2
     Then the user answers yes on the remove-vat-rate-sales-for-country/1/2 page
+    And the user is on the check-sales/1 page
     And the user selects the remove link for remove-vat-rate-sales-for-country\/1\/1
     And the user answers yes on the remove-vat-rate-sales-for-country/1/1 page
+    And the user is on the check-sales/1 page
     And the user selects the remove link for remove-vat-rate-sales-for-country\/1\/1
     And the user answers yes on the remove-vat-rate-sales-for-country/1/1 page
     Then the user is on the vat-rates-from-country/1 page
