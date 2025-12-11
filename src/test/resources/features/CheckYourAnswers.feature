@@ -66,7 +66,8 @@ Feature: Check Your Answers Feature
     And the user answers yes on the remaining-vat-rate-from-country/1/3 page
     And the user enters first country total sales of 16001 for third selected VAT rate on the sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the third selected VAT rate on the vat-on-sales page
-    Then the user clicks the continue button
+    And the user is on the check-sales/1 page
+    And the user clicks the continue button
     And the user answers yes on the add-sales-country-list page
     And the user selects Germany on the second sold-to-country page
     And the user ticks the second checkbox on the second vat-rates-from-country page
@@ -122,6 +123,7 @@ Feature: Check Your Answers Feature
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     When the user selects the CYA change link for page add-sales-country-list from check-your-answers
+    And the user is on the add-sales-country-list page
     Then the user selects the list change link for first check-sales
     And the user answers yes on the check-sales/1?waypoints=change-add-sales-country-list page
     And the user ticks the first checkbox on the first vat-rates-from-country page

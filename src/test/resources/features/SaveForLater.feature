@@ -11,6 +11,7 @@ Feature: Save For Later Feature
     And the user answers yes on the sold-goods page
     And the user is on the sold-to-country/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user selects Austria on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -18,6 +19,7 @@ Feature: Save For Later Feature
     And the user clicks the continue button
     And the user is on the sales-to-country/1/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user enters first country total sales of 6000 for first selected VAT rate on the sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
@@ -25,50 +27,61 @@ Feature: Save For Later Feature
     And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
     And the user is on the check-sales/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user answers no on the check-sales/1 page
     And the user is on the add-sales-country-list page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user answers no on the add-sales-country-list page
     And the user answers yes on the correct-previous-return page
     And the user is on the correction-return-year/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     When the user picks year 2023 on the correction-return-year/1 page
     And the user is on the correction-return-month/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     Then the user picks month October on the correction-return-month/1 page
     And the user is on the correction-country/1/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user chooses the country Austria as their first correction within the first correction period
     And the user is on the add-new-country/1/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user answers yes on the add-new-country/1/1 page
     And the user is on the country-vat-correction-amount/1/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user adds 1500 on the first country-vat-correction-amount page for the first correction period
     And the user is on the vat-payable-confirm/1/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user answers yes on the vat-payable-confirm/1/1 page
     And the user is on the vat-payable-check/1/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user is on the vat-payable-check/1/1 page
     And the user clicks the continue button
     And the user answers no on the correction-list-countries/1 page
     And the user is on the 2023-M12/vat-correction-months-add page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user answers no on the 2023-M12/vat-correction-months-add page
     Then the user is on the check-your-answers page
     And the user is on the check-your-answers page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     Then the user is on the check-your-answers page
     And the user clicks the submit button
@@ -88,6 +101,7 @@ Feature: Save For Later Feature
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     And the user is on the check-sales/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the return to your account link
     When the user clicks on the Continue your return link
     Then the user is on the 2023-M12/return-continue page
@@ -96,6 +110,7 @@ Feature: Save For Later Feature
     And the user answers no on the add-sales-country-list page
     And the user is on the correct-previous-return page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the return to your account link
     When the user clicks on the Continue your return link
     Then the user is on the 2023-M12/return-continue page
@@ -124,6 +139,7 @@ Feature: Save For Later Feature
     And the user answers yes on the sold-goods page
     And the user is on the sold-to-country/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the continue to complete your return link
     And the user selects Bulgaria on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -133,6 +149,7 @@ Feature: Save For Later Feature
     And the user answers no on the check-sales/1 page
     And the user is on the add-sales-country-list page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the sign out and come back later link
     Given the user accesses the authority wizard
     And a user with VRN 100000123 and IOSS Number IM9001234566 accesses the returns journey
@@ -149,6 +166,7 @@ Feature: Save For Later Feature
     And the user answers no on the correct-previous-return page
     And the user is on the check-your-answers page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the sign out and come back later link
     Given the user accesses the authority wizard
     And a user with VRN 100000123 and IOSS Number IM9001234566 accesses the returns journey
@@ -177,6 +195,7 @@ Feature: Save For Later Feature
     When the user picks year 2023 on the correction-return-year/1 page
     And the user is on the correction-return-month/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved page
     Then the user clicks on the sign out and come back later link
     Given the user accesses the authority wizard
     And a user with VRN 100000123 and IOSS Number IM9001234566 accesses the returns journey

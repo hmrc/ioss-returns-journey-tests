@@ -67,8 +67,10 @@ Feature: Change and Remove Feature
     And the user enters second country total sales of 11111 for first selected VAT rate on the sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     And the user answers no on the check-sales/2 page
+    And the user is on the add-sales-country-list page
     Then the user selects the remove link for remove-sales-country\/2
     And the user answers yes on the remove-sales-country/2 page
+    And the user is on the add-sales-country-list page
     Then the user selects the remove link for remove-sales-country\/1
     And the user answers yes on the remove-sales-country/1 page
     Then the user answers no on the sold-goods page
@@ -97,6 +99,7 @@ Feature: Change and Remove Feature
     And the user enters a different amount of VAT totalling 600 for the second country and the first selected VAT rate on the vat-on-sales page
     Then the user is on the check-sales/2 page
     Then the user selects the mini CYA change link for first vat-on-sales\/2
+    And the user is on the vat-on-sales/2/1 page
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     Then the user is on the check-sales/2 page
     And the user answers yes on the check-sales/2 page
@@ -104,7 +107,9 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     And the user enters second country total sales of 123.11 for second selected VAT rate on the sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
+    And the user is on the check-sales/2 page
     Then the user selects the second mini CYA change link for second sales-to-country\/2
+    And the user is on the sales-to-country/2/2 page
     And the user changes second country total sales of 641 for second selected VAT rate on the sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
     Then the user is on the check-sales/2 page
@@ -113,9 +118,12 @@ Feature: Change and Remove Feature
     And the user enters second country total sales of 1400 for third selected VAT rate on the sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the third selected VAT rate on the vat-on-sales page
     Then the user clicks the continue button
+    And the user is on the add-sales-country-list page
     Then the user selects the list change link for second check-sales
+    And the user is on the check-sales/2 page
     And the user selects the remove link for remove-vat-rate-sales-for-country\/2\/2
     And the user answers yes on the remove-vat-rate-sales-for-country/2/2 page
+    And the user is on the check-sales/2 page
     Then the user selects the second mini CYA change link for second vat-on-sales\/2
     And the user enters a different amount of VAT totalling 250.11 for the second country and the second selected VAT rate on the vat-on-sales page
     Then the user answers no on the check-sales/2 page
@@ -175,6 +183,7 @@ Feature: Change and Remove Feature
     And the user enters first country total sales of 1234 for first selected VAT rate on the sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     And the user answers no on the check-sales/1 page
+    And the user is on the add-sales-country-list page
     Then the user selects the list change link for first check-sales
     And the user answers yes on the check-sales/1 page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -273,10 +282,12 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     When the user selects the remove link for remove-country-correction\/1\/2
+    And the user is on the remove-country-correction/1/2 page
     And the remove country correction page is displayed for Cyprus
     Then the user answers yes on the remove-country-correction/1/2 page
     And the user is on the correction-list-countries/1 page
     When the user selects the remove link for remove-country-correction\/1\/1
+    And the user is on the remove-country-correction/1/1 page
     And the remove country correction page is displayed for Czech Republic
     Then the user answers yes on the remove-country-correction/1/1 page
     And the user answers no on the correct-previous-return page
@@ -330,11 +341,11 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/2 page
     When the user is on the 2024-M1/vat-correction-months page
     Then the user selects the remove link for remove-month-correction\/2
-    And the remove page is displayed for the November 2023 correction
+    And the remove page is displayed for the November correction from two years ago
     And the user answers yes on the remove-month-correction/2 page
     And the corrections list is showing one correction for October 2023
     Then the user selects the remove link for remove-month-correction\/1
-    And the remove page is displayed for the October 2023 correction
+    And the remove page is displayed for the October correction from two years ago
     And the user answers yes on the remove-month-correction/1 page
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
@@ -387,7 +398,8 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/2 page
     When the user is on the 2024-M1/vat-correction-months page
     Then the user selects the remove link for remove-month-correction\/2
-    And the remove page is displayed for the November 2023 correction
+    And the user is on the remove-month-correction/2 page
+    And the remove page is displayed for the November correction from two years ago
     And the user answers yes on the remove-month-correction/2 page
     And the corrections list is showing one correction for October 2023
     Then the user answers yes on the 2024-M1/vat-correction-months-add page
@@ -479,6 +491,7 @@ Feature: Change and Remove Feature
     Then the user is on the correction-list-countries/3 page
     And the user answers no on the correction-list-countries/3 page
     When the user selects the remove link for remove-month-correction\/1
+    And the user is on the remove-month-correction/1 page
     And the remove page is displayed for the October correction from two years ago
     Then the user answers yes on the remove-month-correction/1 page
     And the user is on the thisYear-M1/vat-correction-months-add page
@@ -546,11 +559,13 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/2 page
     When the user is on the 2023-M12/vat-correction-months page
     Then the user selects the remove link for remove-month-correction\/2
-    And the remove page is displayed for the October 2023 correction
+    And the user is on the remove-month-correction/2 page
+    And the remove page is displayed for the October correction from two years ago
     And the user answers yes on the remove-month-correction/2 page
     And the corrections list is showing one correction for November 2023
     Then the user selects the remove link for remove-month-correction\/1
-    And the remove page is displayed for the November 2023 correction
+    And the user is on the remove-month-correction/1 page
+    And the remove page is displayed for the November correction from two years ago
     And the user answers yes on the remove-month-correction/1 page
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page

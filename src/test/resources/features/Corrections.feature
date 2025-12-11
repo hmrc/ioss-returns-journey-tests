@@ -100,6 +100,7 @@ Feature: Corrections Feature
     When the user picks year 2023 on the correction-return-year/1 page
     Then the user picks month October on the correction-return-month/1 page
     And the user chooses the country Germany as their first correction within the first correction period
+    And the user is on the country-vat-correction-amount/1/1 page
     And the previously declared text is displayed above the amount box
     And the user adds -2500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
@@ -108,6 +109,7 @@ Feature: Corrections Feature
     Then the user is on the correction-list-countries/1 page
     And the user answers yes on the correction-list-countries/1 page
     And the user chooses the country France as their second correction within the first correction period
+    And the user is on the country-vat-correction-amount/1/2 page
     And the previously declared text is displayed above the amount box
     And the user adds 2600 on the second country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/2 page

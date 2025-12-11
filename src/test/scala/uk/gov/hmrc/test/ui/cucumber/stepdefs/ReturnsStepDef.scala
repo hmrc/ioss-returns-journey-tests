@@ -916,10 +916,13 @@ class ReturnsStepDef extends BaseStepDef {
     val yearString = if (year == "two years ago") {
       LocalDate.now().minusYears(2).getYear
     } else {
-      ""
+      LocalDate.now().minusYears(1).getYear
     }
 
+    println(s"the year is $yearString")
+
     val heading = driver.findElement(By.tagName("h1")).getText
+    println(heading)
     Assert.assertTrue(
       heading.equals(
         s"Are you sure you want to remove this correction for $month $yearString?"
