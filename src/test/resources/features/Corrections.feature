@@ -68,7 +68,6 @@ Feature: Corrections Feature
     When the user answers yes on the 2023-M12/vat-correction-months-add page
     Then the user picks year 2023 on the correction-return-year/2 page
     Then the user picks month November on the correction-return-month/2 page
-    And the user clicks the continue button
     And the user chooses the country France as their first correction within the second correction period
     And the user adds 1500 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
@@ -344,6 +343,7 @@ Feature: Corrections Feature
     And the user is on the vat-payable-check/1/2 page
     And the user clicks the continue button
     And the user answers no on the correction-list-countries/1 page
+    And the user is on the 2023-M12/vat-correction-months page
     When the user clicks the continue button
     Then the user is on the check-your-answers page
     And the user clicks the submit button
