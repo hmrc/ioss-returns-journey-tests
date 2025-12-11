@@ -468,6 +468,7 @@ Feature: Change and Remove Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
+    And the user is on the thisYear-M1/vat-correction-months-add page
     Then the user selects the change link for correction-list-countries\/2
     And the user is on the correction-list-countries/2 page
     And the country list page is displayed for the December last year correction
