@@ -916,7 +916,7 @@ class ReturnsStepDef extends BaseStepDef {
     val yearString = if (year == "two years ago") {
       LocalDate.now().minusYears(2).getYear
     } else {
-      ""
+      LocalDate.now().minusYears(1).getYear
     }
 
     val heading = driver.findElement(By.tagName("h1")).getText

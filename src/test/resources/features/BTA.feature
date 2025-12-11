@@ -112,7 +112,9 @@ Feature: BTA Feature
     Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects Austria on the first sold-to-country page
+    And the user is on the vat-rates-from-country/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved?continueUrl= page
     Then the user manually navigates to the continue-return-from-bta/2023-M12 link
     And the user is on the 2023-M12/return-continue page
 
@@ -124,7 +126,9 @@ Feature: BTA Feature
     Then the user answers yes on the 2023-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects Austria on the first sold-to-country page
+    And the user is on the vat-rates-from-country/1 page
     When the user clicks the Save and come back later button
+    And the user is on the 2023-M12/progress-saved?continueUrl= page
     Then the user manually navigates to the continue-return-from-bta/2023-M12?lang=cy link
     And the user is directed to the Welsh transition page
     Then the user clicks the continue button
