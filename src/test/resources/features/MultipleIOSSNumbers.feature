@@ -41,6 +41,7 @@ Feature: Multiple IOSS Numbers Feature
     Then the user is on the return-registration-selection page
     And the correct previous IOSS numbers are displayed
     When the user selects the returns for IOSS number IM9007230001
+    And the user is on the view-returns-multiple-reg page
     Then the correct IOSS number IM9007230001 is displayed on the page
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for first previous registration
@@ -52,6 +53,7 @@ Feature: Multiple IOSS Numbers Feature
     When the user clicks on the view returns link for multiple previous registrations
     Then the user is on the return-registration-selection page
     When the user selects the returns for IOSS number IM9007230002
+    And the user is on the view-returns-multiple-reg page
     Then the correct IOSS number IM9007230002 is displayed on the page
     And the user clicks the Show all sections accordion
     When the user clicks on the first return month for second previous registration
