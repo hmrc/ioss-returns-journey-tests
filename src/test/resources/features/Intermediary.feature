@@ -228,7 +228,6 @@ Feature: Intermediary Returns Feature
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
-    And the correct details are shown on the acknowledgement page for NETP IM9001144771
 
   Scenario: Correct company information displayed on a return for UK based NETP with UTR
     Given the user accesses the authority wizard
@@ -237,7 +236,6 @@ Feature: Intermediary Returns Feature
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with UTR
     And the user answers no on the sold-goods page
-    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
@@ -249,7 +247,6 @@ Feature: Intermediary Returns Feature
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with NINO
     And the user answers no on the sold-goods page
-    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
@@ -273,7 +270,6 @@ Feature: Intermediary Returns Feature
     And the user is on the sold-goods page
     And the correct caption is displayed for Non-UK with FTR
     And the user answers no on the sold-goods page
-    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
