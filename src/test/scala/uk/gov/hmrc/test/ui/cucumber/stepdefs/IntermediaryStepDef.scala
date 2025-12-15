@@ -29,4 +29,10 @@ class IntermediaryStepDef extends BaseStepDef {
     IntermediaryPage.checkNetpReturn(iossNumber)
   }
 
+  Then(
+    """^the correct caption is displayed for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkCaption(scenario)
+  }
+
 }

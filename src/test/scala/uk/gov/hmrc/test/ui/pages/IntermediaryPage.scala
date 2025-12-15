@@ -51,4 +51,43 @@ object IntermediaryPage extends BasePage {
     }
   }
 
+  def checkCaption(scenario: String): Unit = {
+    val caption = driver.findElement(By.tagName("h1")).getText
+
+    scenario match {
+      case "UK with VRN"     =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return VRN March 2025"
+          )
+        )
+      case "UK with UTR"     =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return UTR January 2025"
+          )
+        )
+      case "UK with NINO"    =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return NINO January 2025"
+          )
+        )
+      case "Non-UK with VRN" =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return Non-UK VRN March 2025"
+          )
+        )
+      case "Non-UK with FTR" =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return FTR January 2025"
+          )
+        )
+      case _                 =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
 }
