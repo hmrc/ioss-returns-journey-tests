@@ -277,6 +277,7 @@ Feature: Intermediary Returns Feature
     And the user is on the sold-goods page
     And the correct caption is displayed for Non-UK with FTR
     And the user answers no on the sold-goods page
+    And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
     And the correct details are displayed at the top of check-your-answers for Non-UK with FTR
     And the user clicks the submit button
