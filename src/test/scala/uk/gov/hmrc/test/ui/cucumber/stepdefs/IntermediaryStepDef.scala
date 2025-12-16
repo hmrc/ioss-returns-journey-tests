@@ -35,4 +35,10 @@ class IntermediaryStepDef extends BaseStepDef {
     IntermediaryPage.checkCaption(scenario)
   }
 
+  Then(
+    """^the correct details are displayed at the top of check-your-answers for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkCYA(scenario)
+  }
+
 }

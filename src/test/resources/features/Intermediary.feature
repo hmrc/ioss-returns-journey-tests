@@ -226,6 +226,7 @@ Feature: Intermediary Returns Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for UK with VRN
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
@@ -237,6 +238,7 @@ Feature: Intermediary Returns Feature
     And the correct caption is displayed for UK with UTR
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for UK with UTR
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
@@ -248,6 +250,7 @@ Feature: Intermediary Returns Feature
     And the correct caption is displayed for UK with NINO
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for UK with NINO
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
@@ -259,6 +262,7 @@ Feature: Intermediary Returns Feature
     And the correct caption is displayed for Non-UK with VRN
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for Non-UK with VRN
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
@@ -271,6 +275,7 @@ Feature: Intermediary Returns Feature
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for Non-UK with FTR
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 

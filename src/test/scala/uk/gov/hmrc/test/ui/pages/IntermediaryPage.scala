@@ -90,4 +90,58 @@ object IntermediaryPage extends BasePage {
     }
   }
 
+  def checkCYA(scenario: String): Unit = {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    scenario match {
+      case "UK with VRN"     =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return VRN\n" +
+              "IOSS number IM9001144771\n" +
+              "UK VAT registration number 159951159\n" +
+              "Return month March 2025"
+          )
+        )
+      case "UK with UTR"     =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return UTR\n" +
+              "IOSS number IM9001144773\n" +
+              "Tax reference 1234567890\n" +
+              "Return month January 2025"
+          )
+        )
+      case "UK with NINO"    =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return NINO\n" +
+              "IOSS number IM9001144778\n" +
+              "Tax reference AA112233D\n" +
+              "Return month January 2025"
+          )
+        )
+      case "Non-UK with VRN" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return Non-UK VRN\n" +
+              "IOSS number IM9001144775\n" +
+              "UK VAT registration number 159951111\n" +
+              "Return month January 2025"
+          )
+        )
+      case "Non-UK with FTR" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return FTR\n" +
+              "IOSS number IM9001144777\n" +
+              "Tax reference CA123456\n" +
+              "Return month March 2025"
+          )
+        )
+      case _                 =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
 }
