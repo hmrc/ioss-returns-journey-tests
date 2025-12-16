@@ -76,13 +76,13 @@ object IntermediaryPage extends BasePage {
       case "Non-UK with VRN" =>
         Assert.assertTrue(
           caption.contains(
-            "NETP Return Non-UK VRN March 2025"
+            "NETP Return Non-UK VRN January 2025"
           )
         )
       case "Non-UK with FTR" =>
         Assert.assertTrue(
           caption.contains(
-            "NETP Return FTR January 2025"
+            "NETP Return FTR March 2025"
           )
         )
       case _                 =>
