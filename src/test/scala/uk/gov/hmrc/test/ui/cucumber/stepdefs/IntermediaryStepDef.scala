@@ -41,4 +41,10 @@ class IntermediaryStepDef extends BaseStepDef {
     IntermediaryPage.checkCYA(scenario)
   }
 
+  Then(
+    """^the correct submitted returns caption is displayed for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkSubmittedReturnsCaption(scenario)
+  }
+
 }

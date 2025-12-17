@@ -145,9 +145,11 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the submitted-returns journey for NETP IM9001144771
     Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for UK with VRN
     And the user clicks the Show all sections accordion
     When the user clicks on the January 2025 link
     Then the user is on the past-returns/2025-M1 page
+    And the correct submitted returns caption is displayed for UK with VRN
     And the return for January 2025 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
     When the user clicks back on the browser
@@ -159,9 +161,11 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001001001 accesses the submitted-returns journey for NETP IM9001001001
     Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for UK with NINO
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2024 link
     Then the user is on the past-returns/2024-M12 page
+    And the correct submitted returns caption is displayed for UK with NINO
     And the return for December 2024 is displayed to the user
     Then the correct sections are displayed for a nil return
     When the user clicks back on the browser

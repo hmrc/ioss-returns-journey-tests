@@ -144,4 +144,25 @@ object IntermediaryPage extends BasePage {
     }
   }
 
+  def checkSubmittedReturnsCaption(scenario: String): Unit = {
+    val caption = driver.findElement(By.tagName("body")).getText
+
+    scenario match {
+      case "UK with VRN"  =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return VRN"
+          )
+        )
+      case "UK with NINO" =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return NINO"
+          )
+        )
+      case _              =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
 }
