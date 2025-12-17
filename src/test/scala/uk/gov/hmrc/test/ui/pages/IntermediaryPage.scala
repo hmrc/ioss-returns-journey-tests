@@ -117,7 +117,7 @@ object IntermediaryPage extends BasePage {
           htmlBody.contains(
             "Business name NETP Return NINO\n" +
               "IOSS number IM9001144778\n" +
-              "Tax reference AA112233D\n" +
+              "National Insurance number AA112233D\n" +
               "Return month January 2025"
           )
         )
