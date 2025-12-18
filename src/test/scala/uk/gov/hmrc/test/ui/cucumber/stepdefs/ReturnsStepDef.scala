@@ -504,13 +504,18 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("You've completed your final return."))
   }
 
-  Then("""^they (are not|are) presented with the heading for their final return$""") { (finalReturn: String) =>
-    val htmlH1 = driver.findElement(By.tagName("h1")).getText
-    if (finalReturn == "are not") {
-      Assert.assertFalse(htmlH1.equals("Do you want to start your final return?"))
-    } else {
-      Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
-    }
+  Then("""^they (are not|are) presented with the (heading|NETP heading) for their final return$""") {
+    (finalReturn: String, headingVersion: String) =>
+      val htmlH1 = driver.findElement(By.tagName("h1")).getText
+      if (finalReturn == "are not") {
+        Assert.assertFalse(htmlH1.equals("Do you want to start your final return?"))
+      } else {
+        if (headingVersion == "heading") {
+          Assert.assertTrue(htmlH1.equals("Do you want to start your final return?"))
+        } else {
+          Assert.assertTrue(htmlH1.equals("Do you want to start the final return for NETP Return VRN?"))
+        }
+      }
   }
 
   Then("""^they are presented with the regular heading for starting a return$""") { () =>
@@ -544,23 +549,35 @@ class ReturnsStepDef extends BaseStepDef {
     }
   }
 
-  Then("""^the previously declared text (is not|is) displayed above the amount box$""") { (whichVersion: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    if (whichVersion == "is not") {
-      Assert.assertFalse(
-        htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
-      )
-      Assert.assertFalse(
-        htmlBody.contains("Your most recent declaration for this month is")
-      )
-    } else {
-      Assert.assertTrue(
-        htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
-      )
-      Assert.assertTrue(
-        htmlBody.contains("Your most recent declaration for this month is")
-      )
-    }
+  Then("""^the previously declared (NETP text|text) (is not|is) displayed above the amount box$""") {
+    (trader: String, whichVersion: String) =>
+      val htmlBody = driver.findElement(By.tagName("body")).getText
+      if (whichVersion == "is not") {
+        Assert.assertFalse(
+          htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
+        )
+        Assert.assertFalse(
+          htmlBody.contains("Your most recent declaration for this month is")
+        )
+      } else {
+        if (trader == "text") {
+          Assert.assertTrue(
+            htmlBody.contains("Enter a minus value if you declared too much in your previous return.")
+          )
+
+          Assert.assertTrue(
+            htmlBody.contains("Your most recent declaration for this month is")
+          )
+        } else {
+          Assert.assertTrue(
+            htmlBody.contains("Enter a minus value if too much was declared in the previous return.")
+          )
+
+          Assert.assertTrue(
+            htmlBody.contains("Their most recent declaration for this month is")
+          )
+        }
+      }
   }
 
   Then("""^the no payments due for minus corrections text (will not|will) be displayed$""") { (whichVersion: String) =>
@@ -667,15 +684,23 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user transferring (from|to) another MSID is (offered|submitting) a (partial|full) return for the correct period$"""
-  ) { (transferDirection: String, returnStage: String, returnType: String) =>
+    """^the (NETP|user) transferring (from|to) another MSID is (offered|submitting) a (partial|full) return for the correct period$"""
+  ) { (trader: String, transferDirection: String, returnStage: String, returnType: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     if (transferDirection == "to" && returnStage == "offered" && returnType == "partial") {
-      Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
+      if (trader == "user") {
+        Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
+      } else {
+        Assert.assertTrue(htmlBody.contains("Only include their sales up to 11 February 2024."))
+      }
     } else if (transferDirection == "to" && returnStage == "submitted" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("1 to 11 February 2024"))
     } else if (transferDirection == "from" && returnStage == "offered" && returnType == "partial") {
-      Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
+      if (trader == "user") {
+        Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
+      } else {
+        Assert.assertTrue(htmlBody.contains("Only include their sales from 15 January 2024."))
+      }
     } else if (transferDirection == "from" && returnStage == "submitted" && returnType == "partial") {
       Assert.assertTrue(htmlBody.contains("15 to 31 January 2024"))
     } else {
