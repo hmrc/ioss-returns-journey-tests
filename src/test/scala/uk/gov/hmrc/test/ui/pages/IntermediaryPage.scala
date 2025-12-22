@@ -51,4 +51,118 @@ object IntermediaryPage extends BasePage {
     }
   }
 
+  def checkCaption(scenario: String): Unit = {
+    val caption = driver.findElement(By.tagName("h1")).getText
+
+    scenario match {
+      case "UK with VRN"     =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return VRN March 2025"
+          )
+        )
+      case "UK with UTR"     =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return UTR January 2025"
+          )
+        )
+      case "UK with NINO"    =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return NINO January 2025"
+          )
+        )
+      case "Non-UK with VRN" =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return Non-UK VRN January 2025"
+          )
+        )
+      case "Non-UK with FTR" =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return FTR March 2025"
+          )
+        )
+      case _                 =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
+  def checkCYA(scenario: String): Unit = {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    scenario match {
+      case "UK with VRN"     =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return VRN\n" +
+              "IOSS number IM9001144771\n" +
+              "UK VAT registration number 159951159\n" +
+              "Return month March 2025"
+          )
+        )
+      case "UK with UTR"     =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return UTR\n" +
+              "IOSS number IM9001144773\n" +
+              "Tax reference 1234567890\n" +
+              "Return month January 2025"
+          )
+        )
+      case "UK with NINO"    =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return NINO\n" +
+              "IOSS number IM9001144778\n" +
+              "National Insurance number AA112233D\n" +
+              "Return month January 2025"
+          )
+        )
+      case "Non-UK with VRN" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return Non-UK VRN\n" +
+              "IOSS number IM9001144775\n" +
+              "UK VAT registration number 159951111\n" +
+              "Return month January 2025"
+          )
+        )
+      case "Non-UK with FTR" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "Business name NETP Return FTR\n" +
+              "IOSS number IM9001144777\n" +
+              "Tax reference CA123456\n" +
+              "Return month March 2025"
+          )
+        )
+      case _                 =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
+  def checkSubmittedReturnsCaption(scenario: String): Unit = {
+    val caption = driver.findElement(By.tagName("body")).getText
+
+    scenario match {
+      case "UK with VRN"  =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return VRN"
+          )
+        )
+      case "UK with NINO" =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return NINO"
+          )
+        )
+      case _              =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
 }

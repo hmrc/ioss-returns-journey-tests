@@ -29,4 +29,22 @@ class IntermediaryStepDef extends BaseStepDef {
     IntermediaryPage.checkNetpReturn(iossNumber)
   }
 
+  Then(
+    """^the correct caption is displayed for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkCaption(scenario)
+  }
+
+  Then(
+    """^the correct details are displayed at the top of check-your-answers for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkCYA(scenario)
+  }
+
+  Then(
+    """^the correct submitted returns caption is displayed for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkSubmittedReturnsCaption(scenario)
+  }
+
 }

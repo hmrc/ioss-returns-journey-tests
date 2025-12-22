@@ -145,9 +145,11 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the submitted-returns journey for NETP IM9001144771
     Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for UK with VRN
     And the user clicks the Show all sections accordion
     When the user clicks on the January 2025 link
     Then the user is on the past-returns/2025-M1 page
+    And the correct submitted returns caption is displayed for UK with VRN
     And the return for January 2025 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
     When the user clicks back on the browser
@@ -159,9 +161,11 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001001001 accesses the submitted-returns journey for NETP IM9001001001
     Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for UK with NINO
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2024 link
     Then the user is on the past-returns/2024-M12 page
+    And the correct submitted returns caption is displayed for UK with NINO
     And the return for December 2024 is displayed to the user
     Then the correct sections are displayed for a nil return
     When the user clicks back on the browser
@@ -216,5 +220,69 @@ Feature: Intermediary Returns Feature
     And the user transferring to another MSID is submitting a partial return for the correct period
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
+
+  Scenario: Correct company information displayed on a return for UK based NETP with VRN
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
+    Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the sold-goods page
+    And the correct caption is displayed for UK with VRN
+    And the user answers no on the sold-goods page
+    And the user answers no on the correct-previous-return page
+    Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for UK with VRN
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+  Scenario: Correct company information displayed on a return for UK based NETP with UTR
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144773
+    Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the sold-goods page
+    And the correct caption is displayed for UK with UTR
+    And the user answers no on the sold-goods page
+    Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for UK with UTR
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+  Scenario: Correct company information displayed on a return for UK based NETP with NINO
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144778
+    Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the sold-goods page
+    And the correct caption is displayed for UK with NINO
+    And the user answers no on the sold-goods page
+    Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for UK with NINO
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+  Scenario: Correct company information displayed on a return for Non-UK based NETP with VRN
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144775
+    Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the sold-goods page
+    And the correct caption is displayed for Non-UK with VRN
+    And the user answers no on the sold-goods page
+    Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for Non-UK with VRN
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+  Scenario: Correct company information displayed on a return for Non-UK based NETP with FTR
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144777
+    Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the sold-goods page
+    And the correct caption is displayed for Non-UK with FTR
+    And the user answers no on the sold-goods page
+    And the user answers no on the correct-previous-return page
+    Then the user is on the check-your-answers page
+    And the correct details are displayed at the top of check-your-answers for Non-UK with FTR
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+
 
 
