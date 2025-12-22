@@ -110,14 +110,18 @@ object AuthPage extends BasePage {
     driver.getCurrentUrl should startWith(stubUrl)
 
     val endpoint = if (journey == "returns") {
-      "start-return-as-intermediary"
+      s"start-return-as-intermediary/$iossNumber"
     } else if (journey == "payments") {
-      "start-payment-as-intermediary"
+      s"start-payment-as-intermediary/$iossNumber"
+    } else if (journey == "multiple saved returns") {
+      "start-intermediary-save-for-later-return/IM9006655443/2025-M3"
+    } else if (journey == "single saved return") {
+      "start-intermediary-save-for-later-return/IM9006655551/2025-M1"
     } else {
-      "start-returns-history-as-intermediary"
+      s"start-returns-history-as-intermediary/$iossNumber"
     }
 
-    driver.findElement(By.id("redirectionUrl")).sendKeys(s"$returnsUrl/$endpoint/$iossNumber")
+    driver.findElement(By.id("redirectionUrl")).sendKeys(s"$returnsUrl/$endpoint")
 
     val selectAffinityGroup = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
