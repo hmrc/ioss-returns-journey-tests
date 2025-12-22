@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.cucumber.utils
 
 import org.mongodb.scala.MongoClient
+import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.Filters
 
 import scala.concurrent.Await
@@ -62,5 +63,35 @@ object MongoConnection {
     dropRecord("ioss-returns", "saved-user-answers", "IM9009999995")
     dropRecord("ioss-returns", "saved-user-answers", "IM9007777777")
     dropRecord("ioss-returns", "saved-user-answers", "IM9001112222")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001144771")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001144773")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001144775")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001144777")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001144778")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001001001")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9001144884")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9005555551")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9005555552")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655441")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655442")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655443")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655551")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655552")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655553")
   }
+
+  def insert(source: List[String], database: String, collection: String): Unit =
+    try {
+      val db  = mongoClient.getDatabase(database)
+      val col = db.getCollection(collection)
+      source.map { e =>
+        val doc = Document(e)
+        Await.result(
+          col.insertOne(doc).toFutureOption(),
+          timeout
+        )
+      }
+    } catch {
+      case ex: Exception => println(s"Error inserting data into MongoDB: $ex")
+    }
 }
