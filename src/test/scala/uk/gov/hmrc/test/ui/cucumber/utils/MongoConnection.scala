@@ -73,6 +73,11 @@ object MongoConnection {
     dropRecord("ioss-returns", "saved-user-answers", "IM9005555551")
     dropRecord("ioss-returns", "saved-user-answers", "IM9005555552")
     dropRecord("ioss-returns", "saved-user-answers", "IM9006655441")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655442")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655443")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655551")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655552")
+    dropRecord("ioss-returns", "saved-user-answers", "IM9006655553")
   }
 
   def insert(source: List[String], database: String, collection: String): Unit =
