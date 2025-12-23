@@ -47,4 +47,10 @@ class IntermediaryStepDef extends BaseStepDef {
     IntermediaryPage.checkSubmittedReturnsCaption(scenario)
   }
 
+  Then(
+    """^the correct start return heading is displayed for a (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR) client"""
+  ) { (scenario: String) =>
+    IntermediaryPage.checkReturnStartHeading(scenario)
+  }
+
 }

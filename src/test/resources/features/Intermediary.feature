@@ -65,7 +65,7 @@ Feature: Intermediary Returns Feature
     Then the user picks month January on the correction-return-month/1 page
     And the user chooses the country Germany as their first correction within the first correction period
     And the user is on the country-vat-correction-amount/1/1 page
-    And the previously declared text is displayed above the amount box
+    And the previously declared NETP text is displayed above the amount box
     And the user adds -500 on the first country-vat-correction-amount page for the first correction period
     And the user answers yes on the vat-payable-confirm/1/1 page
     And the user is on the vat-payable-check/1/1 page
@@ -83,7 +83,7 @@ Feature: Intermediary Returns Feature
     Then the user picks month February on the correction-return-month/2 page
     And the user chooses the country Germany as their first correction within the second correction period
     And the user is on the country-vat-correction-amount/2/1 page
-    And the previously declared text is displayed above the amount box
+    And the previously declared NETP text is displayed above the amount box
     And the user adds 125.25 on the first country-vat-correction-amount page for the second correction period
     And the user answers yes on the vat-payable-confirm/2/1 page
     And the user is on the vat-payable-check/2/1 page
@@ -194,9 +194,9 @@ Feature: Intermediary Returns Feature
 
   Scenario: A NETP who has transferred from another member state has a partial first return
     Given the user accesses the authority wizard
-    And intermediary IN9005999997 accesses the returns journey for NETP IM9005999997
+    And intermediary IN9005999997 accesses the returns journey for NETP IM9005555551
     And the user is on the 2024-M1/start-return page
-    Then the user transferring from another MSID is offered a partial return for the correct period
+    Then the NETP transferring from another MSID is offered a partial return for the correct period
     And the user answers yes on the 2024-M1/start-return page
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
@@ -206,10 +206,10 @@ Feature: Intermediary Returns Feature
 
   Scenario: A NETP who is transferring to another member state has a partial final return
     Given the user accesses the authority wizard
-    And intermediary IN9005999997 accesses the returns journey for NETP IM9009999555
+    And intermediary IN9005999997 accesses the returns journey for NETP IM9005555552
     And the user is on the 2024-M2/start-return page
-    Then they are presented with the heading for their final return
-    And the user transferring to another MSID is offered a partial return for the correct period
+    Then they are presented with the NETP heading for their final return
+    And the NETP transferring to another MSID is offered a partial return for the correct period
     And the user answers yes on the 2024-M2/start-return page
     And the user answers no on the sold-goods page
     Then the user is on the correct-previous-return page
@@ -223,8 +223,10 @@ Feature: Intermediary Returns Feature
 
   Scenario: Correct company information displayed on a return for UK based NETP with VRN
     Given the user accesses the authority wizard
-    And intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
-    Then the user answers yes on the 2025-M3/start-return page
+    When intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
+    Then the user is on the 2025-M3/start-return page
+    And the correct start return heading is displayed for a UK with VRN client
+    And the user answers yes on the 2025-M3/start-return page
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with VRN
     And the user answers no on the sold-goods page
@@ -237,6 +239,8 @@ Feature: Intermediary Returns Feature
   Scenario: Correct company information displayed on a return for UK based NETP with UTR
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144773
+    Then the user is on the 2025-M1/start-return page
+    And the correct start return heading is displayed for a UK with UTR client
     Then the user answers yes on the 2025-M1/start-return page
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with UTR
@@ -249,6 +253,8 @@ Feature: Intermediary Returns Feature
   Scenario: Correct company information displayed on a return for UK based NETP with NINO
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144778
+    Then the user is on the 2025-M1/start-return page
+    And the correct start return heading is displayed for a UK with NINO client
     Then the user answers yes on the 2025-M1/start-return page
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with NINO
@@ -261,6 +267,8 @@ Feature: Intermediary Returns Feature
   Scenario: Correct company information displayed on a return for Non-UK based NETP with VRN
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144775
+    Then the user is on the 2025-M1/start-return page
+    And the correct start return heading is displayed for a Non-UK with VRN client
     Then the user answers yes on the 2025-M1/start-return page
     And the user is on the sold-goods page
     And the correct caption is displayed for Non-UK with VRN
@@ -273,6 +281,8 @@ Feature: Intermediary Returns Feature
   Scenario: Correct company information displayed on a return for Non-UK based NETP with FTR
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144777
+    Then the user is on the 2025-M3/start-return page
+    And the correct start return heading is displayed for a Non-UK with FTR client
     Then the user answers yes on the 2025-M3/start-return page
     And the user is on the sold-goods page
     And the correct caption is displayed for Non-UK with FTR

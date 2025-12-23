@@ -165,4 +165,43 @@ object IntermediaryPage extends BasePage {
     }
   }
 
+  def checkReturnStartHeading(scenario: String): Unit = {
+    val caption = driver.findElement(By.tagName("h1")).getText
+
+    scenario match {
+      case "UK with VRN"     =>
+        Assert.assertTrue(
+          caption.contains(
+            "Do you want to start the March 2025 return for NETP Return VRN?"
+          )
+        )
+      case "UK with UTR"     =>
+        Assert.assertTrue(
+          caption.contains(
+            "Do you want to start the January 2025 return for NETP Return UTR?"
+          )
+        )
+      case "UK with NINO"    =>
+        Assert.assertTrue(
+          caption.contains(
+            "Do you want to start the January 2025 return for NETP Return NINO?"
+          )
+        )
+      case "Non-UK with VRN" =>
+        Assert.assertTrue(
+          caption.contains(
+            "Do you want to start the January 2025 return for NETP Return Non-UK VRN?"
+          )
+        )
+      case "Non-UK with FTR" =>
+        Assert.assertTrue(
+          caption.contains(
+            "Do you want to start the March 2025 return for NETP Return FTR?"
+          )
+        )
+      case _                 =>
+        throw new Exception("Scenario doesn't exist")
+    }
+  }
+
 }
