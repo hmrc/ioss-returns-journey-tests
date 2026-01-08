@@ -150,13 +150,13 @@ class ReturnsStepDef extends BaseStepDef {
     }
   }
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
-    if (url startsWith "thisYear-") {
+    if (url startsWith "lastYear-") {
 
-      val thisYear    = LocalDate.now().getYear
+      val lastYear    = LocalDate.now().minusYears(1).getYear
       val newUrl      = url.substring(8)
-      val thisYearUrl = s"$thisYear$newUrl"
+      val lastYearUrl = s"$lastYear$newUrl"
 
-      CommonPage.checkUrl(thisYearUrl)
+      CommonPage.checkUrl(lastYearUrl)
     } else {
       CommonPage.checkUrl(url)
     }
