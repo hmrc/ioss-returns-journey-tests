@@ -343,11 +343,11 @@ Feature: Change and Remove Feature
     And the user answers no on the correction-list-countries/2 page
     When the user is on the 2024-M1/vat-correction-months page
     Then the user selects the remove link for remove-month-correction\/2
-    And the remove page is displayed for the November correction from two years ago
+    And the remove page is displayed for the November correction from 2023
     And the user answers yes on the remove-month-correction/2 page
     And the corrections list is showing one correction for October 2023
     Then the user selects the remove link for remove-month-correction\/1
-    And the remove page is displayed for the October correction from two years ago
+    And the remove page is displayed for the October correction from 2023
     And the user answers yes on the remove-month-correction/1 page
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
@@ -401,7 +401,7 @@ Feature: Change and Remove Feature
     When the user is on the 2024-M1/vat-correction-months page
     Then the user selects the remove link for remove-month-correction\/2
     And the user is on the remove-month-correction/2 page
-    And the remove page is displayed for the November correction from two years ago
+    And the remove page is displayed for the November correction from 2023
     And the user answers yes on the remove-month-correction/2 page
     And the corrections list is showing one correction for October 2023
     Then the user answers yes on the 2024-M1/vat-correction-months-add page
@@ -471,7 +471,7 @@ Feature: Change and Remove Feature
     And the user is on the lastYear-M12/vat-correction-months-add page
     Then the user selects the change link for correction-list-countries\/2
     And the user is on the correction-list-countries/2 page
-    And the country list page is displayed for the December last year correction
+    And the country list page is displayed for the November last year correction
     And the user answers yes on the correction-list-countries/2 page
     And the user chooses the country Belgium as their second correction within the second correction period
     And the user answers yes on the add-new-country/2/2 page
@@ -498,7 +498,7 @@ Feature: Change and Remove Feature
     And the remove page is displayed for the October correction from two years ago
     Then the user answers yes on the remove-month-correction/1 page
     And the user is on the lastYear-M12/vat-correction-months-add page
-    And the corrections list is showing 2 corrections for December two years ago and December last year
+    And the corrections list is showing 2 corrections for December two years ago and November last year
     Then the user answers no on the lastYear-M12/vat-correction-months-add page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
@@ -563,12 +563,12 @@ Feature: Change and Remove Feature
     When the user is on the 2023-M12/vat-correction-months page
     Then the user selects the remove link for remove-month-correction\/2
     And the user is on the remove-month-correction/2 page
-    And the remove page is displayed for the October correction from two years ago
+    And the remove page is displayed for the October correction from 2023
     And the user answers yes on the remove-month-correction/2 page
     And the corrections list is showing one correction for November 2023
     Then the user selects the remove link for remove-month-correction\/1
     And the user is on the remove-month-correction/1 page
-    And the remove page is displayed for the November correction from two years ago
+    And the remove page is displayed for the November correction from 2023
     And the user answers yes on the remove-month-correction/1 page
     Then the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page

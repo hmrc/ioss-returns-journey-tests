@@ -77,6 +77,13 @@ class ReturnsStepDef extends BaseStepDef {
       val thisYearUrl = s"$thisYear$newUrl"
 
       CommonPage.checkUrl(thisYearUrl)
+    } else if (url startsWith "lastYear-") {
+
+      val lastYear    = LocalDate.now().minusYears(1).getYear
+      val newUrl      = url.substring(8)
+      val lastYearUrl = s"$lastYear$newUrl"
+
+      CommonPage.checkUrl(lastYearUrl)
     } else {
       CommonPage.checkUrl(url)
     }
@@ -940,6 +947,8 @@ class ReturnsStepDef extends BaseStepDef {
   ) { (month: String, year: String) =>
     val yearString = if (year == "two years ago") {
       LocalDate.now().minusYears(2).getYear
+    } else if (year == "2023") {
+      LocalDate.now().withYear(2023).getYear
     } else {
       LocalDate.now().minusYears(1).getYear
     }
@@ -968,7 +977,7 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the corrections list is showing 2 corrections for December two years ago and December last year$"""
+    """^the corrections list is showing 2 corrections for December two years ago and November last year$"""
   ) { () =>
     val heading  = driver.findElement(By.tagName("h1")).getText
     val htmlBody = driver.findElement(By.tagName("body")).getText
@@ -982,7 +991,7 @@ class ReturnsStepDef extends BaseStepDef {
       htmlBody.contains(s"December ${LocalDate.now().minusYears(2).getYear}")
     )
     Assert.assertTrue(
-      htmlBody.contains(s"December ${LocalDate.now().minusYears(1).getYear}")
+      htmlBody.contains(s"November ${LocalDate.now().minusYears(1).getYear}")
     )
   }
 
@@ -998,12 +1007,12 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the country list page is displayed for the December last year correction$"""
+    """^the country list page is displayed for the November last year correction$"""
   ) { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
       htmlBody.contains(
-        s"Correction month: December ${LocalDate.now().minusYears(1).getYear}"
+        s"Correction month: November ${LocalDate.now().minusYears(1).getYear}"
       )
     )
   }
