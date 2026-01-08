@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.CommonPage.clickContinue
 import uk.gov.hmrc.test.ui.pages.{AuthPage, IntermediaryPage}
 
 class IntermediaryStepDef extends BaseStepDef {

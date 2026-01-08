@@ -19,11 +19,13 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.scala.{EN, ScalaDsl}
 import uk.gov.hmrc.selenium.webdriver.Browser
 import uk.gov.hmrc.test.ui.cucumber.utils.MongoConnection
+import uk.gov.hmrc.test.ui.data.SavedReturns
 
 object Hooks extends ScalaDsl with EN with Browser {
   Before {
     startBrowser()
     MongoConnection.dropSavedAnswers()
+    MongoConnection.insert(SavedReturns.data, "ioss-returns", "saved-user-answers")
   }
 
   After {

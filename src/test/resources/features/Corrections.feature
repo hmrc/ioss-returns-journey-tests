@@ -273,7 +273,7 @@ Feature: Corrections Feature
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the thisYear-M1/start-return page
+    Then the user answers yes on the lastYear-M12/start-return page
     And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year two years ago on the correction-return-year/1 page
@@ -286,9 +286,9 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    When the user answers yes on the thisYear-M1/vat-correction-months-add page
+    When the user answers yes on the lastYear-M12/vat-correction-months-add page
     Then the user picks year last year on the correction-return-year/2 page
-    When the user picks month October on the correction-return-month/2 page
+    When the user picks month November on the correction-return-month/2 page
     And the user chooses the country Denmark as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1235.04 on the first country-vat-correction-amount page for the second correction period
@@ -305,7 +305,7 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    And the user answers yes on the thisYear-M1/vat-correction-months-add page
+    And the user answers yes on the lastYear-M12/vat-correction-months-add page
     When the user picks year two years ago on the correction-return-year/3 page
     Then the user picks month December on the correction-return-month/3 page
     And the user chooses the country Spain as their first correction within the third correction period
@@ -316,7 +316,7 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/3 page
     And the user answers no on the correction-list-countries/3 page
-    And the user answers no on the thisYear-M1/vat-correction-months-add page
+    And the user answers no on the lastYear-M12/vat-correction-months-add page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
@@ -356,7 +356,7 @@ Feature: Corrections Feature
     And a user with VRN 100000001 and IOSS Number IM9001234569 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
-    Then the user answers yes on the thisYear-M1/start-return page
+    Then the user answers yes on the lastYear-M12/start-return page
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -386,9 +386,9 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/1 page
     And the user answers no on the correction-list-countries/1 page
-    And the user answers yes on the thisYear-M1/vat-correction-months-add page
+    And the user answers yes on the lastYear-M12/vat-correction-months-add page
     When the user picks year last year on the correction-return-year/2 page
-    When the user picks month December on the correction-return-month/2 page
+    When the user picks month November on the correction-return-month/2 page
     And the user chooses the country Slovakia as their first correction within the second correction period
     And the user answers yes on the add-new-country/2/1 page
     And the user adds 1234 on the first country-vat-correction-amount page for the second correction period
@@ -406,7 +406,7 @@ Feature: Corrections Feature
     And the user clicks the continue button
     Then the user is on the correction-list-countries/2 page
     And the user answers no on the correction-list-countries/2 page
-    And the user answers no on the thisYear-M1/vat-correction-months-add page
+    And the user answers no on the lastYear-M12/vat-correction-months-add page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
