@@ -293,6 +293,32 @@ Feature: Intermediary Returns Feature
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
 
-
-
+  Scenario: Intermediary can view submitted returns from a previous registration as well as their current registration
+    Given the user accesses the authority wizard
+    And intermediary IN9002230002 accesses the submitted-returns journey for NETP IM9001144667
+    Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for oldest registration client
+    And the user clicks the Show all sections accordion
+    When the user clicks on the first return month for first previous registration
+    And the user is on the past-returns/20 page
+    And the correct submitted returns caption is displayed for oldest registration client
+    Then the correct returns and payments references are shown for IM9001144667
+    Given the user accesses the authority wizard
+    And intermediary IN9002230002 accesses the submitted-returns journey for NETP IM9001144669
+    Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for middle registration client
+    And the user clicks the Show all sections accordion
+    When the user clicks on the first return month for second previous registration
+    And the user is on the past-returns/20 page
+    And the correct submitted returns caption is displayed for middle registration client
+    Then the correct returns and payments references are shown for IM9001144669
+    Given the user accesses the authority wizard
+    And intermediary IN9002230002 accesses the submitted-returns journey for NETP IM9001144671
+    Then the user is on the past-returns page
+    And the correct submitted returns caption is displayed for current registration client
+    And the user clicks the Show all sections accordion
+    When the user clicks on the first return month for current registration
+    And the user is on the past-returns/20 page
+    And the correct submitted returns caption is displayed for current registration client
+    Then the correct returns and payments references are shown for IM9001144671
 

@@ -4,4 +4,4 @@
 BROWSER=$1
 ENVIRONMENT=$2
  
-sbt clean -Dbrowser="${BROWSER:=chrome}" -Denvironment="${ENVIRONMENT:=local}" "testOnly uk.gov.hmrc.test.ui.cucumber.runner.ReturnsRunner" testReport
+sbt clean -Dbrowser="${BROWSER:=chrome}" -Denvironment="${ENVIRONMENT:=local}" -Dbrowser.usePreviousVersion=true "testOnly uk.gov.hmrc.test.ui.cucumber.runner.ReturnsRunner" testReport

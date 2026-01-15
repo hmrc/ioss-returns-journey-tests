@@ -148,19 +148,37 @@ object IntermediaryPage extends BasePage {
     val caption = driver.findElement(By.tagName("body")).getText
 
     scenario match {
-      case "UK with VRN"  =>
+      case "UK with VRN"                 =>
         Assert.assertTrue(
           caption.contains(
             "NETP Return VRN"
           )
         )
-      case "UK with NINO" =>
+      case "UK with NINO"                =>
         Assert.assertTrue(
           caption.contains(
             "NETP Return NINO"
           )
         )
-      case _              =>
+      case "oldest registration client"  =>
+        Assert.assertTrue(
+          caption.contains(
+            "Oldest Registration - Client One"
+          )
+        )
+      case "middle registration client"  =>
+        Assert.assertTrue(
+          caption.contains(
+            "Middle Registration - Client Three"
+          )
+        )
+      case "current registration client" =>
+        Assert.assertTrue(
+          caption.contains(
+            "Current Registration - Client Five"
+          )
+        )
+      case _                             =>
         throw new Exception("Scenario doesn't exist")
     }
   }

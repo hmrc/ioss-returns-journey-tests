@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.pages.CommonPage.clickContinue
 import uk.gov.hmrc.test.ui.pages.{AuthPage, IntermediaryPage}
 
 class IntermediaryStepDef extends BaseStepDef {
@@ -44,7 +42,7 @@ class IntermediaryStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the correct submitted returns caption is displayed for (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR)"""
+    """^the correct submitted returns caption is displayed for (.*)"""
   ) { (scenario: String) =>
     IntermediaryPage.checkSubmittedReturnsCaption(scenario)
   }

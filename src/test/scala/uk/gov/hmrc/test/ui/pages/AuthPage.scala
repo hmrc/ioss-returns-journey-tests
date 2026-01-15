@@ -142,6 +142,24 @@ object AuthPage extends BasePage {
       .findElement(By.id("input-1-0-value"))
       .sendKeys(intermediaryNumber)
 
+    if (intermediaryNumber == "IN9002230002") {
+      driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-INT")
+      driver
+        .findElement(By.id("input-2-0-name"))
+        .sendKeys("IntNumber")
+      driver
+        .findElement(By.id("input-2-0-value"))
+        .sendKeys("IN9001230002")
+
+      driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-INT")
+      driver
+        .findElement(By.id("input-3-0-name"))
+        .sendKeys("IntNumber")
+      driver
+        .findElement(By.id("input-3-0-value"))
+        .sendKeys("IN9000230002")
+    }
+
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
 
   }
