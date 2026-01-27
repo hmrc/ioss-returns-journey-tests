@@ -18,6 +18,9 @@ package uk.gov.hmrc.test.ui.pages
 
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.CommonPage.checkUrl
+
+import java.time.LocalDate
 
 object IntermediaryPage extends BasePage {
 
@@ -220,6 +223,22 @@ object IntermediaryPage extends BasePage {
       case _                 =>
         throw new Exception("Scenario doesn't exist")
     }
+  }
+
+  def checkOldestReturnUrl(): Unit = {
+    val oldestAvailableReturnMonth  = LocalDate.now().minusYears(3).minusMonths(1).getMonthValue
+    val oldestAvailableReturnYear   = LocalDate.now().minusYears(3).minusMonths(1).getYear
+    val oldestAvailablePeriodString = s"$oldestAvailableReturnYear-M$oldestAvailableReturnMonth"
+    checkUrl(s"$oldestAvailablePeriodString/start-return")
+  }
+
+  def checkOverdueHintText(): Unit = {
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "Your client has 4 overdue returns. You must complete their oldest return first."
+      )
+    )
   }
 
 }

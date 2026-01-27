@@ -322,3 +322,28 @@ Feature: Intermediary Returns Feature
     And the correct submitted returns caption is displayed for current registration client
     Then the correct returns and payments references are shown for IM9001144671
 
+  Scenario: Intermediary has excluded NETP with only open returns over 3 years overdue
+    Given the user accesses the authority wizard
+    When intermediary IN9004004004 accesses the returns journey for NETP IM9004004004
+    Then the user is on the no-returns-due page
+
+  Scenario: Intermediary has excluded NETP with only open returns that are both over and under 3 years overdue
+    Given the user accesses the authority wizard
+    When intermediary IN9005005005 accesses the returns journey for NETP IM9005005005
+    Then the oldest available return period is shown to the Intermediary
+    And the hint text showing the current number of overdue returns is displayed
+    And the user answers no on the sold-goods page
+    And the user is on the check-your-answers page
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
+
+  Scenario: Intermediary cannot start a return that is over 3 years overdue
+    Given the user accesses the authority wizard
+    When intermediary IN9005005005 accesses the returns journey for NETP IM9005005005
+    Then the oldest available return period is shown to the Intermediary
+    And the user manually navigates to their more than three years overdue return
+    And the user is on the cannot-start-excluded-return page
+
+
+
+

@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import uk.gov.hmrc.test.ui.pages.{AuthPage, IntermediaryPage}
+import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage, IntermediaryPage}
 
 class IntermediaryStepDef extends BaseStepDef {
 
@@ -51,6 +51,19 @@ class IntermediaryStepDef extends BaseStepDef {
     """^the correct start return heading is displayed for a (UK with VRN|UK with UTR|UK with NINO|Non-UK with VRN|Non-UK with FTR) client"""
   ) { (scenario: String) =>
     IntermediaryPage.checkReturnStartHeading(scenario)
+  }
+
+  Then(
+    """^the oldest available return period is shown to the Intermediary"""
+  ) { () =>
+    IntermediaryPage.checkOldestReturnUrl()
+  }
+
+  Then(
+    """^the hint text showing the current number of overdue returns is displayed"""
+  ) { () =>
+    IntermediaryPage.checkOverdueHintText()
+    CommonPage.selectAnswer("yes")
   }
 
 }
