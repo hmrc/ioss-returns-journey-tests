@@ -118,6 +118,8 @@ Feature: Intermediary Returns Feature
   Scenario: Intermediary has multiple outstanding payments for a NETP
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the payments journey for NETP IM9001144771
+    And the user is on the outstanding-payments page
+    And the correct payments are displayed
     When the user selects the first payment option on the outstanding-payments page
     Then the user has been redirected to the payments service
     And the user clicks back on the browser

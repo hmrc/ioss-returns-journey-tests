@@ -66,4 +66,9 @@ class IntermediaryStepDef extends BaseStepDef {
     CommonPage.selectAnswer("yes")
   }
 
+  Then(
+    """the correct payments are displayed"""
+  ) { () =>
+    IntermediaryPage.checkPaymentsList()
+  }
 }
