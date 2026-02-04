@@ -113,10 +113,8 @@ object AuthPage extends BasePage {
       s"start-return-as-intermediary/$iossNumber"
     } else if (journey == "payments") {
       s"start-payment-as-intermediary/$iossNumber"
-    } else if (journey == "multiple saved returns") {
-      "start-intermediary-save-for-later-return/IM9006655443/2025-M3"
-    } else if (journey == "single saved return") {
-      "start-intermediary-save-for-later-return/IM9006655551/2025-M1"
+    } else if (journey == "saved return") {
+      s"start-return-as-intermediary/$iossNumber"
     } else {
       s"start-returns-history-as-intermediary/$iossNumber"
     }

@@ -729,9 +729,9 @@ class ReturnsStepDef extends BaseStepDef {
 
   Then("""^the user selects the (.*) option""") { (option: String) =>
     option match {
-      case "Continue my return"               => driver.findElement(By.id("value_0")).click()
-      case "Delete my return and start again" => driver.findElement(By.id("value_1")).click()
-      case _                                  => throw new Exception("Link doesn't exist")
+      case "Continue my return" | "Yes"                                  => driver.findElement(By.id("value_0")).click()
+      case "Delete my return and start again" | "No, delete this return" => driver.findElement(By.id("value_1")).click()
+      case _                                                             => throw new Exception("Link doesn't exist")
     }
     clickContinue()
   }
