@@ -71,4 +71,14 @@ class IntermediaryStepDef extends BaseStepDef {
   ) { () =>
     IntermediaryPage.checkPaymentsList()
   }
+
+  Then("""^the correct client name is displayed for (.*)""") { (iossNumber: String) =>
+    IntermediaryPage.checkClientName(iossNumber)
+  }
+
+  Then(
+    """^the intermediary selects yes to delete the return"""
+  ) { () =>
+    CommonPage.selectAnswer("yes")
+  }
 }
