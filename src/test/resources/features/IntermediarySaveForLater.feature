@@ -130,3 +130,9 @@ Feature: Intermediary Save For Later Feature
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
+
+  Scenario: Intermediary cannot access saved return for a client who is not registered with them
+    Given the user accesses the authority wizard
+    When intermediary IN9001234567 accesses the saved return journey for NETP IM9006655443
+    Then the user is on the cannot-use-not-registered page
+
