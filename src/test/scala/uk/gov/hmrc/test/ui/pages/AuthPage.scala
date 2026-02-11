@@ -109,8 +109,10 @@ object AuthPage extends BasePage {
     val stubUrl: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
     driver.getCurrentUrl should startWith(stubUrl)
 
-    val endpoint = if (journey == "returns") {
+    val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns") {
       s"start-return-as-intermediary/$iossNumber"
+    } else if (journey == "doubleEnrolmentGlobalReturns") {
+      ""
     } else if (journey == "payments") {
       s"start-payment-as-intermediary/$iossNumber"
     } else if (journey == "saved return") {
@@ -156,6 +158,16 @@ object AuthPage extends BasePage {
       driver
         .findElement(By.id("input-3-0-value"))
         .sendKeys("IN9000230002")
+    }
+
+    if (journey == "doubleEnrolmentNetpReturns" || journey == "doubleEnrolmentGlobalReturns") {
+      driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
+      driver
+        .findElement(By.id("input-2-0-name"))
+        .sendKeys("IOSSNumber")
+      driver
+        .findElement(By.id("input-2-0-value"))
+        .sendKeys("IM9001234567")
     }
 
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()

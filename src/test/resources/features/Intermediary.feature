@@ -346,6 +346,20 @@ Feature: Intermediary Returns Feature
     And the user manually navigates to their more than three years overdue return
     And the user is on the cannot-start-excluded-return page
 
+  Scenario: User with both Intermediary and global IOSS enrolments can access a return for a NETP
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the doubleEnrolmentNetpReturns journey for NETP IM9001144771
+    Then the user answers yes on the 2025-M3/start-return page
+    And the user answers no on the sold-goods page
+
+  Scenario: User with both Intermediary and global IOSS enrolments can access a global IOSS return
+    Given the user accesses the authority wizard
+    And intermediary IN9001234567 accesses the doubleEnrolmentGlobalReturns journey for NETP NotApplicable
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the 2023-M12/start-return page
+    And the user answers yes on the sold-goods page
+
 
 
 
