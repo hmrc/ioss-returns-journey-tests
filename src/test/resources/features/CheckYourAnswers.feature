@@ -8,6 +8,8 @@ Feature: Check Your Answers Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -25,6 +27,8 @@ Feature: Check Your Answers Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -47,6 +51,8 @@ Feature: Check Your Answers Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
@@ -112,6 +118,8 @@ Feature: Check Your Answers Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -149,6 +157,8 @@ Feature: Check Your Answers Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the lastYear-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -203,6 +213,8 @@ Feature: Check Your Answers Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the lastYear-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page

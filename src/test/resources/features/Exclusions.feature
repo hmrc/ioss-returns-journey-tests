@@ -91,6 +91,8 @@ Feature: Exclusions Feature
     Then the user is on the 2023-M12/start-return page
     And they are presented with the heading for their final return
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     Then the user is on the correct-previous-return page
     And they are advised it is their last chance to correct a return
@@ -108,6 +110,8 @@ Feature: Exclusions Feature
     Then the user is on the 2023-M12/start-return page
     And they are presented with the regular heading for starting a return
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     Then the user is on the correct-previous-return page
     And they are not advised it is their last chance to correct a return
