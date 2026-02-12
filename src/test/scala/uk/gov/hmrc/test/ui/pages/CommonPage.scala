@@ -252,10 +252,10 @@ object CommonPage extends BasePage {
   }
 
   def uploadFile(file: String): Unit = {
-    val filePath: String = System.getProperty("user.dir") + s"/src/test/scala/uk/gov/hmrc/test/ui/data/$file"
-    val filePth          = new File(filePath)
+    val pathNameString: String = System.getProperty("user.dir") + s"/src/test/scala/uk/gov/hmrc/test/ui/data/$file"
+    val filePath               = new File(pathNameString)
 
-    driver.findElement(By.id("file-input")).sendKeys(filePth.getAbsolutePath)
+    driver.findElement(By.id("file-input")).sendKeys(filePath.getAbsolutePath)
 
     driver.findElement(By.id("file-upload-button")).click()
   }
