@@ -21,6 +21,7 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
+import java.io.File
 import java.time.LocalDate
 
 object CommonPage extends BasePage {
@@ -47,6 +48,7 @@ object CommonPage extends BasePage {
     }
     clickContinue()
   }
+
   def clickContinue(): Unit =
     driver.findElement(By.id("continue")).click()
 
@@ -237,5 +239,24 @@ object CommonPage extends BasePage {
   def checkFullMonthPastReturn(): Unit = {
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.equals("Submitted return for December 2024"))
+  }
+
+  def selectFileUpload(selectButton: String): Unit = {
+    selectButton match {
+      case "Yes"                                                             => driver.findElement(By.id("value")).click()
+      case "No, enter them myself" | "No, I want to upload a different file" =>
+        driver.findElement(By.id("value-2")).click()
+      case _                                                                 => throw new Exception("Option doesn't exist")
+    }
+    clickContinue()
+  }
+
+  def uploadFile(file: String): Unit = {
+    val pathNameString: String = System.getProperty("user.dir") + s"/src/test/scala/uk/gov/hmrc/test/ui/data/$file"
+    val filePath               = new File(pathNameString)
+
+    driver.findElement(By.id("file-input")).sendKeys(filePath.getAbsolutePath)
+
+    driver.findElement(By.id("file-upload-button")).click()
   }
 }

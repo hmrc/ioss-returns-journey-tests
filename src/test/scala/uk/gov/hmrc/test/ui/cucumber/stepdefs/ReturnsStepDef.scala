@@ -20,7 +20,7 @@ import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage.{checkFullMonthPastReturn, checkTransferringFromOtherMSIDPastReturn, checkTransferringToOtherMSIDPastReturn, checkUrl, clickBackButton, clickContinue, clickSubmit, driver, fluentWait, getDoubleIndexString, selectIOSSNumberRadioButton, selectLink, selectRadioButton, startWith, waitForElement}
+import uk.gov.hmrc.test.ui.pages.CommonPage._
 import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
 
 import java.time.LocalDate
@@ -1021,6 +1021,15 @@ class ReturnsStepDef extends BaseStepDef {
     """^the past return shows the full month version of the heading$"""
   ) { () =>
     checkFullMonthPastReturn()
+  }
 
+  Then(
+    """^the user selects (Yes|No, enter them myself|No, I want to upload a different file) to upload a file$"""
+  ) { (selectButton: String) =>
+    CommonPage.selectFileUpload(selectButton)
+  }
+
+  Then("""^the user uploads the file (.*)$""") { (file: String) =>
+    uploadFile(file)
   }
 }

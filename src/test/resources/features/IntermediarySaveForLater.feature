@@ -52,6 +52,8 @@ Feature: Intermediary Save For Later Feature
     Given the user accesses the authority wizard
     When intermediary IN9006655555 accesses the returns journey for NETP IM9006655552
     Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user is on the sold-to-country/1 page
     When the user clicks the Save and come back later button

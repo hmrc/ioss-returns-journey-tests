@@ -6,6 +6,8 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
     Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
@@ -19,6 +21,8 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144771
     Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
     And the user selects France on the first sold-to-country page
     And the user ticks the first checkbox on the first vat-rates-from-country page
@@ -59,6 +63,8 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144777
     Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     And the user answers yes on the correct-previous-return page
     When the user picks year 2025 on the correction-return-year/1 page
@@ -102,6 +108,8 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the returns journey for NETP IM9001144773
     Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user clicks the submit button
@@ -200,6 +208,8 @@ Feature: Intermediary Returns Feature
     And the user is on the 2024-M1/start-return page
     Then the NETP transferring from another MSID is offered a partial return for the correct period
     And the user answers yes on the 2024-M1/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     Then the user is on the check-your-answers page
     And the user transferring from another MSID is submitting a partial return for the correct period
@@ -213,6 +223,8 @@ Feature: Intermediary Returns Feature
     Then they are presented with the NETP heading for their final return
     And the NETP transferring to another MSID is offered a partial return for the correct period
     And the user answers yes on the 2024-M2/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     Then the user is on the correct-previous-return page
     And they are advised it is their last chance to correct a return
@@ -229,6 +241,8 @@ Feature: Intermediary Returns Feature
     Then the user is on the 2025-M3/start-return page
     And the correct start return heading is displayed for a UK with VRN client
     And the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with VRN
     And the user answers no on the sold-goods page
@@ -244,6 +258,8 @@ Feature: Intermediary Returns Feature
     Then the user is on the 2025-M1/start-return page
     And the correct start return heading is displayed for a UK with UTR client
     Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with UTR
     And the user answers no on the sold-goods page
@@ -258,6 +274,8 @@ Feature: Intermediary Returns Feature
     Then the user is on the 2025-M1/start-return page
     And the correct start return heading is displayed for a UK with NINO client
     Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user is on the sold-goods page
     And the correct caption is displayed for UK with NINO
     And the user answers no on the sold-goods page
@@ -272,6 +290,8 @@ Feature: Intermediary Returns Feature
     Then the user is on the 2025-M1/start-return page
     And the correct start return heading is displayed for a Non-UK with VRN client
     Then the user answers yes on the 2025-M1/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user is on the sold-goods page
     And the correct caption is displayed for Non-UK with VRN
     And the user answers no on the sold-goods page
@@ -286,6 +306,8 @@ Feature: Intermediary Returns Feature
     Then the user is on the 2025-M3/start-return page
     And the correct start return heading is displayed for a Non-UK with FTR client
     Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user is on the sold-goods page
     And the correct caption is displayed for Non-UK with FTR
     And the user answers no on the sold-goods page
@@ -334,6 +356,8 @@ Feature: Intermediary Returns Feature
     When intermediary IN9005005005 accesses the returns journey for NETP IM9005005005
     Then the oldest available return period is shown to the Intermediary
     And the hint text showing the current number of overdue returns is displayed
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
     And the user is on the check-your-answers page
     And the user clicks the submit button
@@ -350,6 +374,8 @@ Feature: Intermediary Returns Feature
     Given the user accesses the authority wizard
     And intermediary IN9001234567 accesses the doubleEnrolmentNetpReturns journey for NETP IM9001144771
     Then the user answers yes on the 2025-M3/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers no on the sold-goods page
 
   Scenario: User with both Intermediary and global IOSS enrolments can access a global IOSS return
@@ -358,6 +384,8 @@ Feature: Intermediary Returns Feature
     Then the user is redirected to their IOSS Account
     When the user clicks on the Start your return link
     Then the user answers yes on the 2023-M12/start-return page
+    And the user is on the want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
     And the user answers yes on the sold-goods page
 
 
