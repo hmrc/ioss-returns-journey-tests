@@ -134,7 +134,7 @@ Feature: Check Your Answers Feature
     And the user is on the add-sales-country-list page
     Then the user selects the list change link for first check-sales
     And the user answers yes on the check-sales/1?waypoints=change-add-sales-country-list page
-    And the user ticks the first checkbox on the first vat-rates-from-country page
+    And the user ticks the second checkbox on the first vat-rates-from-country page
     And the user clicks the continue button
     And the user enters first country total sales of 125.63 for second selected VAT rate on the sales-to-country page
     And the user confirms the vat for the first EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
