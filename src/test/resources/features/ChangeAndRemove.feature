@@ -109,7 +109,7 @@ Feature: Change and Remove Feature
     And the user confirms the vat for the second EU country as the suggested amount for the first selected VAT rate on the vat-on-sales page
     Then the user is on the check-sales/2 page
     And the user answers yes on the check-sales/2 page
-    And the user ticks the second checkbox on the second vat-rates-from-country page
+    And the user ticks the third checkbox on the second vat-rates-from-country page
     And the user clicks the continue button
     And the user enters second country total sales of 123.11 for second selected VAT rate on the sales-to-country page
     And the user confirms the vat for the second EU country as the suggested amount for the second selected VAT rate on the vat-on-sales page
