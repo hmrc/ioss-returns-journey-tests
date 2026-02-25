@@ -248,8 +248,9 @@ object IntermediaryPage extends BasePage {
     Assert.assertTrue(h1.equals("Which month would you like to make a payment for?"))
     Assert.assertTrue(
       htmlBody.contains(
-        "£397.30 owed for February 2025\n" +
-          "£1,397.30 owed for January 2025"
+        "January 2025 - £1,397.30 owed\n" +
+          "February 2025 - £397.30 owed"
+
       )
     )
   }
