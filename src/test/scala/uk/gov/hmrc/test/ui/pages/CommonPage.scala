@@ -19,12 +19,14 @@ package uk.gov.hmrc.test.ui.pages
 import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
+import org.scalatest.concurrent.Eventually
+import org.scalatest.time.{Millis, Seconds, Span}
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 
 import java.io.File
 import java.time.LocalDate
 
-object CommonPage extends BasePage {
+object CommonPage extends BasePage with Eventually {
 
   val host: String     = TestConfiguration.url("ioss-returns-frontend")
   val authHost: String = TestConfiguration.url("auth-login-stub")
@@ -242,12 +244,13 @@ object CommonPage extends BasePage {
   }
 
   def selectFileUpload(selectButton: String): Unit = {
-    Thread.sleep(1000)
-    selectButton match {
-      case "Yes"                                                             => driver.findElement(By.id("value")).click()
-      case "No, enter them myself" | "No, I want to upload a different file" =>
-        driver.findElement(By.id("value-2")).click()
-      case _                                                                 => throw new Exception("Option doesn't exist")
+    eventually(timeout(Span(1, Seconds)), interval(Span(200, Millis))) {
+      selectButton match {
+        case "Yes"                                                             => driver.findElement(By.id("value")).click()
+        case "No, enter them myself" | "No, I want to upload a different file" =>
+          driver.findElement(By.id("value-2")).click()
+        case _                                                                 => throw new Exception("Option doesn't exist")
+      }
     }
     clickContinue()
   }

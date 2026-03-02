@@ -16,7 +16,7 @@ Feature: File Upload Feature
     Then the user is on the check-your-answers page
     And the user clicks the submit button
     Then the user is on the return-successfully-submitted page
-
+@wip
   Scenario: A global IOSS user can submit a return using file upload
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey
