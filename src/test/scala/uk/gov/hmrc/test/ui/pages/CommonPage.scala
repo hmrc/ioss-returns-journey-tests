@@ -242,6 +242,7 @@ object CommonPage extends BasePage {
   }
 
   def selectFileUpload(selectButton: String): Unit = {
+    Thread.sleep(1000)
     selectButton match {
       case "Yes"                                                             => driver.findElement(By.id("value")).click()
       case "No, enter them myself" | "No, I want to upload a different file" =>
