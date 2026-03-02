@@ -14,6 +14,8 @@ Feature: File Upload Feature
     And the user selects Yes to upload a file
     And the user answers no on the correct-previous-return page
     Then the user is on the check-your-answers page
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
 
   Scenario: A global IOSS user can submit a return using file upload
     Given the user accesses the authority wizard
@@ -24,10 +26,12 @@ Feature: File Upload Feature
     And the user is on the want-to-upload-file page
     When the user selects Yes to upload a file
     Then the user is on the file-upload page
-    And the user uploads the file Test.csv
+    And the user uploads the file Test2.csv
     And the user is on the file-uploaded page
     And the user selects Yes to upload a file
     Then the user is on the check-your-answers page
+    And the user clicks the submit button
+    Then the user is on the return-successfully-submitted page
 
 
 

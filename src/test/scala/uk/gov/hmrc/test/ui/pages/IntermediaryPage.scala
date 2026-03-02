@@ -250,7 +250,6 @@ object IntermediaryPage extends BasePage {
       htmlBody.contains(
         "January 2025 - £1,397.30 owed\n" +
           "February 2025 - £397.30 owed"
-
       )
     )
   }
