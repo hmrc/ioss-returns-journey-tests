@@ -171,9 +171,9 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user (enters|changes) (first|second|third) country total sales of (.*) for (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
-  ) { (mode: String, countryIndex: String, data: String, vatRateIndex: String, page: String) =>
-    CommonPage.checkDoubleIndexURL(countryIndex, vatRateIndex, page, false)
+    """^the user with IOSS Number (.*) (enters|changes) (first|second|third) country total sales of (.*) for (first|second|third|fourth|fifth) selected VAT rate on the (.*) page$"""
+  ) { (identifierValue: String, mode: String, countryIndex: String, data: String, vatRateIndex: String, page: String) =>
+    CommonPage.checkDoubleIndexURL(identifierValue, countryIndex, vatRateIndex, page, false)
     if (mode == "changes") {
       CommonPage.clearData()
     }
@@ -181,9 +181,9 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
-  When("""^the user ticks the (first|second|third|fourth|fifth) checkbox on the (first|second|third) (.*) page$""") {
+  When("""^the user with IOSS Number (.*) ticks the (first|second|third|fourth|fifth) checkbox on the (first|second|third) (.*) page$""") {
 
-    (checkbox: String, index: String, page: String) =>
+    (identifierValue: String, checkbox: String, index: String, page: String) =>
       val pageIndex = index match {
         case "first"  => "1"
         case "second" => "2"
@@ -192,7 +192,7 @@ class ReturnsStepDef extends BaseStepDef {
         case "fifth"  => "5"
         case _        => throw new Exception("Index doesn't exist")
       }
-      CommonPage.checkUrl(s"$page/$pageIndex")
+      CommonPage.checkUrl(s"$identifierValue/$page/$pageIndex")
       CommonPage.tickCheckbox(checkbox)
   }
 
@@ -221,9 +221,9 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user enters a different amount of VAT totalling (.*) for the (first|second|third) country and the (first|second) selected VAT rate on the (.*) page$"""
-  ) { (newVatAmount: String, indexCountry: String, indexVatRate: String, page: String) =>
-    CommonPage.checkDoubleIndexURL(indexCountry, indexVatRate, page, false)
+    """^the user with IOSS Number (.*) enters a different amount of VAT totalling (.*) for the (first|second|third) country and the (first|second) selected VAT rate on the (.*) page$"""
+  ) { (identifierValue: String, newVatAmount: String, indexCountry: String, indexVatRate: String, page: String) =>
+    CommonPage.checkDoubleIndexURL(identifierValue, indexCountry, indexVatRate, page, false)
     driver.findElement(By.id("choice_different")).click()
     CommonPage.enterData("amount", newVatAmount)
     CommonPage.clickContinue()
@@ -244,9 +244,9 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user chooses the country (.*) as their (first|second|third) correction within the (first|second|third) correction period$"""
-  ) { (data: String, countryIndex: String, periodIndex: String) =>
-    CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, "correction-country", false)
+    """^the user with IOSS Number (.*) chooses the country (.*) as their (first|second|third) correction within the (first|second|third) correction period$"""
+  ) { (identifierValue: String, data: String, countryIndex: String, periodIndex: String) =>
+    CommonPage.checkDoubleIndexURL(identifierValue, periodIndex, countryIndex, "correction-country", false)
     CommonPage.selectValueAutocomplete(data)
   }
 
@@ -277,9 +277,9 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user (adds|amends to) (.*) on the (first|second|third) (.*) page for the (first|second|third) correction period$"""
-  ) { (mode: String, data: String, countryIndex: String, url: String, periodIndex: String) =>
-    CommonPage.checkDoubleIndexURL(periodIndex, countryIndex, url, false)
+    """^the user with IOSS Number (.*) (adds|amends to) (.*) on the (first|second|third) (.*) page for the (first|second|third) correction period$"""
+  ) { (identifierValue: String, mode: String, data: String, countryIndex: String, url: String, periodIndex: String) =>
+    CommonPage.checkDoubleIndexURL(identifierValue, periodIndex, countryIndex, url, false)
     if (mode == "amends to") {
       CommonPage.clearData()
     }
@@ -320,8 +320,9 @@ class ReturnsStepDef extends BaseStepDef {
     CommonPage.selectMonthRadioButton(answer)
   }
 
-  When("""^the user manually navigates to the previous submitted return for November 2023$""") {
-    CommonPage.navigateToPreviousReturn()
+  // TODO -> IOSS required - Check if this stef def even used anywhere?????
+  When("""^the user (.*) manually navigates to the previous submitted return for November 2023$""") { (iossNumber: String) =>
+    CommonPage.navigateToPreviousReturn(iossNumber)
   }
 
   When("""^the return for (.*) is displayed to the user$""") { (monthYear: String) =>
@@ -369,12 +370,12 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("You do not owe anything right now."))
   }
 
-  When("""^the user manually navigates to the outstanding payments page$""") {
-    CommonPage.navigateToOutstandingPayments()
+  When("""^the user with IOSS Number (.*) manually navigates to the outstanding payments page$""") { (identifierValue: String) =>
+    CommonPage.navigateToOutstandingPayments(identifierValue)
   }
 
-  When("""^the (user|NETP) does not owe any VAT$""") { (user: String) =>
-    CommonPage.checkUrl("outstanding-payments")
+  When("""^the (user|NETP) with IOSS Number (.*) does not owe any VAT$""") { (user: String, iossNumber: String) =>
+    CommonPage.checkUrl(s"$iossNumber/outstanding-payments")
     val htmlH1 = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))
   }
@@ -426,9 +427,9 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   When(
-    """^the user manually navigates to their (.*) return$"""
-  ) { (returnPeriod: String) =>
-    CommonPage.navigateToReturn(returnPeriod)
+    """^the user with IOSS Number (.*) manually navigates to their (.*) return$"""
+  ) { (iossNumber: String, returnPeriod: String) =>
+    CommonPage.navigateToReturn(iossNumber, returnPeriod)
   }
 
   Then("""^the link to Rejoin this service is not displayed on the dashboard$""") { () =>
@@ -610,8 +611,8 @@ class ReturnsStepDef extends BaseStepDef {
     }
   }
 
-  When("""^the user accesses the start return link via secure messages$""") { () =>
-    CommonPage.navigateToSecureStartReturn()
+  When("""^the user with IOSS Number (.*) accesses the start return link via secure messages$""") { (iossNumber: String) =>
+    CommonPage.navigateToSecureStartReturn(iossNumber)
   }
 
   Then("""^the correct IOSS number (.*) is displayed on the (dashboard|page)$""") {
@@ -651,8 +652,8 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user clicks on the first return month for (one previous|first previous|second previous|current) registration$"""
-  ) { (registration: String) =>
+    """^the user with IOSS Number (.*) clicks on the first return month for (one previous|first previous|second previous|current) registration$"""
+  ) { (identifierValue: String, registration: String) =>
     val month = registration match {
       case "one previous" | "second previous" => "6".toInt
       case "first previous"                   => "9".toInt
@@ -668,7 +669,7 @@ class ReturnsStepDef extends BaseStepDef {
     waitForElement(By.className("govuk-table__cell--numeric"))
     selectLink(s"past-returns\\/$periodString")
 
-    checkUrl(s"past-returns/$periodString")
+    checkUrl(s"$identifierValue/past-returns/$periodString")
   }
 
   Then("""^the user clicks back on the browser$""") { () =>
@@ -681,7 +682,7 @@ class ReturnsStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("IM9007230002"))
   }
 
-  Then("""^the user selects the returns for IOSS number (IM9007230001|IM9007230002)$""") { (iossNumber: String) =>
+  Then("""^the user selects the (returns|dashboard) for IOSS number (IM9007230001|IM9007230002|IM9001234567)$""") { (journey: String, iossNumber: String) =>
     selectIOSSNumberRadioButton(iossNumber)
   }
 

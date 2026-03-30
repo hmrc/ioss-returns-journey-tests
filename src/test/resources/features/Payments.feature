@@ -24,7 +24,7 @@ Feature: Returns Feature
     Then the user is redirected to their IOSS Account
     And the payments tile shows there are no outstanding payments
     When the user manually navigates to the outstanding payments page
-    Then the user does not owe any VAT
+    Then the user with IOSS Number IM9009999888 does not owe any VAT
 
   Scenario: A user has no payments due as submitted returns are fully paid
     Given the user accesses the authority wizard
@@ -32,7 +32,7 @@ Feature: Returns Feature
     Then the user is redirected to their IOSS Account
     And the payments tile shows there are no outstanding payments
     When the user manually navigates to the outstanding payments page
-    Then the user does not owe any VAT
+    Then the user with IOSS Number IM9008888887 does not owe any VAT
 
   Scenario: A user has submitted three returns, one fully paid, one overdue and one due
     Given the user accesses the authority wizard
