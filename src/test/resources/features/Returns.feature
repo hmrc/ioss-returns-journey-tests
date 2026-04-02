@@ -53,6 +53,7 @@ Feature: Returns Feature
     And the user is on the IM9009999888/want-to-upload-file page
     Then the user selects No, enter them myself to upload a file
     And the user answers yes on the IM9009999888/sold-goods page
+    Then the user is on the IM9009999888/sold-to-country page
     And the user selects Croatia on the first IM9009999888/sold-to-country page
     And the user with IOSS Number IM9009999888 ticks the first checkbox on the first vat-rates-from-country page
     And the user clicks the continue button
