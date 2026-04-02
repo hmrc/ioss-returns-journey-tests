@@ -1,5 +1,5 @@
 @Additional
-@wip
+
 Feature: Transferring MSID Feature
 
   Scenario: A user who has transferred from another member state has a partial first return

@@ -55,8 +55,8 @@ class IntermediaryStepDef extends BaseStepDef {
 
   Then(
     """^the oldest available return period for IOSS Number (.*) is shown to the Intermediary"""
-  ) { (identifierValue: String) =>
-    IntermediaryPage.checkOldestReturnUrl(identifierValue)
+  ) { (iossNumber: String) =>
+    IntermediaryPage.checkOldestReturnUrl(iossNumber)
   }
 
   Then(

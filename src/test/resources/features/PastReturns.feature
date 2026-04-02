@@ -7,25 +7,25 @@ Feature: Past Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the View submitted returns link
-    Then the user is on the past-returns page
+    Then the user is on the IM9001234567/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the November 2023 link
-    Then the user is on the past-returns/2023-M11 page
+    Then the user is on the IM9001234567/past-returns/2023-M11 page
     And the return for November 2023 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
     When the user clicks on the Pay Now button
     Then the user has been redirected to the payments service
     When the user manually navigates to the returns service
     Then the user clicks on the View submitted returns link
-    And the user is on the past-returns page
+    And the user is on the IM9001234567/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the October 2023 link
-    Then the user is on the past-returns/2023-M10 page
+    Then the user is on the IM9001234567/past-returns/2023-M10 page
     And the return for October 2023 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
     When the user manually navigates to the returns service
     Then the user clicks on the View submitted returns link
-    And the user is on the past-returns page
+    And the user is on the IM9001234567/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks the Pay now link for October 2023
     Then the user has been redirected to the payments service
@@ -35,26 +35,26 @@ Feature: Past Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9008888882 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the View submitted returns link
-    Then the user is on the past-returns page
+    Then the user is on the IM9008888882/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the November 2022 link
-    Then the user is on the past-returns/2022-M11 page
+    Then the user is on the IM9008888882/past-returns/2022-M11 page
     And the return for November 2022 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
     When the user manually navigates to the returns service
     Then the user clicks on the View submitted returns link
-    And the user is on the past-returns page
+    And the user is on the IM9008888882/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2022 link
-    Then the user is on the past-returns/2022-M12 page
+    Then the user is on the IM9008888882/past-returns/2022-M12 page
     And the return for December 2022 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
     When the user manually navigates to the returns service
     Then the user clicks on the View submitted returns link
-    And the user is on the past-returns page
+    And the user is on the IM9008888882/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2023 link
-    Then the user is on the past-returns/2023-M12 page
+    Then the user is on the IM9008888882/past-returns/2023-M12 page
     And the return for December 2023 is displayed to the user
     And the correct sections are displayed on the previous return with sales to EU and corrections
 
@@ -63,10 +63,10 @@ Feature: Past Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9003333333 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the View submitted returns link
-    Then the user is on the past-returns page
+    Then the user is on the IM9003333333/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2023 link
-    Then the user is on the past-returns/2023-M12 page
+    Then the user is on the IM9003333333/past-returns/2023-M12 page
     And the return for December 2023 is displayed to the user
     Then the correct sections are displayed for a nil return
 
@@ -75,10 +75,10 @@ Feature: Past Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9004444444 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the View submitted returns link
-    Then the user is on the past-returns page
+    Then the user is on the IM9004444444/past-returns page
     And the user clicks the Show all sections accordion
     When the user clicks on the December 2023 link
-    Then the user is on the past-returns/2023-M12 page
+    Then the user is on the IM9004444444/past-returns/2023-M12 page
     And the return for December 2023 is displayed to the user
     And the correct sections are displayed on the previous return with no corrections
 
@@ -86,24 +86,24 @@ Feature: Past Returns Feature
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
-    When the user manually navigates to their November 2023 return
-    Then the user is on the past-returns/2023-M11 page
+    When the user with IOSS Number IM9001234567 manually navigates to their November 2023 return
+    Then the user is on the IM9001234567/past-returns/2023-M11 page
 
   Scenario: A user is not able view a submitted return for a month over 6 years ago
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001236666 accesses the returns journey
     Then the user is redirected to their IOSS Account
-    When the user manually navigates to their January 2018 return
-    Then the user is on the no-longer-able-to-view-return page
-    When the user manually navigates to their September 2018 return
-    Then the user is on the no-longer-able-to-view-return page
+    When the user with IOSS Number IM9001236666 manually navigates to their January 2018 return
+    Then the user is on the IM9001236666/no-longer-able-to-view-return page
+    When the user with IOSS Number IM9001236666 manually navigates to their September 2018 return
+    Then the user is on the IM9001236666/no-longer-able-to-view-return page
 
   Scenario: A user with a full return period does not show partial return dates
     Given the user accesses the authority wizard
     And a user with VRN 100000001 and IOSS Number IM9001236667 accesses the returns journey
     Then the user is redirected to their IOSS Account
-    When the user manually navigates to their December 2024 return
-    Then the user is on the past-returns/2024-M12 page
+    When the user with IOSS Number IM9001236667 manually navigates to their December 2024 return
+    Then the user is on the IM9001236667/past-returns/2024-M12 page
     And the past return shows the full month version of the heading
 
 

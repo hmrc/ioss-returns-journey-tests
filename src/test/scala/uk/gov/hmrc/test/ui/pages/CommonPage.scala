@@ -86,8 +86,8 @@ object CommonPage extends BasePage with Eventually {
   def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 
-  def checkDoubleIndexURL(identifierValue: String, firstIndex: String, secondIndex: String, page: String, backslash: Boolean): Unit =
-    CommonPage.checkUrl(s"$identifierValue/$page" + getDoubleIndexString(firstIndex, secondIndex, backslash))
+  def checkDoubleIndexURL(iossNumber: String, firstIndex: String, secondIndex: String, page: String, backslash: Boolean): Unit =
+    CommonPage.checkUrl(s"$iossNumber/$page" + getDoubleIndexString(firstIndex, secondIndex, backslash))
 
   def getDoubleIndexString(firstIndex: String, secondIndex: String, backslash: Boolean): String = {
     val extraString = if (backslash) {
@@ -163,10 +163,10 @@ object CommonPage extends BasePage with Eventually {
     CommonPage.clickContinue()
   }
 
-  def navigateToOutstandingPayments(identifierValue: String): Unit =
+  def navigateToOutstandingPayments(iossNumber: String): Unit =
     driver
       .navigate()
-      .to(s"$host/$identifierValue/outstanding-payments")
+      .to(s"$host/$iossNumber/outstanding-payments")
 
   def navigateToReturnsService(): Unit =
     driver

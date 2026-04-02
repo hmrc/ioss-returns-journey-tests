@@ -7,8 +7,8 @@ Feature: Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9001234567 accesses the returns journey
     Then the user is redirected to their IOSS Account
     When the user clicks on the Make a payment link
-    Then the user is on the outstanding-payments page
-    When the user selects the second payment option on the outstanding-payments page
+    Then the user is on the IM9001234567/outstanding-payments page
+    When the user selects the second payment option on the IM9001234567/outstanding-payments page
     Then the user has been redirected to the payments service
 
   Scenario: A user has a single outstanding payment
@@ -23,7 +23,7 @@ Feature: Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9009999888 accesses the returns journey
     Then the user is redirected to their IOSS Account
     And the payments tile shows there are no outstanding payments
-    When the user manually navigates to the outstanding payments page
+    When the user with IOSS Number IM9009999888 manually navigates to the outstanding payments page
     Then the user with IOSS Number IM9009999888 does not owe any VAT
 
   Scenario: A user has no payments due as submitted returns are fully paid
@@ -31,7 +31,7 @@ Feature: Returns Feature
     And a user with VRN 100000001 and IOSS Number IM9008888887 accesses the returns journey
     Then the user is redirected to their IOSS Account
     And the payments tile shows there are no outstanding payments
-    When the user manually navigates to the outstanding payments page
+    When the user with IOSS Number IM9008888887 manually navigates to the outstanding payments page
     Then the user with IOSS Number IM9008888887 does not owe any VAT
 
   Scenario: A user has submitted three returns, one fully paid, one overdue and one due
@@ -40,8 +40,8 @@ Feature: Returns Feature
     Then the user is redirected to their IOSS Account
     And the payments tile shows one payment due and one payment overdue
     When the user clicks on the Make a payment link
-    Then the user is on the outstanding-payments page
-    When the user selects the first payment option on the outstanding-payments page
+    Then the user is on the IM9008888886/outstanding-payments page
+    When the user selects the first payment option on the IM9008888886/outstanding-payments page
     Then the user has been redirected to the payments service
 
   Scenario: A user has submitted one return and the payment is due
