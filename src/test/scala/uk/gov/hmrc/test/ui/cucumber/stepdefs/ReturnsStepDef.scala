@@ -685,13 +685,13 @@ class ReturnsStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the user with IOSS Number (.*) clicks on the first return month for (one previous|first previous|second previous|current) registration$"""
+    """^the user with IOSS Number (.*) clicks on the first return month for (one previous|first previous|first intermediary previous|second previous|second intermediary previous|current) registration$"""
   ) { (iossNumber: String, registration: String) =>
     val month = registration match {
-      case "one previous" | "second previous" => "6".toInt
-      case "first previous"                   => "9".toInt
-      case "current"                          => "3".toInt
-      case _                                  =>
+      case "one previous" | "second previous" | "second intermediary previous" => "6".toInt
+      case "first previous" | "first intermediary previous"                    => "9".toInt
+      case "current"                                                           => "3".toInt
+      case _                                                                   =>
         throw new Exception("Registration doesn't exist")
     }
 
@@ -699,14 +699,16 @@ class ReturnsStepDef extends BaseStepDef {
     val returnYear   = LocalDate.now().minusMonths(month).getYear
     val periodString = s"$returnYear-M$returnMonth"
 
-    if (registration == "one previous") {
-      waitForElement(By.cssSelector(s"a[href*=past-returns\\/$periodString\\/$iossNumber]"))
-      selectLink(s"past-returns\\/$periodString\\/$iossNumber")
-      checkUrl(s"past-returns/$periodString/$iossNumber")
-    } else {
+    if (
+      registration == "current" || registration == "first intermediary previous" || registration == "second intermediary previous"
+    ) {
       waitForElement(By.cssSelector(s"a[href*=$iossNumber\\/past-returns\\/$periodString]"))
       selectLink(s"$iossNumber\\/past-returns\\/$periodString")
       checkUrl(s"$iossNumber/past-returns/$periodString")
+    } else {
+      waitForElement(By.cssSelector(s"a[href*=past-returns\\/$periodString\\/$iossNumber]"))
+      selectLink(s"past-returns\\/$periodString\\/$iossNumber")
+      checkUrl(s"past-returns/$periodString/$iossNumber")
     }
   }
 

@@ -323,7 +323,7 @@ Feature: Intermediary Returns Feature
     Then the user is on the IM9001144667/past-returns page
     And the correct submitted returns caption is displayed for oldest registration client
     And the user clicks the Show all sections accordion
-    When the user with IOSS Number IM9001144667 clicks on the first return month for first previous registration
+    When the user with IOSS Number IM9001144667 clicks on the first return month for first intermediary previous registration
     And the user is on the IM9001144667/past-returns/20 page
     And the correct submitted returns caption is displayed for oldest registration client
     Then the correct returns and payments references are shown for IM9001144667
@@ -332,7 +332,7 @@ Feature: Intermediary Returns Feature
     Then the user is on the IM9001144669/past-returns page
     And the correct submitted returns caption is displayed for middle registration client
     And the user clicks the Show all sections accordion
-    When the user with IOSS Number IM9001144669 clicks on the first return month for second previous registration
+    When the user with IOSS Number IM9001144669 clicks on the first return month for second intermediary previous registration
     And the user is on the IM9001144669/past-returns/20 page
     And the correct submitted returns caption is displayed for middle registration client
     Then the correct returns and payments references are shown for IM9001144669

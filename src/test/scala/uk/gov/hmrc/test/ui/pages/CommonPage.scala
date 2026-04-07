@@ -86,7 +86,13 @@ object CommonPage extends BasePage with Eventually {
   def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 
-  def checkDoubleIndexURL(iossNumber: String, firstIndex: String, secondIndex: String, page: String, backslash: Boolean): Unit =
+  def checkDoubleIndexURL(
+    iossNumber: String,
+    firstIndex: String,
+    secondIndex: String,
+    page: String,
+    backslash: Boolean
+  ): Unit =
     CommonPage.checkUrl(s"$iossNumber/$page" + getDoubleIndexString(firstIndex, secondIndex, backslash))
 
   def getDoubleIndexString(firstIndex: String, secondIndex: String, backslash: Boolean): String = {
