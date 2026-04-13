@@ -86,8 +86,14 @@ object CommonPage extends BasePage with Eventually {
   def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 
-  def checkDoubleIndexURL(firstIndex: String, secondIndex: String, page: String, backslash: Boolean): Unit =
-    CommonPage.checkUrl(page + getDoubleIndexString(firstIndex, secondIndex, backslash))
+  def checkDoubleIndexURL(
+    iossNumber: String,
+    firstIndex: String,
+    secondIndex: String,
+    page: String,
+    backslash: Boolean
+  ): Unit =
+    CommonPage.checkUrl(s"$iossNumber/$page" + getDoubleIndexString(firstIndex, secondIndex, backslash))
 
   def getDoubleIndexString(firstIndex: String, secondIndex: String, backslash: Boolean): String = {
     val extraString = if (backslash) {
@@ -144,10 +150,10 @@ object CommonPage extends BasePage with Eventually {
     CommonPage.clickContinue()
   }
 
-  def navigateToPreviousReturn(): Unit =
+  def navigateToPreviousReturn(iossNumber: String): Unit =
     driver
       .navigate()
-      .to(s"$host/past-returns/2023-M11")
+      .to(s"$host/$iossNumber/past-returns/2023-M11")
 
   def navigateToBtaLink(link: String): Unit =
     driver
@@ -163,17 +169,17 @@ object CommonPage extends BasePage with Eventually {
     CommonPage.clickContinue()
   }
 
-  def navigateToOutstandingPayments(): Unit =
+  def navigateToOutstandingPayments(iossNumber: String): Unit =
     driver
       .navigate()
-      .to(s"$host/outstanding-payments")
+      .to(s"$host/$iossNumber/outstanding-payments")
 
   def navigateToReturnsService(): Unit =
     driver
       .navigate()
       .to(s"$host")
 
-  def navigateToReturn(returnPeriod: String): Unit = {
+  def navigateToReturn(iossNumber: String, returnPeriod: String): Unit = {
 
     val currentReturnMonth  = LocalDate.now().getMonthValue
     val currentReturnYear   = LocalDate.now().getYear
@@ -184,15 +190,15 @@ object CommonPage extends BasePage with Eventually {
     val firstExpiredPeriodString = s"$firstExpiredReturnYear-M$firstExpiredReturnMonth"
 
     val periodUrl = returnPeriod match {
-      case "January 2018"                  => "past-returns/2018-M1"
-      case "September 2018"                => "past-returns/2018-M9"
-      case "December 2024"                 => "past-returns/2024-M12"
-      case "December 2020"                 => "2020-M12/start-return"
-      case "November 2023"                 => "2023-M11/start-return"
-      case "December 2023"                 => "2023-M12/start-return"
-      case "January 2024"                  => "2024-M1/start-return"
-      case "current month"                 => s"$currentPeriodString/start-return"
-      case "more than three years overdue" => s"$firstExpiredPeriodString/start-return"
+      case "January 2018"                  => s"$iossNumber/past-returns/2018-M1"
+      case "September 2018"                => s"$iossNumber/past-returns/2018-M9"
+      case "December 2024"                 => s"$iossNumber/past-returns/2024-M12"
+      case "December 2020"                 => s"$iossNumber/2020-M12/start-return"
+      case "November 2023"                 => s"$iossNumber/2023-M11/start-return"
+      case "December 2023"                 => s"$iossNumber/2023-M12/start-return"
+      case "January 2024"                  => s"$iossNumber/2024-M1/start-return"
+      case "current month"                 => s"$iossNumber/$currentPeriodString/start-return"
+      case "more than three years overdue" => s"$iossNumber/$firstExpiredPeriodString/start-return"
       case _                               => "period doesn't exist"
     }
     driver
@@ -200,10 +206,10 @@ object CommonPage extends BasePage with Eventually {
       .to(s"$host/$periodUrl")
   }
 
-  def navigateToSecureStartReturn(): Unit =
+  def navigateToSecureStartReturn(iossNumber: String): Unit =
     driver
       .navigate()
-      .to(s"$host/start-return")
+      .to(s"$host/$iossNumber/start-return")
 
   def clickBackButton(): Unit =
     driver
@@ -214,6 +220,7 @@ object CommonPage extends BasePage with Eventually {
     iossNumber match {
       case "IM9007230001" => driver.findElement(By.id("IM9007230001")).click()
       case "IM9007230002" => driver.findElement(By.id("IM9007230002")).click()
+      case "IM9001234567" => driver.findElement(By.id("IM9001234567")).click()
       case _              => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()

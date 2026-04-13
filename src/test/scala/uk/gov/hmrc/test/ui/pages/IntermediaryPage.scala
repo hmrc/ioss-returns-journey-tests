@@ -225,11 +225,11 @@ object IntermediaryPage extends BasePage {
     }
   }
 
-  def checkOldestReturnUrl(): Unit = {
+  def checkOldestReturnUrl(iossNumber: String): Unit = {
     val oldestAvailableReturnMonth  = LocalDate.now().minusYears(3).minusMonths(1).getMonthValue
     val oldestAvailableReturnYear   = LocalDate.now().minusYears(3).minusMonths(1).getYear
     val oldestAvailablePeriodString = s"$oldestAvailableReturnYear-M$oldestAvailableReturnMonth"
-    checkUrl(s"$oldestAvailablePeriodString/start-return")
+    checkUrl(s"$iossNumber/$oldestAvailablePeriodString/start-return")
   }
 
   def checkOverdueHintText(): Unit = {
