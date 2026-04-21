@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.stepdefs
+package uk.gov.hmrc.ui.cucumber.stepdefs
 
 import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.pages.CommonPage._
-import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage}
+import uk.gov.hmrc.ui.pagesold.CommonPage._
+import uk.gov.hmrc.ui.conf.TestConfiguration
+import uk.gov.hmrc.ui.pagesold.{AuthPage, CommonPage}
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

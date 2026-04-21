@@ -14,21 +14,13 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.runner
+package uk.gov.hmrc.ui.driver
 
-import io.cucumber.junit.{Cucumber, CucumberOptions}
-import org.junit.runner.RunWith
+import org.openqa.selenium.WebDriver
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(
-  features = Array("src/test/resources/features"),
-  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs"),
-  plugin = Array(
-    "pretty",
-    "html:target/cucumber",
-    "json:target/cucumber.json",
-    "junit:target/test-reports/AdditionalReturnsRunner.xml"
-  ),
-  tags = "@Additional"
-)
-class AdditionalReturnsRunner {}
+trait BrowserDriver {
+
+  implicit def driver: WebDriver = Driver.instance
+
+}

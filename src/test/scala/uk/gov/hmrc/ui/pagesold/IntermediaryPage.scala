@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.ui.pagesold
 
 import org.junit.Assert
 import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.pages.CommonPage.checkUrl
+import CommonPage.checkUrl
 
 import java.time.LocalDate
 

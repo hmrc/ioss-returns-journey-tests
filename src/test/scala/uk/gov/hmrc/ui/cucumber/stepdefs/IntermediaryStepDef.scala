@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.stepdefs
+package uk.gov.hmrc.ui.cucumber.stepdefs
 
-import uk.gov.hmrc.test.ui.pages.{AuthPage, CommonPage, IntermediaryPage}
+import uk.gov.hmrc.ui.pagesold.{AuthPage, CommonPage, IntermediaryPage}
 
 class IntermediaryStepDef extends BaseStepDef {
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.data
+package uk.gov.hmrc.ui.data
 
 import java.time.LocalDate
 

@@ -14,17 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.runner
+package uk.gov.hmrc.ui.cucumber.stepdefs
 
-import io.cucumber.junit.{Cucumber, CucumberOptions}
-import org.junit.runner.RunWith
+import io.cucumber.scala.{EN, ScalaDsl}
+import uk.gov.hmrc.selenium.webdriver.Browser
+import uk.gov.hmrc.ui.data.SavedReturns
+import utils.MongoConnection
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(
-  features = Array("src/test/resources/features"),
-  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs"),
-  plugin =
-    Array("pretty", "html:target/cucumber", "json:target/cucumber.json", "junit:target/test-reports/WipRunner.xml"),
-  tags = "@wip"
-)
-class WipRunner {}
+object Hooks extends ScalaDsl with EN with Browser {
+  Before {
+    startBrowser()
+    MongoConnection.dropSavedAnswers()
+    MongoConnection.insert(SavedReturns.data, "ioss-returns", "saved-user-answers")
+  }
+
+  After {
+    quitBrowser()
+  }
+
+}

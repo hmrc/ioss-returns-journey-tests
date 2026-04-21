@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.ui.pagesold
 
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.Select
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.ui.conf.TestConfiguration
 
 object AuthPage extends BasePage {
 

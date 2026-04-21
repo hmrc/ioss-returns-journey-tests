@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.ui.pagesold
 
 import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.concurrent.Eventually
 import org.scalatest.time.{Millis, Seconds, Span}
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.ui.conf.TestConfiguration
 
 import java.io.File
 import java.time.LocalDate

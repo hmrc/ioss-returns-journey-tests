@@ -14,22 +14,28 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.stepdefs
+package uk.gov.hmrc.ui.specs
 
-import io.cucumber.scala.{EN, ScalaDsl}
-import uk.gov.hmrc.selenium.webdriver.Browser
-import uk.gov.hmrc.test.ui.cucumber.utils.MongoConnection
-import uk.gov.hmrc.test.ui.data.SavedReturns
+import org.scalatest.featurespec.AnyFeatureSpec
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.{BeforeAndAfterEach, GivenWhenThen}
+import uk.gov.hmrc.selenium.webdriver.{Browser, ScreenshotOnFailure}
+import utils.MongoConnection
 
-object Hooks extends ScalaDsl with EN with Browser {
-  Before {
+trait BaseSpec
+    extends AnyFeatureSpec
+    with GivenWhenThen
+    with Matchers
+    with BeforeAndAfterEach
+    with Browser
+    with ScreenshotOnFailure {
+
+  override def beforeEach(): Unit = {
     startBrowser()
     MongoConnection.dropSavedAnswers()
-    MongoConnection.insert(SavedReturns.data, "ioss-returns", "saved-user-answers")
   }
 
-  After {
+  override def afterEach(): Unit =
     quitBrowser()
-  }
 
 }

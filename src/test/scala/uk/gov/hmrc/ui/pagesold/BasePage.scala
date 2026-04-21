@@ -14,13 +14,23 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.driver
+package uk.gov.hmrc.ui.pagesold
 
-import org.openqa.selenium.WebDriver
+import org.openqa.selenium.support.ui.{FluentWait, Wait}
+import org.openqa.selenium.{By, WebDriver}
+import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.driver.BrowserDriver
 
-trait BrowserDriver {
+import java.time.Duration
 
-  implicit def driver: WebDriver = Driver.instance
+trait BasePage extends BrowserDriver with Matchers {
+  val continueButton = "continue-button"
 
+  def submitPage(): Unit =
+    driver.findElement(By.id(continueButton)).click()
+
+  def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(3))
+    .pollingEvery(Duration.ofMillis(200))
 }

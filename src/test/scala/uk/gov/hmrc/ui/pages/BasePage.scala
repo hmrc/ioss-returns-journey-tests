@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.cucumber.runner
+package uk.gov.hmrc.ui.pages
 
-import io.cucumber.junit.{Cucumber, CucumberOptions}
-import org.junit.runner.RunWith
+import org.openqa.selenium.support.ui.{FluentWait, Wait}
+import org.openqa.selenium.{By, WebDriver}
+import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-@RunWith(classOf[Cucumber])
-@CucumberOptions(
-  features = Array("src/test/resources/features"),
-  glue = Array("uk.gov.hmrc.test.ui.cucumber.stepdefs"),
-  plugin = Array(
-    "pretty",
-    "html:target/cucumber",
-    "json:target/cucumber.json",
-    "junit:target/test-reports/ChangeSaveRunner.xml"
-  ),
-  tags = "@ChangeSave"
-)
-class ChangeSaveRunner {}
+import java.time.Duration
+
+trait BasePage extends PageObject {
+
+  protected val continueButton: By = By.id("continue")
+  protected val submitButton: By   = By.id("submit")
+
+  def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
+    .withTimeout(Duration.ofSeconds(3))
+    .pollingEvery(Duration.ofMillis(200))
+}
