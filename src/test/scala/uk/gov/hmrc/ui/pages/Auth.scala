@@ -100,7 +100,7 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
-      if (accountType != "registration") {
+      if (accountType != "registration" || iossNumber != "notApplicable") {
         sendKeys(By.id("input-1-0-value"), iossNumber)
       }
 
