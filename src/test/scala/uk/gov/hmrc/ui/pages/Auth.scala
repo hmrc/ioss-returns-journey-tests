@@ -43,7 +43,13 @@ object Auth extends BasePage {
   def checkAuthUrl(): Unit =
     getCurrentUrl should startWith(authUrl)
 
-  def loginUsingAuthorityWizard(vrn: String, iossNumber: String, affinityGroup: String, accountType: String, journey: String): Unit = {
+  def loginUsingAuthorityWizard(
+    vrn: String,
+    iossNumber: String,
+    affinityGroup: String,
+    accountType: String,
+    journey: String
+  ): Unit = {
 
     getCurrentUrl should startWith(authUrl)
 
@@ -78,6 +84,10 @@ object Auth extends BasePage {
       sendKeys(By.id("nino"), "AA123456D")
     } else {
       selectByValue(By.id("affinityGroupSelect"), "Organisation")
+    }
+
+    if (affinityGroup == "OrganisationAssistant") {
+      selectByValue(By.id("credential-role-select"), "Assistant")
     }
 
     if (vrn != "None") {

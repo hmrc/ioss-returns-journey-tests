@@ -21,8 +21,8 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class ReturnSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth      = Auth
+  private val dashboard  = Dashboard
+  private val auth       = Auth
   private val fileUpload = FileUpload
 
   Feature("Returns journeys") {
@@ -31,7 +31,7 @@ class ReturnSpec extends BaseSpec {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000002", "IM9009999888", "Organisation", "hasIOSSEnrolment", "dashboard")
+      auth.loginUsingAuthorityWizard("100000001", "IM9009999888", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
       When("the user clicks on the 'Start your return' link")
@@ -149,6 +149,152 @@ class ReturnSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999888/check-your-answers")
       dashboard.submit()
       dashboard.checkJourneyUrl("IM9009999888/return-successfully-submitted")
+    }
+
+    Scenario("A user adds sales with all possible VAT rates for a country via VAT rates CYA page") {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "IM9009999888", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user clicks on the 'Start your return' link")
+      dashboard.clickLink("start-your-return")
+
+      Then("the user answers yes on the start page")
+      dashboard.checkJourneyUrl("IM9009999888/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers yes on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9009999888/sold-goods")
+      dashboard.answerRadioButton("yes")
+
+      And("the user selects a country on the sold-to-country page")
+      dashboard.checkJourneyUrl("IM9009999888/sold-to-country/1")
+      dashboard.selectCountry("Croatia")
+
+      And("the user selects the first checkbox on the vat-rates-from-country page")
+      dashboard.checkJourneyUrl("IM9009999888/vat-rates-from-country/1")
+      dashboard.tickCheckbox("first")
+      dashboard.continue()
+
+      And("the user enters the first country total sales for first VAT rate")
+      dashboard.checkJourneyUrl("IM9009999888/sales-to-country/1/1")
+      dashboard.enterAnswer("1500")
+
+      And("the user confirms the suggested amount of VAT")
+      dashboard.checkJourneyUrl("IM9009999888/vat-on-sales/1/1")
+      dashboard.clickLink("choice")
+      dashboard.continue()
+
+      And("the user answers yes on the check-sales page")
+      dashboard.checkJourneyUrl("IM9009999888/check-sales/1")
+      dashboard.answerRadioButton("yes")
+
+      And("the user selects the second checkbox on the vat-rates-from-country page")
+      dashboard.checkJourneyUrl("IM9009999888/vat-rates-from-country/1")
+      dashboard.tickCheckbox("second")
+      dashboard.continue()
+
+      And("the user enters the first country total sales for second VAT rate")
+      dashboard.checkJourneyUrl("IM9009999888/sales-to-country/1/2")
+      dashboard.enterAnswer("147.65")
+
+      And("the user enters a different amount of VAT instead of the suggested amount of VAT")
+      dashboard.checkJourneyUrl("IM9009999888/vat-on-sales/1/2")
+      dashboard.enterAlternativeVatAmount("100.21")
+
+      And("the user answers yes on the check-sales page")
+      dashboard.checkJourneyUrl("IM9009999888/check-sales/1")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers yes on the remaining-vat-rate-from-country page")
+      dashboard.checkJourneyUrl("IM9009999888/remaining-vat-rate-from-country/1/3")
+      dashboard.answerRadioButton("yes")
+
+      And("the user enters the first country total sales for third VAT rate")
+      dashboard.checkJourneyUrl("IM9009999888/sales-to-country/1/3")
+      dashboard.enterAnswer("16001")
+
+      And("the user confirms the suggested amount of VAT")
+      dashboard.checkJourneyUrl("IM9009999888/vat-on-sales/1/3")
+      dashboard.clickLink("choice")
+      dashboard.continue()
+
+      And("the user clicks continue on the check-sales page")
+      dashboard.checkJourneyUrl("IM9009999888/check-sales/1")
+      dashboard.continue()
+
+      And("the user answers no on the add-sales-country-list page")
+      dashboard.checkJourneyUrl("IM9009999888/add-sales-country-list")
+      dashboard.answerRadioButton("no")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.checkJourneyUrl("IM9009999888/check-your-answers")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9009999888/return-successfully-submitted")
+    }
+
+    Scenario("A user can submit a nil return") {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "IM9009999888", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user clicks on the 'Start your return' link")
+      dashboard.clickLink("start-your-return")
+
+      Then("the user answers yes on the start page")
+      dashboard.checkJourneyUrl("IM9009999888/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9009999888/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.checkJourneyUrl("IM9009999888/check-your-answers")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9009999888/return-successfully-submitted")
+    }
+
+    Scenario("A user can access their next available return via the secure messages link") {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "IM9001234567", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user accesses the start return link via secure messages")
+      dashboard.goToPage("IM9001234567/start-return")
+
+      Then("the is on the start page of their return")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
+    }
+
+    Scenario("An assistant user can access the returns service") {
+
+      Given("the user accesses the IOSS Returns Service as an assistant")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(
+        "100000001",
+        "IM9001234567",
+        "OrganisationAssistant",
+        "hasIOSSEnrolment",
+        "dashboard"
+      )
+
+      Then("the user is redirected to their IOSS account")
+      dashboard.checkJourneyUrl("your-account")
     }
   }
 }

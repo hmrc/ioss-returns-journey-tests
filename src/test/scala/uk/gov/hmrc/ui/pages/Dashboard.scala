@@ -28,9 +28,9 @@ import java.time.{Clock, LocalDate}
 
 object Dashboard extends BasePage {
 
-  private val registrationUrl: String   =
+  private val registrationUrl: String        =
     TestEnvironment.url("ioss-registration-frontend")
-  private val registrationJourneyUrl: String        = "/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop"
+  private val registrationJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop"
 
   private val dashboardUrl: String        =
     TestEnvironment.url("ioss-returns-frontend")
@@ -129,9 +129,9 @@ object Dashboard extends BasePage {
     checkbox match {
       case "first"  => click(By.id("value_0"))
       case "second" => click(By.id("value_1"))
-      case "third" => click(By.id("value_2"))
+      case "third"  => click(By.id("value_2"))
       case "fourth" => click(By.id("value_3"))
-      case "fifth" => click(By.id("value_4"))
+      case "fifth"  => click(By.id("value_4"))
       case _        => throw new Exception("Checkbox doesn't exist")
     }
 
