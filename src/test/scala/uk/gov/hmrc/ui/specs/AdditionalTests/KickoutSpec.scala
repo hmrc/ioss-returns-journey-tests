@@ -23,8 +23,8 @@ import java.time.LocalDate
 
 class KickoutSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
+  private val dashboard  = Dashboard
+  private val auth       = Auth
   private val fileUpload = FileUpload
 
   private val currentReturnMonth  = LocalDate.now().getMonthValue

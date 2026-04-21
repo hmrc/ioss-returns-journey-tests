@@ -40,6 +40,9 @@ object Dashboard extends BasePage {
     TestEnvironment.url("ioss-exclusions-frontend")
   private val exclusionJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/leave-import-one-stop-shop"
 
+  private val paymentUrl: String =
+    TestEnvironment.url("pay-frontend")
+
   def goToDashboardJourney(): Unit =
     get(dashboardUrl + dashboardJourneyUrl)
 
@@ -63,14 +66,19 @@ object Dashboard extends BasePage {
     getCurrentUrl should startWith(s"$exclusionUrl$exclusionJourneyUrl")
   }
 
-  def checkExternalServiceUrl(page: String): Unit = {
-    fluentWait.until(ExpectedConditions.urlContains(page))
-    if (page == "business-account") {
-      getCurrentUrl should endWith(page)
+  def checkExternalServiceUrl(page: String): Unit =
+    if (page == "payments") {
+      val paymentsUrlToCheck = s"$paymentUrl/pay/select-payment-amount?traceId="
+      fluentWait.until(ExpectedConditions.urlContains(paymentsUrlToCheck))
+      getCurrentUrl should startWith(paymentsUrlToCheck)
     } else {
-      getCurrentUrl.contains(page)
+      fluentWait.until(ExpectedConditions.urlContains(page))
+      if (page == "business-account") {
+        getCurrentUrl should endWith(page)
+      } else {
+        getCurrentUrl.contains(page)
+      }
     }
-  }
 
   def checkProblemPage(): Unit = {
     fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")))
