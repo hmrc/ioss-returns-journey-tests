@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class AmendSpec extends BaseSpec {
 
   private val dashboard = Dashboard
-  private val auth = Auth
+  private val auth      = Auth
 
   Feature("Change Your Registration journey") {
 
