@@ -22,7 +22,7 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class RejoinSpec extends BaseSpec {
 
   private val dashboard = Dashboard
-  private val auth = Auth
+  private val auth      = Auth
   private val exclusion = Exclusion
 
   Feature("Rejoin journeys") {
@@ -43,7 +43,9 @@ class RejoinSpec extends BaseSpec {
       dashboard.checkRegistrationJourneyUrl("rejoin-registration")
     }
 
-    Scenario("A user who has an exclusion effective date in the future does not have the rejoin this service link on the dashboard") {
+    Scenario(
+      "A user who has an exclusion effective date in the future does not have the rejoin this service link on the dashboard"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
@@ -69,7 +71,9 @@ class RejoinSpec extends BaseSpec {
       exclusion.noRejoinLink()
     }
 
-    Scenario("A user with over 3 years of outstanding returns cannot rejoin until 3 years of outstanding returns are complete") {
+    Scenario(
+      "A user with over 3 years of outstanding returns cannot rejoin until 3 years of outstanding returns are complete"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
