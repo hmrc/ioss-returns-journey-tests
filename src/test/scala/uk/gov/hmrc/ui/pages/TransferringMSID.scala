@@ -22,24 +22,29 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 
 object TransferringMSID extends BasePage {
 
-  def transferringMsidText(traderType: String, transferDirection: String, returnStage: String, returnType: String): Unit = {
+  def transferringMsidText(
+    traderType: String,
+    transferDirection: String,
+    returnStage: String,
+    returnType: String
+  ): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
     (traderType, transferDirection, returnStage, returnType) match {
 
-      case ("trader", "to", "offered", "partial") =>
+      case ("trader", "to", "offered", "partial")   =>
         Assert.assertTrue(htmlBody.contains("Only include sales up to 11 February 2024."))
-      case ("netp", "to", "offered", "partial") =>
+      case ("netp", "to", "offered", "partial")     =>
         Assert.assertTrue(htmlBody.contains("Only include their sales up to 11 February 2024."))
-      case (_, "to", "submitting", "partial") =>
+      case (_, "to", "submitting", "partial")       =>
         Assert.assertTrue(htmlBody.contains("1 to 11 February 2024"))
       case ("trader", "from", "offered", "partial") =>
         Assert.assertTrue(htmlBody.contains("Only include sales from 15 January 2024."))
-      case ("netp", "from", "offered", "partial") =>
+      case ("netp", "from", "offered", "partial")   =>
         Assert.assertTrue(htmlBody.contains("Only include their sales from 15 January 2024."))
-      case (_, "from", "submitting", "partial") =>
+      case (_, "from", "submitting", "partial")     =>
         Assert.assertTrue(htmlBody.contains("15 to 31 January 2024"))
-      case _ =>
+      case _                                        =>
         Assert.assertFalse(htmlBody.contains("Only include sales from"))
     }
   }

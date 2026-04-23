@@ -21,18 +21,18 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class TransferringMSIDSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth      = Auth
-  private val fileUpload = FileUpload
+  private val dashboard        = Dashboard
+  private val auth             = Auth
+  private val fileUpload       = FileUpload
   private val transferringMsid = TransferringMSID
-  private val exclusion = Exclusion
-  private val pastReturn = PastReturn
+  private val exclusion        = Exclusion
+  private val pastReturn       = PastReturn
 
   Feature("Transferring MSID journeys") {
 
     Scenario("A user who has transferred from another member state has a partial first return") {
 
-      Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
+      Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9005999997", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
@@ -64,7 +64,7 @@ class TransferringMSIDSpec extends BaseSpec {
 
     Scenario("A user who has transferred from another member state has a full second return") {
 
-      Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
+      Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9005999977", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
@@ -95,9 +95,11 @@ class TransferringMSIDSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9005999977/return-successfully-submitted")
     }
 
-    Scenario("A user who is transferring to another member state has a full return to submit prior to their final partial return") {
+    Scenario(
+      "A user who is transferring to another member state has a full return to submit prior to their final partial return"
+    ) {
 
-      Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
+      Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9009995555", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
@@ -136,7 +138,7 @@ class TransferringMSIDSpec extends BaseSpec {
 
     Scenario("A user who is transferring to another member state has a partial final return") {
 
-      Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
+      Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9009999555", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
@@ -178,7 +180,7 @@ class TransferringMSIDSpec extends BaseSpec {
 
     Scenario("A user who transferred from another member state has a first partial return in past returns") {
 
-      Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
+      Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9005999777", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
@@ -193,7 +195,7 @@ class TransferringMSIDSpec extends BaseSpec {
       pastReturn.showAllAccordion()
 
       When("the user clicks on the January 2024 link")
-      pastReturn.selectPastReturn("past-returns\\/2024-M1")
+      pastReturn.selectPastReturnLink("past-returns\\/2024-M1")
 
       Then("the user is shown the correct previously submitted return")
       dashboard.checkJourneyUrl("IM9005999777/past-returns/2024-M1")
@@ -204,7 +206,7 @@ class TransferringMSIDSpec extends BaseSpec {
 
     Scenario("A user who transferred to another member state has a final partial return in past returns") {
 
-      Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
+      Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9009955555", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
@@ -219,7 +221,7 @@ class TransferringMSIDSpec extends BaseSpec {
       pastReturn.showAllAccordion()
 
       When("the user clicks on the February 2024 link")
-      pastReturn.selectPastReturn("past-returns\\/2024-M2")
+      pastReturn.selectPastReturnLink("past-returns\\/2024-M2")
 
       Then("the user is shown the correct previously submitted return")
       dashboard.checkJourneyUrl("IM9009955555/past-returns/2024-M2")
