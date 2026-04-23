@@ -71,6 +71,10 @@ object Dashboard extends BasePage {
       val paymentsUrlToCheck = s"$paymentUrl/pay/select-payment-amount?traceId="
       fluentWait.until(ExpectedConditions.urlContains(paymentsUrlToCheck))
       getCurrentUrl should startWith(paymentsUrlToCheck)
+    } else if (page == "paymentsWithDate") {
+      val paymentsUrlToCheck = s"$paymentUrl/pay/when-do-you-want-to-pay?traceId="
+      fluentWait.until(ExpectedConditions.urlContains(paymentsUrlToCheck))
+      getCurrentUrl should startWith(paymentsUrlToCheck)
     } else {
       fluentWait.until(ExpectedConditions.urlContains(page))
       if (page == "business-account") {

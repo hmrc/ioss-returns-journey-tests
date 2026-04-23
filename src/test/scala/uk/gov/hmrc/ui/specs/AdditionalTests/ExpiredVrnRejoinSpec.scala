@@ -21,9 +21,9 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class ExpiredVrnRejoinSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
-  private val exclusion = Exclusion
+  private val dashboard  = Dashboard
+  private val auth       = Auth
+  private val exclusion  = Exclusion
   private val expiredVrn = ExpiredVrn
 
   Feature("Expired VRN rejoin journeys") {
@@ -37,7 +37,9 @@ class ExpiredVrnRejoinSpec extends BaseSpec {
       When("the user is on their dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      Then("they are presented with the correct banner for expired VRN trader who has left the service and has outstanding returns")
+      Then(
+        "they are presented with the correct banner for expired VRN trader who has left the service and has outstanding returns"
+      )
       expiredVrn.excludedExpiredVrnPastOutstandingReturnsBanner()
 
       And("the link to Rejoin this service is not displayed on the dashboard")
@@ -53,7 +55,9 @@ class ExpiredVrnRejoinSpec extends BaseSpec {
       When("the user is on their dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      Then("they are presented with the correct banner for expired VRN trader who has left the service and has no outstanding returns")
+      Then(
+        "they are presented with the correct banner for expired VRN trader who has left the service and has no outstanding returns"
+      )
       expiredVrn.excludedExpiredVrnPastNoOutstandingReturnsBanner()
 
       And("the link to Rejoin this service is not displayed on the dashboard")
@@ -69,14 +73,18 @@ class ExpiredVrnRejoinSpec extends BaseSpec {
       When("the user is on their dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      Then("they are presented with the correct banner for expired VRN trader who has been removed from the service and has no outstanding returns")
+      Then(
+        "they are presented with the correct banner for expired VRN trader who has been removed from the service and has no outstanding returns"
+      )
       expiredVrn.removedExpiredVrnPastNoOutstandingReturnsBanner()
 
       And("the link to Rejoin this service is not displayed on the dashboard")
       exclusion.noRejoinLink()
     }
 
-    Scenario("A trader who has left the service with outstanding returns older than 3 years and now has an expired VRN") {
+    Scenario(
+      "A trader who has left the service with outstanding returns older than 3 years and now has an expired VRN"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
@@ -85,7 +93,9 @@ class ExpiredVrnRejoinSpec extends BaseSpec {
       When("the user is on their dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      Then("they are presented with the correct banner for expired VRN trader who has left the service and has outstanding returns")
+      Then(
+        "they are presented with the correct banner for expired VRN trader who has left the service and has outstanding returns"
+      )
       expiredVrn.excludedExpiredVrnPastOutstandingReturnsBanner()
 
       And("a dashboard message is displayed for a return outstanding for more than 3 years")
@@ -95,7 +105,9 @@ class ExpiredVrnRejoinSpec extends BaseSpec {
       exclusion.noRejoinLink()
     }
 
-    Scenario("A trader who has left the service with outstanding payments older than 3 years and now has an expired VRN") {
+    Scenario(
+      "A trader who has left the service with outstanding payments older than 3 years and now has an expired VRN"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()

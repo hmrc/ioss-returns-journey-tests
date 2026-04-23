@@ -26,4 +26,26 @@ object Payment extends BasePage {
     val htmlH1 = Driver.instance.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlH1.contains("You do not owe any Import One Stop Shop VAT"))
   }
+
+  def noPaymentsTile(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You do not owe anything right now."))
+  }
+
+  def onePaymentDueOneOverdue(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Due Payments"))
+    Assert.assertTrue(htmlBody.contains("Overdue Payments"))
+  }
+
+  def singlePaymentDue(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Due Payments"))
+    Assert.assertFalse(htmlBody.contains("Overdue Payments"))
+  }
+
+  def errorTile(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You may still owe VAT"))
+  }
 }
