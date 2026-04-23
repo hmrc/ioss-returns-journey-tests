@@ -239,3 +239,39 @@ Feature: Save For Later Feature
     Then the user is on the IM9007777778/2023-M12/return-continue page
     And the user selects the Continue my return option
     And the user is on the IM9007777778/check-your-answers page
+
+
+#    BTA scenarios to be added in that spec later:
+  Scenario: A user accesses a saved return via BTA
+    Given the user accesses the authority wizard
+    And a user with VRN 100000444 and IOSS Number IM9001112222 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the IM9001112222/2023-M12/start-return page
+    And the user is on the IM9001112222/want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
+    And the user answers yes on the IM9001112222/sold-goods page
+    And the user selects Austria on the first IM9001112222/sold-to-country page
+    And the user is on the IM9001112222/vat-rates-from-country/1 page
+    When the user clicks the Save and come back later button
+    And the user is on the IM9001112222/2023-M12/progress-saved?continueUrl= page
+    Then the user manually navigates to the continue-return-from-bta/2023-M12 link
+    And the user is on the IM9001112222/2023-M12/return-continue page
+
+  Scenario: A Welsh user accesses a saved return via BTA
+    Given the user accesses the authority wizard
+    And a user with VRN 100000444 and IOSS Number IM9001112222 accesses the returns journey
+    Then the user is redirected to their IOSS Account
+    When the user clicks on the Start your return link
+    Then the user answers yes on the IM9001112222/2023-M12/start-return page
+    And the user is on the IM9001112222/want-to-upload-file page
+    Then the user selects No, enter them myself to upload a file
+    And the user answers yes on the IM9001112222/sold-goods page
+    And the user selects Austria on the first IM9001112222/sold-to-country page
+    And the user is on the IM9001112222/vat-rates-from-country/1 page
+    When the user clicks the Save and come back later button
+    And the user is on the IM9001112222/2023-M12/progress-saved?continueUrl= page
+    Then the user manually navigates to the continue-return-from-bta/2023-M12?lang=cy link
+    And the user is directed to the Welsh transition page
+    Then the user clicks the continue button
+    And the user is on the IM9001112222/2023-M12/return-continue page
