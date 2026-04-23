@@ -44,13 +44,19 @@ object Exclusion extends BasePage {
   def excludedNoOutstandingReturnsBanner(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(
-      htmlBody.contains("You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales.")
+      htmlBody.contains(
+        "You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."
+      )
     )
   }
 
   def excludedNoOutstandingReturnsMessage(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains("You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."))
+    Assert.assertTrue(
+      htmlBody.contains(
+        "You can no longer use this service to correct previous returns. You must make any VAT corrections directly with the country where you made the sales."
+      )
+    )
   }
 
   def excludedFinalReturnTile(): Unit = {
@@ -82,7 +88,7 @@ object Exclusion extends BasePage {
   def finalReturnHeading(display: Boolean, traderType: String): Unit = {
     val htmlH1 = Driver.instance.findElement(By.tagName("h1")).getText
 
-    if(display){
+    if (display) {
       if (traderType == "NETP") {
         Assert.assertTrue(htmlH1.equals("Do you want to start the final return for NETP Return VRN?"))
       } else {
@@ -95,20 +101,21 @@ object Exclusion extends BasePage {
 
   def lastChanceForCorrection(display: Boolean): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-    val text = "This is your last chance to correct a previous return on this service."
+    val text     = "This is your last chance to correct a previous return on this service."
 
-    if(display){
-        Assert.assertTrue(htmlBody.contains(text))
-      } else {
+    if (display) {
+      Assert.assertTrue(htmlBody.contains(text))
+    } else {
       Assert.assertFalse(htmlBody.contains(text))
     }
   }
 
   def correctionsWarningSubmission(display: Boolean): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-    val text = "After you submit your return, you will not be able to make any corrections using the Import One Stop Shop service."
+    val text     =
+      "After you submit your return, you will not be able to make any corrections using the Import One Stop Shop service."
 
-    if(display){
+    if (display) {
       Assert.assertTrue(htmlBody.contains(text))
     } else {
       Assert.assertFalse(htmlBody.contains(text))
@@ -186,5 +193,10 @@ object Exclusion extends BasePage {
         "You have an outstanding IOSS VAT payment for December 2020. You must contact the countries where you made your sales to pay the VAT due."
       )
     )
+  }
+
+  def noRejoinLink(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertFalse(htmlBody.contains("Rejoin this service"))
   }
 }

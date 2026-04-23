@@ -19,14 +19,12 @@ package uk.gov.hmrc.ui.specs.AdditionalTests
 import uk.gov.hmrc.ui.pages._
 import uk.gov.hmrc.ui.specs.BaseSpec
 
-import java.time.LocalDate
-
 class ExclusionSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
+  private val dashboard  = Dashboard
+  private val auth       = Auth
   private val fileUpload = FileUpload
-  private val exclusion = Exclusion
+  private val exclusion  = Exclusion
 
   Feature("Exclusions journeys") {
 
@@ -72,14 +70,18 @@ class ExclusionSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999992/2023-M11/start-return")
     }
 
-    Scenario("A user who is excluded in the future sees the correct dashboard messages when they have outstanding returns") {
+    Scenario(
+      "A user who is excluded in the future sees the correct dashboard messages when they have outstanding returns"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9009999995", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      And("the user is presented with the correct banner and message for trader with an exclusion date in the future with outstanding returns")
+      And(
+        "the user is presented with the correct banner and message for trader with an exclusion date in the future with outstanding returns"
+      )
       exclusion.excludedFutureOutstandingReturnsBanner()
       exclusion.excludedOutstandingReturnsReturnsMessage()
 
@@ -90,14 +92,18 @@ class ExclusionSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999995/2023-M12/start-return")
     }
 
-    Scenario("A user who has an exclusion date in the month before their last return sees the correct dashboard messages") {
+    Scenario(
+      "A user who has an exclusion date in the month before their last return sees the correct dashboard messages"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "IM9029999994", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      And("the user is presented with the correct banner and message for trader with an exclusion date in the past with a return due")
+      And(
+        "the user is presented with the correct banner and message for trader with an exclusion date in the past with a return due"
+      )
       exclusion.excludedPastOutstandingReturnsBanner()
       exclusion.excludedOutstandingReturnsReturnsMessage()
 
@@ -117,7 +123,9 @@ class ExclusionSpec extends BaseSpec {
       When("the user is on their dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      Then("the user is presented with the correct banner and message for a trader with an exclusion date in the past and no outstanding actions")
+      Then(
+        "the user is presented with the correct banner and message for a trader with an exclusion date in the past and no outstanding actions"
+      )
       exclusion.excludedNoOutstandingReturnsBanner()
       exclusion.excludedNoOutstandingReturnsMessage()
       exclusion.excludedFinalReturnTile()
@@ -130,7 +138,9 @@ class ExclusionSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "IM9049999994", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      And("the user is presented with the correct banner and message for trader removed from service and has outstanding returns")
+      And(
+        "the user is presented with the correct banner and message for trader removed from service and has outstanding returns"
+      )
       exclusion.removedOutstandingReturnsBanner()
       exclusion.excludedOutstandingReturnsReturnsMessage()
 
@@ -148,7 +158,9 @@ class ExclusionSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "IM9059999994", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      And("the user is presented with the correct banner and message for trader removed from service and has no outstanding returns")
+      And(
+        "the user is presented with the correct banner and message for trader removed from service and has no outstanding returns"
+      )
       exclusion.removedNoOutstandingReturnsBanner()
       exclusion.excludedNoOutstandingReturnsMessage()
       exclusion.excludedFinalReturnTile()
@@ -161,7 +173,9 @@ class ExclusionSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "IM9069999994", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      And("the user is presented with the correct banner and message for quarantined trader who has outstanding returns")
+      And(
+        "the user is presented with the correct banner and message for quarantined trader who has outstanding returns"
+      )
       exclusion.removedOutstandingReturnsBanner()
       exclusion.excludedOutstandingReturnsReturnsMessage()
 
@@ -179,7 +193,9 @@ class ExclusionSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("100000001", "IM9003999993", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
-      And("the user is presented with the correct banner and message for quarantined trader with no outstanding returns")
+      And(
+        "the user is presented with the correct banner and message for quarantined trader with no outstanding returns"
+      )
       exclusion.quarantinedNoOutstandingReturnsBanner()
       exclusion.excludedNoOutstandingReturnsMessage()
       exclusion.excludedFinalReturnTile()
@@ -272,7 +288,9 @@ class ExclusionSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999995/return-successfully-submitted")
     }
 
-    Scenario("An excluded user with outstanding returns due over 3 years ago is advised to report them directly to the countries where sales were made") {
+    Scenario(
+      "An excluded user with outstanding returns due over 3 years ago is advised to report them directly to the countries where sales were made"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
@@ -285,7 +303,9 @@ class ExclusionSpec extends BaseSpec {
       exclusion.returnsOverThreeYearsMessage()
     }
 
-    Scenario("An excluded user with outstanding payments due over 3 years ago is advised to report them directly to the countries where sales were made") {
+    Scenario(
+      "An excluded user with outstanding payments due over 3 years ago is advised to report them directly to the countries where sales were made"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
