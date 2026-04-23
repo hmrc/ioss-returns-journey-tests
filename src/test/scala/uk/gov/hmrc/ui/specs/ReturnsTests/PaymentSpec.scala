@@ -22,8 +22,8 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 class PaymentSpec extends BaseSpec {
 
   private val dashboard = Dashboard
-  private val auth = Auth
-  private val payment = Payment
+  private val auth      = Auth
+  private val payment   = Payment
 
   Feature("Payment journeys") {
 
