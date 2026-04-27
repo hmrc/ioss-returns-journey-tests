@@ -21,10 +21,10 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class SaveForLaterSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
+  private val dashboard  = Dashboard
+  private val auth       = Auth
   private val fileUpload = FileUpload
-  private val save = Save
+  private val save       = Save
 
   Feature("Save For Later journeys") {
 

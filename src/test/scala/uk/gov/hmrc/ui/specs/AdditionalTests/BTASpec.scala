@@ -25,6 +25,7 @@ class BTASpec extends BaseSpec {
   private val auth       = Auth
   private val fileUpload = FileUpload
   private val payment    = Payment
+  private val save       = Save
 
   Feature("BTA journeys") {
 
@@ -268,6 +269,76 @@ class BTASpec extends BaseSpec {
 
       Then("the user has been redirected to their past returns")
       dashboard.checkJourneyUrl("IM9001234567/past-returns")
+    }
+
+    Scenario("A user accesses a saved return via BTA") {
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000444", "IM9001112222", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user clicks on the 'Start your return' link")
+      dashboard.clickLink("start-your-return")
+
+      Then("the user answers questions on their return")
+      dashboard.checkJourneyUrl("IM9001112222/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001112222/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+      dashboard.checkJourneyUrl("IM9001112222/sold-goods")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001112222/sold-to-country/1")
+      dashboard.selectCountry("Austria")
+      dashboard.checkJourneyUrl("IM9001112222/vat-rates-from-country/1")
+
+      When("the user clicks the Save and come back later button")
+      dashboard.clickLink("saveProgress")
+
+      Then("the user is on the progress-saved page")
+      save.checkProgressSaved("IM9001112222/2023-M12")
+
+      When("the user manually navigates to the continue-return-from-bta/2023-M12 link")
+      dashboard.goToPage("test-only/continue-return-from-bta/2023-M12")
+
+      Then("the user is on the return-continue page")
+      dashboard.checkJourneyUrl("IM9001112222/2023-M12/return-continue")
+    }
+
+    Scenario("A Welsh user accesses a saved return via BTA") {
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000444", "IM9001112222", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user clicks on the 'Start your return' link")
+      dashboard.clickLink("start-your-return")
+
+      Then("the user answers questions on their return")
+      dashboard.checkJourneyUrl("IM9001112222/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001112222/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+      dashboard.checkJourneyUrl("IM9001112222/sold-goods")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001112222/sold-to-country/1")
+      dashboard.selectCountry("Austria")
+      dashboard.checkJourneyUrl("IM9001112222/vat-rates-from-country/1")
+
+      When("the user clicks the Save and come back later button")
+      dashboard.clickLink("saveProgress")
+
+      Then("the user is on the progress-saved page")
+      save.checkProgressSaved("IM9001112222/2023-M12")
+
+      When("the user manually navigates to the continue-return-from-bta/2023-M12?lang=cy link")
+      dashboard.goToPage("test-only/continue-return-from-bta/2023-M12?lang=cy")
+
+      And("the user is on the Welsh transition page")
+      dashboard.checkExternalServiceUrl("no-welsh-service?redirectUrl")
+
+      When("the user clicks the continue button")
+      dashboard.continue()
+
+      Then("the user is on the return-continue page")
+      dashboard.checkJourneyUrl("IM9001112222/2023-M12/return-continue")
     }
   }
 }
