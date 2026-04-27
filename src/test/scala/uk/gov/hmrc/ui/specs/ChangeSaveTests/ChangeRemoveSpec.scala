@@ -1313,5 +1313,181 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.submit()
       dashboard.checkJourneyUrl("IM9001234569/return-successfully-submitted")
     }
+
+    Scenario("A user can change answers via the correction mini CYA") {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "IM9001234567", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user clicks on the 'Start your return' link")
+      dashboard.clickLink("start-your-return")
+
+      Then("the user answers yes on the start page")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9001234567/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers yes on the correct-previous-return page")
+      dashboard.checkJourneyUrl("IM9001234567/correct-previous-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user picks 2023 on the correction-return-year page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-return-year/1")
+      dashboard.clickLink("value_2023")
+      dashboard.continue()
+
+      And("the user picks October on the correction-return-month page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-return-month/1")
+      dashboard.clickLink("value_October")
+      dashboard.continue()
+
+      And("the user adds a correction for Belgium")
+      dashboard.checkJourneyUrl("IM9001234567/correction-country/1/1")
+      dashboard.selectCountry("Belgium")
+      dashboard.checkJourneyUrl("IM9001234567/add-new-country/1/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/country-vat-correction-amount/1/1")
+      dashboard.enterAnswer("1000")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-confirm/1/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-check/1/1")
+
+      Then("the user changes the correction amount for Belgium")
+      dashboard.selectChangeOrRemoveLink("IM9001234567\\/country-vat-correction-amount\\/1\\/1")
+      dashboard.checkJourneyUrl("IM9001234567/country-vat-correction-amount/1/1")
+      dashboard.enterAnswer("1111.11")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-confirm/1/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-check/1/1")
+      dashboard.continue()
+
+      And("the user answers no on the correction-list-countries page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-list-countries/1")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers no on the vat-correction-months-add page")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.answerRadioButton("no")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.checkJourneyUrl("IM9001234567/check-your-answers")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001234567/return-successfully-submitted")
+    }
+
+    Scenario(
+      "A user can add corrections for all available periods then remove via the correction periods list for same year"
+    ) {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "IM9001234567", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user clicks on the 'Start your return' link")
+      dashboard.clickLink("start-your-return")
+
+      Then("the user answers yes on the start page")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9001234567/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers yes on the correct-previous-return page")
+      dashboard.checkJourneyUrl("IM9001234567/correct-previous-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user picks 2023 on the correction-return-year page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-return-year/1")
+      dashboard.clickLink("value_2023")
+      dashboard.continue()
+
+      And("the user picks November on the correction-return-month page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-return-month/1")
+      dashboard.clickLink("value_November")
+      dashboard.continue()
+
+      And("the user adds a correction for Austria")
+      dashboard.checkJourneyUrl("IM9001234567/correction-country/1/1")
+      dashboard.selectCountry("Austria")
+      dashboard.checkJourneyUrl("IM9001234567/add-new-country/1/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/country-vat-correction-amount/1/1")
+      dashboard.enterAnswer("1000")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-confirm/1/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-check/1/1")
+      dashboard.continue()
+
+      And("the user answers no on the correction-list-countries page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-list-countries/1")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers yes on the vat-correction-months-add page")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.answerRadioButton("yes")
+
+      And("the user picks 2023 on the correction-return-year page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-return-year/2")
+      dashboard.clickLink("value_2023")
+      dashboard.continue()
+
+      And("the user picks October on the correction-return-month page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-return-month/2")
+      dashboard.clickLink("value_October")
+      dashboard.continue()
+
+      And("the user adds a correction for Belgium")
+      dashboard.checkJourneyUrl("IM9001234567/correction-country/2/1")
+      dashboard.selectCountry("Belgium")
+      dashboard.checkJourneyUrl("IM9001234567/add-new-country/2/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/country-vat-correction-amount/2/1")
+      dashboard.enterAnswer("2000")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-confirm/2/1")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/vat-payable-check/2/1")
+      dashboard.continue()
+
+      And("the user answers no on the correction-list-countries page")
+      dashboard.checkJourneyUrl("IM9001234567/correction-list-countries/2")
+      dashboard.answerRadioButton("no")
+
+      Then("the user removes their corrections")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months")
+      dashboard.selectChangeOrRemoveLink("IM9001234567\\/remove-month-correction\\/2")
+      dashboard.checkJourneyUrl("IM9001234567/remove-month-correction/2")
+      correction.removeCorrectionPeriod("October", "2023")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.selectChangeOrRemoveLink("IM9001234567\\/remove-month-correction\\/1")
+      dashboard.checkJourneyUrl("IM9001234567/remove-month-correction/1")
+      correction.removeCorrectionPeriod("November", "2023")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the correct-previous-return page")
+      dashboard.checkJourneyUrl("IM9001234567/correct-previous-return")
+      dashboard.answerRadioButton("no")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.checkJourneyUrl("IM9001234567/check-your-answers")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001234567/return-successfully-submitted")
+    }
   }
 }
