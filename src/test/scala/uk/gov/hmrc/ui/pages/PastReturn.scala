@@ -72,4 +72,9 @@ object PastReturn extends BasePage {
     Assert.assertTrue(htmlH1.equals("Submitted return for December 2024"))
   }
 
+  def returnsAndPaymentReferences(iossNumber: String): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains(s"XI/$iossNumber"))
+  }
+
 }
