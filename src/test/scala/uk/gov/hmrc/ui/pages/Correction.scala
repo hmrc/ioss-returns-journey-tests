@@ -73,4 +73,12 @@ object Correction extends BasePage {
       )
     }
   }
+  def removeCorrectionCountry(country: String): Unit = {
+    val heading = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"Are you sure you want to remove this correction for $country?"
+      )
+    )
+  }
 }
