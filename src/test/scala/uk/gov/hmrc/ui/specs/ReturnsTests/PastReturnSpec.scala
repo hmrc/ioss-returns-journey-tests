@@ -21,8 +21,8 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class PastReturnSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
+  private val dashboard  = Dashboard
+  private val auth       = Auth
   private val pastReturn = PastReturn
 
   Feature("Past Returns journeys") {
