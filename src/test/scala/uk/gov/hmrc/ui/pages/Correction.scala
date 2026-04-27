@@ -20,6 +20,8 @@ import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.selenium.webdriver.Driver
 
+import java.time.LocalDate
+
 object Correction extends BasePage {
 
   def previouslyDeclaredText(traderType: String, display: Boolean): Unit = {
@@ -79,6 +81,52 @@ object Correction extends BasePage {
       heading.equals(
         s"Are you sure you want to remove this correction for $country?"
       )
+    )
+  }
+
+  def removeCorrectionPeriod(month: String, year: String): Unit = {
+    val yearString = if (year == "twoYearsAgo") {
+      LocalDate.now().minusYears(2).getYear
+    } else if (year == "2023") {
+      LocalDate.now().withYear(2023).getYear
+    } else {
+      LocalDate.now().minusYears(1).getYear
+    }
+
+    val heading = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"Are you sure you want to remove this correction for $month $yearString?"
+      )
+    )
+  }
+
+  def oneCorrectionMonth(period: String): Unit = {
+    val heading  = Driver.instance.findElement(By.tagName("h1")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"You have corrected the VAT amount for one return month"
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(period)
+    )
+  }
+
+  def twoCorrectionMonths(): Unit = {
+    val heading  = Driver.instance.findElement(By.tagName("h1")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      heading.equals(
+        s"You have corrected the VAT amount for 2 return months"
+      )
+    )
+    Assert.assertTrue(
+      htmlBody.contains(s"December ${LocalDate.now().minusYears(2).getYear}")
+    )
+    Assert.assertTrue(
+      htmlBody.contains(s"November ${LocalDate.now().minusYears(1).getYear}")
     )
   }
 }
