@@ -17,10 +17,20 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
 import org.scalatest.concurrent.Eventually
 import org.scalatest.time._
+import uk.gov.hmrc.configuration.TestEnvironment
+import uk.gov.hmrc.selenium.webdriver.Driver
+import uk.gov.hmrc.ui.pagesold.AuthPage.{convertToAnyShouldWrapper, startWith}
+
+import java.io.File
 
 object FileUpload extends BasePage with Eventually {
+
+  private val dashboardUrl: String        =
+    TestEnvironment.url("ioss-returns-frontend")
+  private val dashboardJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
 
   def selectFileUpload(selectButton: String): Unit = {
     eventually(timeout(Span(1, Seconds)), interval(Span(200, Millis))) {
@@ -32,5 +42,21 @@ object FileUpload extends BasePage with Eventually {
       }
     }
     click(continueButton)
+  }
+
+  def uploadFile(file: String): Unit = {
+    val pathNameString: String = System.getProperty("user.dir") + s"/src/test/scala/uk/gov/hmrc/ui/data/$file"
+    val filePath               = new File(pathNameString)
+
+    //Cannot use clear function in PageObject sendKeys
+    Driver.instance.findElement(By.id("file-input")).sendKeys(filePath.getAbsolutePath)
+
+    click(By.id("file-upload-button"))
+  }
+
+  def fileUploadedUrlCheck(iossNumber: String): Unit = {
+    val fileUploadedUrlStart = s"$dashboardUrl$dashboardJourneyUrl/$iossNumber/file-uploaded"
+    fluentWait.until(ExpectedConditions.urlContains(fileUploadedUrlStart))
+    getCurrentUrl should startWith(fileUploadedUrlStart)
   }
 }

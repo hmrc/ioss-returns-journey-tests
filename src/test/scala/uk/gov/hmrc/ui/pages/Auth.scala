@@ -90,4 +90,55 @@ object Auth extends BasePage {
     click(By.cssSelector("Input[value='Submit']"))
 
   }
+
+  def loginAsIntermediary(
+    intermediaryNumber: String,
+    iossNumber: String,
+    journey: String
+  ): Unit = {
+
+    getCurrentUrl should startWith(authUrl)
+
+    val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns" || journey == "saved return") {
+      s"start-return-as-intermediary/$iossNumber"
+    } else if (journey == "doubleEnrolmentGlobalReturns") {
+      ""
+    } else if (journey == "payments") {
+      s"start-payment-as-intermediary/$iossNumber"
+    } else {
+      s"start-returns-history-as-intermediary/$iossNumber"
+    }
+
+    sendKeys(By.id("redirectionUrl"), s"$returnsUrl$returnsJourneyUrl/$endpoint")
+
+    selectByValue(By.id("affinityGroupSelect"), "Organisation")
+
+    sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+    sendKeys(By.id("input-0-0-name"), "VRN")
+    sendKeys(By.id("input-0-0-value"), "100000001")
+
+    sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+    sendKeys(By.id("input-1-0-name"), "IntNumber")
+    sendKeys(By.id("input-1-0-value"), intermediaryNumber)
+
+    if (intermediaryNumber == "IN9002230002") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-2-0-name"), "IntNumber")
+      sendKeys(By.id("input-2-0-value"), "IN9001230002")
+
+      sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-3-0-name"), "IntNumber")
+      sendKeys(By.id("input-3-0-value"), "IN9000230002")
+    }
+
+    if (journey == "doubleEnrolmentNetpReturns" || journey == "doubleEnrolmentGlobalReturns") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+      sendKeys(By.id("input-2-0-value"), "IM9001234567")
+    }
+
+    click(By.cssSelector("Input[value='Submit']"))
+
+    fluentWait.until(ExpectedConditions.urlContains(s"$returnsUrl$returnsJourneyUrl"))
+  }
 }

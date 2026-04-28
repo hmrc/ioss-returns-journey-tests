@@ -23,8 +23,8 @@ import java.time.LocalDate
 
 class CheckYourAnswersSpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
+  private val dashboard  = Dashboard
+  private val auth       = Auth
   private val fileUpload = FileUpload
 
   private val lastYear    = LocalDate.now().minusYears(1).getYear
@@ -135,7 +135,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.answerRadioButton("yes")
 
       And("the user adds the final VAT rate for Croatia")
-      dashboard.checkJourneyUrl("IM9001234567/remaining-vat-rate-from-country/1/3?waypoints=IM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/remaining-vat-rate-from-country/1/3?waypoints=IM9001234567-check-your-answers"
+      )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234567/sales-to-country/1/3?waypoints=IM9001234567-check-your-answers")
       dashboard.enterAnswer("16001")
@@ -167,7 +169,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/check-your-answers")
 
       Then("the user clicks change for correct-previous-return")
-      dashboard.selectChangeOrRemoveLink("IM9001234567\\/correct-previous-return\\?waypoints\\=IM9001234567-check-your-answers")
+      dashboard.selectChangeOrRemoveLink(
+        "IM9001234567\\/correct-previous-return\\?waypoints\\=IM9001234567-check-your-answers"
+      )
       dashboard.checkJourneyUrl("IM9001234567/correct-previous-return?waypoints=IM9001234567-check-your-answers")
 
       And("the user changes the answer to yes")
@@ -184,7 +188,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.selectCountry("Bulgaria")
       dashboard.checkJourneyUrl("IM9001234567/add-new-country/1/1?waypoints=IM9001234567-check-your-answers")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234567/country-vat-correction-amount/1/1?waypoints=IM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/country-vat-correction-amount/1/1?waypoints=IM9001234567-check-your-answers"
+      )
       dashboard.enterAnswer("1500")
       dashboard.checkJourneyUrl("IM9001234567/vat-payable-confirm/1/1?waypoints=IM9001234567-check-your-answers")
       dashboard.answerRadioButton("yes")
@@ -194,7 +200,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user adds another correction to Bulgaria for a different month")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add?waypoints=IM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/2023-M12/vat-correction-months-add?waypoints=IM9001234567-check-your-answers"
+      )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234567/correction-return-year/2?waypoints=IM9001234567-check-your-answers")
       dashboard.clickLink("value_2023")
@@ -206,7 +214,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.selectCountry("Bulgaria")
       dashboard.checkJourneyUrl("IM9001234567/add-new-country/2/1?waypoints=IM9001234567-check-your-answers")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234567/country-vat-correction-amount/2/1?waypoints=IM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/country-vat-correction-amount/2/1?waypoints=IM9001234567-check-your-answers"
+      )
       dashboard.enterAnswer("100.25")
       dashboard.checkJourneyUrl("IM9001234567/vat-payable-confirm/2/1?waypoints=IM9001234567-check-your-answers")
       dashboard.answerRadioButton("yes")
@@ -259,24 +269,38 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       And("the user clicks change for add-sales-country-list on the check-your-answers page")
       dashboard.checkJourneyUrl("IM9001234567/check-your-answers")
-      dashboard.selectChangeOrRemoveLink("IM9001234567\\/add-sales-country-list\\?waypoints\\=IM9001234567-check-your-answers")
+      dashboard.selectChangeOrRemoveLink(
+        "IM9001234567\\/add-sales-country-list\\?waypoints\\=IM9001234567-check-your-answers"
+      )
       dashboard.checkJourneyUrl("IM9001234567/add-sales-country-list?waypoints=IM9001234567-check-your-answers")
 
       And("the user clicks change for check-sales/1")
-      dashboard.selectChangeOrRemoveLink("IM9001234567\\/check-sales\\/1\\?waypoints\\=IM9001234567-change-add-sales-country-list\\%2CIM9001234567-check-your-answers")
-      dashboard.checkJourneyUrl("IM9001234567/check-sales/1?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers")
+      dashboard.selectChangeOrRemoveLink(
+        "IM9001234567\\/check-sales\\/1\\?waypoints\\=IM9001234567-change-add-sales-country-list\\%2CIM9001234567-check-your-answers"
+      )
+      dashboard.checkJourneyUrl(
+        "IM9001234567/check-sales/1?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers"
+      )
 
       And("the user answers yes to add another VAT rate")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234567/vat-rates-from-country/1?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/vat-rates-from-country/1?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers"
+      )
       dashboard.tickCheckbox("second")
       dashboard.continue()
-      dashboard.checkJourneyUrl("IM9001234567/sales-to-country/1/2?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/sales-to-country/1/2?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers"
+      )
       dashboard.enterAnswer("125.63")
-      dashboard.checkJourneyUrl("IM9001234567/vat-on-sales/1/2?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/vat-on-sales/1/2?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers"
+      )
       dashboard.clickLink("choice")
       dashboard.continue()
-      dashboard.checkJourneyUrl("IM9001234567/check-sales/1?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234567/check-sales/1?waypoints=IM9001234567-change-add-sales-country-list%2CIM9001234567-check-your-answers"
+      )
       dashboard.answerRadioButton("no")
 
       And("the user answers adds sales for Germany")
@@ -303,7 +327,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/return-successfully-submitted")
     }
 
-    Scenario("A user adds return data with corrections for multiple years and periods then changes corrections to no on CYA page") {
+    Scenario(
+      "A user adds return data with corrections for multiple years and periods then changes corrections to no on CYA page"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
@@ -404,7 +430,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234569/check-your-answers")
 
       And("the user clicks change for correct-previous-return")
-      dashboard.selectChangeOrRemoveLink("IM9001234569\\/correct-previous-return\\?waypoints\\=IM9001234569-check-your-answers")
+      dashboard.selectChangeOrRemoveLink(
+        "IM9001234569\\/correct-previous-return\\?waypoints\\=IM9001234569-check-your-answers"
+      )
 
       Then("the user changes the answer to no to remove all corrections from the return")
       dashboard.checkJourneyUrl("IM9001234569/correct-previous-return?waypoints=IM9001234569-check-your-answers")
@@ -416,7 +444,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234569/return-successfully-submitted")
     }
 
-    Scenario("A user adds return data with corrections for multiple years and periods then changes corrections via CYA") {
+    Scenario(
+      "A user adds return data with corrections for multiple years and periods then changes corrections via CYA"
+    ) {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
@@ -517,10 +547,14 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234569/check-your-answers")
 
       And("the user clicks change for vat-correction-months-add")
-      dashboard.selectChangeOrRemoveLink(s"IM9001234569\\/$lastYear-M12\\/vat-correction-months-add\\?waypoints\\=IM9001234569-check-your-answers")
+      dashboard.selectChangeOrRemoveLink(
+        s"IM9001234569\\/$lastYear-M12\\/vat-correction-months-add\\?waypoints\\=IM9001234569-check-your-answers"
+      )
 
       Then("the user answers yes and adds another correction")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add?waypoints=IM9001234569-check-your-answers")
+      dashboard.checkJourneyUrl(
+        s"IM9001234569/$lastYear-M12/vat-correction-months-add?waypoints=IM9001234569-check-your-answers"
+      )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234569/correction-return-year/3?waypoints=IM9001234569-check-your-answers")
       dashboard.clickLink(s"value_$twoYearsAgo")
@@ -532,7 +566,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.selectCountry("Slovakia")
       dashboard.checkJourneyUrl("IM9001234569/add-new-country/3/1?waypoints=IM9001234569-check-your-answers")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234569/country-vat-correction-amount/3/1?waypoints=IM9001234569-check-your-answers")
+      dashboard.checkJourneyUrl(
+        "IM9001234569/country-vat-correction-amount/3/1?waypoints=IM9001234569-check-your-answers"
+      )
       dashboard.enterAnswer("1234")
       dashboard.checkJourneyUrl("IM9001234569/vat-payable-confirm/3/1?waypoints=IM9001234569-check-your-answers")
       dashboard.answerRadioButton("yes")
@@ -540,7 +576,9 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/3?waypoints=IM9001234569-check-your-answers")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add?waypoints=IM9001234569-check-your-answers")
+      dashboard.checkJourneyUrl(
+        s"IM9001234569/$lastYear-M12/vat-correction-months-add?waypoints=IM9001234569-check-your-answers"
+      )
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
