@@ -35,6 +35,7 @@ object PastReturn extends BasePage {
 
   def selectPastReturnLink(link: String): Unit = {
     fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.className("govuk-table__cell--numeric")))
+    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(s"a[href*=$link]")))
     click(By.cssSelector(s"a[href*=$link]"))
   }
 

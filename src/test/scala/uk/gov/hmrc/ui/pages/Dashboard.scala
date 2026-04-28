@@ -239,7 +239,7 @@ object Dashboard extends BasePage {
   }
 
   def selectChangeOrRemoveLink(link: String): Unit =
-    click(By.cssSelector(s"a[href*=$link]"))
+    cssLink(link)
 
   def checkSavedReturn(): Unit = {
     val pageTitle = "We have saved your progress - Submit a One Stop Shop return and pay VAT - GOV.UK"
@@ -248,4 +248,7 @@ object Dashboard extends BasePage {
     )
     getTitle should be(pageTitle)
   }
+
+  def cssLink(link: String): Unit =
+    click(By.cssSelector(s"a[href*=$link]"))
 }

@@ -21,14 +21,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.scalatest.matchers.should.Matchers._
 import uk.gov.hmrc.configuration.TestEnvironment
 
-import scala.util.Random
-
 object Auth extends BasePage {
 
   private val authUrl: String           = TestEnvironment.url("auth-login-stub") + "/auth-login-stub/gg-sign-in"
-  private val registrationUrl: String   =
-    TestEnvironment.url("ioss-registration-frontend")
-  private val journeyUrl: String        = "/pay-vat-on-goods-sold-to-eu/register-for-import-one-stop-shop"
   private val returnsUrl: String        =
     TestEnvironment.url("ioss-returns-frontend")
   private val returnsJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"

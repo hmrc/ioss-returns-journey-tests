@@ -31,7 +31,7 @@ object MultipleIOSS extends BasePage {
   }
 
   def linkForPreviousRegistrations(variation: String): Unit = {
-    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    val htmlBody           = Driver.instance.findElement(By.tagName("body")).getText
     val dateTimeFormatter  = DateTimeFormatter.ofPattern("MMMM yyyy")
     val startDate          = LocalDate.now().minusMonths(6)
     val startDateFormatted = dateTimeFormatter.format(startDate)
@@ -51,5 +51,40 @@ object MultipleIOSS extends BasePage {
     val periodString = s"$returnYear-M$returnMonth"
 
     periodString
+  }
+
+  def previousIOSSNumbers(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("IM9007230001"))
+    Assert.assertTrue(htmlBody.contains("IM9007230002"))
+  }
+
+  def dashboardWarningOutstandingPaymentsMultipleRegistrations(variation: String, iossNumber: String): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    val amount   = variation match {
+      case "multiplePaymentsOneRegistration"       => "£1,500"
+      case "multiplePaymentsMultipleRegistrations" => "£4,250"
+      case "onePaymentMultipleRegistrations"       => "£3,750"
+      case _                                       => "£2,000"
+    }
+
+    if (variation == "multiplePaymentsMultipleRegistrations" || variation == "onePaymentMultipleRegistrations") {
+      Assert.assertTrue(htmlBody.contains(s"This account owes a total of $amount on previous registrations."))
+    } else {
+      Assert.assertTrue(
+        htmlBody.contains(s"This account owes $amount on a previous registration with IOSS number $iossNumber.")
+      )
+    }
+  }
+
+  def outstandingPaymentAmounts(variation: String): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    if (variation == "single") {
+      Assert.assertTrue(htmlBody.contains("You owe £1,750 for your registration with IOSS number\nIM9007230004"))
+      Assert.assertTrue(htmlBody.contains("You owe £2,000 for your registration with IOSS number\nIM9007230005"))
+    } else {
+      Assert.assertTrue(htmlBody.contains("You owe £2,750 for your registration with IOSS number\nIM9007230001"))
+      Assert.assertTrue(htmlBody.contains("You owe £1,500 for your registration with IOSS number\nIM9007230002"))
+    }
   }
 }
