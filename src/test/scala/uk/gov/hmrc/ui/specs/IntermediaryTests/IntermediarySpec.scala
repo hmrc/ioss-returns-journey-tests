@@ -21,11 +21,14 @@ import uk.gov.hmrc.ui.specs.BaseSpec
 
 class IntermediarySpec extends BaseSpec {
 
-  private val dashboard = Dashboard
-  private val auth = Auth
-  private val fileUpload = FileUpload
-  private val intermediary = Intermediary
-  private val correction = Correction
+  private val dashboard        = Dashboard
+  private val auth             = Auth
+  private val fileUpload       = FileUpload
+  private val intermediary     = Intermediary
+  private val correction       = Correction
+  private val payment          = Payment
+  private val pastReturn       = PastReturn
+  private val transferringMsid = TransferringMSID
 
   Feature("Intermediary journeys") {
 
@@ -332,6 +335,286 @@ class IntermediarySpec extends BaseSpec {
 
       Then("the user is redirected to the Intermediary Dashboard")
       intermediary.dashboardUrlCheck("intermediary")
+    }
+
+    Scenario("Intermediary can submit a first return for a NETP") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144773", "returns")
+
+      And("the user answers yes on the IM9001144773/2025-M3/start-return page")
+      dashboard.checkJourneyUrl("IM9001144773/2025-M1/start-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144773/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9001144773/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.checkJourneyUrl("IM9001144773/check-your-answers")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001144773/return-successfully-submitted")
+
+      And("the correct details are shown on the acknowledgement page for NETP IM9001144773")
+      intermediary.checkNetpReturn("IM9001144773")
+
+      When("the user clicks on the Back to your account link")
+      dashboard.clickLink("back-to-your-account")
+
+      Then("the user is redirected to the Intermediary Dashboard")
+      intermediary.dashboardUrlCheck("intermediary")
+    }
+
+    Scenario("Intermediary cannot access return for a client not registered to them") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP who is not registered to them")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234568", "IM9001144773", "returns")
+
+      Then("the user is on the cannot-use-not-registered page")
+      dashboard.checkJourneyUrl("cannot-use-not-registered")
+    }
+
+    Scenario(
+      "Intermediary has multiple outstanding payments for a NETP"
+    ) {
+
+      Given("the user accesses payments in the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144771", "payments")
+
+      And("the correct payments are displayed for the NETP")
+      dashboard.checkJourneyUrl("IM9001144771/outstanding-payments")
+      intermediary.checkNetpPayments()
+
+      When(
+        "the user selects the first payment option on the IM9001144771/outstanding-payments page"
+      )
+      dashboard.clickLink("value_0")
+      dashboard.continue()
+
+      Then("the user has been redirected to the payments service")
+      dashboard.checkExternalServiceUrl("payments")
+
+      And("the user clicks back on the browser")
+      dashboard.clickBackButton()
+
+      When("the user is on the IM9001144771/outstanding-payments page")
+      dashboard.checkJourneyUrl("IM9001144771/outstanding-payments")
+
+      And(
+        "the user selects the second payment option on the IM9001144771/outstanding-payments page"
+      )
+      dashboard.clickLink("value_1")
+      dashboard.continue()
+
+      Then("the user has been redirected to the payments service")
+      dashboard.checkExternalServiceUrl("payments")
+    }
+
+    Scenario(
+      "Intermediary has a single outstanding payment for a NETP"
+    ) {
+
+      Given("the user accesses payments in the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144777", "payments")
+
+      Then("the user is redirected to the payments service")
+      dashboard.checkExternalServiceUrl("payments")
+    }
+
+    Scenario(
+      "Intermediary has no outstanding payments for a NETP"
+    ) {
+
+      Given("the user accesses payments in the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144773", "payments")
+
+      When("the user is on the IM9001144773/outstanding-payments page")
+      dashboard.checkJourneyUrl("IM9001144773/outstanding-payments")
+
+      Then("the user is shown that the intermediary does not owe any VAT")
+      payment.noVatOwed()
+    }
+
+    Scenario("Intermediary cannot access payments for a client not registered to them") {
+
+      Given("the user accesses payments in the IOSS Returns Service on behalf of a NETP who is not registered to them")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234568", "IM9001144771", "payments")
+
+      Then("the user is on the cannot-use-not-registered page")
+      dashboard.checkJourneyUrl("cannot-use-not-registered")
+    }
+
+    Scenario("Intermediary views previous returns from the same year") {
+
+      Given("the user accesses submitted returns in the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144771", "submitted-returns")
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144771/past-returns")
+
+      And("the correct submitted returns caption is displayed")
+      intermediary.checkSubmittedReturnsCaption("UK with VRN")
+
+      And("the user clicks the Show all sections accordion")
+      pastReturn.showAllAccordion()
+
+      When("the user clicks on the January 2025 link")
+      pastReturn.selectPastReturnLink("past-returns\\/2025-M1")
+
+      Then("the user is shown the correct previously submitted return")
+      dashboard.checkJourneyUrl("IM9001144771/past-returns/2025-M1")
+
+      And("the correct submitted returns caption is displayed")
+      intermediary.checkSubmittedReturnsCaption("UK with VRN")
+
+      And("the return for January 2025 is displayed to the user")
+      pastReturn.returnForMonth("January 2025")
+
+      And("the correct sections are displayed on the previous return with no corrections")
+      pastReturn.returnWithNoCorrections()
+
+      When("the user clicks back on the browser")
+      dashboard.clickBackButton()
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144771/past-returns")
+
+      And("the user clicks the Pay Now link for February 2025")
+      dashboard.cssLink("make-payment\\/2025-M2")
+
+      And("the user has been redirected to the payments service")
+      dashboard.checkExternalServiceUrl("payments")
+    }
+
+    Scenario("Intermediary views previous returns from multiple years including a nil return") {
+
+      Given("the user accesses submitted returns in the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001001001", "IM9001001001", "submitted-returns")
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001001001/past-returns")
+
+      And("the correct submitted returns caption is displayed")
+      intermediary.checkSubmittedReturnsCaption("UK with NINO")
+
+      And("the user clicks the Show all sections accordion")
+      pastReturn.showAllAccordion()
+
+      When("the user clicks on the December 2024 link")
+      pastReturn.selectPastReturnLink("past-returns\\/2024-M12")
+
+      Then("the user is shown the correct previously submitted return")
+      dashboard.checkJourneyUrl("IM9001001001/past-returns/2024-M12")
+
+      And("the correct submitted returns caption is displayed")
+      intermediary.checkSubmittedReturnsCaption("UK with NINO")
+
+      And("the return for December 2024 is displayed to the user")
+      pastReturn.returnForMonth("December 2024")
+
+      And("the correct sections are displayed for a nil return")
+      pastReturn.nilReturn()
+
+      When("the user clicks back on the browser")
+      dashboard.clickBackButton()
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001001001/past-returns")
+
+      And("the user clicks the Pay Now link for January 2025")
+      dashboard.cssLink("make-payment\\/2025-M1")
+
+      And("the user has been redirected to the payments service")
+      dashboard.checkExternalServiceUrl("payments")
+    }
+
+    Scenario("Intermediary cannot access previous returns for a client not registered to them") {
+
+      Given(
+        "the user accesses submitted returns in the IOSS Returns Service on behalf of a NETP who is not registered to them"
+      )
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001001001", "IM9001144771", "submitted-returns")
+
+      Then("the user is on the cannot-use-not-registered page")
+      dashboard.checkJourneyUrl("cannot-use-not-registered")
+    }
+
+    Scenario("Intermediary views previous returns for excluded NETP") {
+
+      Given("the user accesses submitted returns in the IOSS Returns Service on behalf of a NETP who is excluded")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9008888886", "IM9001144884", "submitted-returns")
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144884/past-returns")
+
+      And("the user clicks the Show all sections accordion")
+      pastReturn.showAllAccordion()
+
+      When("the user clicks on the January 2025 link")
+      pastReturn.selectPastReturnLink("past-returns\\/2025-M1")
+
+      Then("the user is shown the correct previously submitted return")
+      dashboard.checkJourneyUrl("IM9001144884/past-returns/2025-M1")
+
+      And("the return for January 2025 is displayed to the user")
+      pastReturn.returnForMonth("January 2025")
+
+      And("the correct sections are displayed on the previous return with no corrections")
+      pastReturn.returnWithNoCorrections()
+
+      When("the user clicks back on the browser")
+      dashboard.clickBackButton()
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144884/past-returns")
+
+      And("the user clicks the Pay Now link for February 2025")
+      dashboard.cssLink("make-payment\\/2025-M2")
+
+      And("the user has been redirected to the payments service")
+      dashboard.checkExternalServiceUrl("payments")
+    }
+
+    Scenario("A NETP who has transferred from another member state has a partial first return") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9005999997", "IM9005555551", "returns")
+
+      Then("the NETP transferring from another MSID is offered a partial return for the correct period")
+      dashboard.checkJourneyUrl("IM9005555551/2024-M1/start-return")
+      transferringMsid.transferringMsidText("netp", "from", "offered", "partial")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9005555551/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9005555551/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the netp transferring from another MSID is submitting a partial return for the correct period")
+      dashboard.checkJourneyUrl("IM9005555551/check-your-answers")
+      transferringMsid.transferringMsidText("netp", "from", "submitting", "partial")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9005555551/return-successfully-submitted")
     }
   }
 }

@@ -26,11 +26,11 @@ import uk.gov.hmrc.ui.pagesold.AuthPage.convertToAnyShouldWrapper
 
 object Intermediary extends BasePage {
 
-  private val globalDashboard: String                  = TestConfiguration.url("ioss-returns-frontend")
-  private val globalDashboardJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
-  private val intermediaryDashboard: String = TestConfiguration.url("ioss-intermediary-dashboard-frontend")
-  private val intermediaryDashboardJourneyUrl: String   = "/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients"
-
+  private val globalDashboard: String                 = TestConfiguration.url("ioss-returns-frontend")
+  private val globalDashboardJourneyUrl: String       = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
+  private val intermediaryDashboard: String           = TestConfiguration.url("ioss-intermediary-dashboard-frontend")
+  private val intermediaryDashboardJourneyUrl: String =
+    "/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients"
 
   def checkNetpReturn(iossNumber: String): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
@@ -57,7 +57,7 @@ object Intermediary extends BasePage {
               "Your return reference is XI/IM9001144777/M03.2025"
           )
         )
-      case _ =>
+      case _              =>
         throw new Exception("IOSS number doesn't exist")
     }
   }
@@ -70,5 +70,57 @@ object Intermediary extends BasePage {
     }
     fluentWait.until(ExpectedConditions.urlContains(s"$url/your-account"))
     getCurrentUrl should startWith(s"$url/your-account")
+  }
+
+  def checkNetpPayments(): Unit = {
+    val h1       = Driver.instance.findElement(By.tagName("h1")).getText
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+
+    Assert.assertTrue(h1.equals("Which month would you like to make a payment for?"))
+    Assert.assertTrue(
+      htmlBody.contains(
+        "January 2025 - £1,397.30 owed\n" +
+          "February 2025 - £397.30 owed"
+      )
+    )
+  }
+
+  def checkSubmittedReturnsCaption(scenario: String): Unit = {
+    val caption = Driver.instance.findElement(By.tagName("body")).getText
+
+    scenario match {
+      case "UK with VRN"                 =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return VRN"
+          )
+        )
+      case "UK with NINO"                =>
+        Assert.assertTrue(
+          caption.contains(
+            "NETP Return NINO"
+          )
+        )
+      case "oldest registration client"  =>
+        Assert.assertTrue(
+          caption.contains(
+            "Oldest Registration - Client One"
+          )
+        )
+      case "middle registration client"  =>
+        Assert.assertTrue(
+          caption.contains(
+            "Middle Registration - Client Three"
+          )
+        )
+      case "current registration client" =>
+        Assert.assertTrue(
+          caption.contains(
+            "Current Registration - Client Five"
+          )
+        )
+      case _                             =>
+        throw new Exception("Scenario doesn't exist")
+    }
   }
 }

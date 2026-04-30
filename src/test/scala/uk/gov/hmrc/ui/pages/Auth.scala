@@ -138,7 +138,5 @@ object Auth extends BasePage {
     }
 
     click(By.cssSelector("Input[value='Submit']"))
-
-    fluentWait.until(ExpectedConditions.urlContains(s"$returnsUrl$returnsJourneyUrl"))
   }
 }
