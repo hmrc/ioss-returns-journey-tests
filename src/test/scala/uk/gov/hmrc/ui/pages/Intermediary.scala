@@ -20,17 +20,16 @@ import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.scalatest.matchers.should.Matchers.startWith
+import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.ui.conf.TestConfiguration
-import uk.gov.hmrc.ui.pagesold.AuthPage.{convertToAnyShouldWrapper, endWith}
 
 import java.time.LocalDate
 
 object Intermediary extends BasePage {
 
-  private val globalDashboard: String                 = TestConfiguration.url("ioss-returns-frontend")
+  private val globalDashboard: String                 = TestEnvironment.url("ioss-returns-frontend")
   private val globalDashboardJourneyUrl: String       = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
-  private val intermediaryDashboard: String           = TestConfiguration.url("ioss-intermediary-dashboard-frontend")
+  private val intermediaryDashboard: String           = TestEnvironment.url("ioss-intermediary-dashboard-frontend")
   private val intermediaryDashboardJourneyUrl: String =
     "/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients"
 
