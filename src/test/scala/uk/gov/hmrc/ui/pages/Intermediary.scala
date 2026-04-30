@@ -19,9 +19,9 @@ package uk.gov.hmrc.ui.pages
 import org.junit.Assert
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
-import org.scalatest.matchers.should.Matchers.startWith
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
+import org.scalatest.matchers.should.Matchers._
 
 import java.time.LocalDate
 

@@ -36,10 +36,6 @@ object Dashboard extends BasePage {
     TestEnvironment.url("ioss-returns-frontend")
   private val dashboardJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
 
-  private val exclusionUrl: String        =
-    TestEnvironment.url("ioss-exclusions-frontend")
-  private val exclusionJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/leave-import-one-stop-shop"
-
   private val paymentUrl: String =
     TestEnvironment.url("pay-frontend")
 
@@ -61,18 +57,20 @@ object Dashboard extends BasePage {
     getCurrentUrl should endWith(page)
   }
 
-  def checkExclusionsJourneyUrl(): Unit = {
-    fluentWait.until(ExpectedConditions.urlContains(s"$exclusionUrl$exclusionJourneyUrl"))
-    getCurrentUrl should startWith(s"$exclusionUrl$exclusionJourneyUrl")
-  }
-
   def checkExternalServiceUrl(page: String): Unit =
     if (page == "payments") {
       val paymentsUrlToCheck = s"$paymentUrl/pay/select-payment-amount?traceId="
       fluentWait.until(ExpectedConditions.urlContains(paymentsUrlToCheck))
       getCurrentUrl should startWith(paymentsUrlToCheck)
     } else if (page == "paymentsWithDate") {
-      val paymentsUrlToCheck = s"$paymentUrl/pay/when-do-you-want-to-pay?traceId="
+      val today             = LocalDate.now()
+      val endOfCurrentMonth = LocalDate.now().plusMonths(1).withDayOfMonth(1).minusDays(1)
+
+      val paymentsUrlToCheck = if (today == endOfCurrentMonth) {
+        s"$paymentUrl/pay/select-payment-amount?traceId="
+      } else {
+        s"$paymentUrl/pay/when-do-you-want-to-pay?traceId="
+      }
       fluentWait.until(ExpectedConditions.urlContains(paymentsUrlToCheck))
       getCurrentUrl should startWith(paymentsUrlToCheck)
     } else {
@@ -84,29 +82,8 @@ object Dashboard extends BasePage {
       }
     }
 
-  def checkProblemPage(): Unit = {
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")))
-    val h1 = Driver.instance.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(h1.equals("Sorry, there is a problem with the service"))
-  }
-
-  def insufficientEnrolmentPage(): Unit = {
-    fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("h1")))
-    val h1 = Driver.instance.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(h1.equals("You cannot use this service"))
-  }
-
   def clickLink(link: String): Unit =
     click(By.id(link))
-
-  def checkName(nameType: String): Unit = {
-    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
-    if (nameType == "organisation") {
-      Assert.assertTrue(htmlBody.contains("Company Name"))
-    } else {
-      Assert.assertTrue(htmlBody.contains("first middle last"))
-    }
-  }
 
   def clickBackButton(): Unit =
     Driver.instance

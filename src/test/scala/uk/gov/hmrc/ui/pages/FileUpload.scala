@@ -19,10 +19,10 @@ package uk.gov.hmrc.ui.pages
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.scalatest.concurrent.Eventually
+import org.scalatest.matchers.should.Matchers._
 import org.scalatest.time._
 import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
-import uk.gov.hmrc.ui.pagesold.AuthPage.{convertToAnyShouldWrapper, startWith}
 
 import java.io.File
 

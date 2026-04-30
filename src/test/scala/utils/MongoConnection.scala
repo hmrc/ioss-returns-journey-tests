@@ -16,7 +16,7 @@
 
 package utils
 
-import org.mongodb.scala.MongoClient
+import org.mongodb.scala.{MongoClient, SingleObservableFuture}
 import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.Filters
 

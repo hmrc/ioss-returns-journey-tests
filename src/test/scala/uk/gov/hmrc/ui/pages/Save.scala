@@ -17,8 +17,8 @@
 package uk.gov.hmrc.ui.pages
 
 import org.openqa.selenium.support.ui.ExpectedConditions
+import org.scalatest.matchers.should.Matchers._
 import uk.gov.hmrc.configuration.TestEnvironment
-import uk.gov.hmrc.ui.pagesold.AuthPage.{convertToAnyShouldWrapper, startWith}
 
 object Save extends BasePage {
 
