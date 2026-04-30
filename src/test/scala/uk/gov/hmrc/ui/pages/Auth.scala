@@ -28,8 +28,6 @@ object Auth extends BasePage {
     TestEnvironment.url("ioss-returns-frontend")
   private val returnsJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/import-one-stop-shop-returns-payments"
 
-  var credId: String = "1234123412341234"
-
   def goToAuthorityWizard(): Unit = {
     get(authUrl)
     fluentWait.until(ExpectedConditions.urlContains(authUrl))
