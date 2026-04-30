@@ -99,7 +99,7 @@ object Auth extends BasePage {
 
     getCurrentUrl should startWith(authUrl)
 
-    val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns" || journey == "saved return") {
+    val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns" || journey == "savedReturn") {
       s"start-return-as-intermediary/$iossNumber"
     } else if (journey == "doubleEnrolmentGlobalReturns") {
       ""

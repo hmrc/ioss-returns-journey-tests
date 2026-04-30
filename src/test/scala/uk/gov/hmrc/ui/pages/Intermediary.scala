@@ -281,4 +281,31 @@ object Intermediary extends BasePage {
     val firstExpiredReturnYear  = LocalDate.now().minusYears(3).minusMonths(2).getYear
     s"$firstExpiredReturnYear-M$firstExpiredReturnMonth"
   }
+
+  def checkClientName(iossNumber: String): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+
+    iossNumber match {
+      case "IM9006655443" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "NETP Return NINO March 2025"
+          )
+        )
+      case "IM9006655442" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "NETP Return UTR January 2025"
+          )
+        )
+      case "IM9006655551" =>
+        Assert.assertTrue(
+          htmlBody.contains(
+            "NETP Return FTR January 2025"
+          )
+        )
+      case _              =>
+        throw new Exception("IOSS number doesn't exist")
+    }
+  }
 }
