@@ -29,6 +29,7 @@ class IntermediarySpec extends BaseSpec {
   private val payment          = Payment
   private val pastReturn       = PastReturn
   private val transferringMsid = TransferringMSID
+  private val exclusion        = Exclusion
 
   Feature("Intermediary journeys") {
 
@@ -615,6 +616,216 @@ class IntermediarySpec extends BaseSpec {
       And("the user submits their return successfully via the check-your-answers page")
       dashboard.submit()
       dashboard.checkJourneyUrl("IM9005555551/return-successfully-submitted")
+    }
+
+    Scenario("A NETP who is transferring to another member state has a partial final return") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9005999997", "IM9005555552", "returns")
+
+      Then("the netp transferring to another MSID is offered a partial return for the correct period")
+      dashboard.checkJourneyUrl("IM9005555552/2024-M2/start-return")
+      exclusion.finalReturnHeading(display = true, "NETP")
+      transferringMsid.transferringMsidText("netp", "to", "offered", "partial")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9005555552/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9005555552/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers no on the correct-previous-return page")
+      dashboard.checkJourneyUrl("IM9005555552/correct-previous-return")
+      exclusion.lastChanceForCorrection(display = true)
+      dashboard.answerRadioButton("no")
+
+      And("the user is shown the corrections warning before submission")
+      dashboard.checkJourneyUrl("IM9005555552/check-your-answers")
+      exclusion.correctionsWarningSubmission(display = true)
+
+      And("the netp transferring to another MSID is submitting a partial return for the correct period")
+      transferringMsid.transferringMsidText("netp", "to", "submitting", "partial")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9005555552/return-successfully-submitted")
+    }
+
+    Scenario("Correct company information displayed on a return for UK based NETP with VRN") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144771", "returns")
+
+      And("the correct start return heading is displayed for a UK with VRN client")
+      dashboard.checkJourneyUrl("IM9001144771/2025-M3/start-return")
+      intermediary.checkReturnStartHeading("UK with VRN")
+
+      And("the user answers yes on the IM9001144771/2025-M3/start-return page")
+      dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9001144771/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the correct caption is displayed for a UK with VRN client")
+      dashboard.checkJourneyUrl("IM9001144771/sold-goods")
+      intermediary.checkCaption("UK with VRN")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers no on the IM9001144771/correct-previous-return page")
+      dashboard.checkJourneyUrl("IM9001144771/correct-previous-return")
+      dashboard.answerRadioButton("no")
+
+      And("the correct details are displayed at the top of check-your-answers for a UK with VRN client")
+      dashboard.checkJourneyUrl("IM9001144771/check-your-answers")
+      intermediary.checkCYA("UK with VRN")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001144771/return-successfully-submitted")
+    }
+
+    Scenario("Correct company information displayed on a return for UK based NETP with UTR") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144773", "returns")
+
+      And("the correct start return heading is displayed for a UK with UTR client")
+      dashboard.checkJourneyUrl("IM9001144773/2025-M1/start-return")
+      intermediary.checkReturnStartHeading("UK with UTR")
+
+      And("the user answers yes on the IM9001144773/2025-M1/start-return page")
+      dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9001144773/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144773/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the correct caption is displayed for a UK with UTR client")
+      dashboard.checkJourneyUrl("IM9001144773/sold-goods")
+      intermediary.checkCaption("UK with UTR")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.answerRadioButton("no")
+
+      And("the correct details are displayed at the top of check-your-answers for a UK with UTR client")
+      dashboard.checkJourneyUrl("IM9001144773/check-your-answers")
+      intermediary.checkCYA("UK with UTR")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001144773/return-successfully-submitted")
+    }
+
+    Scenario("Correct company information displayed on a return for UK based NETP with NINO") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144778", "returns")
+
+      And("the correct start return heading is displayed for a UK with NINO client")
+      dashboard.checkJourneyUrl("IM9001144778/2025-M1/start-return")
+      intermediary.checkReturnStartHeading("UK with NINO")
+
+      And("the user answers yes on the IM9001144778/2025-M1/start-return page")
+      dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9001144778/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144778/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the correct caption is displayed for a UK with NINO client")
+      dashboard.checkJourneyUrl("IM9001144778/sold-goods")
+      intermediary.checkCaption("UK with NINO")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.answerRadioButton("no")
+
+      And("the correct details are displayed at the top of check-your-answers for a UK with NINO client")
+      dashboard.checkJourneyUrl("IM9001144778/check-your-answers")
+      intermediary.checkCYA("UK with NINO")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001144778/return-successfully-submitted")
+    }
+
+    Scenario("Correct company information displayed on a return for Non-UK based NETP with VRN") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144775", "returns")
+
+      And("the correct start return heading is displayed for a Non-UK with VRN client")
+      dashboard.checkJourneyUrl("IM9001144775/2025-M1/start-return")
+      intermediary.checkReturnStartHeading("Non-UK with VRN")
+
+      And("the user answers yes on the IM9001144775/2025-M1/start-return page")
+      dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9001144775/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144775/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the correct caption is displayed for a Non-UK with VRN client")
+      dashboard.checkJourneyUrl("IM9001144775/sold-goods")
+      intermediary.checkCaption("Non-UK with VRN")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.answerRadioButton("no")
+
+      And("the correct details are displayed at the top of check-your-answers for a Non-UK with VRN client")
+      dashboard.checkJourneyUrl("IM9001144775/check-your-answers")
+      intermediary.checkCYA("Non-UK with VRN")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001144775/return-successfully-submitted")
+    }
+
+    Scenario("Correct company information displayed on a return for Non-UK based NETP with FTR") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144777", "returns")
+
+      And("the correct start return heading is displayed for a Non-UK with FTR client")
+      dashboard.checkJourneyUrl("IM9001144777/2025-M3/start-return")
+      intermediary.checkReturnStartHeading("Non-UK with FTR")
+
+      And("the user answers yes on the IM9001144777/2025-M3/start-return page")
+      dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9001144777/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144777/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the correct caption is displayed for a UK with FTR client")
+      dashboard.checkJourneyUrl("IM9001144777/sold-goods")
+      intermediary.checkCaption("Non-UK with FTR")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.answerRadioButton("no")
+
+      And("the user answers no on the IM9001144777/correct-previous-return page")
+      dashboard.checkJourneyUrl("IM9001144777/correct-previous-return")
+      dashboard.answerRadioButton("no")
+
+      And("the correct details are displayed at the top of check-your-answers for a Non-UK with FTR client")
+      dashboard.checkJourneyUrl("IM9001144777/check-your-answers")
+      intermediary.checkCYA("Non-UK with FTR")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9001144777/return-successfully-submitted")
     }
   }
 }
