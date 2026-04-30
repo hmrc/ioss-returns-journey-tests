@@ -827,5 +827,194 @@ class IntermediarySpec extends BaseSpec {
       dashboard.submit()
       dashboard.checkJourneyUrl("IM9001144777/return-successfully-submitted")
     }
+
+    Scenario(
+      "Intermediary can view submitted returns from a previous registration as well as their current registration"
+    ) {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+
+      When("the user accesses submitted returns within the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9002230002", "IM9001144667", "submitted-returns")
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144667/past-returns")
+
+      And("the correct submitted returns caption is displayed for IM9001144667")
+      intermediary.checkSubmittedReturnsCaption("oldest registration client")
+
+      And("the user clicks the Show all sections accordion")
+      pastReturn.showAllAccordion()
+
+      When("the user clicks on the first return month for IM9001144667")
+      pastReturn.selectPastReturnLink(
+        s"IM9001144667\\/past-returns\\/${MultipleIOSS.periodForMultipleRegistrations(9)}"
+      )
+      dashboard.checkJourneyUrl(s"IM9001144667/past-returns/${MultipleIOSS.periodForMultipleRegistrations(9)}")
+
+      And("the correct submitted returns caption is displayed for IM9001144667")
+      intermediary.checkSubmittedReturnsCaption("oldest registration client")
+
+      And("the correct returns and payments references are shown for IM9001144667")
+      pastReturn.returnsAndPaymentReferences("IM9001144667")
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+
+      When("the user accesses submitted returns within the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9002230002", "IM9001144669", "submitted-returns")
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144669/past-returns")
+
+      And("the correct submitted returns caption is displayed for IM9001144669")
+      intermediary.checkSubmittedReturnsCaption("middle registration client")
+
+      And("the user clicks the Show all sections accordion")
+      pastReturn.showAllAccordion()
+
+      When("the user clicks on the first return month for IM9001144669")
+      pastReturn.selectPastReturnLink(
+        s"IM9001144669\\/past-returns\\/${MultipleIOSS.periodForMultipleRegistrations(6)}"
+      )
+      dashboard.checkJourneyUrl(s"IM9001144669/past-returns/${MultipleIOSS.periodForMultipleRegistrations(6)}")
+
+      And("the correct submitted returns caption is displayed for IM9001144669")
+      intermediary.checkSubmittedReturnsCaption("middle registration client")
+
+      And("the correct returns and payments references are shown for IM9001144669")
+      pastReturn.returnsAndPaymentReferences("IM9001144669")
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+
+      When("the user accesses submitted returns within the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9002230002", "IM9001144671", "submitted-returns")
+
+      Then("the user is on the past-returns page")
+      dashboard.checkJourneyUrl("IM9001144671/past-returns")
+
+      And("the correct submitted returns caption is displayed for IM9001144671")
+      intermediary.checkSubmittedReturnsCaption("current registration client")
+
+      And("the user clicks the Show all sections accordion")
+      pastReturn.showAllAccordion()
+
+      When("the user clicks on the first return month for IM9001144671")
+      pastReturn.selectPastReturnLink(
+        s"IM9001144671\\/past-returns\\/${MultipleIOSS.periodForMultipleRegistrations(3)}"
+      )
+      dashboard.checkJourneyUrl(s"IM9001144671/past-returns/${MultipleIOSS.periodForMultipleRegistrations(3)}")
+
+      And("the correct submitted returns caption is displayed for IM9001144671")
+      intermediary.checkSubmittedReturnsCaption("current registration client")
+
+      And("the correct returns and payments references are shown for IM9001144671")
+      pastReturn.returnsAndPaymentReferences("IM9001144671")
+    }
+
+    Scenario("Intermediary has excluded NETP with only open returns over 3 years overdue") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9004004004", "IM9004004004", "returns")
+
+      Then("the user is on the IM9004004004/no-returns-due page")
+      dashboard.checkJourneyUrl("IM9004004004/no-returns-due")
+    }
+
+    Scenario("Intermediary has excluded NETP with only open returns that are both over and under 3 years overdue") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9005005005", "IM9005005005", "returns")
+
+      Then("the oldest available return period for IM9005005005 is shown to the Intermediary")
+      intermediary.checkOldestReturnUrl("IM9005005005")
+
+      And("the hint text showing the current number of overdue returns is displayed")
+      intermediary.checkOverdueHintText()
+
+      And("the user answers yes on the start-return page")
+      dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9005005005/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9005005005/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+
+      And("the user answers no on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9005005005/sold-goods")
+      dashboard.answerRadioButton("no")
+
+      And("the user submits their return successfully via the check-your-answers page")
+      dashboard.checkJourneyUrl("IM9005005005/check-your-answers")
+      dashboard.submit()
+      dashboard.checkJourneyUrl("IM9005005005/return-successfully-submitted")
+    }
+
+    Scenario("Intermediary cannot start a return that is over 3 years overdue") {
+
+      Given("the user accesses the IOSS Returns Service on behalf of a NETP")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9005005005", "IM9005005005", "returns")
+
+      And("the oldest available return period for IM9005005005 is shown to the Intermediary")
+      intermediary.checkOldestReturnUrl("IM9005005005")
+
+      When("the user navigates to a return more than three years overdue")
+      dashboard.goToPage(s"IM9005005005/${Intermediary.returnOverThreeYearsOverdue()}/start-return")
+
+      Then("the user is on the IM9005005005/cannot-start-excluded-return page")
+      dashboard.checkJourneyUrl("IM9005005005/cannot-start-excluded-return")
+    }
+
+    Scenario("User with both Intermediary and global IOSS enrolments can access a return for a NETP") {
+
+      Given(
+        "the user with both intermediary and global IOSS enrolments accesses the IOSS Returns Service on behalf of a NETP"
+      )
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144771", "doubleEnrolmentNetpReturns")
+
+      Then("the user is able to progress a return for a NETP")
+      dashboard.checkJourneyUrl("IM9001144771/2025-M3/start-return")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+      dashboard.checkJourneyUrl("IM9001144771/sold-goods")
+      dashboard.answerRadioButton("no")
+    }
+
+    Scenario("User with both Intermediary and global IOSS enrolments can access a global IOSS return") {
+
+      Given(
+        "the user with both intermediary and global IOSS enrolments accesses the IOSS Returns Service to start a return for their own IOSS account"
+      )
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "NotApplicable", "doubleEnrolmentGlobalReturns")
+
+      And("the user is on the select-account page")
+      dashboard.checkJourneyUrl("select-account")
+
+      When("the user selects the dashboard for number IM9001234567")
+      dashboard.clickLink("IM9001234567")
+      dashboard.continue()
+
+      Then("the user is redirected to their IOSS account")
+      intermediary.dashboardUrlCheck("global")
+
+      Then("the user is able to progress their IOSS return")
+      dashboard.clickLink("start-your-return")
+      dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
+      dashboard.checkJourneyUrl("IM9001234567/sold-goods")
+      dashboard.answerRadioButton("yes")
+    }
   }
 }

@@ -22,7 +22,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions
 import org.scalatest.matchers.should.Matchers.startWith
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.conf.TestConfiguration
-import uk.gov.hmrc.ui.pagesold.AuthPage.convertToAnyShouldWrapper
+import uk.gov.hmrc.ui.pagesold.AuthPage.{convertToAnyShouldWrapper, endWith}
+
+import java.time.LocalDate
 
 object Intermediary extends BasePage {
 
@@ -254,5 +256,29 @@ object Intermediary extends BasePage {
       case _                 =>
         throw new Exception("Scenario doesn't exist")
     }
+  }
+
+  def checkOldestReturnUrl(iossNumber: String): Unit = {
+    val oldestAvailableReturnMonth  = LocalDate.now().minusYears(3).minusMonths(1).getMonthValue
+    val oldestAvailableReturnYear   = LocalDate.now().minusYears(3).minusMonths(1).getYear
+    val oldestAvailablePeriodString = s"$oldestAvailableReturnYear-M$oldestAvailableReturnMonth"
+    val url                         = s"$iossNumber/$oldestAvailablePeriodString/start-return"
+    fluentWait.until(ExpectedConditions.urlContains(url))
+    getCurrentUrl should endWith(url)
+  }
+
+  def checkOverdueHintText(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "Your client has 4 overdue returns. You must complete their oldest return first."
+      )
+    )
+  }
+
+  def returnOverThreeYearsOverdue(): String = {
+    val firstExpiredReturnMonth = LocalDate.now().minusYears(3).minusMonths(2).getMonthValue
+    val firstExpiredReturnYear  = LocalDate.now().minusYears(3).minusMonths(2).getYear
+    s"$firstExpiredReturnYear-M$firstExpiredReturnMonth"
   }
 }
