@@ -167,7 +167,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234566/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234566/vat-correction-months-add")
       dashboard.answerRadioButton("no")
       dashboard.checkJourneyUrl("IM9001234566/check-your-answers")
 
@@ -226,7 +226,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.clickLink("continue-your-return")
 
       And("the user answers 'Continue my return' on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/return-continue")
+      dashboard.checkJourneyUrl("IM9001234566/return-continue")
       dashboard.clickLink("value_0")
       dashboard.continue()
 
@@ -250,7 +250,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.clickLink("continue-your-return")
 
       And("the user answers 'Continue my return' on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/return-continue")
+      dashboard.checkJourneyUrl("IM9001234566/return-continue")
       dashboard.clickLink("value_0")
       dashboard.continue()
 
@@ -275,7 +275,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234566/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234566/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -343,7 +343,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.clickLink("continue-your-return")
 
       And("the user answers 'Continue my return' on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/return-continue")
+      dashboard.checkJourneyUrl("IM9001234566/return-continue")
       dashboard.clickLink("value_0")
       dashboard.continue()
 
@@ -383,7 +383,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.clickLink("continue-your-return")
 
       And("the user answers 'Continue my return' on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/return-continue")
+      dashboard.checkJourneyUrl("IM9001234566/return-continue")
       dashboard.clickLink("value_0")
       dashboard.continue()
 
@@ -447,12 +447,12 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.clickLink("continue-your-return")
 
       And("the user answers 'Delete my return and start again' on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/return-continue")
+      dashboard.checkJourneyUrl("IM9001234566/return-continue")
       dashboard.clickLink("value_1")
       dashboard.continue()
 
       And("the user answers yes on the return-delete-confirm page")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/return-delete-confirm")
+      dashboard.checkJourneyUrl("IM9001234566/return-delete-confirm")
       dashboard.answerRadioButton("yes")
 
       And("the user is redirected to their account")
@@ -516,7 +516,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.clickLink("continue-your-return")
 
       And("the user answers 'Continue my return' on the return-continue page")
-      dashboard.checkJourneyUrl("IM9007777778/2023-M12/return-continue")
+      dashboard.checkJourneyUrl("IM9007777778/return-continue")
       dashboard.clickLink("value_0")
       dashboard.continue()
 
