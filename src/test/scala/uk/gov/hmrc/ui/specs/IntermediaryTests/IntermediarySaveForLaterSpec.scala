@@ -36,10 +36,10 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       auth.loginAsIntermediary("IN9006655444", "IM9006655443", "savedReturn")
 
       And("the correct client name is displayed for IM9006655443")
-      dashboard.checkJourneyUrl("IM9006655443/return-continue")
+      dashboard.checkJourneyUrl("IM9006655443/2025-M3/return-continue")
       intermediary.checkClientName("IM9006655443")
 
-      And("the user answers yes on the IM9006655443/return-continue page")
+      And("the user answers yes on the IM9006655443/2025-M3/return-continue page")
       dashboard.clickLink("value_0")
       dashboard.continue()
 
@@ -70,15 +70,15 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       auth.loginAsIntermediary("IN9006655444", "IM9006655442", "savedReturn")
 
       And("the correct client name is displayed for IM9006655442")
-      dashboard.checkJourneyUrl("IM9006655442/return-continue")
+      dashboard.checkJourneyUrl("IM9006655442/2025-M1/return-continue")
       intermediary.checkClientName("IM9006655442")
 
-      And("the user answers No, delete this return on the IM9006655442/return-continue page")
+      And("the user answers No, delete this return on the IM9006655442/2025-M1/return-continue page")
       dashboard.clickLink("value_1")
       dashboard.continue()
 
-      And("the user answers yes on the IM9006655442/return-delete-confirm page")
-      dashboard.checkJourneyUrl("IM9006655442/return-delete-confirm")
+      And("the user answers yes on the IM9006655442/2025-M1/return-delete-confirm page")
+      dashboard.checkJourneyUrl("IM9006655442/2025-M1/return-delete-confirm")
       dashboard.answerRadioButton("yes")
 
       And("the user is redicrected to their intermediary dashboard")
@@ -92,10 +92,10 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       auth.loginAsIntermediary("IN9006655555", "IM9006655551", "savedReturn")
 
       And("the correct client name is displayed for IM9006655551")
-      dashboard.checkJourneyUrl("IM9006655551/return-continue")
+      dashboard.checkJourneyUrl("IM9006655551/2025-M1/return-continue")
       intermediary.checkClientName("IM9006655551")
 
-      And("the user answers yes on the IM9006655551/return-continue page")
+      And("the user answers yes on the IM9006655551/2025-M1/return-continue page")
       dashboard.clickLink("value_0")
       dashboard.continue()
 

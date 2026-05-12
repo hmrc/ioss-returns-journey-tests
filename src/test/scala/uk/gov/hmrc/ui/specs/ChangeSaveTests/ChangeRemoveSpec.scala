@@ -948,7 +948,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user clicks remove on the November corrections")
-      dashboard.checkJourneyUrl("IM9001234568//vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234568\\/remove-month-correction\\/2")
       dashboard.checkJourneyUrl("IM9001234568/remove-month-correction/2")
       correction.removeCorrectionPeriod("November", "2023")

@@ -298,7 +298,7 @@ class BTASpec extends BaseSpec {
       dashboard.goToPage("test-only/continue-return-from-bta/2023-M12")
 
       Then("the user is on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001112222/return-continue")
+      dashboard.checkJourneyUrl("IM9001112222/2023-M12/return-continue")
     }
 
     Scenario("A Welsh user accesses a saved return via BTA") {
@@ -336,7 +336,7 @@ class BTASpec extends BaseSpec {
       dashboard.continue()
 
       Then("the user is on the return-continue page")
-      dashboard.checkJourneyUrl("IM9001112222/return-continue")
+      dashboard.checkJourneyUrl("IM9001112222/2023-M12/return-continue")
     }
   }
 }
