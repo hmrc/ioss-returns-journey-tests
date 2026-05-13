@@ -665,55 +665,55 @@ class ChangeRemoveSpec extends BaseSpec {
       )
       dashboard.enterAnswer("1111")
       dashboard.checkJourneyUrl(
-        "IM9001234567/vat-payable-confirm/1/1?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/vat-payable-confirm/1/1?waypoints=IM9001234567-change-add-correction-list-countries-1"
       )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl(
-        "IM9001234567/vat-payable-check/1/1?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/vat-payable-check/1/1?waypoints=IM9001234567-change-add-correction-list-countries-1"
       )
       dashboard.continue()
       dashboard.checkJourneyUrl(
-        "IM9001234567/correction-list-countries/1?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/correction-list-countries/1"
       )
 
       And("the user adds a third country")
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl(
-        "IM9001234567/correction-country/1/3?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/correction-country/1/3"
       )
       dashboard.selectCountry("Denmark")
       dashboard.checkJourneyUrl(
-        "IM9001234567/add-new-country/1/3?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/add-new-country/1/3"
       )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl(
-        "IM9001234567/country-vat-correction-amount/1/3?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/country-vat-correction-amount/1/3"
       )
       dashboard.enterAnswer("1254.01")
       dashboard.checkJourneyUrl(
-        "IM9001234567/vat-payable-confirm/1/3?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/vat-payable-confirm/1/3"
       )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl(
-        "IM9001234567/vat-payable-check/1/3?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/vat-payable-check/1/3"
       )
       dashboard.continue()
 
       And("the user answers no on the correction-list-countries page")
       dashboard.checkJourneyUrl(
-        "IM9001234567/correction-list-countries/1?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/correction-list-countries/1"
       )
       dashboard.answerRadioButton("no")
 
       And("the user clicks no on the vat-correction-months-add page")
       dashboard.checkJourneyUrl(
-        "IM9001234567/2023-M12/vat-correction-months-add?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/2023-M12/vat-correction-months-add"
       )
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
       dashboard.checkJourneyUrl(
-        "IM9001234567/check-your-answers?waypoints=IM9001234567-add-correction-list-countries-1"
+        "IM9001234567/check-your-answers"
       )
       dashboard.submit()
       dashboard.checkJourneyUrl("IM9001234567/return-successfully-submitted")
