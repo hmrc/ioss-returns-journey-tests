@@ -57,9 +57,8 @@ class BTASpec extends BaseSpec {
       When("the user clicks on the Back to your account link")
       dashboard.clickLink("back-to-your-account")
 
-//      Going back to dashboard instead of BTA - VEIOSS-859
-//      Then("the user is redirected to BTA")
-//      dashboard.checkExternalServiceUrl("business-account")
+      Then("the user is redirected to BTA")
+      dashboard.checkExternalServiceUrl("business-account")
     }
 
     Scenario(
@@ -88,9 +87,8 @@ class BTASpec extends BaseSpec {
       When("the user clicks on the Back to your account link")
       dashboard.clickLink("back-to-your-account")
 
-      //      Going back to dashboard instead of BTA - VEIOSS-859
-      //      Then("the user is redirected to BTA")
-      //      dashboard.checkExternalServiceUrl("business-account")
+      Then("the user is redirected to BTA")
+      dashboard.checkExternalServiceUrl("business-account")
     }
 
     Scenario(
