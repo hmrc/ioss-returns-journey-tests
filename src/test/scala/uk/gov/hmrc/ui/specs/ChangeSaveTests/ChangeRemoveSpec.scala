@@ -707,7 +707,7 @@ class ChangeRemoveSpec extends BaseSpec {
 
       And("the user clicks no on the vat-correction-months-add page")
       dashboard.checkJourneyUrl(
-        "IM9001234567/2023-M12/vat-correction-months-add"
+        "IM9001234567/vat-correction-months-add"
       )
       dashboard.answerRadioButton("no")
 
@@ -902,7 +902,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2023 on the correction-return-year page")
@@ -948,14 +948,14 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user clicks remove on the November corrections")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234568\\/remove-month-correction\\/2")
       dashboard.checkJourneyUrl("IM9001234568/remove-month-correction/2")
       correction.removeCorrectionPeriod("November", "2023")
       dashboard.answerRadioButton("yes")
 
       Then("the user clicks remove on the October corrections")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       correction.oneCorrectionMonth("October 2023")
       dashboard.selectChangeOrRemoveLink("IM9001234568\\/remove-month-correction\\/1")
       dashboard.checkJourneyUrl("IM9001234568/remove-month-correction/1")
@@ -1043,7 +1043,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2023 on the correction-return-year page")
@@ -1089,14 +1089,14 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user clicks remove on the November corrections")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234568\\/remove-month-correction\\/2")
       dashboard.checkJourneyUrl("IM9001234568/remove-month-correction/2")
       correction.removeCorrectionPeriod("November", "2023")
       dashboard.answerRadioButton("yes")
 
       Then("there is only one period with corrections")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       correction.oneCorrectionMonth("October 2023")
 
       And("the user answers yes on the vat-corrections-months-add page")
@@ -1145,7 +1145,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user adds another country to the first period with corrections")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234568\\/correction-list-countries\\/1")
       dashboard.checkJourneyUrl("IM9001234568/correction-list-countries/1")
       dashboard.answerRadioButton("yes")
@@ -1167,7 +1167,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -1227,7 +1227,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user adds a correction for November last year")
@@ -1253,7 +1253,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user adds another correction to the second correction period")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234569\\/correction-list-countries\\/2")
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/2")
       dashboard.answerRadioButton("yes")
@@ -1273,7 +1273,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user adds a correction for December two years ago")
@@ -1297,14 +1297,14 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user removes the correction for the first month")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234569\\/remove-month-correction\\/1")
       dashboard.checkJourneyUrl("IM9001234569/remove-month-correction/1")
       correction.removeCorrectionPeriod("October", "twoYearsAgo")
       dashboard.answerRadioButton("yes")
 
       And("the user answers no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       correction.twoCorrectionMonths()
       dashboard.answerRadioButton("no")
 
@@ -1375,7 +1375,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -1439,7 +1439,7 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2023 on the correction-return-year page")
@@ -1469,12 +1469,12 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       Then("the user removes their corrections")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months")
       dashboard.selectChangeOrRemoveLink("IM9001234567\\/remove-month-correction\\/2")
       dashboard.checkJourneyUrl("IM9001234567/remove-month-correction/2")
       correction.removeCorrectionPeriod("October", "2023")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink("IM9001234567\\/remove-month-correction\\/1")
       dashboard.checkJourneyUrl("IM9001234567/remove-month-correction/1")
       correction.removeCorrectionPeriod("November", "2023")

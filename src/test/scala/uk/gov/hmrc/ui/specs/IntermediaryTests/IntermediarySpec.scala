@@ -283,7 +283,7 @@ class IntermediarySpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001144777/2025-M3/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001144777/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2025 on the correction-return-year page")
@@ -320,7 +320,7 @@ class IntermediarySpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks continue on the vat-correction-months page")
-      dashboard.checkJourneyUrl("IM9001144777/2025-M3/vat-correction-months")
+      dashboard.checkJourneyUrl("IM9001144777/vat-correction-months")
       dashboard.continue()
 
       And("the user submits their return successfully via the check-your-answers page")
