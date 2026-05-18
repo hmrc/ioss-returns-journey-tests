@@ -54,7 +54,7 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9006655443/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9006655443/2025-M3/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9006655443/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -246,7 +246,7 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9006655552/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9006655552/2025-M3/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9006655552/vat-correction-months-add")
       dashboard.answerRadioButton("no")
       dashboard.checkJourneyUrl("IM9006655552/check-your-answers")
 

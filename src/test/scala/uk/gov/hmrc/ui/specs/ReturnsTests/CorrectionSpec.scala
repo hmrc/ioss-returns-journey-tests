@@ -118,7 +118,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks continue on the vat-correction-months page")
-      dashboard.checkJourneyUrl("IM9008888888/2023-M12/vat-correction-months")
+      dashboard.checkJourneyUrl("IM9008888888/vat-correction-months")
       dashboard.continue()
 
       And("the no payments due for minus corrections text is not displayed")
@@ -213,7 +213,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2023 on the correction-return-year page")
@@ -267,7 +267,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks continue on the vat-correction-months page")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months")
       dashboard.continue()
 
       And("the no payments due for minus corrections text is not displayed")
@@ -362,7 +362,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001233211/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001233211/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the no payments due for minus corrections text is displayed")
@@ -460,7 +460,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001233211/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001233211/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the no payments due for minus corrections text is displayed")
@@ -532,7 +532,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the no payments due for minus corrections text is displayed")
@@ -669,7 +669,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2023 on the correction-return-year page")
@@ -731,7 +731,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks 2023 on the correction-return-year page")
@@ -769,7 +769,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user presses continue on the vat-correction-months page")
-      dashboard.checkJourneyUrl("IM9001234568/2024-M1/vat-correction-months")
+      dashboard.checkJourneyUrl("IM9001234568/vat-correction-months")
       dashboard.continue()
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -839,7 +839,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks last year on the correction-return-year page")
@@ -901,7 +901,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks two years ago on the correction-return-year page")
@@ -939,7 +939,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user answers no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -1070,7 +1070,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks yes on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
 
       And("the user picks last year on the correction-return-year page")
@@ -1128,7 +1128,7 @@ class CorrectionSpec extends BaseSpec {
       dashboard.answerRadioButton("no")
 
       And("the user clicks no on the vat-correction-months-add page")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")

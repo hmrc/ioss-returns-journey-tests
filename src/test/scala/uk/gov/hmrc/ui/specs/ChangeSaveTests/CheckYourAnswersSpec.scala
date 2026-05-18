@@ -201,7 +201,7 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       And("the user adds another correction to Bulgaria for a different month")
       dashboard.checkJourneyUrl(
-        "IM9001234567/2023-M12/vat-correction-months-add?waypoints=IM9001234567-check-your-answers"
+        "IM9001234567/vat-correction-months-add?waypoints=IM9001234567-check-your-answers"
       )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234567/correction-return-year/2?waypoints=IM9001234567-check-your-answers")
@@ -224,7 +224,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234567/correction-list-countries/2?waypoints=IM9001234567-check-your-answers")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9001234567/2023-M12/vat-correction-months?waypoints=IM9001234567-check-your-answers")
+      dashboard.checkJourneyUrl("IM9001234567/vat-correction-months?waypoints=IM9001234567-check-your-answers")
       dashboard.continue()
 
       And("the user submits their return successfully via the check-your-answers page")
@@ -403,7 +403,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234569/correction-return-year/2")
       dashboard.clickLink(s"value_$lastYear")
@@ -423,7 +423,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/2")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       When("the user is on check-your-answers at the end of the return journey")
@@ -520,7 +520,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234569/correction-return-year/2")
       dashboard.clickLink(s"value_$lastYear")
@@ -540,7 +540,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/2")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl(s"IM9001234569/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       When("the user is on check-your-answers at the end of the return journey")
@@ -548,12 +548,12 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       And("the user clicks change for vat-correction-months-add")
       dashboard.selectChangeOrRemoveLink(
-        s"IM9001234569\\/$lastYear-M12\\/vat-correction-months-add\\?waypoints\\=IM9001234569-check-your-answers"
+        s"IM9001234569\\/vat-correction-months-add\\?waypoints\\=IM9001234569-check-your-answers"
       )
 
       Then("the user answers yes and adds another correction")
       dashboard.checkJourneyUrl(
-        s"IM9001234569/$lastYear-M12/vat-correction-months-add?waypoints=IM9001234569-check-your-answers"
+        s"IM9001234569/vat-correction-months-add?waypoints=IM9001234569-check-your-answers"
       )
       dashboard.answerRadioButton("yes")
       dashboard.checkJourneyUrl("IM9001234569/correction-return-year/3?waypoints=IM9001234569-check-your-answers")
@@ -577,7 +577,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234569/correction-list-countries/3?waypoints=IM9001234569-check-your-answers")
       dashboard.answerRadioButton("no")
       dashboard.checkJourneyUrl(
-        s"IM9001234569/$lastYear-M12/vat-correction-months-add?waypoints=IM9001234569-check-your-answers"
+        s"IM9001234569/vat-correction-months-add?waypoints=IM9001234569-check-your-answers"
       )
       dashboard.answerRadioButton("no")
 

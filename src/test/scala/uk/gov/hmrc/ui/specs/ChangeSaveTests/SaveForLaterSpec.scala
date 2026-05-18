@@ -167,7 +167,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234566/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234566/vat-correction-months-add")
       dashboard.answerRadioButton("no")
       dashboard.checkJourneyUrl("IM9001234566/check-your-answers")
 
@@ -275,7 +275,7 @@ class SaveForLaterSpec extends BaseSpec {
       dashboard.continue()
       dashboard.checkJourneyUrl("IM9001234566/correction-list-countries/1")
       dashboard.answerRadioButton("no")
-      dashboard.checkJourneyUrl("IM9001234566/2023-M12/vat-correction-months-add")
+      dashboard.checkJourneyUrl("IM9001234566/vat-correction-months-add")
       dashboard.answerRadioButton("no")
 
       And("the user submits their return successfully via the check-your-answers page")
