@@ -1,0 +1,11 @@
+{
+  "add":[
+    {
+      "reason":"Redirect URL",
+      "contextId":1,
+      "url":"http://localhost:10179/pay-clients-vat-on-eu-sales/manage-ioss-returns-payments-clients",
+      "ruleId":10038,
+      "newLevel":-1
+    }
+  ]
+}
