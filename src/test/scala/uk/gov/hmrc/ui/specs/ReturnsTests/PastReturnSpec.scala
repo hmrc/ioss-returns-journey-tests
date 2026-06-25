@@ -257,20 +257,20 @@ class PastReturnSpec extends BaseSpec {
 
       Given("the user accesses the IOSS Returns Service with no IOSS Enrolment")
       auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000001", "IM9001236666", "Organisation", "hasIOSSEnrolment", "dashboard")
+      auth.loginUsingAuthorityWizard("100000001", "IM9001236668", "Organisation", "hasIOSSEnrolment", "dashboard")
       dashboard.checkJourneyUrl("your-account")
 
       When("the user manually navigates to the start page for their January 2018 return")
-      dashboard.goToPage("IM9001236666/2018-M1/start-return")
+      dashboard.goToPage("IM9001236668/2018-M1/start-return")
 
       Then("the user is shown the no-longer-able-to-view-return page")
-      dashboard.checkJourneyUrl("IM9001236666/no-longer-able-to-view-return")
+      dashboard.checkJourneyUrl("IM9001236668/no-longer-able-to-view-return")
 
       When("the user manually navigates to the start page for their September 2018 return")
-      dashboard.goToPage("IM9001236666/2018-M9/start-return")
+      dashboard.goToPage("IM9001236668/2018-M9/start-return")
 
       Then("the user is shown the no-longer-able-to-view-return page")
-      dashboard.checkJourneyUrl("IM9001236666/no-longer-able-to-view-return")
+      dashboard.checkJourneyUrl("IM9001236668/no-longer-able-to-view-return")
     }
 
     Scenario("A user with a full return period does not show partial return dates") {
