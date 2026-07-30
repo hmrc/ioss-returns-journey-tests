@@ -43,7 +43,9 @@ class ChangeDateSpec extends BaseSpec {
       Then("the user is on the review-registration page")
       dashboard.checkJourneyUrl("IM9003232323/review-registration")
 
-      And("the user clicks the Review your registration details link and is redirected to the registration service to view/amend")
+      And(
+        "the user clicks the Review your registration details link and is redirected to the registration service to view/amend"
+      )
       dashboard.cssLink("start-amend-journey")
       dashboard.checkRegistrationJourneyUrl("change-your-registration")
     }
