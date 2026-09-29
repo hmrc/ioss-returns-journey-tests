@@ -37,7 +37,9 @@ class VatGroupYesSpec extends BaseSpec {
       When("the user is now a VAT Group and has fixed establishments in their registration")
       auth.loginUsingAuthorityWizard("777777779", "IM9001234567", "Organisation", "hasIOSSEnrolment", "dashboard")
 
-      Then("the user is redirected to the delete-all-fixed-establishments-as-part-of-vat-group page within the registration service")
+      Then(
+        "the user is redirected to the delete-all-fixed-establishments-as-part-of-vat-group page within the registration service"
+      )
       dashboard.checkRegistrationJourneyUrl("delete-all-fixed-establishments-as-part-of-vat-group")
     }
 
@@ -49,9 +51,17 @@ class VatGroupYesSpec extends BaseSpec {
       auth.goToAuthorityWizard()
 
       When("the user is now a VAT Group and has fixed establishments in their registration")
-      auth.loginUsingAuthorityWizard("777777779", "IM9001234567", "Organisation", "hasIOSSEnrolment", "returnFixedEstablishment")
+      auth.loginUsingAuthorityWizard(
+        "777777779",
+        "IM9001234567",
+        "Organisation",
+        "hasIOSSEnrolment",
+        "returnFixedEstablishment"
+      )
 
-      Then("the user is redirected to the delete-all-fixed-establishments-as-part-of-vat-group page within the registration service")
+      Then(
+        "the user is redirected to the delete-all-fixed-establishments-as-part-of-vat-group page within the registration service"
+      )
       dashboard.checkRegistrationJourneyUrl("delete-all-fixed-establishments-as-part-of-vat-group")
     }
   }
