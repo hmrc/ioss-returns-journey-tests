@@ -46,7 +46,11 @@ object Auth extends BasePage {
 
     getCurrentUrl should startWith(authUrl)
 
-    sendKeys(By.name("redirectionUrl"), s"$returnsUrl$returnsJourneyUrl")
+    if (journey == "returnFixedEstablishment") {
+      sendKeys(By.name("redirectionUrl"), s"$returnsUrl$returnsJourneyUrl/IM9001234567/2023-M12/start-return")
+    } else {
+      sendKeys(By.name("redirectionUrl"), s"$returnsUrl$returnsJourneyUrl")
+    }
 
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
