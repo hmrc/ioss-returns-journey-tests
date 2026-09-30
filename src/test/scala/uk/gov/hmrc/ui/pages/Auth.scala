@@ -103,7 +103,7 @@ object Auth extends BasePage {
 
     val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns" || journey == "savedReturn") {
       s"start-return-as-intermediary/$iossNumber"
-    } else if (journey == "doubleEnrolmentGlobalReturns") {
+    } else if (journey == "doubleEnrolmentGlobalReturns" || journey == "doubleEnrolmentVatGroup") {
       ""
     } else if (journey == "payments") {
       s"start-payment-as-intermediary/$iossNumber"
@@ -117,7 +117,11 @@ object Auth extends BasePage {
 
     sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
     sendKeys(By.id("input-0-0-name"), "VRN")
-    sendKeys(By.id("input-0-0-value"), "100000001")
+    if (journey == "doubleEnrolmentGlobalReturns") {
+      sendKeys(By.id("input-0-0-value"), "777777779")
+    } else {
+      sendKeys(By.id("input-0-0-value"), "100000001")
+    }
 
     sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
     sendKeys(By.id("input-1-0-name"), "IntNumber")
@@ -133,7 +137,9 @@ object Auth extends BasePage {
       sendKeys(By.id("input-3-0-value"), "IN9000230002")
     }
 
-    if (journey == "doubleEnrolmentNetpReturns" || journey == "doubleEnrolmentGlobalReturns") {
+    if (
+      journey == "doubleEnrolmentNetpReturns" || journey == "doubleEnrolmentGlobalReturns" || journey == "doubleEnrolmentVatGroup"
+    ) {
       sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-2-0-name"), "IOSSNumber")
       sendKeys(By.id("input-2-0-value"), "IM9001234567")

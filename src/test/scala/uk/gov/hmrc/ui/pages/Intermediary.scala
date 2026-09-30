@@ -73,6 +73,12 @@ object Intermediary extends BasePage {
     getCurrentUrl should startWith(s"$url/your-account")
   }
 
+  def intermediaryUrlCheck(url: String): Unit = {
+    val dashboard = s"$intermediaryDashboard$intermediaryDashboardJourneyUrl"
+    fluentWait.until(ExpectedConditions.urlContains(s"$dashboard/$url"))
+    getCurrentUrl should startWith(s"$dashboard/$url")
+  }
+
   def checkNetpPayments(): Unit = {
     val h1       = Driver.instance.findElement(By.tagName("h1")).getText
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
