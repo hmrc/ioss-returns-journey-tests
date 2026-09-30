@@ -117,7 +117,7 @@ object Auth extends BasePage {
 
     sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
     sendKeys(By.id("input-0-0-name"), "VRN")
-    if (journey == "doubleEnrolmentGlobalReturns") {
+    if (journey == "doubleEnrolmentVatGroup") {
       sendKeys(By.id("input-0-0-value"), "777777779")
     } else {
       sendKeys(By.id("input-0-0-value"), "100000001")

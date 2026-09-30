@@ -74,7 +74,7 @@ class VatGroupYesSpec extends BaseSpec {
         "the user with both intermediary and global IOSS enrolments accesses the IOSS Returns Service"
       )
       auth.goToAuthorityWizard()
-      auth.loginAsIntermediary("IN9002111002", "NotApplicable", "doubleEnrolmentGlobalReturns")
+      auth.loginAsIntermediary("IN9002111002", "NotApplicable", "doubleEnrolmentVatGroup")
 
       And("the user is on the select-account page")
       dashboard.checkJourneyUrl("select-account")
@@ -95,7 +95,7 @@ class VatGroupYesSpec extends BaseSpec {
         "the user with both intermediary and global IOSS enrolments accesses the IOSS Returns Service"
       )
       auth.goToAuthorityWizard()
-      auth.loginAsIntermediary("IN9002111002", "NotApplicable", "doubleEnrolmentGlobalReturns")
+      auth.loginAsIntermediary("IN9002111002", "NotApplicable", "doubleEnrolmentVatGroup")
 
       And("the user is on the select-account page")
       dashboard.checkJourneyUrl("select-account")
