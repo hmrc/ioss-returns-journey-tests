@@ -25,10 +25,10 @@ class NETPChangeDateSpec extends BaseSpec {
   private val auth      = Auth
   private val netp      = NETP
 
-  Feature("NETP Change Date over two years journeys") {
+  Feature("NETP Change Date over six months ago journeys") {
 
     Scenario(
-      "Intermediary starts a return for a NETP and the NETP registration has not been updated for over two years - review registration"
+      "Intermediary starts a return for a NETP and the NETP registration has not been updated for over six months - review registration"
     ) {
 
       Given("the intermediary accesses the IOSS Returns Service on behalf of a NETP")
@@ -52,7 +52,7 @@ class NETPChangeDateSpec extends BaseSpec {
     }
 
     Scenario(
-      "Intermediary starts a return for a NETP and the NETP registration has not been updated for over two years - skip for now"
+      "Intermediary starts a return for a NETP and the NETP registration has not been updated for over six months - skip for now"
     ) {
 
       Given("the intermediary accesses the IOSS Returns Service on behalf of a NETP")

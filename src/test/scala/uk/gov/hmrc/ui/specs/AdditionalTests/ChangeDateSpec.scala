@@ -24,9 +24,9 @@ class ChangeDateSpec extends BaseSpec {
   private val dashboard = Dashboard
   private val auth      = Auth
 
-  Feature("Change date over two years journeys") {
+  Feature("Change date over six months ago journeys") {
 
-    Scenario("A user has not amended their registration for two years - updates registration") {
+    Scenario("A user has not amended their registration for six months - updates registration") {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
@@ -50,7 +50,7 @@ class ChangeDateSpec extends BaseSpec {
       dashboard.checkRegistrationJourneyUrl("change-your-registration")
     }
 
-    Scenario("A user has not amended their registration for two years - Skip for now") {
+    Scenario("A user has not amended their registration for six months - Skip for now") {
 
       Given("the user accesses the IOSS Returns Service")
       auth.goToAuthorityWizard()
