@@ -25,10 +25,10 @@ class NETPChangeDateSpec extends BaseSpec {
   private val auth      = Auth
   private val netp      = NETP
 
-  Feature("NETP Change Date over six months ago journeys") {
+  Feature("NETP Change Date over six months ago journey") {
 
     Scenario(
-      "Intermediary starts a return for a NETP and the NETP registration has not been updated for over six months - review registration"
+      "Intermediary can progress a return for a NETP where the NETP registration has not been updated for over six months"
     ) {
 
       Given("the intermediary accesses the IOSS Returns Service on behalf of a NETP")
@@ -38,37 +38,6 @@ class NETPChangeDateSpec extends BaseSpec {
       And("the intermediary answers yes on the IM9001144771/2025-M3/start-return page")
       dashboard.checkJourneyUrl("IM9002221223/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
-
-      When("the intermediary is on the review-registration page")
-      dashboard.checkJourneyUrl("IM9002221223/review-registration")
-      netp.checkInterceptHeading()
-
-      And("the intermediary selects the Review their registration details link")
-      dashboard.cssLink("start-amend-journey\\/IM9002221223")
-
-      Then("the intermediary is redirected to review the client's registration")
-      netp.checkJourneyUrl("change-your-registration")
-      netp.reviewRegistrationCheck()
-    }
-
-    Scenario(
-      "Intermediary starts a return for a NETP and the NETP registration has not been updated for over six months - skip for now"
-    ) {
-
-      Given("the intermediary accesses the IOSS Returns Service on behalf of a NETP")
-      auth.goToAuthorityWizard()
-      auth.loginAsIntermediary("IN9002221223", "IM9002221223", "returns")
-
-      And("the intermediary answers yes on the IM9001144771/2025-M3/start-return page")
-      dashboard.checkJourneyUrl("IM9002221223/2025-M3/start-return")
-      dashboard.answerRadioButton("yes")
-
-      When("the intermediary is on the review-registration page")
-      dashboard.checkJourneyUrl("IM9002221223/review-registration")
-      netp.checkInterceptHeading()
-
-      And("the intermediary selects the Skip for now button")
-      dashboard.clickLink("skip")
 
       Then("the intermediary can continue with the client's return")
       dashboard.checkJourneyUrl("IM9002221223/want-to-upload-file")
