@@ -103,7 +103,9 @@ object Auth extends BasePage {
 
     val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns" || journey == "savedReturn") {
       s"start-return-as-intermediary/$iossNumber"
-    } else if (journey == "doubleEnrolmentGlobalReturns" || journey == "doubleEnrolmentVatGroup") {
+    } else if (
+      journey == "doubleEnrolmentGlobalReturns" || journey == "doubleEnrolmentVatGroup" || journey == "doubleEnrolmentChangeDate"
+    ) {
       ""
     } else if (journey == "payments") {
       s"start-payment-as-intermediary/$iossNumber"
@@ -143,6 +145,12 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-2-0-name"), "IOSSNumber")
       sendKeys(By.id("input-2-0-value"), "IM9001234567")
+    }
+
+    if (journey == "doubleEnrolmentChangeDate") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+      sendKeys(By.id("input-2-0-value"), "IM9003232323")
     }
 
     click(By.cssSelector("Input[value='Submit']"))
