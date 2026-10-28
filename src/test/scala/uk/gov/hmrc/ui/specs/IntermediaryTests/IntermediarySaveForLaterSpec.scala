@@ -130,10 +130,10 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       And("the user starts a return for the NETP")
       dashboard.checkJourneyUrl("IM9006655552/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9006655552/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9006655552/sold-goods")
       dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9006655552/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9006655552/sold-to-country/1")
 
       When("the user clicks the Save and come back later button")
