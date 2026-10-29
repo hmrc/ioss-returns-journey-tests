@@ -93,8 +93,6 @@ class CheckYourAnswersSpec extends BaseSpec {
       Then("the user completes a nil return")
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("no")
       dashboard.checkJourneyUrl("IM9001234567/correct-previous-return")
@@ -109,7 +107,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       dashboard.answerRadioButton("yes")
 
       And("the user chooses not to use the file upload")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file?waypoints=IM9001234567-check-your-answers")
       fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user adds sales for Croatia")
