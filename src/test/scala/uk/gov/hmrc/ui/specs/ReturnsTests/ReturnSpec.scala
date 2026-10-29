@@ -41,13 +41,13 @@ class ReturnSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999888/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers yes on the sold-goods page")
       dashboard.checkJourneyUrl("IM9009999888/sold-goods")
       dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user selects a country on the sold-to-country page")
       dashboard.checkJourneyUrl("IM9009999888/sold-to-country/1")
@@ -165,13 +165,13 @@ class ReturnSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999888/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers yes on the sold-goods page")
       dashboard.checkJourneyUrl("IM9009999888/sold-goods")
       dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user selects a country on the sold-to-country page")
       dashboard.checkJourneyUrl("IM9009999888/sold-to-country/1")
@@ -252,10 +252,6 @@ class ReturnSpec extends BaseSpec {
       Then("the user answers yes on the start page")
       dashboard.checkJourneyUrl("IM9009999888/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9009999888/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9009999888/sold-goods")

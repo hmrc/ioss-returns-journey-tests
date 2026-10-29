@@ -220,10 +220,6 @@ class ExclusionSpec extends BaseSpec {
       And("the user answers yes")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9049999994/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9049999994/sold-goods")
       dashboard.answerRadioButton("no")
@@ -263,10 +259,6 @@ class ExclusionSpec extends BaseSpec {
 
       And("the user answers yes")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9009999995/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9009999995/sold-goods")

@@ -40,6 +40,10 @@ class NETPChangeDateSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9002221221/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
 
+      And("the user answers yes on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9002221221/sold-goods")
+      dashboard.answerRadioButton("yes")
+
       Then("the intermediary can continue with the client's return")
       dashboard.checkJourneyUrl("IM9002221221/want-to-upload-file")
     }

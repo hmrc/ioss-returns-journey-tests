@@ -43,10 +43,6 @@ class IntermediarySpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001144771/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
 
-      Then("the user answers no on the IM9001144771/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001144771/sold-goods")
       dashboard.answerRadioButton("no")
@@ -80,13 +76,13 @@ class IntermediarySpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001144771/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
 
-      Then("the user answers no on the IM9001144771/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers yes on the IM9001144771/sold-goods page")
       dashboard.checkJourneyUrl("IM9001144771/sold-goods")
       dashboard.answerRadioButton("yes")
+
+      Then("the user answers no on the IM9001144771/want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user selects a country on the sold-to-country page")
       dashboard.checkJourneyUrl("IM9001144771/sold-to-country/1")
@@ -212,10 +208,6 @@ class IntermediarySpec extends BaseSpec {
       And("the user answers yes on the IM9001144777/2025-M3/start-return page")
       dashboard.checkJourneyUrl("IM9001144777/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
-
-      Then("the user answers no on the IM9001144777/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144777/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001144777/sold-goods")
@@ -347,10 +339,6 @@ class IntermediarySpec extends BaseSpec {
       And("the user answers yes on the IM9001144773/2025-M3/start-return page")
       dashboard.checkJourneyUrl("IM9001144773/2025-M1/start-return")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144773/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001144773/sold-goods")
@@ -601,10 +589,6 @@ class IntermediarySpec extends BaseSpec {
       transferringMsid.transferringMsidText("netp", "from", "offered", "partial")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9005555551/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9005555551/sold-goods")
       dashboard.answerRadioButton("no")
@@ -629,10 +613,6 @@ class IntermediarySpec extends BaseSpec {
       exclusion.finalReturnHeading(display = true, "NETP")
       transferringMsid.transferringMsidText("netp", "to", "offered", "partial")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9005555552/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9005555552/sold-goods")
@@ -668,10 +648,6 @@ class IntermediarySpec extends BaseSpec {
       And("the user answers yes on the IM9001144771/2025-M3/start-return page")
       dashboard.answerRadioButton("yes")
 
-      Then("the user answers no on the IM9001144771/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the correct caption is displayed for a UK with VRN client")
       dashboard.checkJourneyUrl("IM9001144771/sold-goods")
       intermediary.checkCaption("UK with VRN")
@@ -705,10 +681,6 @@ class IntermediarySpec extends BaseSpec {
       And("the user answers yes on the IM9001144773/2025-M1/start-return page")
       dashboard.answerRadioButton("yes")
 
-      Then("the user answers no on the IM9001144773/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144773/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the correct caption is displayed for a UK with UTR client")
       dashboard.checkJourneyUrl("IM9001144773/sold-goods")
       intermediary.checkCaption("UK with UTR")
@@ -737,10 +709,6 @@ class IntermediarySpec extends BaseSpec {
 
       And("the user answers yes on the IM9001144778/2025-M1/start-return page")
       dashboard.answerRadioButton("yes")
-
-      Then("the user answers no on the IM9001144778/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144778/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the correct caption is displayed for a UK with NINO client")
       dashboard.checkJourneyUrl("IM9001144778/sold-goods")
@@ -771,10 +739,6 @@ class IntermediarySpec extends BaseSpec {
       And("the user answers yes on the IM9001144775/2025-M1/start-return page")
       dashboard.answerRadioButton("yes")
 
-      Then("the user answers no on the IM9001144775/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144775/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the correct caption is displayed for a Non-UK with VRN client")
       dashboard.checkJourneyUrl("IM9001144775/sold-goods")
       intermediary.checkCaption("Non-UK with VRN")
@@ -803,10 +767,6 @@ class IntermediarySpec extends BaseSpec {
 
       And("the user answers yes on the IM9001144777/2025-M3/start-return page")
       dashboard.answerRadioButton("yes")
-
-      Then("the user answers no on the IM9001144777/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001144777/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the correct caption is displayed for a UK with FTR client")
       dashboard.checkJourneyUrl("IM9001144777/sold-goods")
@@ -942,10 +902,6 @@ class IntermediarySpec extends BaseSpec {
       And("the user answers yes on the start-return page")
       dashboard.answerRadioButton("yes")
 
-      Then("the user answers no on the IM9005005005/want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9005005005/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9005005005/sold-goods")
       dashboard.answerRadioButton("no")
@@ -983,8 +939,6 @@ class IntermediarySpec extends BaseSpec {
       Then("the user is able to progress a return for a NETP")
       dashboard.checkJourneyUrl("IM9001144771/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001144771/sold-goods")
       dashboard.answerRadioButton("no")
     }
@@ -1011,10 +965,10 @@ class IntermediarySpec extends BaseSpec {
       dashboard.clickLink("start-your-return")
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
     }
   }
 }
