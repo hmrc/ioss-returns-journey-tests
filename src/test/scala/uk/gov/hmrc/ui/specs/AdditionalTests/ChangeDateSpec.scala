@@ -71,7 +71,7 @@ class ChangeDateSpec extends BaseSpec {
       dashboard.clickLink("skip")
 
       And("the user can continue with their return")
-      dashboard.checkJourneyUrl("IM9003232323/want-to-upload-file")
+      dashboard.checkJourneyUrl("IM9003232323/sold-goods")
     }
   }
 }
