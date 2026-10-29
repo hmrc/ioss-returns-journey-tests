@@ -103,6 +103,8 @@ object Auth extends BasePage {
 
     val endpoint = if (journey == "returns" || journey == "doubleEnrolmentNetpReturns" || journey == "savedReturn") {
       s"start-return-as-intermediary/$iossNumber"
+    } else if (journey == "noSavedReturn") {
+      s"$iossNumber/2025-M3/return-continue"
     } else if (
       journey == "doubleEnrolmentGlobalReturns" || journey == "doubleEnrolmentVatGroup" || journey == "doubleEnrolmentChangeDate"
     ) {
