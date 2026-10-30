@@ -523,5 +523,25 @@ class SaveForLaterSpec extends BaseSpec {
       Then("the user is on the check-your-answers page")
       dashboard.checkJourneyUrl("IM9007777778/check-your-answers")
     }
+
+    Scenario("A user has no saved returns") {
+
+      Given("the user accesses the IOSS Returns Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "IM9001234567", "Organisation", "hasIOSSEnrolment", "dashboard")
+      dashboard.checkJourneyUrl("your-account")
+
+      When("the user navigates to the continue-return page")
+      dashboard.goToPage("IM9001234567/2023-M12/return-continue")
+
+      Then("the user is on the no-saved-returns page")
+      dashboard.checkJourneyUrl("no-saved-returns")
+
+      And("the user clicks the Return to your account link")
+      dashboard.clickLink("return-to-your-account")
+
+      And("the user is redirected to their dashboard")
+      dashboard.checkJourneyUrl("your-account")
+    }
   }
 }
