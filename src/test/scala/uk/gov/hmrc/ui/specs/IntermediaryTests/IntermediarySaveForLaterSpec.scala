@@ -281,8 +281,8 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginAsIntermediary("IN9001234567", "IM9001144771", "noSavedReturn")
 
-      Then("the intermediary is on the no-saved-intermediary-returns page")
-      dashboard.checkJourneyUrl("no-saved-intermediary-returns")
+      Then("the intermediary is on the no-saved-returns page")
+      dashboard.checkJourneyUrl("no-saved-returns")
 
       And("the intermediary clicks on the Return to your account link")
       dashboard.clickLink("return-to-your-account")
