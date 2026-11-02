@@ -279,7 +279,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
         "100000001",
         "IM9005230000",
         "Organisation",
-        "onePreviousRegistration",
+        "onePreviousRegistrationOneOutstandingPayment",
         "dashboard"
       )
       dashboard.checkJourneyUrl("your-account")
@@ -360,7 +360,7 @@ class MultipleIOSSNumbersSpec extends BaseSpec {
         "100000001",
         "IM9007230006",
         "Organisation",
-        "multiplePreviousRegistrations",
+        "multiplePreviousRegistrationsSingleOutstandingPayment",
         "dashboard"
       )
       dashboard.checkJourneyUrl("your-account")

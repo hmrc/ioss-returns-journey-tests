@@ -23,7 +23,6 @@ class NETPChangeDateSpec extends BaseSpec {
 
   private val dashboard    = Dashboard
   private val auth         = Auth
-  private val netp         = NETP
   private val intermediary = Intermediary
 
   Feature("Intermediary change date journeys") {
