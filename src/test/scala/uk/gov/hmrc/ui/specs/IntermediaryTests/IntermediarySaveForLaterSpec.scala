@@ -274,5 +274,21 @@ class IntermediarySaveForLaterSpec extends BaseSpec {
       Then("the user is on the cannot-use-not-registered page")
       dashboard.checkJourneyUrl("cannot-use-not-registered")
     }
+
+    Scenario("Intermediary has no saved returns for their client") {
+
+      Given("the intermediary accesses the IOSS Returns Service on behalf of a NETP who has no saved returns")
+      auth.goToAuthorityWizard()
+      auth.loginAsIntermediary("IN9001234567", "IM9001144771", "noSavedReturn")
+
+      Then("the intermediary is on the no-saved-returns page")
+      dashboard.checkJourneyUrl("no-saved-returns")
+
+      And("the intermediary clicks on the Return to your account link")
+      dashboard.clickLink("return-to-your-account")
+
+      And("the intermediary is redirected to their dashboard")
+      intermediary.intermediaryUrlCheck("your-account")
+    }
   }
 }
