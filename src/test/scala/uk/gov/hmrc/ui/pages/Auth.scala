@@ -78,6 +78,12 @@ object Auth extends BasePage {
         sendKeys(By.id("input-2-0-value"), "IM9006230000")
       }
 
+      if (accountType == "onePreviousRegistrationOneOutstandingPayment") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9004230000")
+      }
+
       if (accountType == "multiplePreviousRegistrations") {
         sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
         sendKeys(By.id("input-2-0-name"), "IOSSNumber")
@@ -86,6 +92,16 @@ object Auth extends BasePage {
         sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
         sendKeys(By.id("input-3-0-name"), "IOSSNumber")
         sendKeys(By.id("input-3-0-value"), "IM9007230001")
+      }
+
+      if (accountType == "multiplePreviousRegistrationsSingleOutstandingPayment") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9007230005")
+
+        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-3-0-value"), "IM9007230004")
       }
     }
 
