@@ -47,13 +47,13 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers yes on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("yes")
+
+      And("the user answers no on the want-to-upload-file page")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user selects a country on the sold-to-country page")
       dashboard.checkJourneyUrl("IM9001234567/sold-to-country/1")
@@ -200,13 +200,11 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user adds sales for two countries")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001234567/sold-to-country/1")
       dashboard.selectCountry("Czech Republic")
       dashboard.checkJourneyUrl("IM9001234567/vat-rates-from-country/1")
@@ -278,13 +276,11 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user adds sales for two countries")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001234567/sold-to-country/1")
       dashboard.selectCountry("Denmark")
       dashboard.checkJourneyUrl("IM9001234567/sales-to-country/1/1")
@@ -411,13 +407,11 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user adds sales across multiple VAT rates for Croatia")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001234567/sold-to-country/1")
       dashboard.selectCountry("Croatia")
       dashboard.checkJourneyUrl("IM9001234567/vat-rates-from-country/1")
@@ -500,13 +494,11 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user adds sales for Finland")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("yes")
+      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
+      fileUpload.selectFileUpload("No, enter them myself")
       dashboard.checkJourneyUrl("IM9001234567/sold-to-country/1")
       dashboard.selectCountry("Finland")
       dashboard.checkJourneyUrl("IM9001234567/vat-rates-from-country/1")
@@ -588,10 +580,6 @@ class ChangeRemoveSpec extends BaseSpec {
       Then("the user answers yes on the start page")
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
@@ -733,10 +721,6 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("no")
@@ -846,10 +830,6 @@ class ChangeRemoveSpec extends BaseSpec {
       Then("the user answers yes on the start page")
       dashboard.checkJourneyUrl("IM9001234568/2024-M1/start-return")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234568/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234568/sold-goods")
@@ -987,10 +967,6 @@ class ChangeRemoveSpec extends BaseSpec {
       Then("the user answers yes on the start page")
       dashboard.checkJourneyUrl("IM9001234568/2024-M1/start-return")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234568/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234568/sold-goods")
@@ -1192,10 +1168,6 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl(s"IM9001234569/$lastYear-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234569/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234569/sold-goods")
       dashboard.answerRadioButton("no")
@@ -1328,10 +1300,6 @@ class ChangeRemoveSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")
       dashboard.answerRadioButton("no")
@@ -1399,10 +1367,6 @@ class ChangeRemoveSpec extends BaseSpec {
       Then("the user answers yes on the start page")
       dashboard.checkJourneyUrl("IM9001234567/2023-M12/start-return")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9001234567/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9001234567/sold-goods")

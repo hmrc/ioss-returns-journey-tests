@@ -37,6 +37,10 @@ class FileUploadSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9001144771/2025-M3/start-return")
       dashboard.answerRadioButton("yes")
 
+      And("the user answers yes on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9001144771/sold-goods")
+      dashboard.answerRadioButton("yes")
+
       Then("the user answers yes on the IM9001144771/want-to-upload-file page")
       dashboard.checkJourneyUrl("IM9001144771/want-to-upload-file")
       fileUpload.selectFileUpload("Yes")
@@ -71,6 +75,10 @@ class FileUploadSpec extends BaseSpec {
 
       Then("the user answers yes on the start page")
       dashboard.checkJourneyUrl("IM9009999888/2023-M12/start-return")
+      dashboard.answerRadioButton("yes")
+
+      And("the user answers yes on the sold-goods page")
+      dashboard.checkJourneyUrl("IM9009999888/sold-goods")
       dashboard.answerRadioButton("yes")
 
       And("the user answers no on the want-to-upload-file page")

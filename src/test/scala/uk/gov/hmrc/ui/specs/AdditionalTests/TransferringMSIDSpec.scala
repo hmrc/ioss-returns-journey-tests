@@ -45,10 +45,6 @@ class TransferringMSIDSpec extends BaseSpec {
       transferringMsid.transferringMsidText("trader", "from", "offered", "partial")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9005999997/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9005999997/sold-goods")
       dashboard.answerRadioButton("no")
@@ -76,10 +72,6 @@ class TransferringMSIDSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9005999977/2024-M2/start-return")
       transferringMsid.transferringMsidText("trader", "from", "offered", "full")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9005999977/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9005999977/sold-goods")
@@ -115,10 +107,6 @@ class TransferringMSIDSpec extends BaseSpec {
       transferringMsid.transferringMsidText("trader", "to", "offered", "full")
       dashboard.answerRadioButton("yes")
 
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9009995555/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
-
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9009995555/sold-goods")
       dashboard.answerRadioButton("no")
@@ -153,10 +141,6 @@ class TransferringMSIDSpec extends BaseSpec {
       dashboard.checkJourneyUrl("IM9009999555/2024-M2/start-return")
       transferringMsid.transferringMsidText("trader", "to", "offered", "partial")
       dashboard.answerRadioButton("yes")
-
-      And("the user answers no on the want-to-upload-file page")
-      dashboard.checkJourneyUrl("IM9009999555/want-to-upload-file")
-      fileUpload.selectFileUpload("No, enter them myself")
 
       And("the user answers no on the sold-goods page")
       dashboard.checkJourneyUrl("IM9009999555/sold-goods")
